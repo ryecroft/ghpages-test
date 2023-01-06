@@ -6,7 +6,8 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
         <script>
             if (!document.cookie) {
-                const dc = prompt('Enter your ukcsid cookie value')
+                const dc = prompt('Enter your ukcsid cookie value (with or without ukcsid=)')
+                document.cookie = dc?.replace(/ukcsid=/gi, 'ukcsid=')
             }
         </script>
         <style>
