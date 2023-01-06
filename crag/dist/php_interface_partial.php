@@ -2,13 +2,13 @@
 
 class SearchBar {
     public static function css() { return '/logbooks/rfdigital_web_components/searchbar/assets/index-aabda8d2.css'; }
-    public static function js() { return '/logbooks/rfdigital_web_components/searchbar/index-71ccfff5.js'; }
+    public static function js() { return '/logbooks/rfdigital_web_components/searchbar/index-bec7bc63.js'; }
     public static function html() { return '<ukc-searchbar></ukc-searchbar>'; }
 }
 
 class SearchResults {
     public static function css() { return '/logbooks/rfdigital_web_components/searchbar/assets/index-aabda8d2.css'; }
-    public static function js() { return '/logbooks/rfdigital_web_components/searchbar/index-71ccfff5.js'; }
+    public static function js() { return '/logbooks/rfdigital_web_components/searchbar/index-bec7bc63.js'; }
     public static function html() { return '<ukc-results></ukc-results>'; }
 }
 
@@ -16,7 +16,7 @@ class SearchResults {
 
 class UkcLogbook {
     public static function css() { return '/logbooks/rfdigital_web_components/searchbar/assets/index-aabda8d2.css'; }
-    public static function js() { return '/logbooks/rfdigital_web_components/searchbar/index-71ccfff5.js'; }
+    public static function js() { return '/logbooks/rfdigital_web_components/searchbar/index-bec7bc63.js'; }
     public static function html() { return '<ukc-logbook></ukc-logbook>
 '; }
 }
@@ -25,7 +25,7 @@ class UkcLogbook {
 
 class UkcWishlist {
     public static function css() { return '/logbooks/rfdigital_web_components/searchbar/assets/index-aabda8d2.css'; }
-    public static function js() { return '/logbooks/rfdigital_web_components/searchbar/index-71ccfff5.js'; }
+    public static function js() { return '/logbooks/rfdigital_web_components/searchbar/index-bec7bc63.js'; }
     public static function html() { return '<ukc-wishlist></ukc-wishlist>
 '; }
 }
@@ -33,7 +33,7 @@ class UkcWishlist {
 
 class UkcPartnerAscents {
     public static function css() { return '/logbooks/rfdigital_web_components/searchbar/assets/index-aabda8d2.css'; }
-    public static function js() { return '/logbooks/rfdigital_web_components/searchbar/index-71ccfff5.js'; }
+    public static function js() { return '/logbooks/rfdigital_web_components/searchbar/index-bec7bc63.js'; }
     public static function html() { return '<ukc-partner-ascents></ukc-partner-ascents>
 '; }
 }
@@ -41,7 +41,7 @@ class UkcPartnerAscents {
 
 class UkcRoutesViewer {
     public static function css() { return '/logbooks/rfdigital_web_components/searchbar/assets/index-aabda8d2.css'; }
-    public static function js() { return '/logbooks/rfdigital_web_components/searchbar/index-71ccfff5.js'; }
+    public static function js() { return '/logbooks/rfdigital_web_components/searchbar/index-bec7bc63.js'; }
     public static function html() { return '<routes-viewer></routes-viewer>
 '; }
 }
