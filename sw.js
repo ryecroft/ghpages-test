@@ -1,6 +1,6 @@
 const GHPATH = '/github-page-pwa'
 const APP_PREFIX = 'gppwa_'
-const VERSION = 'version_002'
+const VERSION = 'version_003'
 const URLS = [
   `${ GHPATH }/`,
   `${ GHPATH }/crag/index.html`,
