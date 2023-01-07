@@ -5577,8 +5577,7 @@ let RoutesViewerElement = class extends UkcLogbookElement$1 {
     UkcLocalStorage.RoutesForCrag.store(newVal);
   }
   get routesLookup() {
-    this._routesLookup ||= UkcLocalStorage.RoutesForCrag.fetch(this.cragId);
-    return this._routesLookup;
+    return this._routesLookup || UkcLocalStorage.RoutesForCrag.fetch(this.cragId);
   }
   get sortOrderKey() {
     return "routes_viewer_sort_order";

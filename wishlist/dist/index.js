@@ -5577,7 +5577,8 @@ let RoutesViewerElement = class extends UkcLogbookElement$1 {
     UkcLocalStorage.RoutesForCrag.store(newVal);
   }
   get routesLookup() {
-    return this._routesLookup || UkcLocalStorage.RoutesForCrag.fetch(this.cragId);
+    this._routesLookup ||= UkcLocalStorage.RoutesForCrag.fetch(this.cragId);
+    return this._routesLookup;
   }
   get sortOrderKey() {
     return "routes_viewer_sort_order";
@@ -5607,7 +5608,7 @@ let RoutesViewerElement = class extends UkcLogbookElement$1 {
     if (!window.navigator.onLine) {
       const routes = this.routesLookup;
       const fakeData = { objects: Object.values(routes.routes) };
-      this.buildInvertedIndex(fakeData);
+      await this.buildInvertedIndex(fakeData);
     }
     const bodyWithNoQuery = this.bodyForRequest("", 0);
     bodyWithNoQuery.return_type = "full";
