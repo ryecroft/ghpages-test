@@ -4,8 +4,6 @@
   "description": "UKC Crag Page Progressive Web App",
   "scope": "/ghpages-test/",
   "start_url": "/ghpages-test/",
-  "background_color": "#ffffff",
-  "theme_color": "#ffffff",
   "display": "standalone",
   "icons": [
     {
