@@ -2,7 +2,6 @@ const GHPATH = '/ghpages-test'
 const APP_PREFIX = 'gppwa_'
 const VERSION = 'version_004'
 const URLS = [
-  `${ GHPATH }/`,
   `${ GHPATH }/crag/index.html`,
   `${ GHPATH }/crag/assets/index.css`,
   `${ GHPATH }/img/icon.png`,
