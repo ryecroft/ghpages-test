@@ -3,7 +3,7 @@
   "short_name": "TPWA",
   "description": "UKC Crag Page Progressive Web App",
   "scope": "/ghpages-test/",
-  "start_url": "/ghpages-test/",
+  "start_url": "/ghpages-test/crag/",
   "display": "standalone",
   "icons": [
     {
