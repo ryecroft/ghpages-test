@@ -5642,10 +5642,12 @@ let RoutesViewerElement = class extends UkcLogbookElement$1 {
   index;
   async performInitialFetch() {
     const routes = this.routesLookup;
-    const fakeData = { objects: [{ routes: Object.values(routes.routes) }] };
-    await this.buildInvertedIndex(fakeData);
-    this.buildResults(this.baseData);
-    this.stopProgressBar();
+    if (routes) {
+      const fakeData = { objects: [{ routes: Object.values(routes.routes) }] };
+      await this.buildInvertedIndex(fakeData);
+      this.buildResults(this.baseData);
+      this.stopProgressBar();
+    }
     const bodyWithNoQuery = this.bodyForRequest("", 0);
     bodyWithNoQuery.return_type = "full";
     const bodyWithQuery = this.bodyForRequest(this.urlFilter, 0);
@@ -5684,8 +5686,8 @@ let RoutesViewerElement = class extends UkcLogbookElement$1 {
       void this.buildInvertedIndex(dataJson);
     } catch (err) {
       const routes2 = this.routesLookup;
-      const fakeData2 = { objects: [{ routes: Object.values(routes2.routes) }] };
-      await this.buildInvertedIndex(fakeData2);
+      const fakeData = { objects: [{ routes: Object.values(routes2.routes) }] };
+      await this.buildInvertedIndex(fakeData);
       this.buildResults(this.baseData);
       this.stopProgressBar();
     }
