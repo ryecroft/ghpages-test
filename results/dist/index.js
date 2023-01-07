@@ -5723,7 +5723,7 @@ let RoutesViewerElement = class extends UkcLogbookElement$1 {
     return true;
   }
   async fetchResultsForPage(query, pageNo) {
-    if (!this.isInitialFetchComplete) {
+    if (window.navigator.onLine && !this.isInitialFetchComplete) {
       return { meta: {}, objects: [] };
     }
     if (window.navigator.onLine) {
