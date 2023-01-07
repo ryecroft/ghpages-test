@@ -6,7 +6,7 @@ const URLS = [
   `${ GHPATH }/crag/index.html`,
   `${ GHPATH }/crag/assets/index.css`,
   `${ GHPATH }/img/icon.png`,
-  `${ GHPATH }/crag/index.js`
+  `${ GHPATH }/crag/dist/index.js`
 ]
 
 const CACHE_NAME = APP_PREFIX + VERSION

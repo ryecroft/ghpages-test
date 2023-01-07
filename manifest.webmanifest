@@ -1,6 +1,6 @@
 {
   "name": "Test PWA",
-  "short_name": "TPWA",
+  "short_name": "UKCpwa",
   "description": "UKC Crag Page Progressive Web App",
   "scope": "/ghpages-test/",
   "start_url": "/ghpages-test/crag/",
