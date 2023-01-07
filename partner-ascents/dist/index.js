@@ -1031,7 +1031,13 @@ let SearchResults = class extends BaseCon$1 {
   searchId = 0;
   preventLayoutShift = false;
   apiData;
-  baseData;
+  _baseData;
+  set baseData(newVal) {
+    this._baseData = newVal;
+  }
+  get baseData() {
+    return this._baseData;
+  }
   get template() {
     return searchResultsTemplate;
   }
@@ -2225,9 +2231,9 @@ const RouteSearchbarElement$1 = RouteSearchbarElement;
 
 var UkcLocalStorage;
 ((UkcLocalStorage2) => {
-  class RoutesForCrag {
+  class RouteLookupForCrag {
     static identifier(cragId) {
-      return `crag_routes_${cragId}`;
+      return `crag_routes_lookup_for_crag_${cragId}`;
     }
     static fetch(cragId) {
       const data = localStorage.getItem(this.identifier(cragId));
@@ -2239,7 +2245,22 @@ var UkcLocalStorage;
       localStorage.setItem(this.identifier(routes.cragId), JSON.stringify(routes));
     }
   }
-  UkcLocalStorage2.RoutesForCrag = RoutesForCrag;
+  UkcLocalStorage2.RouteLookupForCrag = RouteLookupForCrag;
+  class BaseRouteDataForCrag {
+    static identifier(cragId) {
+      return `base_routedata_for_crag_${cragId}`;
+    }
+    static fetch(cragId) {
+      const data = localStorage.getItem(this.identifier(cragId));
+      if (data)
+        return JSON.parse(data);
+      return void 0;
+    }
+    static store(routes, cragId) {
+      localStorage.setItem(this.identifier(cragId), JSON.stringify(routes));
+    }
+  }
+  UkcLocalStorage2.BaseRouteDataForCrag = BaseRouteDataForCrag;
   class LogbookDetails {
     #lookup;
     get lookup() {
@@ -5569,15 +5590,23 @@ let RoutesViewerElement = class extends UkcLogbookElement$1 {
   cellsToLoadAtATime = 50;
   cellsLastLoadedAt = new Date().getTime();
   loadedRoutes = /* @__PURE__ */ new Set();
+  set baseData(newVal) {
+    this._baseData = newVal;
+    UkcLocalStorage.BaseRouteDataForCrag.store(newVal, this.cragId);
+  }
+  get baseData() {
+    this._baseData ||= UkcLocalStorage.BaseRouteDataForCrag.fetch(this.cragId);
+    return this._baseData;
+  }
   cragId;
   searchResultsIdentifier = "routes-viewer";
   isInitialFetchComplete = false;
   _routesLookup;
   set routesLookup(newVal) {
-    UkcLocalStorage.RoutesForCrag.store(newVal);
+    UkcLocalStorage.RouteLookupForCrag.store(newVal);
   }
   get routesLookup() {
-    this._routesLookup ||= UkcLocalStorage.RoutesForCrag.fetch(this.cragId);
+    this._routesLookup ||= UkcLocalStorage.RouteLookupForCrag.fetch(this.cragId);
     return this._routesLookup;
   }
   get sortOrderKey() {
@@ -5605,11 +5634,6 @@ let RoutesViewerElement = class extends UkcLogbookElement$1 {
   }
   index;
   async performInitialFetch() {
-    if (!window.navigator.onLine) {
-      const routes = this.routesLookup;
-      const fakeData = { objects: Object.values(routes.routes) };
-      await this.buildInvertedIndex(fakeData);
-    }
     const bodyWithNoQuery = this.bodyForRequest("", 0);
     bodyWithNoQuery.return_type = "full";
     const bodyWithQuery = this.bodyForRequest(this.urlFilter, 0);
@@ -5636,15 +5660,23 @@ let RoutesViewerElement = class extends UkcLogbookElement$1 {
         body: JSON.stringify(bodyWithQuery)
       }
     );
-    const [data, ids] = await Promise.all([mainCall, filterCall]);
-    const [dataJson, idsJson] = await Promise.all([data.json(), ids.json()]);
-    this.routesLookup = this.buildRoutesLookup(dataJson);
-    dataJson.objects = this.buildIdsSectionArray(dataJson);
-    this.baseData = dataJson;
-    this.search_results_title.innerHTML = `<span style="font-size: 0.8em">Routes at ${escape(dataJson.meta.crag_name || "")}</span>`;
-    this.buildResults(idsJson);
-    this.isInitialFetchComplete = true;
-    void this.buildInvertedIndex(dataJson);
+    try {
+      const [data, ids] = await Promise.all([mainCall, filterCall]);
+      const [dataJson, idsJson] = await Promise.all([data.json(), ids.json()]);
+      this.routesLookup = this.buildRoutesLookup(dataJson);
+      dataJson.objects = this.buildIdsSectionArray(dataJson);
+      this.baseData = dataJson;
+      this.search_results_title.innerHTML = `<span style="font-size: 0.8em">Routes at ${escape(dataJson.meta.crag_name || "")}</span>`;
+      this.buildResults(idsJson);
+      this.isInitialFetchComplete = true;
+      void this.buildInvertedIndex(dataJson);
+    } catch (err) {
+      const routes = this.routesLookup;
+      const fakeData = { objects: [{ routes: Object.values(routes.routes) }] };
+      await this.buildInvertedIndex(fakeData);
+      this.buildResults(this.baseData);
+      this.stopProgressBar();
+    }
   }
   buildIdsSectionArray(data) {
     return data.objects.map((section) => {
@@ -5691,15 +5723,7 @@ let RoutesViewerElement = class extends UkcLogbookElement$1 {
     return true;
   }
   async fetchResultsForPage(query, pageNo) {
-    if (!this.isInitialFetchComplete) {
-      return { meta: {}, objects: [] };
-    }
-    if (window.navigator.onLine) {
-      this.lastHeaderString = "";
-      const res = await super.fetchResultsForPage(query, pageNo);
-      this.search_results_title.innerHTML = `<span style="font-size: 0.8em">Routes at ${escape(res.meta.crag_name || "")}</span>`;
-      return res;
-    } else {
+    {
       console.log("offline");
       return this.fetchResultsForPageLocal(query, pageNo);
     }
