@@ -5723,7 +5723,15 @@ let RoutesViewerElement = class extends UkcLogbookElement$1 {
     return true;
   }
   async fetchResultsForPage(query, pageNo) {
-    {
+    if (!this.isInitialFetchComplete) {
+      return { meta: {}, objects: [] };
+    }
+    if (window.navigator.onLine) {
+      this.lastHeaderString = "";
+      const res = await super.fetchResultsForPage(query, pageNo);
+      this.search_results_title.innerHTML = `<span style="font-size: 0.8em">Routes at ${escape(res.meta.crag_name || "")}</span>`;
+      return res;
+    } else {
       console.log("offline");
       return this.fetchResultsForPageLocal(query, pageNo);
     }
