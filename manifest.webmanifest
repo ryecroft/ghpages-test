@@ -1,0 +1,17 @@
+{
+  "name": "Test PWA",
+  "short_name": "TPWA",
+  "description": "UKC Crag Page Progressive Web App",
+  "scope": "/ghpages-test/",
+  "start_url": "/ghpages-test/",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "/ghpages-test/img/icon.png",
+      "type": "image/png",
+      "sizes": "700x700"
+    }
+  ]
+}
