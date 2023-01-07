@@ -5580,6 +5580,13 @@ const generateApiUrl = () => {
   const targetOrigin = apiOrigin();
   return `${targetOrigin}/v1/rockfax/search/route_ukc_for_crag`;
 };
+const trigramWrapped = (s) => {
+  let t = s;
+  while (t.length < 3) {
+    t = " " + t;
+  }
+  return trigram(t);
+};
 const sharedStorage = UkcLocalStorage.sharedLogbook;
 let RoutesViewerElement = class extends UkcLogbookElement$1 {
   get apiUrl() {
@@ -5931,13 +5938,6 @@ __decorateClass$2([
 RoutesViewerElement = __decorateClass$2([
   controller
 ], RoutesViewerElement);
-const trigramWrapped = (s) => {
-  let t = s;
-  while (t.length < 3) {
-    t = " " + t;
-  }
-  return trigram(t);
-};
 
 const cragIconTemplate = (_element) => {
   return html$1`
