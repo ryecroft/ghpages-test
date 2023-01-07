@@ -1,5 +1,5 @@
 {
-  "name": "Test PWA",
+  "name": "UKC Routes Viewer PWA",
   "short_name": "UKCpwa",
   "description": "UKC Crag Page Progressive Web App",
   "scope": "/ghpages-test/",
