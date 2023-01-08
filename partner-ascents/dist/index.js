@@ -1373,7 +1373,7 @@ let SearchResults = class extends BaseCon$1 {
     if (this.queue.length) {
       this.preventLayoutShift = true;
       let i = 0;
-      const max = this.search_results_container.children.length > 4 ? 1 : 10;
+      const max = this.search_results_container.children.length > 4 ? 1 : 15;
       while (i < max && this.queue.length) {
         this.queue.shift()();
         i++;
