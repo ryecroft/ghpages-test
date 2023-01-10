@@ -3,6 +3,9 @@ const APP_PREFIX = 'gppwa_'
 const VERSION = 'version_004'
 const URLS = [
   `${ GHPATH }/crag/index.html`,
+  `${ GHPATH }/logbook/index.html`,
+  `${ GHPATH }/wishlist/index.html`,
+  `${ GHPATH }/partners/index.html`,
   `${ GHPATH }/img/icon.png`,
   `${ GHPATH }/dist/assets/index.css`,
   `${ GHPATH }/dist/index.js`,
