@@ -2040,6 +2040,8 @@ let RouteSearchbarElement = class extends BaseSearchbarElement$1 {
   }
   queue = [];
   buildResults(data) {
+    if (!data)
+      return;
     this.queue = [];
     this.clearResultsDropdown();
     if (this.isSearchbarFocussed) {
@@ -5164,8 +5166,6 @@ let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
     return false;
   }
   resultsSignature(data) {
-    console.log("data", data);
-    console.log(data?.objects.map((sec) => sec.title + sec.ids.join(",")).join() + "\n-----");
     return data?.objects.map((sec) => sec.title + sec.ids.join(",")).join();
   }
   async _init() {
@@ -5206,15 +5206,17 @@ let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
   }
   buildRoutesLookup(data) {
     const lookup = {};
+    const res = {
+      meta: {},
+      routes: lookup
+    };
+    if (!data)
+      return res;
     data.objects.forEach((section) => {
       section.routes.forEach((route) => {
         lookup[route.id_ukc] = route;
       });
     });
-    const res = {
-      meta: {},
-      routes: lookup
-    };
     return res;
   }
   async fetchUpdateForRouteLookup() {
@@ -5509,7 +5511,7 @@ let LogbookViewerElement = class extends InfiniteScrollRoutesViewer$1 {
   }
   buildResults(_data) {
     super.buildResults(_data);
-    this.routes_viewer_title.innerHTML = `<span style="font-size: 0.8em">Logbook for <a href="/user/profile.php?id=${_data.meta?.user_id}">${escape(_data.meta?.user_name || "")}</a></span>`;
+    this.routes_viewer_title.innerHTML = `<span style="font-size: 0.8em">Logbook for <a href="/user/profile.php?id=${_data?.meta?.user_id}">${escape(_data?.meta?.user_name || "")}</a></span>`;
   }
   appendRoute(target, route, tagName) {
     const el = appendRoute({ target, route, tagName: "logbook-result" });
@@ -5550,15 +5552,17 @@ let LogbookViewerElement = class extends InfiniteScrollRoutesViewer$1 {
   }
   buildRoutesLookup(data) {
     const lookup = {};
+    const res = {
+      meta: {},
+      routes: lookup
+    };
+    if (!data)
+      return res;
     data.objects.forEach((section) => {
       section.routes.forEach((route) => {
         lookup[route.associated_ascent_entry.id] = route;
       });
     });
-    const res = {
-      meta: {},
-      routes: lookup
-    };
     return res;
   }
 };
@@ -5589,7 +5593,7 @@ let WishlistViewerElement = class extends LogbookViewerElement$1 {
   }
   buildResults(_data) {
     super.buildResults(_data);
-    this.routes_viewer_title.innerHTML = `<span style="font-size: 0.8em">Wishlist for <a href="/user/profile.php?id=${_data.meta?.user_id}">${escape(_data.meta?.user_name || "")}</a></span>`;
+    this.routes_viewer_title.innerHTML = `<span style="font-size: 0.8em">Wishlist for <a href="/user/profile.php?id=${_data?.meta?.user_id}">${escape(_data?.meta?.user_name || "")}</a></span>`;
   }
   appendRoute(target, route, tagName) {
     const el = appendRoute({ target, route, tagName: "logbook-result" });
@@ -5722,6 +5726,8 @@ let PagedRoutesViewer = class extends BaseRoutesViewer$1 {
     return "";
   }
   buildResults(_data) {
+    if (!_data)
+      return;
     const data = _data;
     console.log(data);
     this.queue = [];
@@ -6017,7 +6023,7 @@ let CragRoutesViewerElement = class extends InfiniteScrollRoutesViewer$1 {
   }
   buildResults(_data) {
     super.buildResults(_data);
-    this.routes_viewer_title.innerHTML = `<span style="font-size: 0.8em">Routes at ${escape(this.routeLookup.meta.crag_name || "")}</span>`;
+    this.routes_viewer_title.innerHTML = `<span style="font-size: 0.8em">Routes at ${escape(_data?.meta?.crag_name || "")}</span>`;
   }
   async maybeBuildFromLocalStorage() {
     if (this.routeLookup) {
