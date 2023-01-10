@@ -5496,7 +5496,8 @@ let OfflineInfiniteScrollRoutesViewer = class extends InfiniteScrollRoutesViewer
           route.route_type_name,
           route.description_string,
           route.first_ascent_string,
-          stars[route.star_count]
+          stars[route.star_count],
+          route.associated_ascent_entry?.partners?.map((p) => p.name).join("") || ""
         ].join(" ").toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "").split(/\s+/g).map((w) => this.trigram(w)).flat()
       ));
       return words;
