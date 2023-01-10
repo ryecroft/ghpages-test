@@ -5365,9 +5365,6 @@ let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
     this.timeout = setTimeout(async () => {
       const query = this.fullQueryWithoutUrlFilter;
       let results = await this.fetchDataForQuery(query);
-      if (!query) {
-        this.apiDataDescribingEntireList = results.data;
-      }
       if (this.searchId > currentSearchId) {
         return;
       }
@@ -5399,6 +5396,7 @@ var __decorateClass$7 = (decorators, target, key, kind) => {
 };
 let OfflineInfiniteScrollRoutesViewer = class extends InfiniteScrollRoutesViewer$1 {
   index;
+  idsOfRoutesMatchingLocalSearch = /* @__PURE__ */ new Set();
   connectedCallback() {
     super.connectedCallback();
     document.addEventListener("scroll", async (_evt) => {
@@ -5429,23 +5427,34 @@ let OfflineInfiniteScrollRoutesViewer = class extends InfiniteScrollRoutesViewer
   async getRoutesFromIndex(query) {
     this.index || await this._buildInvertedIndex(this.routeLookup);
     if (!query) {
-      const routes = [];
+      const routes2 = [];
       for (const rte of this.index?.documents() || []) {
-        routes.push(rte);
+        routes2.push(rte);
       }
-      return routes.sort(this.sortFunctionForLocal);
+      return routes2.sort(this.sortFunctionForLocal);
     }
-    return this.index?.get(query).sort(this.sortFunctionForLocal);
+    const routes = this.index?.get(query).sort(this.sortFunctionForLocal);
+    await this.buildMatchingRoutesSet(routes);
+    return routes;
+  }
+  async buildMatchingRoutesSet(routes) {
+    const matchedIds = /* @__PURE__ */ new Set();
+    const fun = this.keyFunctionForPuttingRouteInIndex();
+    for (const route of routes) {
+      matchedIds.add(fun(route));
+    }
+    const allIds = this.apiDataDescribingEntireList.objects.map((section) => {
+      return section.ids;
+    }).flat();
+    this.loadedRoutes = new Set(allIds);
+    matchedIds.forEach((id) => this.loadedRoutes.delete(id));
   }
   async fetchDataForQuery(query = this.query) {
     if (!this.isOnline) {
       const data = await this.fetchResponseForPageLocal(query);
       return { data, status: 200 };
     }
-    const res = await this.fetchDataParams("ids", query);
-    if (!query) {
-      this.apiDataDescribingEntireList = res.data;
-    }
+    const res = await super.fetchDataForQuery(query);
     return res;
   }
   keyFunctionForPuttingRouteInIndex() {
