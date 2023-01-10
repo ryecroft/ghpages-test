@@ -1,6 +1,9 @@
-<script type='module' src='/ghpages-test/dist/index.js'></script>
+---
+custom_js:
+- /ghpages-test/input-cookie.js
+---
 
-<input type='text' placeholder='paste your ukcsid cookie here…' onsubmit='document.cookie = "ukcsid="+this.value.replace(/ukcsid=/g, "")'>
+<input type='text' placeholder='paste your ukcsid cookie here…' style='width:85%' id='input'>
 
 
 [crag](crag)
