@@ -853,11 +853,11 @@ function appendCrag({ target, crag }) {
   el.resultType = "crag";
   return el;
 }
-function appendNoResults(target) {
+function appendNoResults(target, message) {
   const el = document.createElement("search-result");
   el.classList.remove("hidden");
   el.classList.add("no-results-entry");
-  el.itemName = `No matching results ='[`;
+  el.itemName = message || `No matching results ='[`;
   target.routes_viewer_container.appendChild(el);
   el.resultType = "no-result";
 }
@@ -5999,6 +5999,11 @@ let PartnerAscentsViewerElement = class extends PagedRoutesViewer$1 {
     return el;
   }
   async fetchResults(query, pageNo) {
+    if (!this.isOnline) {
+      this.clearResultsDropdown();
+      appendNoResults(this, "Partner ascents are not available offline");
+      return;
+    }
     const res = await super.fetchResults(query, pageNo);
     if (res.meta?.is_third_party) {
       this.input.placeholder = `Filter ${res.meta?.user_name_short}'s partners' ascents...`;
