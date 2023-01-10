@@ -1,5 +1,8 @@
 
-[crag](/crag)
-[logbook](/logbook)
-[wishlist](/wishlist)
-[partners](/partners)
+[crag](crag)
+
+[logbook](logbook)
+
+[wishlist](wishlist)
+
+[partners](partners)
