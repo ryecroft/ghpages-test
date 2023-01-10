@@ -499,15 +499,15 @@ const DOMPurify = {
 const html$1 = (raw, ...keys) => keys.length === 0 ? raw[0] : String.raw({ raw }, ...keys);
 const escape = (s) => s ? DOMPurify.sanitize(s) : s;
 
-var __defProp$k = Object.defineProperty;
-var __getOwnPropDesc$k = Object.getOwnPropertyDescriptor;
-var __decorateClass$k = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$k(target, key) : target;
+var __defProp$l = Object.defineProperty;
+var __getOwnPropDesc$l = Object.getOwnPropertyDescriptor;
+var __decorateClass$l = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$l(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$k(target, key, result);
+    __defProp$l(target, key, result);
   return result;
 };
 let BaseCon = class extends HTMLElement {
@@ -548,20 +548,20 @@ let BaseCon = class extends HTMLElement {
     return "";
   }
 };
-BaseCon = __decorateClass$k([
+BaseCon = __decorateClass$l([
   controller
 ], BaseCon);
 const BaseCon$1 = BaseCon;
 
-var __defProp$j = Object.defineProperty;
-var __getOwnPropDesc$j = Object.getOwnPropertyDescriptor;
-var __decorateClass$j = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$j(target2, key) : target2;
+var __defProp$k = Object.defineProperty;
+var __getOwnPropDesc$k = Object.getOwnPropertyDescriptor;
+var __decorateClass$k = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$k(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$j(target2, key, result);
+    __defProp$k(target2, key, result);
   return result;
 };
 let PageButtonElement = class extends BaseCon$1 {
@@ -579,13 +579,13 @@ let PageButtonElement = class extends BaseCon$1 {
     super.connectedCallback();
   }
 };
-__decorateClass$j([
+__decorateClass$k([
   target
 ], PageButtonElement.prototype, "span", 2);
-__decorateClass$j([
+__decorateClass$k([
   attr
 ], PageButtonElement.prototype, "pageNumber", 1);
-PageButtonElement = __decorateClass$j([
+PageButtonElement = __decorateClass$k([
   controller
 ], PageButtonElement);
 
@@ -599,15 +599,15 @@ const pageControlTemplate = (element) => {
 `;
 };
 
-var __defProp$i = Object.defineProperty;
-var __getOwnPropDesc$i = Object.getOwnPropertyDescriptor;
-var __decorateClass$i = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$i(target2, key) : target2;
+var __defProp$j = Object.defineProperty;
+var __getOwnPropDesc$j = Object.getOwnPropertyDescriptor;
+var __decorateClass$j = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$j(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$i(target2, key, result);
+    __defProp$j(target2, key, result);
   return result;
 };
 let PageControlElement = class extends BaseCon$1 {
@@ -718,16 +718,16 @@ let PageControlElement = class extends BaseCon$1 {
     return arr;
   }
 };
-__decorateClass$i([
+__decorateClass$j([
   target
 ], PageControlElement.prototype, "previous", 2);
-__decorateClass$i([
+__decorateClass$j([
   targets
 ], PageControlElement.prototype, "pages", 2);
-__decorateClass$i([
+__decorateClass$j([
   target
 ], PageControlElement.prototype, "next", 2);
-PageControlElement = __decorateClass$i([
+PageControlElement = __decorateClass$j([
   controller
 ], PageControlElement);
 
@@ -981,15 +981,15 @@ class UkcSid {
   ukcId = 0;
 }
 
-var __defProp$h = Object.defineProperty;
-var __getOwnPropDesc$h = Object.getOwnPropertyDescriptor;
-var __decorateClass$h = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$h(target2, key) : target2;
+var __defProp$i = Object.defineProperty;
+var __getOwnPropDesc$i = Object.getOwnPropertyDescriptor;
+var __decorateClass$i = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$i(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$h(target2, key, result);
+    __defProp$i(target2, key, result);
   return result;
 };
 let BaseRoutesViewer = class extends BaseCon$1 {
@@ -999,8 +999,15 @@ let BaseRoutesViewer = class extends BaseCon$1 {
   get localStorageKey() {
     return this.elementName;
   }
+  get isOnline() {
+    return window.navigator.onLine;
+  }
   lastSearch;
-  searchDelay = 300;
+  get searchDelay() {
+    if (!this.isOnline)
+      return 50;
+    return isMobile() ? 500 : 300;
+  }
   lastHeaderString = "";
   routes_viewer_container;
   search_bar;
@@ -1114,9 +1121,6 @@ let BaseRoutesViewer = class extends BaseCon$1 {
     this.sort_order_picker.addEventListener("change", (evt) => {
       this.sortOrderChanged(evt);
     });
-    if (isMobile()) {
-      this.searchDelay = 500;
-    }
     this.input.value = this.urlFilter;
     Object.defineProperty(this, "onKeyPressedEvent", { value: onKeyPressedEvent });
     Object.defineProperty(this, "onEnterKey", { value: this.onEnterKey });
@@ -1354,37 +1358,37 @@ let BaseRoutesViewer = class extends BaseCon$1 {
     `;
   }
 };
-__decorateClass$h([
+__decorateClass$i([
   target
 ], BaseRoutesViewer.prototype, "routes_viewer_container", 2);
-__decorateClass$h([
+__decorateClass$i([
   target
 ], BaseRoutesViewer.prototype, "input", 2);
-__decorateClass$h([
+__decorateClass$i([
   target
 ], BaseRoutesViewer.prototype, "progress_bar", 2);
-__decorateClass$h([
+__decorateClass$i([
   target
 ], BaseRoutesViewer.prototype, "delete_text_button", 2);
-__decorateClass$h([
+__decorateClass$i([
   target
 ], BaseRoutesViewer.prototype, "filter_query_description", 2);
-__decorateClass$h([
+__decorateClass$i([
   target
 ], BaseRoutesViewer.prototype, "header_container", 2);
-__decorateClass$h([
+__decorateClass$i([
   target
 ], BaseRoutesViewer.prototype, "routes_viewer_title", 2);
-__decorateClass$h([
+__decorateClass$i([
   target
 ], BaseRoutesViewer.prototype, "sort_order_picker", 2);
-__decorateClass$h([
+__decorateClass$i([
   target
 ], BaseRoutesViewer.prototype, "sort_arrow", 2);
-__decorateClass$h([
+__decorateClass$i([
   target
 ], BaseRoutesViewer.prototype, "sort_button", 2);
-BaseRoutesViewer = __decorateClass$h([
+BaseRoutesViewer = __decorateClass$i([
   controller
 ], BaseRoutesViewer);
 const BaseRoutesViewer$1 = BaseRoutesViewer;
@@ -1446,15 +1450,15 @@ const searchbarTemplate = (element) => {
     `;
 };
 
-var __defProp$g = Object.defineProperty;
-var __getOwnPropDesc$g = Object.getOwnPropertyDescriptor;
-var __decorateClass$g = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$g(target2, key) : target2;
+var __defProp$h = Object.defineProperty;
+var __getOwnPropDesc$h = Object.getOwnPropertyDescriptor;
+var __decorateClass$h = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$h(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$g(target2, key, result);
+    __defProp$h(target2, key, result);
   return result;
 };
 let BaseSearchbarElement = class extends BaseCon$1 {
@@ -1846,55 +1850,55 @@ let BaseSearchbarElement = class extends BaseCon$1 {
     return isVisible;
   }
 };
-__decorateClass$g([
+__decorateClass$h([
   target
 ], BaseSearchbarElement.prototype, "input", 2);
-__decorateClass$g([
+__decorateClass$h([
   target
 ], BaseSearchbarElement.prototype, "returnKeyAction", 2);
-__decorateClass$g([
+__decorateClass$h([
   target
 ], BaseSearchbarElement.prototype, "searchAbsolute", 2);
-__decorateClass$g([
+__decorateClass$h([
   target
 ], BaseSearchbarElement.prototype, "helpButton", 2);
-__decorateClass$g([
+__decorateClass$h([
   target
 ], BaseSearchbarElement.prototype, "delete_text_button", 2);
-__decorateClass$g([
+__decorateClass$h([
   target
 ], BaseSearchbarElement.prototype, "searchWidget", 2);
-__decorateClass$g([
+__decorateClass$h([
   target
 ], BaseSearchbarElement.prototype, "progress_bar", 2);
-__decorateClass$g([
+__decorateClass$h([
   target
 ], BaseSearchbarElement.prototype, "routes_viewer_container", 2);
-__decorateClass$g([
+__decorateClass$h([
   target
 ], BaseSearchbarElement.prototype, "searchbarInnerContainer", 2);
-__decorateClass$g([
+__decorateClass$h([
   target
 ], BaseSearchbarElement.prototype, "searchbarQuerySuggestion", 2);
-__decorateClass$g([
+__decorateClass$h([
   target
 ], BaseSearchbarElement.prototype, "querySuggestionContainer", 2);
-__decorateClass$g([
+__decorateClass$h([
   target
 ], BaseSearchbarElement.prototype, "helpTextContainer", 2);
-__decorateClass$g([
+__decorateClass$h([
   target
 ], BaseSearchbarElement.prototype, "filter_query_description", 2);
-__decorateClass$g([
+__decorateClass$h([
   target
 ], BaseSearchbarElement.prototype, "searchbarFooter", 2);
-__decorateClass$g([
+__decorateClass$h([
   target
 ], BaseSearchbarElement.prototype, "showAllResultsSpan", 2);
-__decorateClass$g([
+__decorateClass$h([
   target
 ], BaseSearchbarElement.prototype, "grayView", 2);
-BaseSearchbarElement = __decorateClass$g([
+BaseSearchbarElement = __decorateClass$h([
   controller
 ], BaseSearchbarElement);
 const BaseSearchbarElement$1 = BaseSearchbarElement;
@@ -1913,15 +1917,15 @@ const isAppleSafari = () => {
 
 const html = "<h6>🛟 Route &amp; Crag Search Help</h6>\n<p>You should probably try out the suggestions to get an feel of the stuff you can do before you waste time reading all this…</p>\n<p>…but if you really want to know everything about the search, here you go:</p>\n<p>Searches are checked against the following properties of a route (and the equivalents for a crag):</p>\n<ul>\n<li><code>name</code></li>\n<li><code>crag name</code></li>\n<li><code>buttress name</code></li>\n<li><code>area name</code></li>\n<li><code>country name</code></li>\n<li><code>first ascent</code> potentially including dates and names, but could be one or the other or neither</li>\n<li><code>rock type name</code> one of eg [ granite, gritstone, sandstone, limestone, schist, rhylite, ... ] (there are loads)</li>\n<li><code>route type name</code> one of [ sport, trad, winter, bouldering, aid ] (this list is complete)</li>\n<li><code>description</code></li>\n<li><code>route grade</code></li>\n<li><code>tech grade</code></li>\n</ul>\n<p>A match is found if all of the tokens of the search query match one or more of the fields (more on tokens later, but think &quot;words&quot; for now). This means you can very quickly write a query that returns very few results by typing a combination of fragments of the various fields, like <code>mal wom</code> returns <code>Wombat E2</code> at Malham as the first result because token1 (<code>mal</code>) matches the crag name (<code>Malham</code>) and token2 (<code>wom</code>) matches the route's name. You could be even more precise and search <code>mal wom e2</code> but for this instance it's not needed. (Note that this stuff is true at the time of writing but could change if more routes are added).</p>\n<p>The scoring of results is done by applying multipliers depending on where a match is found. The higher the field is on the list above, the more valuble a match against it is considered, so if a query matches against one route's <code>name</code> and another's <code>description</code>, the one against the <code>name</code> will be considered a better match and appear nearer the top. The popularity of the route is taken into account so a route with loads of ascents will be given a higher search score than one with none.</p>\n<p>For the most part this is all anyone really needs, but there are also a few advanced options you can use if you want:</p>\n<ul>\n<li>exact-phrase matches, eg <code>&quot;captain nemo&quot;</code></li>\n<li>route-star ranges, eg <code>*-**</code></li>\n<li>grade ranges, eg <code>vs-e3</code></li>\n<li>date ranges, eg <code>1984-1986</code> (for first ascents - note that not all routes have fa details so these will be excluded from a search with a date range!)</li>\n<li>difficulty for grade / grade quality, eg <code>|soft|</code></li>\n<li>regular expressions, eg <code>/chris (?!craggs)/</code></li>\n<li>negations, eg <code>-crack</code></li>\n</ul>\n<h6>Exact phrase matches</h6>\n<p>Surround multiple words with double quotes to require a match on that phrase, eg <code>&quot;bat route&quot; malham</code> creates the tokens <code>bat route</code> and <code>malham</code>. Another example is <code>roof crack stanage</code> currently returns 45 routes, where as <code>&quot;roof crack&quot; stanage</code> returns only 9.</p>\n<h6>Route-star ranges</h6>\n<p>Asterisks get special treatment in search queries now. A sequence of them is considered to be a star rating for a route, so <code>*</code> is treated as 1-star, <code>**</code> treated as 2-stars and <code>***</code> treated as 3-stars. Typing just one sequence creates a search where the route is required to have at least that many stars, eg <code>bat route **</code> will only return routes with 2 or more stars that also match the other search tokens <code>bat</code> and <code>route</code>.</p>\n<p>Adding a dash and a second star sequence will create a range, eg <code>*-**</code> means &quot;match routes with at least one and at most two stars&quot;.</p>\n<h6>Grade ranges</h6>\n<p>As above with stars, but with grades. Eg <code>vs-e1</code> will match routes with a grade of either <code>VS</code>, <code>HVS</code> or <code>E1</code>.</p>\n<h6>Date ranges (only years)</h6>\n<p>Date ranges will check against the first-ascent date field and require the route to have been put up between the start date and the end date (inclusive). Eg <code>1970-1974</code> will match routes put up between 01-01-1970 and 31-12-1974. You should note that not all routes have had the first ascent date filled in, and these routes will be excluded from any search that includes date ranges, so you might not get the results you expect.</p>\n<h6>Difficulty for grade</h6>\n<p>Not sure what to call this so we'll use &quot;difficulty for grade&quot;. We've calculated a value based on the grade voting system that assigns a route a value from one of:</p>\n<ul>\n<li><code>soft</code></li>\n<li><code>benchmark</code></li>\n<li><code>hard</code></li>\n</ul>\n<p>You can search for routes with these charateristics by using the special pipe-syntax, eg <code>|soft|</code>. If you don't wrap the token in pipes, you'll just be searching the other text fields, so <code>soft</code>, with no pipes, would get you a match if the token appeard in the description for example and <code>|soft|</code> will <em>only</em> match against routes that have been marked as soft, and not check the other fields for the token.</p>\n<p>A continuation of this system which uses the same syntax allows you to search for routes that are voted to be a completely different grade using the following tokens:</p>\n<ul>\n<li><code>undergraded</code></li>\n<li><code>overgraded</code></li>\n</ul>\n<p>eg <code>|overgraded|</code>. Note that this is based on votes, so if there are no votes for a route and you include one of these tokens it won't appear, regardless of whether it is in reality over or undergraded. Note also that whilst you can combine these with soft/benchmark/hard, doing so doesn't really make sense.</p>\n<h6>Shorthands</h6>\n<p>The grade quality stuff all have shorthand variants:</p>\n<ul>\n<li><code>|s</code> = <code>|soft|</code></li>\n<li><code>|b</code> = <code>|benchmark|</code></li>\n<li><code>|h</code> = <code>|hard|</code></li>\n<li><code>|u</code> = <code>|undergraded|</code></li>\n<li><code>|o</code> = <code>|overgraded|</code></li>\n</ul>\n<h6>Regular expressions</h6>\n<p>Finally we reach the most pointless feature, regular expressions - we need only add an email function and this search bar will be complete.</p>\n<p>Regular expressions, for those that don't know, are a way of describing patterns in strings. They are a very powerful tool for searching and manipulating text, and completely unnecessary in this search bar. However, if you do want to use them, they are possible by surrounding the expression with forward slashes, eg <code>/chris (?!craggs)/</code> will match any routes that mention <code>'chris'</code> but not those that mention <code>'chris craggs'</code>. Or <code>e2-e3 /crap|damp|horrible/</code> will return you a list of probably not classic routes.</p>\n<p>Note that pure-regex queries are not allowed due to the cost of the queries against the database. You should always add any of the other query types mentioned above if you're using a regex.</p>\n<h6>Negation</h6>\n<p>Extra finally, if you precede any token with a minus character you will negate it and require that it is not matched, eg <code>-&quot;mark leach&quot; bat malham</code>.</p>\n";
 
-var __defProp$f = Object.defineProperty;
-var __getOwnPropDesc$f = Object.getOwnPropertyDescriptor;
-var __decorateClass$f = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$f(target, key) : target;
+var __defProp$g = Object.defineProperty;
+var __getOwnPropDesc$g = Object.getOwnPropertyDescriptor;
+var __decorateClass$g = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$g(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$f(target, key, result);
+    __defProp$g(target, key, result);
   return result;
 };
 let myQueryExamples = new Set(queryExamples);
@@ -2098,7 +2102,7 @@ let RouteSearchbarElement = class extends BaseSearchbarElement$1 {
     return appendRoute({ target, route });
   }
 };
-RouteSearchbarElement = __decorateClass$f([
+RouteSearchbarElement = __decorateClass$g([
   controller
 ], RouteSearchbarElement);
 const RouteSearchbarElement$1 = RouteSearchbarElement;
@@ -2376,15 +2380,15 @@ var UkcLocalStorage;
 })(UkcLocalStorage || (UkcLocalStorage = {}));
 globalThis.logbook = new UkcLocalStorage.LogbookDetails();
 
-var __defProp$e = Object.defineProperty;
-var __getOwnPropDesc$e = Object.getOwnPropertyDescriptor;
-var __decorateClass$e = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$e(target, key) : target;
+var __defProp$f = Object.defineProperty;
+var __getOwnPropDesc$f = Object.getOwnPropertyDescriptor;
+var __decorateClass$f = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$f(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$e(target, key, result);
+    __defProp$f(target, key, result);
   return result;
 };
 const sharedStorage$5 = UkcLocalStorage.sharedLogbook;
@@ -2419,7 +2423,7 @@ let UkcSearchbarElement = class extends RouteSearchbarElement$1 {
     }
   }
 };
-UkcSearchbarElement = __decorateClass$e([
+UkcSearchbarElement = __decorateClass$f([
   controller
 ], UkcSearchbarElement);
 
@@ -2432,15 +2436,15 @@ const topoDotTemplate = (_el) => {
 `;
 };
 
-var __defProp$d = Object.defineProperty;
-var __getOwnPropDesc$d = Object.getOwnPropertyDescriptor;
-var __decorateClass$d = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$d(target2, key) : target2;
+var __defProp$e = Object.defineProperty;
+var __getOwnPropDesc$e = Object.getOwnPropertyDescriptor;
+var __decorateClass$e = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$e(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$d(target2, key, result);
+    __defProp$e(target2, key, result);
   return result;
 };
 let TopoDotElement = class extends BaseCon$1 {
@@ -2465,16 +2469,16 @@ let TopoDotElement = class extends BaseCon$1 {
     return topoDotTemplate;
   }
 };
-__decorateClass$d([
+__decorateClass$e([
   attr
 ], TopoDotElement.prototype, "colorName", 1);
-__decorateClass$d([
+__decorateClass$e([
   target
 ], TopoDotElement.prototype, "stroke", 2);
-__decorateClass$d([
+__decorateClass$e([
   target
 ], TopoDotElement.prototype, "fill", 2);
-TopoDotElement = __decorateClass$d([
+TopoDotElement = __decorateClass$e([
   controller
 ], TopoDotElement);
 const TopoDotElement$1 = TopoDotElement;
@@ -2518,15 +2522,15 @@ const routeTemplate = (element) => {
     `;
 };
 
-var __defProp$c = Object.defineProperty;
-var __getOwnPropDesc$c = Object.getOwnPropertyDescriptor;
-var __decorateClass$c = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$c(target2, key) : target2;
+var __defProp$d = Object.defineProperty;
+var __getOwnPropDesc$d = Object.getOwnPropertyDescriptor;
+var __decorateClass$d = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$d(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$c(target2, key, result);
+    __defProp$d(target2, key, result);
   return result;
 };
 let SearchResultElement = class extends BaseCon$1 {
@@ -2675,76 +2679,76 @@ let SearchResultElement = class extends BaseCon$1 {
     window.open(this.url, "_self");
   }
 };
-__decorateClass$c([
+__decorateClass$d([
   target
 ], SearchResultElement.prototype, "href", 2);
-__decorateClass$c([
+__decorateClass$d([
   target
 ], SearchResultElement.prototype, "topo_dot", 2);
-__decorateClass$c([
+__decorateClass$d([
   target
 ], SearchResultElement.prototype, "item_name", 2);
-__decorateClass$c([
+__decorateClass$d([
   target
 ], SearchResultElement.prototype, "route_grade", 2);
-__decorateClass$c([
+__decorateClass$d([
   target
 ], SearchResultElement.prototype, "star_count", 2);
-__decorateClass$c([
+__decorateClass$d([
   target
 ], SearchResultElement.prototype, "crag_name", 2);
-__decorateClass$c([
+__decorateClass$d([
   target
 ], SearchResultElement.prototype, "county_name", 2);
-__decorateClass$c([
+__decorateClass$d([
   target
 ], SearchResultElement.prototype, "country_name", 2);
-__decorateClass$c([
+__decorateClass$d([
   target
 ], SearchResultElement.prototype, "logbook_indicator", 2);
-__decorateClass$c([
+__decorateClass$d([
   target
 ], SearchResultElement.prototype, "wishlist_indicator", 2);
-__decorateClass$c([
+__decorateClass$d([
   target
 ], SearchResultElement.prototype, "crag_icon", 2);
-__decorateClass$c([
+__decorateClass$d([
   target
 ], SearchResultElement.prototype, "extras_slot", 2);
-__decorateClass$c([
+__decorateClass$d([
   attr
 ], SearchResultElement.prototype, "slugFull", 1);
-__decorateClass$c([
+__decorateClass$d([
   attr
 ], SearchResultElement.prototype, "itemName", 1);
-__decorateClass$c([
+__decorateClass$d([
   attr
 ], SearchResultElement.prototype, "routeGrade", 1);
-__decorateClass$c([
+__decorateClass$d([
   attr
 ], SearchResultElement.prototype, "starCount", 1);
-__decorateClass$c([
+__decorateClass$d([
   attr
 ], SearchResultElement.prototype, "cragName", 1);
-__decorateClass$c([
+__decorateClass$d([
   attr
 ], SearchResultElement.prototype, "countyName", 1);
-__decorateClass$c([
+__decorateClass$d([
   attr
 ], SearchResultElement.prototype, "countryName", 1);
-__decorateClass$c([
+__decorateClass$d([
   attr
 ], SearchResultElement.prototype, "colorId", 1);
-__decorateClass$c([
+__decorateClass$d([
   attr
 ], SearchResultElement.prototype, "routeIdUkc", 1);
-__decorateClass$c([
+__decorateClass$d([
   attr
 ], SearchResultElement.prototype, "logStatus", 1);
-__decorateClass$c([
+__decorateClass$d([
   attr
 ], SearchResultElement.prototype, "wishlistStatus", 1);
-SearchResultElement = __decorateClass$c([
+SearchResultElement = __decorateClass$d([
   controller
 ], SearchResultElement);
 const SearchResultElement$1 = SearchResultElement;
@@ -2758,15 +2762,15 @@ const logbookIndicatorTemplate = (_el) => {
 `;
 };
 
-var __defProp$b = Object.defineProperty;
-var __getOwnPropDesc$b = Object.getOwnPropertyDescriptor;
-var __decorateClass$b = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$b(target2, key) : target2;
+var __defProp$c = Object.defineProperty;
+var __getOwnPropDesc$c = Object.getOwnPropertyDescriptor;
+var __decorateClass$c = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$c(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$b(target2, key, result);
+    __defProp$c(target2, key, result);
   return result;
 };
 let LogbookIndicatorElement = class extends BaseCon$1 {
@@ -2784,16 +2788,16 @@ let LogbookIndicatorElement = class extends BaseCon$1 {
     return logbookIndicatorTemplate;
   }
 };
-__decorateClass$b([
+__decorateClass$c([
   attr
 ], LogbookIndicatorElement.prototype, "colorName", 1);
-__decorateClass$b([
+__decorateClass$c([
   target
 ], LogbookIndicatorElement.prototype, "stroke", 2);
-__decorateClass$b([
+__decorateClass$c([
   target
 ], LogbookIndicatorElement.prototype, "fill", 2);
-LogbookIndicatorElement = __decorateClass$b([
+LogbookIndicatorElement = __decorateClass$c([
   controller
 ], LogbookIndicatorElement);
 const LogbookIndicatorElement$1 = LogbookIndicatorElement;
@@ -2860,15 +2864,15 @@ const logentryTemplate = (element) => {
     `;
 };
 
-var __defProp$a = Object.defineProperty;
-var __getOwnPropDesc$a = Object.getOwnPropertyDescriptor;
-var __decorateClass$a = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$a(target2, key) : target2;
+var __defProp$b = Object.defineProperty;
+var __getOwnPropDesc$b = Object.getOwnPropertyDescriptor;
+var __decorateClass$b = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$b(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$a(target2, key, result);
+    __defProp$b(target2, key, result);
   return result;
 };
 let LogbookResultElement = class extends SearchResultElement$1 {
@@ -2941,55 +2945,55 @@ let LogbookResultElement = class extends SearchResultElement$1 {
     return logentryTemplate;
   }
 };
-__decorateClass$a([
+__decorateClass$b([
   target
 ], LogbookResultElement.prototype, "ascensionist", 2);
-__decorateClass$a([
+__decorateClass$b([
   target
 ], LogbookResultElement.prototype, "partner_names", 2);
-__decorateClass$a([
+__decorateClass$b([
   target
 ], LogbookResultElement.prototype, "partner_names_with", 2);
-__decorateClass$a([
+__decorateClass$b([
   target
 ], LogbookResultElement.prototype, "ascent_style_indicator", 2);
-__decorateClass$a([
+__decorateClass$b([
   target
 ], LogbookResultElement.prototype, "ascent_style", 2);
-__decorateClass$a([
+__decorateClass$b([
   target
 ], LogbookResultElement.prototype, "ascent_notes", 2);
-__decorateClass$a([
+__decorateClass$b([
   target
 ], LogbookResultElement.prototype, "ascent_date", 2);
-__decorateClass$a([
+__decorateClass$b([
   targets
 ], LogbookResultElement.prototype, "crag_names", 2);
-__decorateClass$a([
+__decorateClass$b([
   targets
 ], LogbookResultElement.prototype, "county_names", 2);
-__decorateClass$a([
+__decorateClass$b([
   targets
 ], LogbookResultElement.prototype, "country_names", 2);
-__decorateClass$a([
+__decorateClass$b([
   attr
 ], LogbookResultElement.prototype, "cragName", 1);
-__decorateClass$a([
+__decorateClass$b([
   attr
 ], LogbookResultElement.prototype, "countyName", 1);
-__decorateClass$a([
+__decorateClass$b([
   attr
 ], LogbookResultElement.prototype, "countryName", 1);
-__decorateClass$a([
+__decorateClass$b([
   attr
 ], LogbookResultElement.prototype, "ascentNotes", 1);
-__decorateClass$a([
+__decorateClass$b([
   attr
 ], LogbookResultElement.prototype, "ascentStyle", 1);
-__decorateClass$a([
+__decorateClass$b([
   attr
 ], LogbookResultElement.prototype, "ascentStyleSimple", 1);
-LogbookResultElement = __decorateClass$a([
+LogbookResultElement = __decorateClass$b([
   controller
 ], LogbookResultElement);
 
@@ -3034,15 +3038,15 @@ const routeResultTemplate = (element) => {
     `;
 };
 
-var __defProp$9 = Object.defineProperty;
-var __getOwnPropDesc$9 = Object.getOwnPropertyDescriptor;
-var __decorateClass$9 = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$9(target2, key) : target2;
+var __defProp$a = Object.defineProperty;
+var __getOwnPropDesc$a = Object.getOwnPropertyDescriptor;
+var __decorateClass$a = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$a(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$9(target2, key, result);
+    __defProp$a(target2, key, result);
   return result;
 };
 let RouteResultElement = class extends SearchResultElement$1 {
@@ -3066,28 +3070,28 @@ let RouteResultElement = class extends SearchResultElement$1 {
     return routeResultTemplate;
   }
 };
-__decorateClass$9([
+__decorateClass$a([
   target
 ], RouteResultElement.prototype, "ascensionist", 2);
-__decorateClass$9([
+__decorateClass$a([
   target
 ], RouteResultElement.prototype, "route_description", 2);
-__decorateClass$9([
+__decorateClass$a([
   target
 ], RouteResultElement.prototype, "fa_details", 2);
-RouteResultElement = __decorateClass$9([
+RouteResultElement = __decorateClass$a([
   controller
 ], RouteResultElement);
 
-var __defProp$8 = Object.defineProperty;
-var __getOwnPropDesc$8 = Object.getOwnPropertyDescriptor;
-var __decorateClass$8 = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$8(target, key) : target;
+var __defProp$9 = Object.defineProperty;
+var __getOwnPropDesc$9 = Object.getOwnPropertyDescriptor;
+var __decorateClass$9 = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$9(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$8(target, key, result);
+    __defProp$9(target, key, result);
   return result;
 };
 const sharedStorage$4 = UkcLocalStorage.sharedLogbook;
@@ -3135,7 +3139,7 @@ let SearchResultsViewerElement = class extends BaseRoutesViewer$1 {
     };
   }
 };
-SearchResultsViewerElement = __decorateClass$8([
+SearchResultsViewerElement = __decorateClass$9([
   controller
 ], SearchResultsViewerElement);
 
@@ -5096,19 +5100,18 @@ InvertedIndex.from = function(iterable, descriptor) {
  */
 var invertedIndex = InvertedIndex;
 
-var __defProp$7 = Object.defineProperty;
-var __getOwnPropDesc$7 = Object.getOwnPropertyDescriptor;
-var __decorateClass$7 = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$7(target, key) : target;
+var __defProp$8 = Object.defineProperty;
+var __getOwnPropDesc$8 = Object.getOwnPropertyDescriptor;
+var __decorateClass$8 = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$8(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$7(target, key, result);
+    __defProp$8(target, key, result);
   return result;
 };
 let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
-  index;
   _apiData;
   _apiDataEntireList;
   set apiDataDescribingCurrentList(newVal) {
@@ -5346,81 +5349,6 @@ let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
     });
     this.processQueue();
   }
-  get orderFunctionForLocal() {
-    const dir = this.sortDirectionFromButton;
-    const order = this.sort_order_picker.value;
-    if (order === "ltr") {
-      if (dir === "asc") {
-        return (a, b) => {
-          return a.order - b.order;
-        };
-      }
-      return (a, b) => {
-        const res = b.order - a.order;
-        return res;
-      };
-    } else if (order === "grade") {
-      if (dir === "asc") {
-        return (a, b) => {
-          return a.grade_value_rf - b.grade_value_rf;
-        };
-      }
-      return (a, b) => {
-        return b.grade_value_rf - a.grade_value_rf;
-      };
-    }
-    throw new Error("missing order function");
-  }
-  async getRoutesFromIndex(query) {
-    this.index || await this._buildInvertedIndex(this.routeLookup);
-    if (!query) {
-      const routes = [];
-      for (const rte of this.index?.documents() || []) {
-        routes.push(rte);
-      }
-      return routes.sort(this.orderFunctionForLocal);
-    }
-    return this.index?.get(query).sort(this.orderFunctionForLocal);
-  }
-  _buildIdsSectionArray(data) {
-    return data.objects.map((section) => {
-      return {
-        title: section.title,
-        routes: section.routes,
-        ids: section.routes.map((rte) => rte.id_ukc)
-      };
-    });
-  }
-  async _buildInvertedIndex(lookup) {
-    const addFun = (route) => {
-      const words = Array.from(new Set(
-        [
-          route.item_name,
-          route.buttress_name,
-          route.crag_name,
-          route.area_name,
-          route.country_name,
-          route.route_grade,
-          route.route_type_name,
-          route.description_string,
-          route.first_ascent_string,
-          stars[route.star_count]
-        ].join(" ").toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "").split(/\s+/g).map((w) => this.trigram(w)).flat()
-      ));
-      return words;
-    };
-    const queryFun = (query) => {
-      const res = Array.from(new Set(
-        query.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "").split(/\s+/g).map((w) => this.trigram(w)).flat()
-      ));
-      return res;
-    };
-    const index = new invertedIndex([addFun, queryFun]);
-    Object.values(lookup.routes).forEach((route) => {
-      index.add(route);
-    });
-    this.index = index;
-  }
   response;
   onInputUpdated(force = false) {
     const newValue = this.input.value.trim();
@@ -5453,10 +5381,187 @@ let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
     }, this.searchDelay);
   }
 };
-InfiniteScrollRoutesViewer = __decorateClass$7([
+InfiniteScrollRoutesViewer = __decorateClass$8([
   controller
 ], InfiniteScrollRoutesViewer);
 const InfiniteScrollRoutesViewer$1 = InfiniteScrollRoutesViewer;
+
+var __defProp$7 = Object.defineProperty;
+var __getOwnPropDesc$7 = Object.getOwnPropertyDescriptor;
+var __decorateClass$7 = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$7(target, key) : target;
+  for (var i = decorators.length - 1, decorator; i >= 0; i--)
+    if (decorator = decorators[i])
+      result = (kind ? decorator(target, key, result) : decorator(result)) || result;
+  if (kind && result)
+    __defProp$7(target, key, result);
+  return result;
+};
+let OfflineInfiniteScrollRoutesViewer = class extends InfiniteScrollRoutesViewer$1 {
+  index;
+  connectedCallback() {
+    super.connectedCallback();
+    document.addEventListener("scroll", async (_evt) => {
+      const scroll = this.lastCell?.getBoundingClientRect().top;
+      const time = new Date().getTime();
+      if (time - this.cellsLastLoadedAt > 500 && scroll && scroll < window.innerHeight + 400) {
+        this.cellsLastLoadedAt = time;
+        this.loadCellsForObjectsWithIdsReturn(this.apiDataDescribingCurrentList);
+      }
+    });
+  }
+  async _init() {
+    super._init();
+    await this.maybeBuildFromLocalStorage();
+  }
+  async maybeBuildFromLocalStorage() {
+    if (this.routeLookup) {
+      await this._buildInvertedIndex(this.routeLookup);
+    }
+  }
+  trigram(s) {
+    let t = s;
+    while (t.length < 3) {
+      t = " " + t;
+    }
+    return trigram(t);
+  }
+  async getRoutesFromIndex(query) {
+    this.index || await this._buildInvertedIndex(this.routeLookup);
+    if (!query) {
+      const routes = [];
+      for (const rte of this.index?.documents() || []) {
+        routes.push(rte);
+      }
+      return routes.sort(this.sortFunctionForLocal);
+    }
+    return this.index?.get(query).sort(this.sortFunctionForLocal);
+  }
+  async fetchDataForQuery(query = this.query) {
+    if (!this.isOnline) {
+      const data = await this.fetchResponseForPageLocal(query);
+      return { data, status: 200 };
+    }
+    const res = await this.fetchDataParams("ids", query);
+    if (!query) {
+      this.apiDataDescribingEntireList = res.data;
+    }
+    return res;
+  }
+  keyFunctionForPuttingRouteInIndex() {
+    throw new Error("not implemented");
+  }
+  async fetchResponseForPageLocal(query) {
+    const baseData = this.apiDataDescribingEntireList;
+    let objects = [];
+    let count = 0;
+    const routes = await this.getRoutesFromIndex(query);
+    let currentSection = { title: "", ids: [] };
+    const keyFun = this.routeKeyFunctionForSortOrder();
+    const idKeyFun = this.keyFunctionForPuttingRouteInIndex();
+    routes.forEach((route) => {
+      count++;
+      const key = keyFun(route);
+      if (currentSection.title !== key) {
+        currentSection = { title: key, ids: [] };
+        objects.push(currentSection);
+      }
+      const id = idKeyFun(route);
+      currentSection.ids.push(id);
+    });
+    const meta = baseData?.meta || {};
+    meta.is_third_party = false;
+    meta.logbook_size = count;
+    meta.object_return_type = { name: { singular: "route", plural: "routes" } };
+    meta.page = 0;
+    meta.sort_by = "date";
+    meta.total_matches = count;
+    meta.total_pages = 1;
+    meta.parsed_query = {
+      queryDescription: `<span style="color:#F8CA68FF">\u26A0 No internet, using fallback search (no ranges)</span>`
+    };
+    meta.total_count = count;
+    return { meta, objects };
+  }
+  async _buildInvertedIndex(lookup) {
+    const addFun = (route) => {
+      const words = Array.from(new Set(
+        [
+          route.item_name,
+          route.buttress_name,
+          route.crag_name,
+          route.area_name,
+          route.country_name,
+          route.route_grade,
+          route.route_type_name,
+          route.description_string,
+          route.first_ascent_string,
+          stars[route.star_count]
+        ].join(" ").toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "").split(/\s+/g).map((w) => this.trigram(w)).flat()
+      ));
+      return words;
+    };
+    const queryFun = (query) => {
+      const res = Array.from(new Set(
+        query.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "").split(/\s+/g).map((w) => this.trigram(w)).flat()
+      ));
+      return res;
+    };
+    const index = new invertedIndex([addFun, queryFun]);
+    Object.values(lookup.routes).forEach((route) => {
+      index.add(route);
+    });
+    this.index = index;
+  }
+  get sortFunctionForLocal() {
+    const dir = this.sortDirectionFromButton;
+    const order = this.sort_order_picker.value;
+    const dateTimeFun = (rte) => {
+      return new Date(rte.associated_ascent_entry?.ascent_date).getTime();
+    };
+    if (order === "ltr") {
+      if (dir === "asc")
+        return (a, b) => a.order - b.order;
+      return (a, b) => b.order - a.order;
+    } else if (order === "grade") {
+      if (dir === "asc")
+        return (a, b) => a.grade_value_rf - b.grade_value_rf;
+      return (a, b) => b.grade_value_rf - a.grade_value_rf;
+    } else if (order === "date") {
+      if (dir === "asc")
+        return (a, b) => dateTimeFun(a) - dateTimeFun(b);
+      return (a, b) => dateTimeFun(b) - dateTimeFun(a);
+    } else if (order === "crag_name") {
+      if (dir === "asc")
+        return (a, b) => a.crag_name.localeCompare(b.crag_name);
+      return (a, b) => b.crag_name.localeCompare(a.crag_name);
+    }
+    throw new Error(`missing order function: '${order}'`);
+  }
+  routeKeyFunctionForSortOrder() {
+    return (rte) => {
+      const ascent = new UkcLocalStorage.WishlistInfo(rte.associated_ascent_entry);
+      switch (this.sort_order_picker.value) {
+        case "ltr":
+          return rte.buttress_name;
+        case "date":
+          return ascent.dateString;
+        case "style":
+          return ascent.ascent_style?.short_name || "unknown";
+        case "grade":
+          return rte.route_grade;
+        case "crag_name":
+          return rte.crag_name;
+        default:
+          throw new Error(`missing key function for sort order: '${this.sort_order_picker.value}'`);
+      }
+    };
+  }
+};
+OfflineInfiniteScrollRoutesViewer = __decorateClass$7([
+  controller
+], OfflineInfiniteScrollRoutesViewer);
+const OfflineInfiniteScrollRoutesViewer$1 = OfflineInfiniteScrollRoutesViewer;
 
 var __defProp$6 = Object.defineProperty;
 var __getOwnPropDesc$6 = Object.getOwnPropertyDescriptor;
@@ -5474,7 +5579,7 @@ const generateApiUrl$3 = () => {
   const targetOrigin = apiOrigin();
   return `${targetOrigin}/v1/rockfax/search/logbook`;
 };
-let LogbookViewerElement = class extends InfiniteScrollRoutesViewer$1 {
+let LogbookViewerElement = class extends OfflineInfiniteScrollRoutesViewer$1 {
   searchBarPlaceholderString = "Search all routes/crags...";
   get apiUrl() {
     return generateApiUrl$3();
@@ -5565,6 +5670,9 @@ let LogbookViewerElement = class extends InfiniteScrollRoutesViewer$1 {
     });
     return res;
   }
+  keyFunctionForPuttingRouteInIndex() {
+    return (rte) => rte.associated_ascent_entry.id;
+  }
 };
 LogbookViewerElement = __decorateClass$6([
   controller
@@ -5590,6 +5698,21 @@ const generateApiUrl$2 = () => {
 let WishlistViewerElement = class extends LogbookViewerElement$1 {
   get apiUrl() {
     return generateApiUrl$2();
+  }
+  routeKeyFunctionForSortOrder() {
+    return (rte) => {
+      const ascent = new UkcLocalStorage.WishlistInfo(rte.associated_ascent_entry);
+      switch (this.sort_order_picker.value) {
+        case "date":
+          return ascent.dateString;
+        case "crag_name":
+          return rte.crag_name;
+        case "grade":
+          return rte.route_grade;
+        default:
+          return rte.buttress_name;
+      }
+    };
   }
   buildResults(_data) {
     super.buildResults(_data);
@@ -5946,7 +6069,7 @@ const generateApiUrl = () => {
   return `${targetOrigin}/v1/rockfax/search/route_ukc_for_crag`;
 };
 const sharedStorage = UkcLocalStorage.sharedLogbook;
-let CragRoutesViewerElement = class extends InfiniteScrollRoutesViewer$1 {
+let CragRoutesViewerElement = class extends OfflineInfiniteScrollRoutesViewer$1 {
   cragId;
   get apiUrl() {
     return generateApiUrl();
@@ -5956,9 +6079,6 @@ let CragRoutesViewerElement = class extends InfiniteScrollRoutesViewer$1 {
   }
   set urlPage(newVal) {
     return;
-  }
-  get isOnline() {
-    return window.navigator.onLine;
   }
   get sortOrderKey() {
     return "routes_viewer_sort_order";
@@ -5976,38 +6096,13 @@ let CragRoutesViewerElement = class extends InfiniteScrollRoutesViewer$1 {
     this.input.placeholder = "Filter routes at this crag...";
     this.sort_order_picker.value = this.urlSortOrder || this.savedSortOrder;
   }
-  sortOrderChanged(evt) {
-    if (this.isOnline) {
-      return super.toggleSortOrder();
-    }
-    this.reorderBaseData().then(() => {
-      this.lastSearch = void 0;
-      this.onInputUpdated();
-      this.urlSortOrder = this.sort_order_picker.value;
-      localStorage.setItem(this.sortOrderKey, this.sort_order_picker.value);
-    });
-  }
   buildRoutesLookup(data) {
     const lookup = super.buildRoutesLookup(data);
     lookup.meta.crag_name = data.meta["crag_name"];
     return lookup;
   }
-  toggleSortOrder() {
-    if (this.isOnline) {
-      return super.toggleSortOrder();
-    }
-    this.sort_arrow.style.rotate = this.sortDirectionFromButton === "desc" ? "180deg" : "0deg";
-    this.reorderBaseData().then(() => {
-      this.lastSearch = void 0;
-      this.onInputUpdated();
-      this.urlSortDirection = this.sortDirectionFromButton;
-      localStorage.setItem(this.sortDirectionKey, this.sortDirectionFromButton);
-    });
-  }
-  get routeKeyForSortOrder() {
-    return this.sort_order_picker.value === "ltr" ? "buttress_name" : "route_grade";
-  }
-  async reorderBaseData() {
+  keyFunctionForPuttingRouteInIndex() {
+    return (rte) => rte.id_ukc;
   }
   bodyForRequest(query, pageNo) {
     const type = Object.keys(this.routeLookup || {}).length ? "ids" : "full";
@@ -6024,11 +6119,6 @@ let CragRoutesViewerElement = class extends InfiniteScrollRoutesViewer$1 {
   buildResults(_data) {
     super.buildResults(_data);
     this.routes_viewer_title.innerHTML = `<span style="font-size: 0.8em">Routes at ${escape(_data?.meta?.crag_name || "")}</span>`;
-  }
-  async maybeBuildFromLocalStorage() {
-    if (this.routeLookup) {
-      await this._buildInvertedIndex(this.routeLookup);
-    }
   }
   appendRoute(target, route, tagName) {
     const el = appendRoute({ target, route, tagName: "route-result" });
