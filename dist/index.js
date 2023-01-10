@@ -1292,6 +1292,7 @@ let BaseRoutesViewer = class extends BaseCon$1 {
     return appendCrag({ target: target2, crag });
   }
   appendRoute(target2, route, tagName) {
+    console.log("appendRoute");
     return appendRoute({ target: target2, route, tagName });
   }
   appendHeader(innerText, ascentCount, target2, objectDescriptor) {
@@ -5141,7 +5142,7 @@ let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
   loadedCellCount = 0;
   cellsToLoadAtATime = 50;
   cellsLastLoadedAt = new Date().getTime();
-  loadedRoutes = /* @__PURE__ */ new Set();
+  loadedIds = /* @__PURE__ */ new Set();
   _routeLookup;
   set routeLookup(newVal) {
     localStorage.setItem(this.localStorageKey, JSON.stringify(newVal));
@@ -5158,9 +5159,12 @@ let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
       const time = new Date().getTime();
       if (time - this.cellsLastLoadedAt > 500 && scroll && scroll < window.innerHeight + 400) {
         this.cellsLastLoadedAt = time;
-        this.loadCellsForObjectsWithIdsReturn(this.apiDataDescribingCurrentList);
+        this.loadCellsForScroll();
       }
     });
+  }
+  loadCellsForScroll() {
+    this.loadCellsForObjectsWithIdsReturn(this.apiDataDescribingCurrentList);
   }
   sortOrderChanged(evt) {
     super.sortOrderChanged(evt);
@@ -5288,7 +5292,7 @@ let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
     if (!_data) {
       return;
     }
-    this.loadedRoutes = /* @__PURE__ */ new Set();
+    this.loadedIds = /* @__PURE__ */ new Set();
     const data = _data;
     this.loadedCellCount = 0;
     console.dir(data, { depth: null });
@@ -5320,7 +5324,7 @@ let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
       if (count > this.cellsToLoadAtATime) {
         return;
       }
-      if (!this.loadedRoutes.has(section.ids[0])) {
+      if (!this.loadedIds.has(section.ids[0])) {
         this.queue.push(() => {
           let title = section.title;
           this.appendHeader(title, section.ids.length, this, data.meta.object_return_type.name);
@@ -5330,8 +5334,8 @@ let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
         if (count > this.cellsToLoadAtATime) {
           return;
         }
-        if (!this.loadedRoutes.has(idOfElement)) {
-          this.loadedRoutes.add(idOfElement);
+        if (!this.loadedIds.has(idOfElement)) {
+          this.loadedIds.add(idOfElement);
           count++;
           this.queue.push(() => {
             const rte = this.routeLookup.routes[idOfElement];
@@ -5348,6 +5352,9 @@ let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
       });
     });
     this.processQueue();
+  }
+  keyFunctionForPuttingRouteInIndex() {
+    throw new Error("not implemented");
   }
   response;
   onInputUpdated(force = false) {
@@ -5371,6 +5378,7 @@ let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
       this.stopProgressBar();
       this.searchId = currentSearchId;
       this.lastSearch = query;
+      this.apiDataDescribingCurrentList = results.data;
       this.buildResults(results.data);
       this.urlFilter = newValue;
       this.urlSortDirection = sortDirection;
@@ -5434,10 +5442,9 @@ let OfflineInfiniteScrollRoutesViewer = class extends InfiniteScrollRoutesViewer
       return routes2.sort(this.sortFunctionForLocal);
     }
     const routes = this.index?.get(query).sort(this.sortFunctionForLocal);
-    await this.buildMatchingRoutesSet(routes);
     return routes;
   }
-  async buildMatchingRoutesSet(routes) {
+  async buildInvertedMatchingRoutesSet(routes) {
     const matchedIds = /* @__PURE__ */ new Set();
     const fun = this.keyFunctionForPuttingRouteInIndex();
     for (const route of routes) {
@@ -5446,8 +5453,9 @@ let OfflineInfiniteScrollRoutesViewer = class extends InfiniteScrollRoutesViewer
     const allIds = this.apiDataDescribingEntireList.objects.map((section) => {
       return section.ids;
     }).flat();
-    this.loadedRoutes = new Set(allIds);
-    matchedIds.forEach((id) => this.loadedRoutes.delete(id));
+    const ids = new Set(allIds);
+    matchedIds.forEach((id) => ids.delete(id));
+    return ids;
   }
   async fetchDataForQuery(query = this.query) {
     if (!this.isOnline) {
@@ -5457,14 +5465,17 @@ let OfflineInfiniteScrollRoutesViewer = class extends InfiniteScrollRoutesViewer
     const res = await super.fetchDataForQuery(query);
     return res;
   }
-  keyFunctionForPuttingRouteInIndex() {
-    throw new Error("not implemented");
+  loadCellsForScroll() {
+    let data = this.isOnline ? this.apiDataDescribingCurrentList : this.fetchResponseForPageLocal(this.query);
+    this.loadCellsForObjectsWithIdsReturn(data);
   }
   async fetchResponseForPageLocal(query) {
     const baseData = this.apiDataDescribingEntireList;
     let objects = [];
     let count = 0;
     const routes = await this.getRoutesFromIndex(query);
+    this.loadedIds = await this.buildInvertedMatchingRoutesSet(routes);
+    console.log("this.loadedIds", this.loadedIds);
     let currentSection = { title: "", ids: [] };
     const keyFun = this.routeKeyFunctionForSortOrder();
     const idKeyFun = this.keyFunctionForPuttingRouteInIndex();
