@@ -180,6 +180,7 @@ html {
   --page-control-size: calc(var(--page-control-font-size) * 1.8);
   --result-icon-size: var(--base-result-icon-size);
   --radius: 10pt;
+  --page-control-radius: 5pt;
   --radius-search-results: 0pt;
   --border-width: 1pt;
   --search-container-z-index: 1030;
@@ -479,7 +480,7 @@ html {
   margin-left: -15px;
 }
 
-.rfd-search .ukc-search-results-header {
+.rfd-search .routes-viewer-header {
   padding-left: var(--padding);
   width: 100vw;
 }
@@ -567,6 +568,7 @@ html {
   display: flex;
   justify-content: flex-end;
   align-content: center;
+  margin-top: var(--padding);
   margin-bottom: var(--padding);
   margin-left: calc(-50vw + 50%);
   margin-right: calc(-50vw + 50% + var(--padding));
@@ -617,13 +619,13 @@ html {
 }
 
 .rfd-search #page-control-previous {
-  border-top-left-radius: var(--radius);
-  border-bottom-left-radius: var(--radius);
+  border-top-left-radius: var(--page-control-radius);
+  border-bottom-left-radius: var(--page-control-radius);
 }
 
 .rfd-search #page-control-next {
-  border-top-right-radius: var(--radius);
-  border-bottom-right-radius: var(--radius);
+  border-top-right-radius: var(--page-control-radius);
+  border-bottom-right-radius: var(--page-control-radius);
 }
 
 .rfd-search page-button {
@@ -660,7 +662,7 @@ html {
   opacity: 0.4;
 }
 
-.rfd-search .ukc-search-results-controls {
+.rfd-search .routes-viewer-controls {
   color: var(--subtitle-color-2);
   font-size: 0.9em;
   display: flex;
@@ -669,7 +671,7 @@ html {
   margin-bottom: 0px;
 }
 
-.rfd-search .ukc-search-results-sort-order {
+.rfd-search .routes-viewer-sort-order {
   flex-grow: 0;
   font-family: monospace;
   font-weight: 600;
@@ -1037,6 +1039,7 @@ html {
   .rfd-search {
     --page-control-size: 18pt;
     --radius: 4pt;
+    --page-control-radius: 4pt;
     --radius-search-results: 4pt;
     --border-width: 1pt;
     --font-size: 0.9rem;

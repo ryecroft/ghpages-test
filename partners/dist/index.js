@@ -1,6 +1,6 @@
 (function () {
 'use strict';
-const style = "*,\n::after,\n::before {\n  box-sizing: border-box;\n}\n\n.icon-nightmode-toggle {\n  position: absolute;\n  right: 5pt;\n  top: 5pt;\n  display: inline-block;\n  background-color: rgba(0, 0, 0, 0.392);\n  cursor: pointer;\n  width: var(--icon-size);\n  height: var(--icon-size);\n  -webkit-mask-size: var(--icon-size) var(--icon-size);\n  -webkit-mask-repeat: no-repeat;\n  -webkit-mask-position: center;\n  mask-size: var(--icon-size) var(--icon-size);\n  mask-repeat: no-repeat;\n  mask-position: center;\n  mask: url(\"/assets/moon.svg\");\n  -webkit-mask: url(\"/assets/moon.svg\");\n}\n\n.icon-nightmode-toggle:focus {\n  background-color: var(--flash-color);\n}\n\ninput[type=search]::-webkit-search-decoration,\ninput[type=search]::-webkit-search-cancel-button,\ninput[type=search]::-webkit-search-results-button,\ninput[type=search]::-webkit-search-results-decoration {\n  display: none;\n}\n\nukc-searchbar {\n  margin-bottom: 12px;\n  transition: all;\n}\n\n.nightmode .icon-nightmode-toggle {\n  width: var(--icon-size);\n  height: var(--icon-size);\n  -webkit-mask-size: var(--icon-size) var(--icon-size);\n  -webkit-mask-repeat: no-repeat;\n  -webkit-mask-position: center;\n  mask-size: var(--icon-size) var(--icon-size);\n  mask-repeat: no-repeat;\n  mask-position: center;\n  mask: url(\"/assets/sun.svg\");\n  -webkit-mask: url(\"/assets/sun.svg\");\n  background-color: rgba(255, 255, 255, 0.492);\n}\n\n.nightmode .rfd-search {\n  --background-color-page: #19181f;\n  --background-color-page-semi: #19181fa5;\n  --brightness-multiplier: 100%;\n  --background-color: #282630;\n  --background-color-2: var(--background-color-page-semi);\n  --title-color: rgb(217, 217, 217);\n  --subtitle-color: rgba(255, 255, 255, 0.62);\n  --subtitle-color-2: rgba(255, 255, 255, 0.492);\n  --subtitle-color-3: rgba(255, 255, 255, 0.39);\n  --subtitle-color-4: rgba(255, 255, 255, 0.28);\n  --flash-color: hotpink;\n  --border-color: #565656;\n}\n\n.nightmode .rfd-search logbook-result .result-entry-container {\n  border-bottom: solid #212029 1px;\n}\n\n.nightmode .rfd-search page-button {\n  background-color: var(--background-color);\n  color: var(--subtitle-color-2);\n}\n\n.nightmode .rfd-search .page-control-current {\n  color: var(--subtitle-color-2);\n  background-color: var(--background-color-2);\n}\n\n.nightmode .rfd-search #page-control-next.disabled,\n.nightmode .rfd-search #page-control-previous.disabled {\n  background-color: var(--background-color);\n}\n\n.nightmode .rfd-search #search-widget {\n  box-shadow: 0px 0px 10px rgba(1, 1, 1, 0.2);\n}\n\n.nightmode .rfd-search .gray-background input {\n  background-color: var(--background-color);\n}\n\n@media (hover: hover) and (pointer: fine) {\n  .nightmode .icon-nightmode-toggle:hover {\n    background-color: var(--flash-color);\n  }\n  .nightmode .result-entry:hover {\n    border-radius: calc(var(--radius) * 0.7);\n  }\n  .nightmode .mouse-over:hover {\n    color: var(--flash-color);\n  }\n  .nightmode .icon:hover {\n    background-color: var(--flash-color);\n  }\n  .nightmode .result-entry-container:hover {\n    background-color: var(--background-color-2);\n  }\n  .nightmode .page-control-page:hover {\n    border-color: var(--flash-color);\n    color: var(--flash-color);\n    z-index: 2;\n  }\n  .nightmode .page-control-current:hover {\n    border-color: var(--background-color-2);\n    color: var(--subtitle-color-2);\n    z-index: 2;\n  }\n  .nightmode #page-control-next.disabled:hover,\n.nightmode #page-control-previous.disabled:hover {\n    color: var(--subtitle-color-2);\n  }\n  .nightmode #page-control-next:hover,\n.nightmode #page-control-previous:hover {\n    border-color: var(--flash-color);\n    color: var(--flash-color);\n    z-index: 2;\n  }\n  .nightmode a:hover {\n    color: var(--flash-color);\n  }\n  .nightmode .page-control-page:hover {\n    color: var(--flash-color);\n  }\n  .nightmode .page-control-current:hover {\n    color: var(--subtitle-color-2);\n  }\n  .nightmode #page-control-next.disabled:hover,\n.nightmode #page-control-previous.disabled:hover {\n    color: var(--subtitle-color-2);\n  }\n}\n\nhtml {\n  --background-color-page: #e8e8e8;\n  --base-mask-size: 2rem;\n  --icon-size: var(--base-mask-size);\n  --big-screen-multiplier: 0.45;\n}\n\n.rfd-search {\n  --background-color-page-semi: #eeeeef;\n  --brightness-multiplier: 100%;\n  --background-color: white;\n  --background-color-2: #dadada;\n  --title-color: rgba(0, 0, 0, 0.75);\n  --subtitle-color: rgba(0, 0, 0, 0.65);\n  --subtitle-color-2: rgba(0, 0, 0, 0.5);\n  --subtitle-color-3: rgba(0, 0, 0, 0.45);\n  --subtitle-color-4: rgba(0, 0, 0, 0.35);\n  --flash-color: var(--flash-color);\n  --border-color: #444444;\n  --base-padding: 10pt;\n  --base-font-size: 1.1rem;\n  --base-font-size-2: calc(var(--base-font-size) * 0.9);\n  --base-font-size-3: calc(var(--base-font-size-2) * 0.9);\n  --base-font-size-4: calc(var(--base-font-size-3) * 1);\n  --base-result-icon-size: 1.7rem;\n  --padding: var(--base-padding);\n  --font-size: var(--base-font-size);\n  --font-size-2: var(--base-font-size-2);\n  --font-size-3: var(--base-font-size-3);\n  --font-size-4: var(--base-font-size-4);\n  --page-control-font-size: 1.3rem;\n  --page-control-size: calc(var(--page-control-font-size) * 1.8);\n  --result-icon-size: var(--base-result-icon-size);\n  --radius: 10pt;\n  --radius-search-results: 0pt;\n  --border-width: 1pt;\n  --search-container-z-index: 1030;\n  --gray-view-opacity-animation-duration: 0.2s;\n  margin-bottom: 16px;\n}\n\n.rfd-search crag-icon *,\n.rfd-search topo-dot *,\n.rfd-search external-link-icon * {\n  width: var(--result-icon-size);\n  height: var(--result-icon-size);\n}\n\n.rfd-search select {\n  background-color: var(--background-color);\n  color: var(--subtitle-color);\n  border: none;\n}\n\n.rfd-search {\n  width: 100%;\n  font-size: var(--font-size);\n  position: relative;\n}\n\n.rfd-search ::-webkit-scrollbar-thumb {\n  filter: brightness(80%);\n}\n\n.rfd-search #searchbar-footer,\n.rfd-search #searchbar-query-suggestion-flex {\n  filter: brightness(90%);\n}\n\n.rfd-search ::-webkit-scrollbar {\n  height: 10pt;\n  width: 5pt;\n}\n\n.rfd-search ::-webkit-scrollbar-thumb {\n  background: var(--background-color-2);\n}\n\n.rfd-search ::-webkit-scrollbar-track {\n  background: rgba(1, 1, 1, 0);\n}\n\n.rfd-search scrollbar-thumb {\n  background: var(--background-color-2);\n}\n\n.rfd-search scrollbar-track {\n  background: rgba(1, 1, 1, 0);\n}\n\n.rfd-search ul {\n  list-style-type: none;\n  margin: 0pt;\n  padding: 0pt;\n  padding-bottom: var(--padding);\n  outline: none;\n}\n\n.rfd-search ul a:link {\n  color: unset;\n}\n\n.rfd-search ul a:visited {\n  color: unset;\n}\n\n.rfd-search ul a:hover {\n  color: unset;\n}\n\n.rfd-search ul a:active {\n  color: unset;\n}\n\n.rfd-search input {\n  outline: none;\n  width: 100%;\n  font-size: var(--font-size);\n  border-radius: var(--radius);\n  color: rgba(0, 0, 0, 0);\n  background-color: var(--background-color);\n  color: var(--title-color);\n  border: none;\n  transition-property: all;\n}\n\n.rfd-search a {\n  text-decoration: none !important;\n}\n\n.rfd-search a:link {\n  color: cadetblue;\n}\n\n.rfd-search a:visited {\n  color: cadetblue;\n}\n\n.rfd-search a:active {\n  color: var(--flash-color);\n}\n\n.rfd-search #name-dash {\n  display: none;\n}\n\n.rfd-search .logged-clean logbook-indicator,\n.rfd-search .logged-followed logbook-indicator,\n.rfd-search .logged-dogged logbook-indicator {\n  display: block;\n}\n\n.rfd-search .on-wishlist wishlist-indicator {\n  display: block;\n}\n\n.rfd-search .logged-clean.on-wishlist wishlist-indicator,\n.rfd-search .logged-followed.on-wishlist wishlist-indicator,\n.rfd-search .logged-dogged.on-wishlist wishlist-indicator {\n  right: 24px;\n}\n\n.rfd-search logbook-indicator {\n  display: none;\n  position: absolute;\n  top: 0px;\n  right: -6px;\n  width: calc(var(--result-icon-size) * 1);\n  height: calc(var(--result-icon-size) * 1);\n}\n\n.rfd-search wishlist-indicator {\n  display: none;\n  position: absolute;\n  top: -1px;\n  right: 4px;\n  width: calc(var(--result-icon-size) * 0.5);\n  height: calc(var(--result-icon-size) * 0.5);\n}\n\n.rfd-search input,\n.rfd-search #search-query-description,\n.rfd-search .search-results-search-query-description {\n  padding: calc(var(--padding) * 0.65);\n  padding-left: var(--padding);\n}\n\n.rfd-search #filter-icon {\n  left: 16px;\n  position: absolute;\n  top: 50%;\n  transform: translateY(-50%);\n  background-color: var(--subtitle-color);\n}\n\n.rfd-search #filter-bar-container input {\n  width: calc(100% - (var(--padding) * 2 - 8px));\n  display: block;\n  padding: var(--padding);\n  padding-top: calc(var(--padding) - 2px);\n  padding-bottom: calc(var(--padding) - 2px);\n  padding-left: 40px;\n  margin: var(--padding);\n  margin-right: calc(var(--padding) - 4px);\n  margin-left: calc(var(--padding) - 4px);\n  border-width: var(--border-width);\n  background-color: var(--background-color-page-semi);\n  transition: all 0.2s;\n}\n\n.rfd-search #name-and-grade {\n  display: flex;\n  justify-content: space-between;\n  font-weight: 500;\n}\n\n.rfd-search #gray-view {\n  width: 100vw;\n  height: 100vh;\n  background-color: rgba(0, 0, 0, 0.7);\n  position: fixed;\n  top: 0vw;\n  left: 0vw;\n  z-index: calc(var(--search-container-z-index) - 1);\n  opacity: 1;\n  backdrop-filter: blur(5px);\n  -webkit-backdrop-filter: blur(5px);\n}\n\n.rfd-search #search-container {\n  position: relative;\n  z-index: var(--search-container-z-index);\n}\n\n.rfd-search #search-container input {\n  padding-right: calc(var(--icon-size) + var(--padding));\n  padding-left: calc(var(--icon-size) + var(--padding) - 4px);\n  transition: all 0.2s;\n}\n\n.rfd-search #searchbar-inner-container {\n  position: relative;\n}\n\n.rfd-search #search-absolute {\n  position: absolute;\n  top: 0;\n  width: 100%;\n  transition: transform 0.3s ease-out;\n}\n\n.rfd-search #search-results-header-container,\n.rfd-search #search-widget,\n.rfd-search #search-results-widget {\n  border-width: var(--border-width);\n  background-color: var(--background-color);\n  transition: all 0.2s;\n  overflow: hidden;\n}\n\n.rfd-search #search-widget {\n  box-shadow: 0px 0px 10px rgba(1, 1, 1, 0.1);\n  transition: opacity 0.3s;\n  border-radius: var(--radius);\n}\n\n.rfd-search #search-results-header-container,\n.rfd-search #search-results-widget {\n  margin-left: calc(-50vw + 50%);\n  margin-right: calc(-51vw + 51%);\n}\n\n.rfd-search #searchbar-footer {\n  background-color: var(--background-color);\n  font-size: var(--font-size-4);\n  color: var(--subtitle-color-2);\n  border-bottom-left-radius: var(--radius);\n  border-bottom-right-radius: var(--radius);\n  filter: brightness(90%);\n}\n\n.rfd-search #search-results-container {\n  contain: layout paint;\n  overflow-y: auto;\n  overflow-x: hidden;\n  overscroll-behavior-y: contain;\n  scrollbar-color: var(--background-color-2) rgba(1, 1, 1, 0);\n  transition: opacity 0.3s ease-out;\n}\n\n.rfd-search #search-icon {\n  position: absolute;\n  left: 4pt;\n  top: 50%;\n  transform: translateY(-50%);\n  background-color: var(--subtitle-color);\n}\n\n.rfd-search #filter-bar-container {\n  position: relative;\n}\n\n.rfd-search #input-hidden {\n  background-color: rgba(0, 0, 0, 0) !important;\n}\n\n.rfd-search #delete-search-text-button,\n.rfd-search #filter-delete-text-button {\n  position: absolute;\n  right: 0px;\n  top: 50%;\n  transform: translateY(-50%);\n  cursor: pointer;\n}\n\n.rfd-search #filter-delete-text-button {\n  right: 10px;\n}\n\n.rfd-search #return-key-action {\n  padding: var(--padding);\n  margin-top: calc(var(--padding) * 5);\n}\n\n.rfd-search #search-results-header-container {\n  backface-visibility: hidden;\n  background-color: var(--background-color);\n  position: sticky;\n  z-index: 2;\n  width: 100vw;\n  margin-left: -15px;\n}\n\n.rfd-search .ukc-search-results-header {\n  padding-left: var(--padding);\n  width: 100vw;\n}\n\n.rfd-search .result-icon {\n  display: inline-block;\n}\n\n.rfd-search .gray-background input {\n  background-color: #e0e0e0;\n  transition: background-color 0.2s ease;\n}\n\n.rfd-search .normal-background input {\n  background-color: var(--background-color);\n  transition: background-color 0.2s ease;\n}\n\n.rfd-search .searchbar-help-text-container {\n  transition: height 0.2s ease;\n  overscroll-behavior-y: contain;\n}\n\n.rfd-search #searchbar-help-text {\n  padding: calc(var(--padding) * 2);\n}\n\n.rfd-search #placeholder-short-display {\n  color: var(--title-color);\n  opacity: 0.5;\n  margin-left: -6px;\n}\n\n.rfd-search #searchbar-short-display-container {\n  position: absolute;\n  left: 4pt;\n  transform: translateY(-8%);\n}\n\n.rfd-search #search-icon-short-display {\n  background-color: var(--subtitle-color);\n  display: inline-block;\n  transform: translateY(30%);\n}\n\n.rfd-search #searchbar-query-suggestion-flex {\n  position: relative;\n  padding-right: calc(var(--icon-size) + var(--padding));\n  border-bottom-left-radius: var(--radius);\n  border-bottom-right-radius: var(--radius);\n}\n\n.rfd-search .ascent-notes a,\n.rfd-search .ascent-details a {\n  color: #bbdcee !important;\n  opacity: 0.7;\n  line-height: 1.3em;\n}\n\n.rfd-search #help-button,\n.rfd-search #filter-bar-help-button {\n  position: absolute;\n  right: 0pt;\n  top: 50%;\n  transform: translateY(-50%);\n}\n\n.rfd-search #searchbar-query-suggestion-flex,\n.rfd-search #search-query-description,\n.rfd-search .search-results-search-query-description {\n  font-size: var(--font-size-3);\n  color: var(--subtitle-color-2);\n  background-color: var(--background-color);\n}\n\n.rfd-search #focus-searchbar {\n  display: none;\n}\n\n.rfd-search .logged {\n  background-color: green;\n}\n\n.rfd-search .page-control {\n  display: flex;\n  justify-content: flex-end;\n  align-content: center;\n  margin-bottom: var(--padding);\n  margin-left: calc(-50vw + 50%);\n  margin-right: calc(-50vw + 50% + var(--padding));\n}\n\n.rfd-search .fa-button {\n  border: 0;\n  width: 40px;\n  height: 40px;\n  background-color: var(--background-color);\n  border-radius: var(--radius);\n  color: var(--subtitle-color);\n  transition: background-color 0.2s ease-out;\n}\n\n.rfd-search .fa-button:hover {\n  background-color: var(--background-color-2);\n}\n\n.rfd-search .fa-button i {\n  transition: rotate 0.2s ease-out;\n}\n\n.rfd-search .hidden {\n  display: none;\n}\n\n.rfd-search #page-control-previous,\n.rfd-search #page-control-next,\n.rfd-search page-button {\n  display: flex;\n  align-items: center;\n  text-align: center;\n  aspect-ratio: 1/1;\n  font-family: monospace;\n  background-color: var(--background-color);\n  border: solid;\n  color: var(--subtitle-color-2);\n  margin-left: calc(var(--border-width) * -1);\n  border-width: var(--border-width);\n  border-color: var(--background-color-2);\n  justify-content: center;\n  font-weight: 900;\n  cursor: pointer;\n  font-size: var(--page-control-font-size);\n  height: var(--page-control-size);\n  width: var(--page-control-size);\n}\n\n.rfd-search #page-control-previous {\n  border-top-left-radius: var(--radius);\n  border-bottom-left-radius: var(--radius);\n}\n\n.rfd-search #page-control-next {\n  border-top-right-radius: var(--radius);\n  border-bottom-right-radius: var(--radius);\n}\n\n.rfd-search page-button {\n  display: flex;\n  justify-content: center;\n  align-content: center;\n}\n\n.rfd-search .date-header {\n  display: flex;\n  justify-content: space-between;\n  font-size: var(--font-size-3);\n  color: var(--subtitle-color-2);\n  padding: var(--padding);\n  padding-right: calc(var(--padding) / 2);\n  padding-top: calc(var(--padding) / 2);\n  padding-bottom: calc(var(--padding) / 2 - 2px);\n  background-color: var(--background-color-page-semi);\n}\n\n.rfd-search .page-control-current {\n  border-color: var(--background-color-2);\n  color: var(--subtitle-color-2);\n  background-color: var(--background-color-2);\n  filter: brightness(110%);\n  cursor: default;\n}\n\n.rfd-search #page-control-next.disabled,\n.rfd-search #page-control-previous.disabled {\n  background-color: var(--background-color);\n  border-color: var(--background-color-2);\n  cursor: default;\n  opacity: 0.4;\n}\n\n.rfd-search .ukc-search-results-controls {\n  color: var(--subtitle-color-2);\n  font-size: 0.9em;\n  display: flex;\n  justify-content: flex-start;\n  align-items: center;\n  margin-bottom: 0px;\n}\n\n.rfd-search .ukc-search-results-sort-order {\n  flex-grow: 0;\n  font-family: monospace;\n  font-weight: 600;\n  margin-bottom: 0px;\n  margin-left: -0.3em;\n}\n\n.rfd-search .result-entry {\n  display: flex;\n}\n\n.rfd-search .result-icon-area {\n  margin-top: -4pt;\n  width: 30pt;\n}\n\n.rfd-search .ascent-details {\n  display: flex;\n  justify-content: space-between;\n  margin-top: 10px;\n  color: var(--subtitle-color-4);\n  font-size: calc(var(--font-size-4) * 0.9);\n}\n\n.rfd-search .ascent-notes {\n  margin-top: 14px;\n  margin-bottom: 18px;\n  font-style: italic;\n  line-height: calc(var(--font-size-4) * 1.2);\n  color: var(--subtitle-color-2);\n  font-size: calc(var(--font-size-4) * 0.9);\n}\n\n.rfd-search .result-text-area {\n  width: 100%;\n  max-width: calc(100% - 36px);\n  display: flex;\n  flex-direction: column;\n}\n\n.rfd-search .result-title {\n  overflow-x: clip;\n  text-overflow: ellipsis;\n  white-space: pre;\n}\n\n.rfd-search .result-crag-name {\n  overflow-x: clip;\n  text-overflow: ellipsis;\n}\n\n.rfd-search .result-entry-start {\n  margin-bottom: 6pt;\n  display: block;\n}\n\n.rfd-search .result-entry-end {\n  display: flex;\n  align-items: baseline;\n}\n\n.rfd-search .selected .result-entry {\n  background-color: var(--background-color-2);\n}\n\n.rfd-search .selected .result-entry * {\n  background-color: var(--background-color-2);\n}\n\n.rfd-search .footer-content {\n  padding: 10px;\n}\n\n.rfd-search .keycode {\n  display: none;\n  background-color: var(--background-color-2);\n  border-radius: 3pt;\n  padding: 4pt;\n}\n\n.rfd-search .display-if-necessary {\n  display: block;\n}\n\n.rfd-search .result-entry {\n  font-size: var(--font-size-2);\n  color: var(--title-color);\n  padding: var(--padding);\n  padding-top: calc(var(--padding) + 4px);\n  padding-bottom: calc(var(--padding) + 2px);\n  display: flex;\n}\n\n.rfd-search .result-entry-end {\n  white-space: nowrap;\n}\n\n.rfd-search .result-entry-start {\n  white-space: nowrap;\n}\n\n.rfd-search .result-grade {\n  font-size: var(--font-size-3);\n  font-style: italic;\n  color: var(--subtitle-color);\n  white-space: pre;\n}\n\n.rfd-search .result-star-count {\n  font-size: var(--font-size-2);\n  font-style: italic;\n  font-weight: bolder;\n  color: hotpink;\n}\n\n.rfd-search .result-crag-name {\n  font-size: var(--font-size-4);\n  color: var(--subtitle-color-2);\n}\n\n.rfd-search .result-context,\n.rfd-search .result-sub-context {\n  font-style: italic;\n  font-size: var(--font-size-4);\n  color: var(--subtitle-color-4);\n}\n\n.rfd-search .search-container {\n  background-color: none;\n}\n\n.rfd-search .loader-stopped,\n.rfd-search .divider {\n  opacity: 1;\n  height: var(--border-width);\n  background-color: var(--background-color-2);\n}\n\n.rfd-search .divider-no-height-set {\n  opacity: 1;\n  background-color: var(--background-color-2);\n}\n\n.rfd-search .icon {\n  background-color: var(--subtitle-color);\n  margin-right: 4pt;\n  cursor: pointer;\n}\n\n.rfd-search .icon:focus {\n  background-color: var(--flash-color);\n}\n\n.rfd-search .icon-magnifying-glass {\n  width: var(--icon-size);\n  height: var(--icon-size);\n  -webkit-mask-size: var(--icon-size) var(--icon-size);\n  -webkit-mask-repeat: no-repeat;\n  -webkit-mask-position: center;\n  mask-size: var(--icon-size) var(--icon-size);\n  mask-repeat: no-repeat;\n  mask-position: center;\n  mask: url(\"/assets/magnifying-glass.svg\");\n  -webkit-mask: url(\"/assets/magnifying-glass.svg\");\n}\n\n.rfd-search .icon-question-mark {\n  width: var(--icon-size);\n  height: var(--icon-size);\n  -webkit-mask-size: var(--icon-size) var(--icon-size);\n  -webkit-mask-repeat: no-repeat;\n  -webkit-mask-position: center;\n  mask-size: var(--icon-size) var(--icon-size);\n  mask-repeat: no-repeat;\n  mask-position: center;\n  mask: url(\"/assets/question-mark.svg\");\n  -webkit-mask: url(\"/assets/question-mark.svg\");\n}\n\n.rfd-search .icon-external-link {\n  width: var(--icon-size);\n  height: var(--icon-size);\n  -webkit-mask-size: var(--icon-size) var(--icon-size);\n  -webkit-mask-repeat: no-repeat;\n  -webkit-mask-position: center;\n  mask-size: var(--icon-size) var(--icon-size);\n  mask-repeat: no-repeat;\n  mask-position: center;\n  mask: url(\"/assets/external-link.svg\");\n  -webkit-mask: url(\"/assets/external-link.svg\");\n}\n\n.rfd-search .icon-circle-times {\n  width: var(--icon-size);\n  height: var(--icon-size);\n  -webkit-mask-size: var(--icon-size) var(--icon-size);\n  -webkit-mask-repeat: no-repeat;\n  -webkit-mask-position: center;\n  mask-size: var(--icon-size) var(--icon-size);\n  mask-repeat: no-repeat;\n  mask-position: center;\n  mask: url(\"/assets/circle-times.svg\");\n  -webkit-mask: url(\"/assets/circle-times.svg\");\n}\n\n.rfd-search .result-entry-container {\n  line-height: 1;\n}\n\n.rfd-search #search-results-widget .result-entry-container {\n  border-bottom: solid var(--background-color-page-semi) 1px;\n}\n\n.rfd-search route-result .result-text-area,\n.rfd-search logbook-result .result-text-area {\n  max-width: 100%;\n  padding-left: 40px;\n}\n\n.rfd-search .ascent-style-indicator {\n  margin-left: -15px;\n  margin-right: 4px;\n}\n\n.rfd-search .mouse-over {\n  color: cadetblue;\n  cursor: pointer;\n}\n\n.rfd-search .mouse-over:focus {\n  color: var(--flash-color);\n}\n\n.rfd-search .fade-in {\n  -webkit-animation: fadein var(--gray-view-opacity-animation-duration) linear forwards;\n  animation: fadein var(--gray-view-opacity-animation-duration) linear forwards;\n}\n\n@-webkit-keyframes fadein {\n  0% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 1;\n  }\n}\n\n@-moz-keyframes fadein {\n  0% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 1;\n  }\n}\n\n@-o-keyframes fadein {\n  0% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 1;\n  }\n}\n\n@keyframes fadein {\n  0% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 1;\n  }\n}\n\n.rfd-search .fade-out {\n  -webkit-animation: fadeout var(--gray-view-opacity-animation-duration) linear forwards;\n  animation: fadeout var(--gray-view-opacity-animation-duration) linear forwards;\n}\n\n@-webkit-keyframes fadeout {\n  0% {\n    opacity: 1;\n  }\n  100% {\n    opacity: 0;\n  }\n}\n\n@-moz-keyframes fadeout {\n  0% {\n    opacity: 1;\n  }\n  100% {\n    opacity: 0;\n  }\n}\n\n@-o-keyframes fadeout {\n  0% {\n    opacity: 1;\n  }\n  100% {\n    opacity: 0;\n  }\n}\n\n@keyframes fadeout {\n  0% {\n    opacity: 1;\n  }\n  100% {\n    opacity: 0;\n  }\n}\n\n.loader-stopped {\n  position: relative;\n  background: var(--background-color-2);\n  overflow: hidden;\n}\n\n.loader-spinning {\n  position: relative;\n  height: 2px;\n  background: transparent;\n  overflow: hidden;\n  animation: loader-rainbow 1.5s infinite linear;\n}\n\n.loader-spinning:after {\n  display: block;\n  content: \" \";\n  position: absolute;\n  height: 100%;\n  background: hotpink;\n  left: 0;\n  transform: translate3d(-150%, 0, 0);\n  animation: loader-stripe 1.5s infinite linear;\n}\n\n@keyframes loader-stripe {\n  0% {\n    transform: translate3d(-100%, 0, 0);\n  }\n  100% {\n    transform: translate3d(100%, 0, 0);\n  }\n}\n\n@keyframes loader-rainbow {\n  0% {\n    background: var(--background-color-2);\n  }\n  50% {\n    background: hotpink;\n  }\n  100% {\n    background: var(--background-color-2);\n  }\n}\n\n@media only screen and (min-width: 768px) {\n  :root {\n    --icon-size: 2rem;\n  }\n  .rfd-search {\n    --page-control-size: 18pt;\n    --radius: 4pt;\n    --radius-search-results: 4pt;\n    --border-width: 1pt;\n    --font-size: 0.9rem;\n    --page-control-font-size: var(--font-size-3);\n    --font-size-2: calc(var(--font-size) * 0.9);\n    --font-size-3: calc(var(--font-size-2) * 0.9);\n    --font-size-4: calc(var(--font-size-3) * 0.9);\n    --result-icon-size: 1.5rem;\n  }\n  .rfd-search logbook-indicator {\n    right: -5px;\n  }\n  .rfd-search wishlist-indicator {\n    right: 0px;\n  }\n  .rfd-search #name-dash {\n    display: inline-block;\n  }\n  .rfd-search #star-count-and-route-grade {\n    display: flex;\n    flex-direction: row-reverse;\n    translate: 0 1.5px;\n  }\n  .rfd-search #star-count-and-route-grade * {\n    margin-right: 0.2rem;\n  }\n  .rfd-search #search-icon {\n    background-color: var(--subtitle-color);\n  }\n  .rfd-search input {\n    padding-top: 4pt;\n    padding-bottom: 4pt;\n  }\n  .rfd-search #focus-searchbar,\n.rfd-search .keycode {\n    display: unset;\n  }\n  .rfd-search #search-results-header-container {\n    border-top-left-radius: var(--radius);\n    border-top-right-radius: var(--radius);\n  }\n  .rfd-search #searchbar-help-text {\n    padding: calc(var(--base-padding) * var(--big-screen-multiplier) * 2);\n  }\n  .rfd-search #search-results-header-container,\n.rfd-search #search-results-widget {\n    margin-right: 50%;\n    margin-left: 50%;\n    transform: translateX(-50%);\n    min-width: 700px;\n    box-shadow: 0px 0px 10px rgba(1, 1, 1, 0.1);\n  }\n  .rfd-search #placeholder-short-display {\n    margin-left: 0px;\n    position: absolute;\n    white-space: nowrap;\n    transform: translate(4px, 15px);\n  }\n  .rfd-search #searchbar-short-display-container {\n    transform: translateY(-26%);\n  }\n  .rfd-search #search-results-header-container {\n    border-top-left-radius: var(--radius-search-results);\n    border-top-right-radius: var(--radius-search-results);\n  }\n  .rfd-search .page-control {\n    width: 400pt;\n    margin-right: 50%;\n    margin-left: 50%;\n    transform: translateX(-50%);\n    min-width: 700px;\n  }\n  .rfd-search #filter-bar-container input {\n    padding-top: calc(var(--padding) / 2);\n    padding-bottom: calc(var(--padding) / 2);\n  }\n  .rfd-search #search-container {\n    max-width: 500pt;\n    left: 50%;\n    transform: translateX(-50%);\n  }\n  .rfd-search #search-results-header-container {\n    width: unset;\n  }\n  .rfd-search #search-query-description,\n.rfd-search .search-results-search-query-description {\n    padding: calc(var(--base-padding) * var(--big-screen-multiplier) * 2);\n  }\n  .rfd-search #searchbar-query-suggestion-flex,\n.rfd-search #search-query-description,\n.rfd-search .search-results-search-query-description {\n    font-size: calc(var(--font-size-2) * 0.9);\n  }\n  .rfd-search .result-entry-container {\n    line-height: 1;\n  }\n  .rfd-search .ascent-details {\n    font-size: var(--font-size-3);\n  }\n  .rfd-search .ascent-notes {\n    font-size: var(--font-size-3);\n  }\n  .rfd-search .result-entry {\n    padding-top: calc(var(--padding) / 1.85);\n    padding-bottom: calc(var(--padding) / 1.85);\n    align-items: center;\n  }\n  .rfd-search .result-crag-name {\n    padding-bottom: 2pt;\n  }\n  .rfd-search .selected .result-entry {\n    border-radius: calc(var(--radius) * 0.7);\n  }\n  .rfd-search .icon {\n    margin-right: unset;\n  }\n  .rfd-search .result-entry-end {\n    padding-left: var(--padding);\n    flex-direction: column;\n    align-items: baseline;\n    flex-grow: 1;\n  }\n  .rfd-search .footer-content {\n    padding: 4px;\n    padding-right: 10px;\n  }\n  .rfd-search .nightmode #search-results-header-container,\n.rfd-search .nightmode #search-results-widget {\n    box-shadow: 0px 0px 10px rgba(1, 1, 1, 0.2);\n  }\n  .rfd-search .result-icon-area {\n    margin-top: unset;\n  }\n  .rfd-search .result-text-area {\n    flex-direction: row;\n    justify-content: space-between;\n  }\n  .rfd-search .result-entry-start {\n    align-self: center;\n    margin-bottom: unset;\n  }\n  .rfd-search .result-entry-end {\n    flex-direction: column;\n    align-items: flex-end;\n  }\n  .rfd-search .ascent-style-indicator {\n    margin-left: -13px;\n  }\n}\n\nselect {\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  appearance: none;\n  text-overflow: \"\";\n}";
+const style = "*,\n::after,\n::before {\n  box-sizing: border-box;\n}\n\n.icon-nightmode-toggle {\n  position: absolute;\n  right: 5pt;\n  top: 5pt;\n  display: inline-block;\n  background-color: rgba(0, 0, 0, 0.392);\n  cursor: pointer;\n  width: var(--icon-size);\n  height: var(--icon-size);\n  -webkit-mask-size: var(--icon-size) var(--icon-size);\n  -webkit-mask-repeat: no-repeat;\n  -webkit-mask-position: center;\n  mask-size: var(--icon-size) var(--icon-size);\n  mask-repeat: no-repeat;\n  mask-position: center;\n  mask: url(\"/assets/moon.svg\");\n  -webkit-mask: url(\"/assets/moon.svg\");\n}\n\n.icon-nightmode-toggle:focus {\n  background-color: var(--flash-color);\n}\n\ninput[type=search]::-webkit-search-decoration,\ninput[type=search]::-webkit-search-cancel-button,\ninput[type=search]::-webkit-search-results-button,\ninput[type=search]::-webkit-search-results-decoration {\n  display: none;\n}\n\nukc-searchbar {\n  margin-bottom: 12px;\n  transition: all;\n}\n\n.nightmode .icon-nightmode-toggle {\n  width: var(--icon-size);\n  height: var(--icon-size);\n  -webkit-mask-size: var(--icon-size) var(--icon-size);\n  -webkit-mask-repeat: no-repeat;\n  -webkit-mask-position: center;\n  mask-size: var(--icon-size) var(--icon-size);\n  mask-repeat: no-repeat;\n  mask-position: center;\n  mask: url(\"/assets/sun.svg\");\n  -webkit-mask: url(\"/assets/sun.svg\");\n  background-color: rgba(255, 255, 255, 0.492);\n}\n\n.nightmode .rfd-search {\n  --background-color-page: #19181f;\n  --background-color-page-semi: #19181fa5;\n  --brightness-multiplier: 100%;\n  --background-color: #282630;\n  --background-color-2: var(--background-color-page-semi);\n  --title-color: rgb(217, 217, 217);\n  --subtitle-color: rgba(255, 255, 255, 0.62);\n  --subtitle-color-2: rgba(255, 255, 255, 0.492);\n  --subtitle-color-3: rgba(255, 255, 255, 0.39);\n  --subtitle-color-4: rgba(255, 255, 255, 0.28);\n  --flash-color: hotpink;\n  --border-color: #565656;\n}\n\n.nightmode .rfd-search logbook-result .result-entry-container {\n  border-bottom: solid #212029 1px;\n}\n\n.nightmode .rfd-search page-button {\n  background-color: var(--background-color);\n  color: var(--subtitle-color-2);\n}\n\n.nightmode .rfd-search .page-control-current {\n  color: var(--subtitle-color-2);\n  background-color: var(--background-color-2);\n}\n\n.nightmode .rfd-search #page-control-next.disabled,\n.nightmode .rfd-search #page-control-previous.disabled {\n  background-color: var(--background-color);\n}\n\n.nightmode .rfd-search #search-widget {\n  box-shadow: 0px 0px 10px rgba(1, 1, 1, 0.2);\n}\n\n.nightmode .rfd-search .gray-background input {\n  background-color: var(--background-color);\n}\n\n@media (hover: hover) and (pointer: fine) {\n  .nightmode .icon-nightmode-toggle:hover {\n    background-color: var(--flash-color);\n  }\n  .nightmode .result-entry:hover {\n    border-radius: calc(var(--radius) * 0.7);\n  }\n  .nightmode .mouse-over:hover {\n    color: var(--flash-color);\n  }\n  .nightmode .icon:hover {\n    background-color: var(--flash-color);\n  }\n  .nightmode .result-entry-container:hover {\n    background-color: var(--background-color-2);\n  }\n  .nightmode .page-control-page:hover {\n    border-color: var(--flash-color);\n    color: var(--flash-color);\n    z-index: 2;\n  }\n  .nightmode .page-control-current:hover {\n    border-color: var(--background-color-2);\n    color: var(--subtitle-color-2);\n    z-index: 2;\n  }\n  .nightmode #page-control-next.disabled:hover,\n.nightmode #page-control-previous.disabled:hover {\n    color: var(--subtitle-color-2);\n  }\n  .nightmode #page-control-next:hover,\n.nightmode #page-control-previous:hover {\n    border-color: var(--flash-color);\n    color: var(--flash-color);\n    z-index: 2;\n  }\n  .nightmode a:hover {\n    color: var(--flash-color);\n  }\n  .nightmode .page-control-page:hover {\n    color: var(--flash-color);\n  }\n  .nightmode .page-control-current:hover {\n    color: var(--subtitle-color-2);\n  }\n  .nightmode #page-control-next.disabled:hover,\n.nightmode #page-control-previous.disabled:hover {\n    color: var(--subtitle-color-2);\n  }\n}\n\nhtml {\n  --background-color-page: #e8e8e8;\n  --base-mask-size: 2rem;\n  --icon-size: var(--base-mask-size);\n  --big-screen-multiplier: 0.45;\n}\n\n.rfd-search {\n  --background-color-page-semi: #eeeeef;\n  --brightness-multiplier: 100%;\n  --background-color: white;\n  --background-color-2: #dadada;\n  --title-color: rgba(0, 0, 0, 0.75);\n  --subtitle-color: rgba(0, 0, 0, 0.65);\n  --subtitle-color-2: rgba(0, 0, 0, 0.5);\n  --subtitle-color-3: rgba(0, 0, 0, 0.45);\n  --subtitle-color-4: rgba(0, 0, 0, 0.35);\n  --flash-color: var(--flash-color);\n  --border-color: #444444;\n  --base-padding: 10pt;\n  --base-font-size: 1.1rem;\n  --base-font-size-2: calc(var(--base-font-size) * 0.9);\n  --base-font-size-3: calc(var(--base-font-size-2) * 0.9);\n  --base-font-size-4: calc(var(--base-font-size-3) * 1);\n  --base-result-icon-size: 1.7rem;\n  --padding: var(--base-padding);\n  --font-size: var(--base-font-size);\n  --font-size-2: var(--base-font-size-2);\n  --font-size-3: var(--base-font-size-3);\n  --font-size-4: var(--base-font-size-4);\n  --page-control-font-size: 1.3rem;\n  --page-control-size: calc(var(--page-control-font-size) * 1.8);\n  --result-icon-size: var(--base-result-icon-size);\n  --radius: 10pt;\n  --page-control-radius: 5pt;\n  --radius-search-results: 0pt;\n  --border-width: 1pt;\n  --search-container-z-index: 1030;\n  --gray-view-opacity-animation-duration: 0.2s;\n  margin-bottom: 16px;\n}\n\n.rfd-search crag-icon *,\n.rfd-search topo-dot *,\n.rfd-search external-link-icon * {\n  width: var(--result-icon-size);\n  height: var(--result-icon-size);\n}\n\n.rfd-search select {\n  background-color: var(--background-color);\n  color: var(--subtitle-color);\n  border: none;\n}\n\n.rfd-search {\n  width: 100%;\n  font-size: var(--font-size);\n  position: relative;\n}\n\n.rfd-search ::-webkit-scrollbar-thumb {\n  filter: brightness(80%);\n}\n\n.rfd-search #searchbar-footer,\n.rfd-search #searchbar-query-suggestion-flex {\n  filter: brightness(90%);\n}\n\n.rfd-search ::-webkit-scrollbar {\n  height: 10pt;\n  width: 5pt;\n}\n\n.rfd-search ::-webkit-scrollbar-thumb {\n  background: var(--background-color-2);\n}\n\n.rfd-search ::-webkit-scrollbar-track {\n  background: rgba(1, 1, 1, 0);\n}\n\n.rfd-search scrollbar-thumb {\n  background: var(--background-color-2);\n}\n\n.rfd-search scrollbar-track {\n  background: rgba(1, 1, 1, 0);\n}\n\n.rfd-search ul {\n  list-style-type: none;\n  margin: 0pt;\n  padding: 0pt;\n  padding-bottom: var(--padding);\n  outline: none;\n}\n\n.rfd-search ul a:link {\n  color: unset;\n}\n\n.rfd-search ul a:visited {\n  color: unset;\n}\n\n.rfd-search ul a:hover {\n  color: unset;\n}\n\n.rfd-search ul a:active {\n  color: unset;\n}\n\n.rfd-search input {\n  outline: none;\n  width: 100%;\n  font-size: var(--font-size);\n  border-radius: var(--radius);\n  color: rgba(0, 0, 0, 0);\n  background-color: var(--background-color);\n  color: var(--title-color);\n  border: none;\n  transition-property: all;\n}\n\n.rfd-search a {\n  text-decoration: none !important;\n}\n\n.rfd-search a:link {\n  color: cadetblue;\n}\n\n.rfd-search a:visited {\n  color: cadetblue;\n}\n\n.rfd-search a:active {\n  color: var(--flash-color);\n}\n\n.rfd-search #name-dash {\n  display: none;\n}\n\n.rfd-search .logged-clean logbook-indicator,\n.rfd-search .logged-followed logbook-indicator,\n.rfd-search .logged-dogged logbook-indicator {\n  display: block;\n}\n\n.rfd-search .on-wishlist wishlist-indicator {\n  display: block;\n}\n\n.rfd-search .logged-clean.on-wishlist wishlist-indicator,\n.rfd-search .logged-followed.on-wishlist wishlist-indicator,\n.rfd-search .logged-dogged.on-wishlist wishlist-indicator {\n  right: 24px;\n}\n\n.rfd-search logbook-indicator {\n  display: none;\n  position: absolute;\n  top: 0px;\n  right: -6px;\n  width: calc(var(--result-icon-size) * 1);\n  height: calc(var(--result-icon-size) * 1);\n}\n\n.rfd-search wishlist-indicator {\n  display: none;\n  position: absolute;\n  top: -1px;\n  right: 4px;\n  width: calc(var(--result-icon-size) * 0.5);\n  height: calc(var(--result-icon-size) * 0.5);\n}\n\n.rfd-search input,\n.rfd-search #search-query-description,\n.rfd-search .search-results-search-query-description {\n  padding: calc(var(--padding) * 0.65);\n  padding-left: var(--padding);\n}\n\n.rfd-search #filter-icon {\n  left: 16px;\n  position: absolute;\n  top: 50%;\n  transform: translateY(-50%);\n  background-color: var(--subtitle-color);\n}\n\n.rfd-search #filter-bar-container input {\n  width: calc(100% - (var(--padding) * 2 - 8px));\n  display: block;\n  padding: var(--padding);\n  padding-top: calc(var(--padding) - 2px);\n  padding-bottom: calc(var(--padding) - 2px);\n  padding-left: 40px;\n  margin: var(--padding);\n  margin-right: calc(var(--padding) - 4px);\n  margin-left: calc(var(--padding) - 4px);\n  border-width: var(--border-width);\n  background-color: var(--background-color-page-semi);\n  transition: all 0.2s;\n}\n\n.rfd-search #name-and-grade {\n  display: flex;\n  justify-content: space-between;\n  font-weight: 500;\n}\n\n.rfd-search #gray-view {\n  width: 100vw;\n  height: 100vh;\n  background-color: rgba(0, 0, 0, 0.7);\n  position: fixed;\n  top: 0vw;\n  left: 0vw;\n  z-index: calc(var(--search-container-z-index) - 1);\n  opacity: 1;\n  backdrop-filter: blur(5px);\n  -webkit-backdrop-filter: blur(5px);\n}\n\n.rfd-search #search-container {\n  position: relative;\n  z-index: var(--search-container-z-index);\n}\n\n.rfd-search #search-container input {\n  padding-right: calc(var(--icon-size) + var(--padding));\n  padding-left: calc(var(--icon-size) + var(--padding) - 4px);\n  transition: all 0.2s;\n}\n\n.rfd-search #searchbar-inner-container {\n  position: relative;\n}\n\n.rfd-search #search-absolute {\n  position: absolute;\n  top: 0;\n  width: 100%;\n  transition: transform 0.3s ease-out;\n}\n\n.rfd-search #search-results-header-container,\n.rfd-search #search-widget,\n.rfd-search #search-results-widget {\n  border-width: var(--border-width);\n  background-color: var(--background-color);\n  transition: all 0.2s;\n  overflow: hidden;\n}\n\n.rfd-search #search-widget {\n  box-shadow: 0px 0px 10px rgba(1, 1, 1, 0.1);\n  transition: opacity 0.3s;\n  border-radius: var(--radius);\n}\n\n.rfd-search #search-results-header-container,\n.rfd-search #search-results-widget {\n  margin-left: calc(-50vw + 50%);\n  margin-right: calc(-51vw + 51%);\n}\n\n.rfd-search #searchbar-footer {\n  background-color: var(--background-color);\n  font-size: var(--font-size-4);\n  color: var(--subtitle-color-2);\n  border-bottom-left-radius: var(--radius);\n  border-bottom-right-radius: var(--radius);\n  filter: brightness(90%);\n}\n\n.rfd-search #search-results-container {\n  contain: layout paint;\n  overflow-y: auto;\n  overflow-x: hidden;\n  overscroll-behavior-y: contain;\n  scrollbar-color: var(--background-color-2) rgba(1, 1, 1, 0);\n  transition: opacity 0.3s ease-out;\n}\n\n.rfd-search #search-icon {\n  position: absolute;\n  left: 4pt;\n  top: 50%;\n  transform: translateY(-50%);\n  background-color: var(--subtitle-color);\n}\n\n.rfd-search #filter-bar-container {\n  position: relative;\n}\n\n.rfd-search #input-hidden {\n  background-color: rgba(0, 0, 0, 0) !important;\n}\n\n.rfd-search #delete-search-text-button,\n.rfd-search #filter-delete-text-button {\n  position: absolute;\n  right: 0px;\n  top: 50%;\n  transform: translateY(-50%);\n  cursor: pointer;\n}\n\n.rfd-search #filter-delete-text-button {\n  right: 10px;\n}\n\n.rfd-search #return-key-action {\n  padding: var(--padding);\n  margin-top: calc(var(--padding) * 5);\n}\n\n.rfd-search #search-results-header-container {\n  backface-visibility: hidden;\n  background-color: var(--background-color);\n  position: sticky;\n  z-index: 2;\n  width: 100vw;\n  margin-left: -15px;\n}\n\n.rfd-search .routes-viewer-header {\n  padding-left: var(--padding);\n  width: 100vw;\n}\n\n.rfd-search .result-icon {\n  display: inline-block;\n}\n\n.rfd-search .gray-background input {\n  background-color: #e0e0e0;\n  transition: background-color 0.2s ease;\n}\n\n.rfd-search .normal-background input {\n  background-color: var(--background-color);\n  transition: background-color 0.2s ease;\n}\n\n.rfd-search .searchbar-help-text-container {\n  transition: height 0.2s ease;\n  overscroll-behavior-y: contain;\n}\n\n.rfd-search #searchbar-help-text {\n  padding: calc(var(--padding) * 2);\n}\n\n.rfd-search #placeholder-short-display {\n  color: var(--title-color);\n  opacity: 0.5;\n  margin-left: -6px;\n}\n\n.rfd-search #searchbar-short-display-container {\n  position: absolute;\n  left: 4pt;\n  transform: translateY(-8%);\n}\n\n.rfd-search #search-icon-short-display {\n  background-color: var(--subtitle-color);\n  display: inline-block;\n  transform: translateY(30%);\n}\n\n.rfd-search #searchbar-query-suggestion-flex {\n  position: relative;\n  padding-right: calc(var(--icon-size) + var(--padding));\n  border-bottom-left-radius: var(--radius);\n  border-bottom-right-radius: var(--radius);\n}\n\n.rfd-search .ascent-notes a,\n.rfd-search .ascent-details a {\n  color: #bbdcee !important;\n  opacity: 0.7;\n  line-height: 1.3em;\n}\n\n.rfd-search #help-button,\n.rfd-search #filter-bar-help-button {\n  position: absolute;\n  right: 0pt;\n  top: 50%;\n  transform: translateY(-50%);\n}\n\n.rfd-search #searchbar-query-suggestion-flex,\n.rfd-search #search-query-description,\n.rfd-search .search-results-search-query-description {\n  font-size: var(--font-size-3);\n  color: var(--subtitle-color-2);\n  background-color: var(--background-color);\n}\n\n.rfd-search #focus-searchbar {\n  display: none;\n}\n\n.rfd-search .logged {\n  background-color: green;\n}\n\n.rfd-search .page-control {\n  display: flex;\n  justify-content: flex-end;\n  align-content: center;\n  margin-top: var(--padding);\n  margin-bottom: var(--padding);\n  margin-left: calc(-50vw + 50%);\n  margin-right: calc(-50vw + 50% + var(--padding));\n}\n\n.rfd-search .fa-button {\n  border: 0;\n  width: 40px;\n  height: 40px;\n  background-color: var(--background-color);\n  border-radius: var(--radius);\n  color: var(--subtitle-color);\n  transition: background-color 0.2s ease-out;\n}\n\n.rfd-search .fa-button:hover {\n  background-color: var(--background-color-2);\n}\n\n.rfd-search .fa-button i {\n  transition: rotate 0.2s ease-out;\n}\n\n.rfd-search .hidden {\n  display: none;\n}\n\n.rfd-search #page-control-previous,\n.rfd-search #page-control-next,\n.rfd-search page-button {\n  display: flex;\n  align-items: center;\n  text-align: center;\n  aspect-ratio: 1/1;\n  font-family: monospace;\n  background-color: var(--background-color);\n  border: solid;\n  color: var(--subtitle-color-2);\n  margin-left: calc(var(--border-width) * -1);\n  border-width: var(--border-width);\n  border-color: var(--background-color-2);\n  justify-content: center;\n  font-weight: 900;\n  cursor: pointer;\n  font-size: var(--page-control-font-size);\n  height: var(--page-control-size);\n  width: var(--page-control-size);\n}\n\n.rfd-search #page-control-previous {\n  border-top-left-radius: var(--page-control-radius);\n  border-bottom-left-radius: var(--page-control-radius);\n}\n\n.rfd-search #page-control-next {\n  border-top-right-radius: var(--page-control-radius);\n  border-bottom-right-radius: var(--page-control-radius);\n}\n\n.rfd-search page-button {\n  display: flex;\n  justify-content: center;\n  align-content: center;\n}\n\n.rfd-search .date-header {\n  display: flex;\n  justify-content: space-between;\n  font-size: var(--font-size-3);\n  color: var(--subtitle-color-2);\n  padding: var(--padding);\n  padding-right: calc(var(--padding) / 2);\n  padding-top: calc(var(--padding) / 2);\n  padding-bottom: calc(var(--padding) / 2 - 2px);\n  background-color: var(--background-color-page-semi);\n}\n\n.rfd-search .page-control-current {\n  border-color: var(--background-color-2);\n  color: var(--subtitle-color-2);\n  background-color: var(--background-color-2);\n  filter: brightness(110%);\n  cursor: default;\n}\n\n.rfd-search #page-control-next.disabled,\n.rfd-search #page-control-previous.disabled {\n  background-color: var(--background-color);\n  border-color: var(--background-color-2);\n  cursor: default;\n  opacity: 0.4;\n}\n\n.rfd-search .routes-viewer-controls {\n  color: var(--subtitle-color-2);\n  font-size: 0.9em;\n  display: flex;\n  justify-content: flex-start;\n  align-items: center;\n  margin-bottom: 0px;\n}\n\n.rfd-search .routes-viewer-sort-order {\n  flex-grow: 0;\n  font-family: monospace;\n  font-weight: 600;\n  margin-bottom: 0px;\n}\n\n.rfd-search .result-entry {\n  display: flex;\n}\n\n.rfd-search .result-icon-area {\n  margin-top: -4pt;\n  width: 30pt;\n}\n\n.rfd-search .ascent-details {\n  display: flex;\n  justify-content: space-between;\n  margin-top: 10px;\n  color: var(--subtitle-color-4);\n  font-size: calc(var(--font-size-4) * 0.9);\n}\n\n.rfd-search .ascent-notes {\n  margin-top: 14px;\n  margin-bottom: 18px;\n  font-style: italic;\n  line-height: calc(var(--font-size-4) * 1.2);\n  color: var(--subtitle-color-2);\n  font-size: calc(var(--font-size-4) * 0.9);\n}\n\n.rfd-search .result-text-area {\n  width: 100%;\n  max-width: calc(100% - 36px);\n  display: flex;\n  flex-direction: column;\n}\n\n.rfd-search .result-title {\n  overflow-x: clip;\n  text-overflow: ellipsis;\n  white-space: pre;\n}\n\n.rfd-search .result-crag-name {\n  overflow-x: clip;\n  text-overflow: ellipsis;\n}\n\n.rfd-search .result-entry-start {\n  margin-bottom: 6pt;\n  display: block;\n}\n\n.rfd-search .result-entry-end {\n  display: flex;\n  align-items: baseline;\n}\n\n.rfd-search .selected .result-entry {\n  background-color: var(--background-color-2);\n}\n\n.rfd-search .selected .result-entry * {\n  background-color: var(--background-color-2);\n}\n\n.rfd-search .footer-content {\n  padding: 10px;\n}\n\n.rfd-search .keycode {\n  display: none;\n  background-color: var(--background-color-2);\n  border-radius: 3pt;\n  padding: 4pt;\n}\n\n.rfd-search .display-if-necessary {\n  display: block;\n}\n\n.rfd-search .result-entry {\n  font-size: var(--font-size-2);\n  color: var(--title-color);\n  padding: var(--padding);\n  padding-top: calc(var(--padding) + 4px);\n  padding-bottom: calc(var(--padding) + 2px);\n  display: flex;\n}\n\n.rfd-search .result-entry-end {\n  white-space: nowrap;\n}\n\n.rfd-search .result-entry-start {\n  white-space: nowrap;\n}\n\n.rfd-search .result-grade {\n  font-size: var(--font-size-3);\n  font-style: italic;\n  color: var(--subtitle-color);\n  white-space: pre;\n}\n\n.rfd-search .result-star-count {\n  font-size: var(--font-size-2);\n  font-style: italic;\n  font-weight: bolder;\n  color: hotpink;\n}\n\n.rfd-search .result-crag-name {\n  font-size: var(--font-size-4);\n  color: var(--subtitle-color-2);\n}\n\n.rfd-search .result-context,\n.rfd-search .result-sub-context {\n  font-style: italic;\n  font-size: var(--font-size-4);\n  color: var(--subtitle-color-4);\n}\n\n.rfd-search .search-container {\n  background-color: none;\n}\n\n.rfd-search .loader-stopped,\n.rfd-search .divider {\n  opacity: 1;\n  height: var(--border-width);\n  background-color: var(--background-color-2);\n}\n\n.rfd-search .divider-no-height-set {\n  opacity: 1;\n  background-color: var(--background-color-2);\n}\n\n.rfd-search .icon {\n  background-color: var(--subtitle-color);\n  margin-right: 4pt;\n  cursor: pointer;\n}\n\n.rfd-search .icon:focus {\n  background-color: var(--flash-color);\n}\n\n.rfd-search .icon-magnifying-glass {\n  width: var(--icon-size);\n  height: var(--icon-size);\n  -webkit-mask-size: var(--icon-size) var(--icon-size);\n  -webkit-mask-repeat: no-repeat;\n  -webkit-mask-position: center;\n  mask-size: var(--icon-size) var(--icon-size);\n  mask-repeat: no-repeat;\n  mask-position: center;\n  mask: url(\"/assets/magnifying-glass.svg\");\n  -webkit-mask: url(\"/assets/magnifying-glass.svg\");\n}\n\n.rfd-search .icon-question-mark {\n  width: var(--icon-size);\n  height: var(--icon-size);\n  -webkit-mask-size: var(--icon-size) var(--icon-size);\n  -webkit-mask-repeat: no-repeat;\n  -webkit-mask-position: center;\n  mask-size: var(--icon-size) var(--icon-size);\n  mask-repeat: no-repeat;\n  mask-position: center;\n  mask: url(\"/assets/question-mark.svg\");\n  -webkit-mask: url(\"/assets/question-mark.svg\");\n}\n\n.rfd-search .icon-external-link {\n  width: var(--icon-size);\n  height: var(--icon-size);\n  -webkit-mask-size: var(--icon-size) var(--icon-size);\n  -webkit-mask-repeat: no-repeat;\n  -webkit-mask-position: center;\n  mask-size: var(--icon-size) var(--icon-size);\n  mask-repeat: no-repeat;\n  mask-position: center;\n  mask: url(\"/assets/external-link.svg\");\n  -webkit-mask: url(\"/assets/external-link.svg\");\n}\n\n.rfd-search .icon-circle-times {\n  width: var(--icon-size);\n  height: var(--icon-size);\n  -webkit-mask-size: var(--icon-size) var(--icon-size);\n  -webkit-mask-repeat: no-repeat;\n  -webkit-mask-position: center;\n  mask-size: var(--icon-size) var(--icon-size);\n  mask-repeat: no-repeat;\n  mask-position: center;\n  mask: url(\"/assets/circle-times.svg\");\n  -webkit-mask: url(\"/assets/circle-times.svg\");\n}\n\n.rfd-search .result-entry-container {\n  line-height: 1;\n}\n\n.rfd-search #search-results-widget .result-entry-container {\n  border-bottom: solid var(--background-color-page-semi) 1px;\n}\n\n.rfd-search route-result .result-text-area,\n.rfd-search logbook-result .result-text-area {\n  max-width: 100%;\n  padding-left: 40px;\n}\n\n.rfd-search .ascent-style-indicator {\n  margin-left: -15px;\n  margin-right: 4px;\n}\n\n.rfd-search .mouse-over {\n  color: cadetblue;\n  cursor: pointer;\n}\n\n.rfd-search .mouse-over:focus {\n  color: var(--flash-color);\n}\n\n.rfd-search .fade-in {\n  -webkit-animation: fadein var(--gray-view-opacity-animation-duration) linear forwards;\n  animation: fadein var(--gray-view-opacity-animation-duration) linear forwards;\n}\n\n@-webkit-keyframes fadein {\n  0% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 1;\n  }\n}\n\n@-moz-keyframes fadein {\n  0% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 1;\n  }\n}\n\n@-o-keyframes fadein {\n  0% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 1;\n  }\n}\n\n@keyframes fadein {\n  0% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 1;\n  }\n}\n\n.rfd-search .fade-out {\n  -webkit-animation: fadeout var(--gray-view-opacity-animation-duration) linear forwards;\n  animation: fadeout var(--gray-view-opacity-animation-duration) linear forwards;\n}\n\n@-webkit-keyframes fadeout {\n  0% {\n    opacity: 1;\n  }\n  100% {\n    opacity: 0;\n  }\n}\n\n@-moz-keyframes fadeout {\n  0% {\n    opacity: 1;\n  }\n  100% {\n    opacity: 0;\n  }\n}\n\n@-o-keyframes fadeout {\n  0% {\n    opacity: 1;\n  }\n  100% {\n    opacity: 0;\n  }\n}\n\n@keyframes fadeout {\n  0% {\n    opacity: 1;\n  }\n  100% {\n    opacity: 0;\n  }\n}\n\n.loader-stopped {\n  position: relative;\n  background: var(--background-color-2);\n  overflow: hidden;\n}\n\n.loader-spinning {\n  position: relative;\n  height: 2px;\n  background: transparent;\n  overflow: hidden;\n  animation: loader-rainbow 1.5s infinite linear;\n}\n\n.loader-spinning:after {\n  display: block;\n  content: \" \";\n  position: absolute;\n  height: 100%;\n  background: hotpink;\n  left: 0;\n  transform: translate3d(-150%, 0, 0);\n  animation: loader-stripe 1.5s infinite linear;\n}\n\n@keyframes loader-stripe {\n  0% {\n    transform: translate3d(-100%, 0, 0);\n  }\n  100% {\n    transform: translate3d(100%, 0, 0);\n  }\n}\n\n@keyframes loader-rainbow {\n  0% {\n    background: var(--background-color-2);\n  }\n  50% {\n    background: hotpink;\n  }\n  100% {\n    background: var(--background-color-2);\n  }\n}\n\n@media only screen and (min-width: 768px) {\n  :root {\n    --icon-size: 2rem;\n  }\n  .rfd-search {\n    --page-control-size: 18pt;\n    --radius: 4pt;\n    --page-control-radius: 4pt;\n    --radius-search-results: 4pt;\n    --border-width: 1pt;\n    --font-size: 0.9rem;\n    --page-control-font-size: var(--font-size-3);\n    --font-size-2: calc(var(--font-size) * 0.9);\n    --font-size-3: calc(var(--font-size-2) * 0.9);\n    --font-size-4: calc(var(--font-size-3) * 0.9);\n    --result-icon-size: 1.5rem;\n  }\n  .rfd-search logbook-indicator {\n    right: -5px;\n  }\n  .rfd-search wishlist-indicator {\n    right: 0px;\n  }\n  .rfd-search #name-dash {\n    display: inline-block;\n  }\n  .rfd-search #star-count-and-route-grade {\n    display: flex;\n    flex-direction: row-reverse;\n    translate: 0 1.5px;\n  }\n  .rfd-search #star-count-and-route-grade * {\n    margin-right: 0.2rem;\n  }\n  .rfd-search #search-icon {\n    background-color: var(--subtitle-color);\n  }\n  .rfd-search input {\n    padding-top: 4pt;\n    padding-bottom: 4pt;\n  }\n  .rfd-search #focus-searchbar,\n.rfd-search .keycode {\n    display: unset;\n  }\n  .rfd-search #search-results-header-container {\n    border-top-left-radius: var(--radius);\n    border-top-right-radius: var(--radius);\n  }\n  .rfd-search #searchbar-help-text {\n    padding: calc(var(--base-padding) * var(--big-screen-multiplier) * 2);\n  }\n  .rfd-search #search-results-header-container,\n.rfd-search #search-results-widget {\n    margin-right: 50%;\n    margin-left: 50%;\n    transform: translateX(-50%);\n    min-width: 700px;\n    box-shadow: 0px 0px 10px rgba(1, 1, 1, 0.1);\n  }\n  .rfd-search #placeholder-short-display {\n    margin-left: 0px;\n    position: absolute;\n    white-space: nowrap;\n    transform: translate(4px, 15px);\n  }\n  .rfd-search #searchbar-short-display-container {\n    transform: translateY(-26%);\n  }\n  .rfd-search #search-results-header-container {\n    border-top-left-radius: var(--radius-search-results);\n    border-top-right-radius: var(--radius-search-results);\n  }\n  .rfd-search .page-control {\n    width: 400pt;\n    margin-right: 50%;\n    margin-left: 50%;\n    transform: translateX(-50%);\n    min-width: 700px;\n  }\n  .rfd-search #filter-bar-container input {\n    padding-top: calc(var(--padding) / 2);\n    padding-bottom: calc(var(--padding) / 2);\n  }\n  .rfd-search #search-container {\n    max-width: 500pt;\n    left: 50%;\n    transform: translateX(-50%);\n  }\n  .rfd-search #search-results-header-container {\n    width: unset;\n  }\n  .rfd-search #search-query-description,\n.rfd-search .search-results-search-query-description {\n    padding: calc(var(--base-padding) * var(--big-screen-multiplier) * 2);\n  }\n  .rfd-search #searchbar-query-suggestion-flex,\n.rfd-search #search-query-description,\n.rfd-search .search-results-search-query-description {\n    font-size: calc(var(--font-size-2) * 0.9);\n  }\n  .rfd-search .result-entry-container {\n    line-height: 1;\n  }\n  .rfd-search .ascent-details {\n    font-size: var(--font-size-3);\n  }\n  .rfd-search .ascent-notes {\n    font-size: var(--font-size-3);\n  }\n  .rfd-search .result-entry {\n    padding-top: calc(var(--padding) / 1.85);\n    padding-bottom: calc(var(--padding) / 1.85);\n    align-items: center;\n  }\n  .rfd-search .result-crag-name {\n    padding-bottom: 2pt;\n  }\n  .rfd-search .selected .result-entry {\n    border-radius: calc(var(--radius) * 0.7);\n  }\n  .rfd-search .icon {\n    margin-right: unset;\n  }\n  .rfd-search .result-entry-end {\n    padding-left: var(--padding);\n    flex-direction: column;\n    align-items: baseline;\n    flex-grow: 1;\n  }\n  .rfd-search .footer-content {\n    padding: 4px;\n    padding-right: 10px;\n  }\n  .rfd-search .nightmode #search-results-header-container,\n.rfd-search .nightmode #search-results-widget {\n    box-shadow: 0px 0px 10px rgba(1, 1, 1, 0.2);\n  }\n  .rfd-search .result-icon-area {\n    margin-top: unset;\n  }\n  .rfd-search .result-text-area {\n    flex-direction: row;\n    justify-content: space-between;\n  }\n  .rfd-search .result-entry-start {\n    align-self: center;\n    margin-bottom: unset;\n  }\n  .rfd-search .result-entry-end {\n    flex-direction: column;\n    align-items: flex-end;\n  }\n  .rfd-search .ascent-style-indicator {\n    margin-left: -13px;\n  }\n}\n\nselect {\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  appearance: none;\n  text-overflow: \"\";\n}";
 
 function closestShadowPiercing(el, tagName) {
     const closest = el.closest(tagName);
@@ -499,15 +499,15 @@ const DOMPurify = {
 const html$1 = (raw, ...keys) => keys.length === 0 ? raw[0] : String.raw({ raw }, ...keys);
 const escape = (s) => s ? DOMPurify.sanitize(s) : s;
 
-var __defProp$i = Object.defineProperty;
-var __getOwnPropDesc$i = Object.getOwnPropertyDescriptor;
-var __decorateClass$i = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$i(target, key) : target;
+var __defProp$k = Object.defineProperty;
+var __getOwnPropDesc$k = Object.getOwnPropertyDescriptor;
+var __decorateClass$k = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$k(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$i(target, key, result);
+    __defProp$k(target, key, result);
   return result;
 };
 let BaseCon = class extends HTMLElement {
@@ -548,20 +548,20 @@ let BaseCon = class extends HTMLElement {
     return "";
   }
 };
-BaseCon = __decorateClass$i([
+BaseCon = __decorateClass$k([
   controller
 ], BaseCon);
 const BaseCon$1 = BaseCon;
 
-var __defProp$h = Object.defineProperty;
-var __getOwnPropDesc$h = Object.getOwnPropertyDescriptor;
-var __decorateClass$h = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$h(target2, key) : target2;
+var __defProp$j = Object.defineProperty;
+var __getOwnPropDesc$j = Object.getOwnPropertyDescriptor;
+var __decorateClass$j = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$j(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$h(target2, key, result);
+    __defProp$j(target2, key, result);
   return result;
 };
 let PageButtonElement = class extends BaseCon$1 {
@@ -579,13 +579,13 @@ let PageButtonElement = class extends BaseCon$1 {
     super.connectedCallback();
   }
 };
-__decorateClass$h([
+__decorateClass$j([
   target
 ], PageButtonElement.prototype, "span", 2);
-__decorateClass$h([
+__decorateClass$j([
   attr
 ], PageButtonElement.prototype, "pageNumber", 1);
-PageButtonElement = __decorateClass$h([
+PageButtonElement = __decorateClass$j([
   controller
 ], PageButtonElement);
 
@@ -599,15 +599,15 @@ const pageControlTemplate = (element) => {
 `;
 };
 
-var __defProp$g = Object.defineProperty;
-var __getOwnPropDesc$g = Object.getOwnPropertyDescriptor;
-var __decorateClass$g = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$g(target2, key) : target2;
+var __defProp$i = Object.defineProperty;
+var __getOwnPropDesc$i = Object.getOwnPropertyDescriptor;
+var __decorateClass$i = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$i(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$g(target2, key, result);
+    __defProp$i(target2, key, result);
   return result;
 };
 let PageControlElement = class extends BaseCon$1 {
@@ -718,16 +718,16 @@ let PageControlElement = class extends BaseCon$1 {
     return arr;
   }
 };
-__decorateClass$g([
+__decorateClass$i([
   target
 ], PageControlElement.prototype, "previous", 2);
-__decorateClass$g([
+__decorateClass$i([
   targets
 ], PageControlElement.prototype, "pages", 2);
-__decorateClass$g([
+__decorateClass$i([
   target
 ], PageControlElement.prototype, "next", 2);
-PageControlElement = __decorateClass$g([
+PageControlElement = __decorateClass$i([
   controller
 ], PageControlElement);
 
@@ -771,31 +771,28 @@ const searchResultsTemplate = (element) => {
   const elementName = element.elementName;
   return html$1`
         <div class='rfd-search'>
-            <!-- <div data-target='${elementName}.search_query_description_top' class='search-results-search-query-description fixed-top w-100 d-md-none' style='font-size:0.7em;opacity:0;transition:opacity 0.2s ease-out;'></div>-->
-            
-            <div data-target="${element.elementName}.search_results_header_container" id='search-results-header-container'>
-                <div class='ukc-search-results-header'>
-                    <h1 data-target="${element.elementName}.search_results_title" class='mb-4 mt-4 pt-3' style='font-size: 1.1rem;color:var(--title-color)'></h1>
-                    <div class="ukc-search-results-controls">
-                        <select data-target="${element.elementName}.sort_order" class="ukc-search-results-sort-order">
-                            ${element.htmlForSlot("ukc-search-results-sort-order-options")}
+            <div data-target='${element.elementName}.header_container' id='search-results-header-container'>
+                <div class='routes-viewer-header'>
+                    <h1 data-target='${element.elementName}.routes_viewer_title' class='mb-4 mt-4 pt-3' style='font-size: 1.1rem;color:var(--title-color)'></h1>
+                    <div class='routes-viewer-controls'>
+                        <select data-target='${element.elementName}.sort_order_picker' class='routes-viewer-sort-order'>
+                            ${element.htmlForSlot("routes-viewer-sort-order-options")}
                         </select>
-                        <button class="fa-button" data-target="${element.elementName}.sort_button" data-action="click:${element.elementName}#toggleSortOrder"><i class="fas fa-arrow-down" data-target="${element.elementName}.sort_arrow"></i></button>
+                        <button class='fa-button' data-target='${element.elementName}.sort_button' data-action='click:${element.elementName}#toggleSortOrder'><i class='fas fa-arrow-down' data-target='${element.elementName}.sort_arrow'></i></button>
                     </div>
                 </div>
                 <div id='filter-bar-container'>
                     <span id='filter-icon' class='icon icon-magnifying-glass' alt='icon'></span>
-                    <input data-target='${elementName}.input' id='filter-bar'  spellcheck='false' autocorrect='off' autocomplete='off' autocapitalize='off' type='search' placeholder='Filter results...' />
+                    <input data-target='${elementName}.input' id='filter-bar' spellcheck='false' autocorrect='off' autocomplete='off' autocapitalize='off' type='search' placeholder='Filter results...' />
                     <span data-target='${elementName}.delete_text_button' id='filter-delete-text-button' tabindex='-1' class='icon icon-circle-times hidden' alt='icon'></span>
                 </div>
-                <div data-target='${elementName}.progressBar' id='search-results-progress' class='loader-stopped'></div>
-                <div data-target='${elementName}.search_query_description' class='search-results-search-query-description' style='border-bottom: solid var(--background-color-page-semi) 1px;'></div>
+                <div data-target='${elementName}.progress_bar' id='search-results-progress' class='loader-stopped'></div>
+                <div data-target='${elementName}.filter_query_description' class='search-results-search-query-description' style='border-bottom: solid var(--background-color-page-semi) 1px;'></div>
             </div>
             <div id='search-results-widget'>
-                <!--<div data-target='${elementName}.search_results_header_spacer'></div>-->
-                <ul data-target='${elementName}.search_results_container' id='search-results-container-search-results'></ul>
+                <ul data-target='${elementName}.routes_viewer_container' id='search-results-container-search-results'></ul>
             </div>
-            <page-control data-target='${elementName}.page_control'></page-control>
+            ${element.htmlForSlot("routes-viewer-page-control-slot")}
         </div>
     `;
 };
@@ -811,9 +808,9 @@ function performIfMobile(func) {
 function appendDivider(target, idx) {
   const divider = document.createElement("hr");
   divider.classList.add("divider-no-height-set");
-  const el = target.search_results_container.children[idx];
+  const el = target.routes_viewer_container.children[idx];
   if (el) {
-    target.search_results_container.insertBefore(divider, el);
+    target.routes_viewer_container.insertBefore(divider, el);
   }
 }
 function appendRoute({ target, route, tagName }) {
@@ -835,7 +832,7 @@ function appendRoute({ target, route, tagName }) {
   el.routeIdUkc = route.id_ukc;
   el.colorId = route.grade_color_id;
   el.slugFull = route.slug_full;
-  target.search_results_container.appendChild(el);
+  target.routes_viewer_container.appendChild(el);
   el.resultType = "route";
   return el;
 }
@@ -852,7 +849,7 @@ function appendCrag({ target, crag }) {
   el.slugFull = crag.slug;
   el.logStatus = "unclimbed";
   el.wishlistStatus = false;
-  target.search_results_container.appendChild(el);
+  target.routes_viewer_container.appendChild(el);
   el.resultType = "crag";
   return el;
 }
@@ -861,7 +858,7 @@ function appendNoResults(target) {
   el.classList.remove("hidden");
   el.classList.add("no-results-entry");
   el.itemName = `No matching results ='[`;
-  target.search_results_container.appendChild(el);
+  target.routes_viewer_container.appendChild(el);
   el.resultType = "no-result";
 }
 
@@ -871,7 +868,7 @@ function onKeyPressedEvent(e) {
     this.resignFocus();
     return;
   }
-  if (this.search_results_container.children.length == 0) {
+  if (this.routes_viewer_container.children.length == 0) {
     return;
   }
   switch (e.key) {
@@ -890,13 +887,13 @@ function onKeyPressedEvent(e) {
   }
 }
 function onArrowDownKey() {
-  for (let i = 0; i < this.search_results_container.children.length; i++) {
-    if (this.search_results_container.children[i].classList.contains("selected")) {
-      if (i < this.search_results_container.children.length - 1) {
-        this.search_results_container.children[i].classList.remove("selected");
-        let resultEntryElement = this.search_results_container.children[i + 1];
+  for (let i = 0; i < this.routes_viewer_container.children.length; i++) {
+    if (this.routes_viewer_container.children[i].classList.contains("selected")) {
+      if (i < this.routes_viewer_container.children.length - 1) {
+        this.routes_viewer_container.children[i].classList.remove("selected");
+        let resultEntryElement = this.routes_viewer_container.children[i + 1];
         if (resultEntryElement.tagName === "HR") {
-          resultEntryElement = this.search_results_container.children[i + 2];
+          resultEntryElement = this.routes_viewer_container.children[i + 2];
         }
         resultEntryElement.classList.add("selected");
         if (this.isElementVisible(resultEntryElement) === false) {
@@ -906,16 +903,16 @@ function onArrowDownKey() {
       return;
     }
   }
-  this.search_results_container.children[0].classList.add("selected");
+  this.routes_viewer_container.children[0].classList.add("selected");
 }
 function onArrowUpKey() {
-  for (let i = 0; i < this.search_results_container.children.length; i++) {
-    if (this.search_results_container.children[i].classList.contains("selected")) {
-      this.search_results_container.children[i].classList.remove("selected");
+  for (let i = 0; i < this.routes_viewer_container.children.length; i++) {
+    if (this.routes_viewer_container.children[i].classList.contains("selected")) {
+      this.routes_viewer_container.children[i].classList.remove("selected");
       if (i > 0) {
-        let resultEntryElement = this.search_results_container.children[i - 1];
+        let resultEntryElement = this.routes_viewer_container.children[i - 1];
         if (resultEntryElement.tagName === "HR") {
-          resultEntryElement = this.search_results_container.children[i - 2];
+          resultEntryElement = this.routes_viewer_container.children[i - 2];
         }
         resultEntryElement.classList.add("selected");
         if (this.isElementVisible(resultEntryElement) === false) {
@@ -933,9 +930,9 @@ function onEnterKey(e) {
     this.submitSearch();
     return;
   }
-  for (let i = 0; i < this.search_results_container.children.length; i++) {
-    if (this.search_results_container.children[i].classList.contains("selected")) {
-      this.search_results_container.children[i].href.click();
+  for (let i = 0; i < this.routes_viewer_container.children.length; i++) {
+    if (this.routes_viewer_container.children[i].classList.contains("selected")) {
+      this.routes_viewer_container.children[i].href.click();
       return;
     }
   }
@@ -946,7 +943,7 @@ class Cookies {
   constructor(cookie) {
     this.cookie = cookie;
     if (!cookie) {
-      throw new Error("no cookie!");
+      return;
     }
     const cookiesArr = cookie.split("; ");
     for (const component of cookiesArr) {
@@ -961,10 +958,10 @@ class Cookies {
     return new Cookies(document.cookie);
   }
   get userIdUkc() {
-    return this._ukcSid.ukcId || void 0;
+    return this._ukcSid?.ukcId;
   }
   get ukcCookiesSid() {
-    return this._ukcSid.cookieSid;
+    return this._ukcSid?.cookieSid;
   }
   get(key) {
     return this._lookup[key];
@@ -984,37 +981,38 @@ class UkcSid {
   ukcId = 0;
 }
 
-var __defProp$f = Object.defineProperty;
-var __getOwnPropDesc$f = Object.getOwnPropertyDescriptor;
-var __decorateClass$f = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$f(target2, key) : target2;
+var __defProp$h = Object.defineProperty;
+var __getOwnPropDesc$h = Object.getOwnPropertyDescriptor;
+var __decorateClass$h = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$h(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$f(target2, key, result);
+    __defProp$h(target2, key, result);
   return result;
 };
-let SearchResults = class extends BaseCon$1 {
+let BaseRoutesViewer = class extends BaseCon$1 {
   get apiUrl() {
     return generateApiUrl$4();
   }
-  searchResultsIdentifier = "search-results";
+  get localStorageKey() {
+    return this.elementName;
+  }
   lastSearch;
   searchDelay = 300;
-  search_results_container;
-  searchBar;
+  lastHeaderString = "";
+  routes_viewer_container;
+  search_bar;
   input;
-  progressBar;
+  progress_bar;
   delete_text_button;
-  search_query_description;
-  search_results_header_container;
-  search_results_title;
-  page_control;
-  sort_order;
+  filter_query_description;
+  header_container;
+  routes_viewer_title;
+  sort_order_picker;
   sort_arrow;
   sort_button;
-  currentPage = 1;
   get query() {
     return this.input.value;
   }
@@ -1030,16 +1028,14 @@ let SearchResults = class extends BaseCon$1 {
   timeout;
   searchId = 0;
   preventLayoutShift = false;
-  apiData;
-  baseData;
   get template() {
     return searchResultsTemplate;
   }
   get sortOrderKey() {
-    return "search_results_sort_order";
+    return `${this.elementName}-sort-order`;
   }
   get sortDirectionKey() {
-    return `${this.sortOrderKey}_direction`;
+    return `${this.sortOrderKey}-direction`;
   }
   get defaultSortOrder() {
     return "score";
@@ -1110,15 +1106,12 @@ let SearchResults = class extends BaseCon$1 {
   }
   responseMessage = "";
   connectedCallback() {
-    if (window.location.origin.match(/local/)) {
-      document.cookie = "ukcsid=ac37cdfcb90a91711a6fbd3dac9137d9#45296#Stephen%20Horne%20-%20Rockfax#0";
-    }
     super.connectedCallback();
     this.sort_button.style.display = "none";
-    this.sort_order.style.display = "none";
-    this.sort_order.value = this.urlSortOrder || this.savedSortOrder;
+    this.sort_order_picker.style.display = "none";
+    this.sort_order_picker.value = this.urlSortOrder || this.savedSortOrder;
     this.sortDirectionFromButton = this.urlSortDirection || this.savedSortDirection;
-    this.sort_order.addEventListener("change", (evt) => {
+    this.sort_order_picker.addEventListener("change", (evt) => {
       this.sortOrderChanged(evt);
     });
     if (isMobile()) {
@@ -1130,55 +1123,14 @@ let SearchResults = class extends BaseCon$1 {
     Object.defineProperty(this, "onArrowUpKey", { value: onArrowUpKey });
     Object.defineProperty(this, "onArrowDownKey", { value: onArrowDownKey });
     document.addEventListener("DOMContentLoaded", () => {
-      this.searchBar = document.getElementsByTagName(this.searchbarTag)[0];
-      this.searchBar.searchWidget.style.opacity = "0";
-      this.searchBar.input.addEventListener("focus", () => {
-        this.searchBar.searchWidget.style.opacity = "1";
-      });
-      this.searchBar.grayView.addEventListener("click", () => {
-        this.searchBar.searchWidget.style.opacity = "0";
-      });
-      this.searchBar.input.placeholder = this.searchBarPlaceholderString;
-      this.searchBar.input.value = this.urlQuery || "";
-      if (this.searchBar.input.value) {
-        this.searchBar.fetchResults();
-      }
-      this.searchBar.delete_text_button.classList.remove("hidden");
-      this.searchBar.submitSearchHandler = (resultsUrl) => {
-        this.startProgressBar();
-        this.searchBar.resignFocus();
-        window.history.pushState({}, "", resultsUrl);
-        setTimeout(() => {
-          this._init();
-        }, 300);
-      };
+      this.onDomContentLoaded();
     });
-    let lastScroll = 0;
-    document.addEventListener("scroll", async (_evt) => {
-      if (this.preventLayoutShift) {
-        return;
-      }
-      const scroll = this.search_results_container.getBoundingClientRect().top;
-      let diff = scroll - lastScroll;
-      lastScroll = scroll;
-      if (diff > 30) {
-        this.search_results_header_container.style.top = "-64px";
-      }
-      if (diff > 0) {
-        return;
-      }
-      if (diff > -20) {
-        return;
-      }
-      const el = this.search_results_header_container;
-      const height = this.search_query_description.getBoundingClientRect().top - this.search_results_header_container.getBoundingClientRect().top;
-      el.style.top = -height + "px";
+    document.addEventListener("scroll", async (evt) => {
+      this.positionHeaderForScroll(evt);
     });
-    this.search_query_description.addEventListener("click", (evt) => {
-      this.search_results_header_container.style.top = "-64px";
+    this.filter_query_description.addEventListener("click", (evt) => {
+      this.header_container.style.top = "-64px";
     });
-    this.search_results_header_container.style.position = "sticky";
-    this.search_results_header_container.style.top = "0";
     this.input.addEventListener("focus", () => this.onInputFocus());
     this.input.addEventListener("input", () => this.onInputUpdated());
     this.delete_text_button.addEventListener("mousedown", (evt) => evt.preventDefault());
@@ -1187,17 +1139,10 @@ let SearchResults = class extends BaseCon$1 {
     });
     this.input.addEventListener("keydown", (e) => this.onKeyPressedEvent(e));
     this._init();
-    this.page_control.onPageControlClicked = async (_pageControl) => {
-      this.startProgressBar();
-      const res = await this._fetchResults(this.fullQuery, _pageControl.currentPage);
-      this.urlPage = _pageControl.currentPage;
-      this.stopProgressBar();
-      this.buildResults(res);
-    };
-    const fb = this.input;
+    const filterBar = this.input;
     document.ontouchstart = function(_e) {
-      if (document.activeElement === fb) {
-        fb.blur();
+      if (document.activeElement === filterBar) {
+        filterBar.blur();
       }
     };
     this.input.focus();
@@ -1205,85 +1150,81 @@ let SearchResults = class extends BaseCon$1 {
   resignFocus() {
     this.input.blur();
   }
+  get menuHeight() {
+    return this.routes_viewer_container.getBoundingClientRect().height;
+  }
+  maxScroll() {
+    return Math.max(document.documentElement.scrollHeight, document.body.scrollHeight) - window.innerHeight;
+  }
+  lastScroll = 0;
+  positionHeaderForScroll(evt) {
+    if (this.preventLayoutShift) {
+      return;
+    }
+    const scroll = this.routes_viewer_container.getBoundingClientRect().top;
+    let diff = scroll - this.lastScroll;
+    this.lastScroll = scroll;
+    if (diff > 30) {
+      this.header_container.style.top = "-64px";
+    }
+    if (diff > 0) {
+      return;
+    }
+    if (diff > -20) {
+      return;
+    }
+    const el = this.header_container;
+    const height = this.filter_query_description.getBoundingClientRect().top - this.header_container.getBoundingClientRect().top;
+    el.style.top = -height + "px";
+  }
+  onDomContentLoaded() {
+    this.search_bar = document.getElementsByTagName(this.searchbarTag)[0];
+    this.search_bar.searchWidget.style.opacity = "0";
+    this.search_bar.input.addEventListener("focus", () => {
+      this.search_bar.searchWidget.style.opacity = "1";
+    });
+    this.search_bar.grayView.addEventListener("click", () => {
+      this.search_bar.searchWidget.style.opacity = "0";
+    });
+    this.search_bar.input.placeholder = this.searchBarPlaceholderString;
+    this.search_bar.input.value = this.urlQuery || "";
+    if (this.search_bar.input.value) {
+      this.search_bar.fetchResults();
+    }
+    this.search_bar.delete_text_button.classList.remove("hidden");
+    this.search_bar.submitSearchHandler = (resultsUrl) => {
+      this.startProgressBar();
+      this.search_bar.resignFocus();
+      window.history.pushState({}, "", resultsUrl);
+      setTimeout(() => {
+        this._init();
+      }, 300);
+    };
+  }
   sortOrderChanged(evt) {
-    this.baseData = void 0;
     this.lastSearch = void 0;
     this.onInputUpdated();
-    this.urlSortOrder = this.sort_order.value;
-    localStorage.setItem(this.sortOrderKey, this.sort_order.value);
+    this.urlSortOrder = this.sort_order_picker.value;
+    localStorage.setItem(this.sortOrderKey, this.sort_order_picker.value);
   }
   onInputFocus() {
-  }
-  getElementById(id) {
-    let element = document.getElementById(id);
-    if (!element) {
-      throw new Error(`failed to find element with id ${id}`);
-    }
-    return element;
   }
   get allowEmptyQuery() {
     return false;
   }
   async _init() {
-    this.startProgressBar();
-    const results = localStorage.getItem(this.searchResultsIdentifier);
-    const hasNoFilter = !this.urlFilter;
-    if (results) {
-      try {
-        this.buildResults(JSON.parse(results));
-        this.stopProgressBar();
-        localStorage.setItem(this.searchResultsIdentifier, "");
-        return;
-      } catch (e) {
-      }
-    }
-    let query = this.queryToUseDuringInit();
-    if (query !== null || this.allowEmptyQuery) {
-      let results2 = await this._fetchResults(query, this.urlPage);
-      this.buildResults(results2);
-      hasNoFilter && (this.baseData = results2);
-      this.stopProgressBar();
-    }
   }
-  queryToUseDuringInit() {
-    return this.fullQuery || "";
-  }
-  async _fetchResults(query, pageNo) {
-    return await this.fetchResultsForPage(query, pageNo);
-  }
-  response;
-  async fetchResultsForPage(query, pageNo) {
-    try {
-      query = query?.trim() || "";
-      const response = await fetch(
-        this.apiUrl,
-        {
-          method: "POST",
-          headers: {
-            "Accept": "application/json",
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(
-            this.bodyForRequest(query, pageNo)
-          )
-        }
-      );
-      this.response = response.clone();
-      return await response.json();
-    } catch (e) {
-      console.error("failed to fetch results");
-      console.error(e);
-    }
+  async fetchResults(query, pageNo) {
+    throw new Error("Not implemented");
   }
   bodyForRequest(query, pageNo) {
     const cookie = Cookies.default().cookie;
     return {
       cookie,
       search_query: query,
-      page_size: 100,
-      page: pageNo,
-      sort_by: this.sort_order.value,
-      direction: this.sortDirectionFromButton
+      sort_by: this.sort_order_picker.value,
+      direction: this.sortDirectionFromButton,
+      return_type: "full"
     };
   }
   get sortDirectionFromButton() {
@@ -1297,80 +1238,41 @@ let SearchResults = class extends BaseCon$1 {
     c.style.rotate = isOn ? "180deg" : "0deg";
   }
   toggleSortOrder() {
-    this.sort_arrow.style.rotate = this.sortDirectionFromButton === "desc" ? "180deg" : "0deg";
-    this.baseData = void 0;
+    this.toggleArrowInSortButton();
     this.lastSearch = void 0;
     this.onInputUpdated();
     localStorage.setItem(this.sortDirectionKey, this.sortDirectionFromButton);
   }
+  toggleArrowInSortButton() {
+    this.sort_arrow.style.rotate = this.sortDirectionFromButton === "desc" ? "180deg" : "0deg";
+  }
   htmlForSlot(slotName) {
-    if (slotName === "ukc-search-results-sort-order-options") {
+    if (slotName === "routes-viewer-sort-order-options") {
       return html$1`
-        <option value="score"      >Order by search score</option>
-        <option value="crag_name" >Order by crag name</option>
-        <option value="grade"     >Order by route grade</option>
-        <!--<option value="voted_grade">Order by voted grade</option>-->
+      <option value="score"      >Order by search score</option>
+      <option value="crag_name" >Order by crag name</option>
+      <option value="grade"     >Order by route grade</option>
+      <!--<option value="voted_grade">Order by voted grade</option>-->
       `;
+    }
+    const sup = super.htmlForSlot(slotName);
+    if (sup) {
+      return sup;
     }
     return "";
   }
   clearResultsDropdown() {
-    this.search_results_container.innerHTML = "";
+    this.routes_viewer_container.innerHTML = "";
   }
   queue = [];
   buildResults(data) {
-    console.log(data);
-    this.queue = [];
-    this.clearResultsDropdown();
-    this.apiData = data;
-    this.page_control.pageCount = data.meta?.total_pages;
-    this.page_control.currentPage = data.meta?.page;
-    if (data.objects?.length === 0) {
-      appendNoResults(this);
-    }
-    if (this.search_query_description) {
-      if (data.meta?.parsed_query) {
-        const c = data.meta?.total_matches;
-        this.search_query_description.innerHTML = data.meta.parsed_query.queryDescription + ` (${c}&nbsp;match${c === 1 ? "" : "es"})`;
-      } else {
-        this.search_query_description.innerHTML = "";
-      }
-    }
-    let routeCount = 0;
-    let cragCount = 0;
-    data.objects?.forEach((element, idx) => {
-      switch (element.type) {
-        case "route_ukc": {
-          routeCount++;
-          this.willAppendRoute(element, this, idx, routeCount);
-          this.queue.push(() => {
-            this.appendRoute(this, element);
-          });
-          break;
-        }
-        case "crag_ukc": {
-          cragCount++;
-          this.queue.push(() => {
-            this.appendCrag(this, element);
-          });
-          break;
-        }
-      }
-      if (routeCount == 1 && cragCount) {
-        this.queue.push(() => {
-          appendDivider(this, idx);
-        });
-      }
-    });
-    this.processQueue();
-  }
-  willAppendRoute(_route, _target, _idx, _currentRouteCount) {
+    throw new Error("not implemented");
   }
   processQueue() {
     if (this.queue.length) {
       this.preventLayoutShift = true;
       let i = 0;
-      const max = this.search_results_container.children.length > 4 ? 1 : 10;
+      const max = this.routes_viewer_container.children.length > 4 ? 1 : 15;
       while (i < max && this.queue.length) {
         this.queue.shift()();
         i++;
@@ -1388,53 +1290,34 @@ let SearchResults = class extends BaseCon$1 {
   appendRoute(target2, route, tagName) {
     return appendRoute({ target: target2, route, tagName });
   }
+  appendHeader(innerText, ascentCount, target2, objectDescriptor) {
+    const el = document.createElement("div");
+    el.classList.add("date-header");
+    const span = document.createElement("span");
+    span.innerText = innerText;
+    el.appendChild(span);
+    const span2 = document.createElement("span");
+    const word = objectDescriptor[ascentCount === 1 ? "singular" : "plural"];
+    span2.innerText = `${ascentCount} ${word}`;
+    el.appendChild(span2);
+    target2.routes_viewer_container.appendChild(el);
+    return el;
+  }
   submitSearch() {
   }
   startProgressBar() {
-    this.progressBar.classList.add("loader-spinning");
-    this.search_results_container.style.opacity = "0.4";
+    this.progress_bar.classList.add("loader-spinning");
+    this.routes_viewer_container.style.opacity = "0.4";
   }
   stopProgressBar() {
-    this.progressBar.classList.remove("loader-spinning");
-    this.search_results_container.style.opacity = "1";
+    this.progress_bar.classList.remove("loader-spinning");
+    this.routes_viewer_container.style.opacity = "1";
   }
   showHelp() {
     alert("help text");
   }
   onInputUpdated(force = false) {
-    const newValue = this.input.value.trim();
-    if (newValue) {
-      this.delete_text_button.classList.remove("hidden");
-    } else {
-      this.delete_text_button.classList.add("hidden");
-    }
-    clearTimeout(this.timeout);
-    if (!force && !newValue && this.baseData) {
-      console.log(this.baseData);
-      this.lastSearch = "";
-      this.stopProgressBar();
-      this.buildResults(this.baseData);
-      this.urlFilter = newValue;
-      return;
-    }
-    const sortDirection = this.sortDirectionFromButton;
-    this.startProgressBar();
-    this.searchId++;
-    const currentSearchId = this.searchId;
-    this.timeout = setTimeout(async () => {
-      const query = this.fullQueryWithoutUrlFilter;
-      let results = await this._fetchResults(query, 0);
-      if (this.searchId > currentSearchId) {
-        return;
-      }
-      this.stopProgressBar();
-      this.searchId = currentSearchId;
-      this.lastSearch = query;
-      this.buildResults(results);
-      this.urlFilter = newValue;
-      this.urlSortDirection = sortDirection;
-      this.urlPage = 0;
-    }, this.searchDelay);
+    throw new Error("not implemented");
   }
   get fullQuery() {
     let urlParams = new URLSearchParams(window.location.search);
@@ -1465,44 +1348,46 @@ let SearchResults = class extends BaseCon$1 {
     isVisible = isVisible && elemTop > 0;
     return isVisible;
   }
+  privateDivString() {
+    return html$1`
+    <div class='d-flex w-75 mx-auto justify-content-center pt-5 pb-5' style='opacity:0.5;'><i class="fas fa-do-not-enter pr-2 mt-1"></i>${this.responseMessage}</div>
+    `;
+  }
 };
-__decorateClass$f([
+__decorateClass$h([
   target
-], SearchResults.prototype, "search_results_container", 2);
-__decorateClass$f([
+], BaseRoutesViewer.prototype, "routes_viewer_container", 2);
+__decorateClass$h([
   target
-], SearchResults.prototype, "input", 2);
-__decorateClass$f([
+], BaseRoutesViewer.prototype, "input", 2);
+__decorateClass$h([
   target
-], SearchResults.prototype, "progressBar", 2);
-__decorateClass$f([
+], BaseRoutesViewer.prototype, "progress_bar", 2);
+__decorateClass$h([
   target
-], SearchResults.prototype, "delete_text_button", 2);
-__decorateClass$f([
+], BaseRoutesViewer.prototype, "delete_text_button", 2);
+__decorateClass$h([
   target
-], SearchResults.prototype, "search_query_description", 2);
-__decorateClass$f([
+], BaseRoutesViewer.prototype, "filter_query_description", 2);
+__decorateClass$h([
   target
-], SearchResults.prototype, "search_results_header_container", 2);
-__decorateClass$f([
+], BaseRoutesViewer.prototype, "header_container", 2);
+__decorateClass$h([
   target
-], SearchResults.prototype, "search_results_title", 2);
-__decorateClass$f([
+], BaseRoutesViewer.prototype, "routes_viewer_title", 2);
+__decorateClass$h([
   target
-], SearchResults.prototype, "page_control", 2);
-__decorateClass$f([
+], BaseRoutesViewer.prototype, "sort_order_picker", 2);
+__decorateClass$h([
   target
-], SearchResults.prototype, "sort_order", 2);
-__decorateClass$f([
+], BaseRoutesViewer.prototype, "sort_arrow", 2);
+__decorateClass$h([
   target
-], SearchResults.prototype, "sort_arrow", 2);
-__decorateClass$f([
-  target
-], SearchResults.prototype, "sort_button", 2);
-SearchResults = __decorateClass$f([
+], BaseRoutesViewer.prototype, "sort_button", 2);
+BaseRoutesViewer = __decorateClass$h([
   controller
-], SearchResults);
-const SearchResultsElement = SearchResults;
+], BaseRoutesViewer);
+const BaseRoutesViewer$1 = BaseRoutesViewer;
 
 const searchbarTemplate = (element) => {
   const elementName = element.elementName;
@@ -1523,8 +1408,8 @@ const searchbarTemplate = (element) => {
                             <span data-target='${elementName}.delete_text_button' id='delete-search-text-button' tabindex='-1' class='icon icon-circle-times hidden' alt='icon'></span>
                         </div>
                         <div>
-                            <div data-target='${elementName}.progressBar' id='progess' class='loader-stopped hidden'></div>
-                            <div data-target='${elementName}.search_query_description' id='search-query-description' class='hidden'></div>
+                            <div data-target='${elementName}.progress_bar' id='progess' class='loader-stopped hidden'></div>
+                            <div data-target='${elementName}.filter_query_description' id='search-query-description' class='hidden'></div>
                             <div data-target='${elementName}.querySuggestionContainer' id='searchbar-help-text-container' class='hidden'>
                                 <div id='searchbar-query-suggestion-flex'>
                                     <div data-target='${elementName}.searchbarQuerySuggestion' id='searchbar-help-text'></div>
@@ -1534,7 +1419,7 @@ const searchbarTemplate = (element) => {
                         </div>
                         <div data-target='${elementName}.helpTextContainer' class='hidden'>
                         </div>
-                        <ul data-target='${elementName}.search_results_container' id='search-results-container' class='hidden'>
+                        <ul data-target='${elementName}.routes_viewer_container' id='search-results-container' class='hidden'>
                         </ul>
                         <div data-target='${elementName}.searchbarFooter' id='searchbar-footer' class='hidden'>
                             <div id='searchbar-footer-content'>
@@ -1561,15 +1446,15 @@ const searchbarTemplate = (element) => {
     `;
 };
 
-var __defProp$e = Object.defineProperty;
-var __getOwnPropDesc$e = Object.getOwnPropertyDescriptor;
-var __decorateClass$e = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$e(target2, key) : target2;
+var __defProp$g = Object.defineProperty;
+var __getOwnPropDesc$g = Object.getOwnPropertyDescriptor;
+var __decorateClass$g = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$g(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$e(target2, key, result);
+    __defProp$g(target2, key, result);
   return result;
 };
 let BaseSearchbarElement = class extends BaseCon$1 {
@@ -1582,7 +1467,7 @@ let BaseSearchbarElement = class extends BaseCon$1 {
   debounceTimeout;
   hideAllExtrasTimeout;
   minQueryLength = 4;
-  searchResultsIdentifier = "search-results";
+  localStorageKey = "search-results";
   apiData;
   input;
   returnKeyAction;
@@ -1590,13 +1475,13 @@ let BaseSearchbarElement = class extends BaseCon$1 {
   helpButton;
   delete_text_button;
   searchWidget;
-  progressBar;
-  search_results_container;
+  progress_bar;
+  routes_viewer_container;
   searchbarInnerContainer;
   searchbarQuerySuggestion;
   querySuggestionContainer;
   helpTextContainer;
-  search_query_description;
+  filter_query_description;
   searchbarFooter;
   showAllResultsSpan;
   grayView;
@@ -1610,7 +1495,7 @@ let BaseSearchbarElement = class extends BaseCon$1 {
     return !this.input.value;
   }
   get isDropdownVisible() {
-    return !this.search_results_container.classList.contains("hidden");
+    return !this.routes_viewer_container.classList.contains("hidden");
   }
   get query() {
     return this.input.value;
@@ -1668,7 +1553,7 @@ let BaseSearchbarElement = class extends BaseCon$1 {
     Object.defineProperty(this, "onArrowUpKey", { value: onArrowUpKey });
     Object.defineProperty(this, "onArrowDownKey", { value: onArrowDownKey });
     const sb = this.input;
-    this.search_results_container.ontouchstart = function(_e) {
+    this.routes_viewer_container.ontouchstart = function(_e) {
       if (document.activeElement === sb) {
         sb.blur();
       }
@@ -1678,7 +1563,7 @@ let BaseSearchbarElement = class extends BaseCon$1 {
         sb.blur();
       }
     };
-    this.search_results_container.style.maxHeight = `${window.innerHeight - 260}px`;
+    this.routes_viewer_container.style.maxHeight = `${window.innerHeight - 260}px`;
   }
   buildResults(_data) {
     throw new Error("You need to override this");
@@ -1689,9 +1574,9 @@ let BaseSearchbarElement = class extends BaseCon$1 {
   }
   showQuerySuggestion() {
     this.querySuggestionContainer.classList.remove("hidden");
-    this.search_query_description.classList.add("hidden");
+    this.filter_query_description.classList.add("hidden");
     this.searchbarFooter.classList.remove("display-if-necessary");
-    this.search_results_container.classList.add("hidden");
+    this.routes_viewer_container.classList.add("hidden");
     this.delete_text_button.classList.add("hidden");
   }
   throttleFunction(func) {
@@ -1716,17 +1601,10 @@ let BaseSearchbarElement = class extends BaseCon$1 {
       }, this.minSearchDelay);
     };
   }
-  getElementById(id) {
-    let element = document.getElementById(id);
-    if (!element) {
-      throw new Error(`failed to find element with id ${id}`);
-    }
-    return element;
-  }
   createResultsDropdown() {
-    let search_results_container = this.getElementById("search-results-container");
-    search_results_container.classList.add("results-dropdown");
-    return search_results_container;
+    let routes_viewer_container = this.querySelector("#search-results-container");
+    routes_viewer_container.classList.add("results-dropdown");
+    return routes_viewer_container;
   }
   maybeHideDropdown(e) {
     if (!this.searchWidget.contains(e.target)) {
@@ -1826,9 +1704,9 @@ let BaseSearchbarElement = class extends BaseCon$1 {
     clearTimeout(this.hideAllExtrasTimeout);
     this.setGrayViewDisplayState("visible");
     this.querySuggestionContainer.classList.add("hidden");
-    this.progressBar.classList.add("hidden");
+    this.progress_bar.classList.add("hidden");
     if (this.isSearchbarFocussed) {
-      this.progressBar.classList.remove("hidden");
+      this.progress_bar.classList.remove("hidden");
       if (this.isSearchbarEmpty && !this.isHelpVisible) {
         this.querySuggestionContainer.classList.remove("hidden");
       }
@@ -1878,26 +1756,26 @@ let BaseSearchbarElement = class extends BaseCon$1 {
     }
   }
   showResultsDropdown() {
-    this.search_results_container.classList.remove("hidden");
+    this.routes_viewer_container.classList.remove("hidden");
     this.searchWidget.classList.add("normal-background");
     this.searchbarFooter.classList.add("display-if-necessary");
-    this.search_query_description.classList.remove("hidden");
+    this.filter_query_description.classList.remove("hidden");
     this.querySuggestionContainer.classList.add("hidden");
     if (isMobile()) {
       if (!this.isAndroid) {
-        this.search_results_container.style.maxHeight = `${window.innerHeight - 260}px`;
+        this.routes_viewer_container.style.maxHeight = `${window.innerHeight - 260}px`;
       }
     } else {
-      this.search_results_container.style.maxHeight = String(window.innerHeight * this.maxWindowHeightRatio) + "px";
+      this.routes_viewer_container.style.maxHeight = String(window.innerHeight * this.maxWindowHeightRatio) + "px";
     }
   }
   hideResultsDropdown() {
     this.hideHelp();
     this.resetSearchbarposition();
-    this.search_results_container.classList.add("hidden");
+    this.routes_viewer_container.classList.add("hidden");
     this.searchWidget.classList.remove("normal-background");
     this.searchbarFooter.classList.remove("display-if-necessary");
-    this.search_query_description.classList.add("hidden");
+    this.filter_query_description.classList.add("hidden");
     this.querySuggestionContainer.classList.add("hidden");
     if (this.isSearchbarFocussed) {
       this.querySuggestionContainer.classList.remove("hidden");
@@ -1910,7 +1788,7 @@ let BaseSearchbarElement = class extends BaseCon$1 {
     }, 150);
   }
   clearResultsDropdown() {
-    this.search_results_container.innerHTML = "";
+    this.routes_viewer_container.innerHTML = "";
   }
   hiding = false;
   hideAllExtras() {
@@ -1922,14 +1800,14 @@ let BaseSearchbarElement = class extends BaseCon$1 {
     theHtml.style.touchAction = null;
     this.hiding = true;
     this.hideResultsDropdown();
-    this.progressBar.classList.add("hidden");
+    this.progress_bar.classList.add("hidden");
     this.querySuggestionContainer.classList.add("hidden");
     setTimeout(() => {
       this.hiding = false;
     }, 200);
   }
   selectResultEntry(index) {
-    const entries = this.search_results_container.querySelectorAll("search-result");
+    const entries = this.routes_viewer_container.querySelectorAll("search-result");
     const resultEntryElement = entries[index];
     resultEntryElement.classList.add("selected");
     if (this.isElementVisible(resultEntryElement) === false) {
@@ -1937,10 +1815,10 @@ let BaseSearchbarElement = class extends BaseCon$1 {
     }
   }
   startProgressBar() {
-    this.progressBar.classList.add("loader-spinning");
+    this.progress_bar.classList.add("loader-spinning");
   }
   stopProgressBar() {
-    this.progressBar.classList.remove("loader-spinning");
+    this.progress_bar.classList.remove("loader-spinning");
   }
   showHelp() {
     alert("help text");
@@ -1949,7 +1827,7 @@ let BaseSearchbarElement = class extends BaseCon$1 {
     this.helpTextContainer.classList.add("hidden");
   }
   submitSearch() {
-    localStorage.setItem(this.searchResultsIdentifier, JSON.stringify(this.apiData));
+    localStorage.setItem(this.localStorageKey, JSON.stringify(this.apiData));
     this.submitSearchHandler(this.fullResultsUrl);
   }
   submitSearchHandler = (resultsUrl) => {
@@ -1963,60 +1841,60 @@ let BaseSearchbarElement = class extends BaseCon$1 {
     const rect = el.getBoundingClientRect();
     const elemTop = rect.top;
     const elemBottom = rect.bottom;
-    let isVisible = elemBottom < this.search_results_container.getBoundingClientRect().bottom;
-    isVisible = isVisible && elemTop > this.search_results_container.getBoundingClientRect().top;
+    let isVisible = elemBottom < this.routes_viewer_container.getBoundingClientRect().bottom;
+    isVisible = isVisible && elemTop > this.routes_viewer_container.getBoundingClientRect().top;
     return isVisible;
   }
 };
-__decorateClass$e([
+__decorateClass$g([
   target
 ], BaseSearchbarElement.prototype, "input", 2);
-__decorateClass$e([
+__decorateClass$g([
   target
 ], BaseSearchbarElement.prototype, "returnKeyAction", 2);
-__decorateClass$e([
+__decorateClass$g([
   target
 ], BaseSearchbarElement.prototype, "searchAbsolute", 2);
-__decorateClass$e([
+__decorateClass$g([
   target
 ], BaseSearchbarElement.prototype, "helpButton", 2);
-__decorateClass$e([
+__decorateClass$g([
   target
 ], BaseSearchbarElement.prototype, "delete_text_button", 2);
-__decorateClass$e([
+__decorateClass$g([
   target
 ], BaseSearchbarElement.prototype, "searchWidget", 2);
-__decorateClass$e([
+__decorateClass$g([
   target
-], BaseSearchbarElement.prototype, "progressBar", 2);
-__decorateClass$e([
+], BaseSearchbarElement.prototype, "progress_bar", 2);
+__decorateClass$g([
   target
-], BaseSearchbarElement.prototype, "search_results_container", 2);
-__decorateClass$e([
+], BaseSearchbarElement.prototype, "routes_viewer_container", 2);
+__decorateClass$g([
   target
 ], BaseSearchbarElement.prototype, "searchbarInnerContainer", 2);
-__decorateClass$e([
+__decorateClass$g([
   target
 ], BaseSearchbarElement.prototype, "searchbarQuerySuggestion", 2);
-__decorateClass$e([
+__decorateClass$g([
   target
 ], BaseSearchbarElement.prototype, "querySuggestionContainer", 2);
-__decorateClass$e([
+__decorateClass$g([
   target
 ], BaseSearchbarElement.prototype, "helpTextContainer", 2);
-__decorateClass$e([
+__decorateClass$g([
   target
-], BaseSearchbarElement.prototype, "search_query_description", 2);
-__decorateClass$e([
+], BaseSearchbarElement.prototype, "filter_query_description", 2);
+__decorateClass$g([
   target
 ], BaseSearchbarElement.prototype, "searchbarFooter", 2);
-__decorateClass$e([
+__decorateClass$g([
   target
 ], BaseSearchbarElement.prototype, "showAllResultsSpan", 2);
-__decorateClass$e([
+__decorateClass$g([
   target
 ], BaseSearchbarElement.prototype, "grayView", 2);
-BaseSearchbarElement = __decorateClass$e([
+BaseSearchbarElement = __decorateClass$g([
   controller
 ], BaseSearchbarElement);
 const BaseSearchbarElement$1 = BaseSearchbarElement;
@@ -2035,15 +1913,15 @@ const isAppleSafari = () => {
 
 const html = "<h6>🛟 Route &amp; Crag Search Help</h6>\n<p>You should probably try out the suggestions to get an feel of the stuff you can do before you waste time reading all this…</p>\n<p>…but if you really want to know everything about the search, here you go:</p>\n<p>Searches are checked against the following properties of a route (and the equivalents for a crag):</p>\n<ul>\n<li><code>name</code></li>\n<li><code>crag name</code></li>\n<li><code>buttress name</code></li>\n<li><code>area name</code></li>\n<li><code>country name</code></li>\n<li><code>first ascent</code> potentially including dates and names, but could be one or the other or neither</li>\n<li><code>rock type name</code> one of eg [ granite, gritstone, sandstone, limestone, schist, rhylite, ... ] (there are loads)</li>\n<li><code>route type name</code> one of [ sport, trad, winter, bouldering, aid ] (this list is complete)</li>\n<li><code>description</code></li>\n<li><code>route grade</code></li>\n<li><code>tech grade</code></li>\n</ul>\n<p>A match is found if all of the tokens of the search query match one or more of the fields (more on tokens later, but think &quot;words&quot; for now). This means you can very quickly write a query that returns very few results by typing a combination of fragments of the various fields, like <code>mal wom</code> returns <code>Wombat E2</code> at Malham as the first result because token1 (<code>mal</code>) matches the crag name (<code>Malham</code>) and token2 (<code>wom</code>) matches the route's name. You could be even more precise and search <code>mal wom e2</code> but for this instance it's not needed. (Note that this stuff is true at the time of writing but could change if more routes are added).</p>\n<p>The scoring of results is done by applying multipliers depending on where a match is found. The higher the field is on the list above, the more valuble a match against it is considered, so if a query matches against one route's <code>name</code> and another's <code>description</code>, the one against the <code>name</code> will be considered a better match and appear nearer the top. The popularity of the route is taken into account so a route with loads of ascents will be given a higher search score than one with none.</p>\n<p>For the most part this is all anyone really needs, but there are also a few advanced options you can use if you want:</p>\n<ul>\n<li>exact-phrase matches, eg <code>&quot;captain nemo&quot;</code></li>\n<li>route-star ranges, eg <code>*-**</code></li>\n<li>grade ranges, eg <code>vs-e3</code></li>\n<li>date ranges, eg <code>1984-1986</code> (for first ascents - note that not all routes have fa details so these will be excluded from a search with a date range!)</li>\n<li>difficulty for grade / grade quality, eg <code>|soft|</code></li>\n<li>regular expressions, eg <code>/chris (?!craggs)/</code></li>\n<li>negations, eg <code>-crack</code></li>\n</ul>\n<h6>Exact phrase matches</h6>\n<p>Surround multiple words with double quotes to require a match on that phrase, eg <code>&quot;bat route&quot; malham</code> creates the tokens <code>bat route</code> and <code>malham</code>. Another example is <code>roof crack stanage</code> currently returns 45 routes, where as <code>&quot;roof crack&quot; stanage</code> returns only 9.</p>\n<h6>Route-star ranges</h6>\n<p>Asterisks get special treatment in search queries now. A sequence of them is considered to be a star rating for a route, so <code>*</code> is treated as 1-star, <code>**</code> treated as 2-stars and <code>***</code> treated as 3-stars. Typing just one sequence creates a search where the route is required to have at least that many stars, eg <code>bat route **</code> will only return routes with 2 or more stars that also match the other search tokens <code>bat</code> and <code>route</code>.</p>\n<p>Adding a dash and a second star sequence will create a range, eg <code>*-**</code> means &quot;match routes with at least one and at most two stars&quot;.</p>\n<h6>Grade ranges</h6>\n<p>As above with stars, but with grades. Eg <code>vs-e1</code> will match routes with a grade of either <code>VS</code>, <code>HVS</code> or <code>E1</code>.</p>\n<h6>Date ranges (only years)</h6>\n<p>Date ranges will check against the first-ascent date field and require the route to have been put up between the start date and the end date (inclusive). Eg <code>1970-1974</code> will match routes put up between 01-01-1970 and 31-12-1974. You should note that not all routes have had the first ascent date filled in, and these routes will be excluded from any search that includes date ranges, so you might not get the results you expect.</p>\n<h6>Difficulty for grade</h6>\n<p>Not sure what to call this so we'll use &quot;difficulty for grade&quot;. We've calculated a value based on the grade voting system that assigns a route a value from one of:</p>\n<ul>\n<li><code>soft</code></li>\n<li><code>benchmark</code></li>\n<li><code>hard</code></li>\n</ul>\n<p>You can search for routes with these charateristics by using the special pipe-syntax, eg <code>|soft|</code>. If you don't wrap the token in pipes, you'll just be searching the other text fields, so <code>soft</code>, with no pipes, would get you a match if the token appeard in the description for example and <code>|soft|</code> will <em>only</em> match against routes that have been marked as soft, and not check the other fields for the token.</p>\n<p>A continuation of this system which uses the same syntax allows you to search for routes that are voted to be a completely different grade using the following tokens:</p>\n<ul>\n<li><code>undergraded</code></li>\n<li><code>overgraded</code></li>\n</ul>\n<p>eg <code>|overgraded|</code>. Note that this is based on votes, so if there are no votes for a route and you include one of these tokens it won't appear, regardless of whether it is in reality over or undergraded. Note also that whilst you can combine these with soft/benchmark/hard, doing so doesn't really make sense.</p>\n<h6>Shorthands</h6>\n<p>The grade quality stuff all have shorthand variants:</p>\n<ul>\n<li><code>|s</code> = <code>|soft|</code></li>\n<li><code>|b</code> = <code>|benchmark|</code></li>\n<li><code>|h</code> = <code>|hard|</code></li>\n<li><code>|u</code> = <code>|undergraded|</code></li>\n<li><code>|o</code> = <code>|overgraded|</code></li>\n</ul>\n<h6>Regular expressions</h6>\n<p>Finally we reach the most pointless feature, regular expressions - we need only add an email function and this search bar will be complete.</p>\n<p>Regular expressions, for those that don't know, are a way of describing patterns in strings. They are a very powerful tool for searching and manipulating text, and completely unnecessary in this search bar. However, if you do want to use them, they are possible by surrounding the expression with forward slashes, eg <code>/chris (?!craggs)/</code> will match any routes that mention <code>'chris'</code> but not those that mention <code>'chris craggs'</code>. Or <code>e2-e3 /crap|damp|horrible/</code> will return you a list of probably not classic routes.</p>\n<p>Note that pure-regex queries are not allowed due to the cost of the queries against the database. You should always add any of the other query types mentioned above if you're using a regex.</p>\n<h6>Negation</h6>\n<p>Extra finally, if you precede any token with a minus character you will negate it and require that it is not matched, eg <code>-&quot;mark leach&quot; bat malham</code>.</p>\n";
 
-var __defProp$d = Object.defineProperty;
-var __getOwnPropDesc$d = Object.getOwnPropertyDescriptor;
-var __decorateClass$d = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$d(target, key) : target;
+var __defProp$f = Object.defineProperty;
+var __getOwnPropDesc$f = Object.getOwnPropertyDescriptor;
+var __decorateClass$f = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$f(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$d(target, key, result);
+    __defProp$f(target, key, result);
   return result;
 };
 let myQueryExamples = new Set(queryExamples);
@@ -2083,9 +1961,9 @@ let RouteSearchbarElement = class extends BaseSearchbarElement$1 {
     isMobile() && (this.helpTextContainer.style.maxHeight = `${window.innerHeight - 122}px`);
     this.showResultsDropdown();
     this.querySuggestionContainer.classList.add("hidden");
-    this.search_query_description.classList.add("hidden");
+    this.filter_query_description.classList.add("hidden");
     this.searchbarFooter.classList.remove("display-if-necessary");
-    this.search_results_container.classList.add("hidden");
+    this.routes_viewer_container.classList.add("hidden");
     this.input.focus();
   }
   randomQueryString = "";
@@ -2107,7 +1985,7 @@ let RouteSearchbarElement = class extends BaseSearchbarElement$1 {
     const currentSearchId = new Date();
     const currentQuery = this.query.trim();
     (async () => {
-      this.search_results_container.style.opacity = "0.4";
+      this.routes_viewer_container.style.opacity = "0.4";
       const response = await fetch(generateApiUrl$4(), {
         method: "POST",
         headers: {
@@ -2130,7 +2008,7 @@ let RouteSearchbarElement = class extends BaseSearchbarElement$1 {
       this.searchId = currentSearchId;
       this.lastSearch = currentQuery;
       this.buildResults(results);
-      this.search_results_container.style.opacity = "1";
+      this.routes_viewer_container.style.opacity = "1";
     })();
   }
   onSearchbarUpdated() {
@@ -2172,9 +2050,9 @@ let RouteSearchbarElement = class extends BaseSearchbarElement$1 {
       appendNoResults(this);
     }
     if (data.meta.parsed_query) {
-      this.search_query_description.innerHTML = data.meta.parsed_query.queryDescription;
+      this.filter_query_description.innerHTML = data.meta.parsed_query.queryDescription;
     } else {
-      this.search_query_description.innerHTML = "";
+      this.filter_query_description.innerHTML = "";
     }
     let routeCount = 0;
     let cragCount = 0;
@@ -2218,16 +2096,16 @@ let RouteSearchbarElement = class extends BaseSearchbarElement$1 {
     return appendRoute({ target, route });
   }
 };
-RouteSearchbarElement = __decorateClass$d([
+RouteSearchbarElement = __decorateClass$f([
   controller
 ], RouteSearchbarElement);
 const RouteSearchbarElement$1 = RouteSearchbarElement;
 
 var UkcLocalStorage;
 ((UkcLocalStorage2) => {
-  class RoutesForCrag {
+  class RouteLookupForCrag {
     static identifier(cragId) {
-      return `crag_routes_${cragId}`;
+      return `crag_routes_lookup_for_crag_${cragId}`;
     }
     static fetch(cragId) {
       const data = localStorage.getItem(this.identifier(cragId));
@@ -2239,7 +2117,25 @@ var UkcLocalStorage;
       localStorage.setItem(this.identifier(routes.cragId), JSON.stringify(routes));
     }
   }
-  UkcLocalStorage2.RoutesForCrag = RoutesForCrag;
+  UkcLocalStorage2.RouteLookupForCrag = RouteLookupForCrag;
+  class BaseRouteDataForCrag {
+    static identifier(cragId) {
+      return `base_routedata_for_crag_${cragId}`;
+    }
+    static fetch(cragId) {
+      const data = localStorage.getItem(this.identifier(cragId));
+      if (data)
+        return JSON.parse(data);
+      return void 0;
+    }
+    static store(routes, cragId) {
+      if (!routes) {
+        return;
+      }
+      localStorage.setItem(this.identifier(cragId), JSON.stringify(routes));
+    }
+  }
+  UkcLocalStorage2.BaseRouteDataForCrag = BaseRouteDataForCrag;
   class LogbookDetails {
     #lookup;
     get lookup() {
@@ -2297,7 +2193,7 @@ var UkcLocalStorage;
       return res;
     }
     queue = [];
-    async fetchLookup(callback) {
+    async fetchLogbookLookup(callback) {
       this.queue.push(callback);
       if (this.isFetching)
         return Promise.resolve(void 0);
@@ -2478,23 +2374,23 @@ var UkcLocalStorage;
 })(UkcLocalStorage || (UkcLocalStorage = {}));
 globalThis.logbook = new UkcLocalStorage.LogbookDetails();
 
-var __defProp$c = Object.defineProperty;
-var __getOwnPropDesc$c = Object.getOwnPropertyDescriptor;
-var __decorateClass$c = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$c(target, key) : target;
+var __defProp$e = Object.defineProperty;
+var __getOwnPropDesc$e = Object.getOwnPropertyDescriptor;
+var __decorateClass$e = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$e(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$c(target, key, result);
+    __defProp$e(target, key, result);
   return result;
 };
 const sharedStorage$5 = UkcLocalStorage.sharedLogbook;
 let UkcSearchbarElement = class extends RouteSearchbarElement$1 {
-  searchResultsIdentifier = "ukc-search-results";
+  localStorageKey = "routes-viewer";
   connectedCallback() {
     super.connectedCallback();
-    sharedStorage$5.fetchLookup((_res) => this.updateLogbookAndWishlistStatusOfCells());
+    sharedStorage$5.fetchLogbookLookup((_res) => this.updateLogbookAndWishlistStatusOfCells());
   }
   get resultsUrlString() {
     if (window.location.origin.includes("localhost")) {
@@ -2521,7 +2417,7 @@ let UkcSearchbarElement = class extends RouteSearchbarElement$1 {
     }
   }
 };
-UkcSearchbarElement = __decorateClass$c([
+UkcSearchbarElement = __decorateClass$e([
   controller
 ], UkcSearchbarElement);
 
@@ -2534,15 +2430,15 @@ const topoDotTemplate = (_el) => {
 `;
 };
 
-var __defProp$b = Object.defineProperty;
-var __getOwnPropDesc$b = Object.getOwnPropertyDescriptor;
-var __decorateClass$b = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$b(target2, key) : target2;
+var __defProp$d = Object.defineProperty;
+var __getOwnPropDesc$d = Object.getOwnPropertyDescriptor;
+var __decorateClass$d = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$d(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$b(target2, key, result);
+    __defProp$d(target2, key, result);
   return result;
 };
 let TopoDotElement = class extends BaseCon$1 {
@@ -2567,16 +2463,16 @@ let TopoDotElement = class extends BaseCon$1 {
     return topoDotTemplate;
   }
 };
-__decorateClass$b([
+__decorateClass$d([
   attr
 ], TopoDotElement.prototype, "colorName", 1);
-__decorateClass$b([
+__decorateClass$d([
   target
 ], TopoDotElement.prototype, "stroke", 2);
-__decorateClass$b([
+__decorateClass$d([
   target
 ], TopoDotElement.prototype, "fill", 2);
-TopoDotElement = __decorateClass$b([
+TopoDotElement = __decorateClass$d([
   controller
 ], TopoDotElement);
 const TopoDotElement$1 = TopoDotElement;
@@ -2620,15 +2516,15 @@ const routeTemplate = (element) => {
     `;
 };
 
-var __defProp$a = Object.defineProperty;
-var __getOwnPropDesc$a = Object.getOwnPropertyDescriptor;
-var __decorateClass$a = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$a(target2, key) : target2;
+var __defProp$c = Object.defineProperty;
+var __getOwnPropDesc$c = Object.getOwnPropertyDescriptor;
+var __decorateClass$c = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$c(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$a(target2, key, result);
+    __defProp$c(target2, key, result);
   return result;
 };
 let SearchResultElement = class extends BaseCon$1 {
@@ -2777,76 +2673,76 @@ let SearchResultElement = class extends BaseCon$1 {
     window.open(this.url, "_self");
   }
 };
-__decorateClass$a([
+__decorateClass$c([
   target
 ], SearchResultElement.prototype, "href", 2);
-__decorateClass$a([
+__decorateClass$c([
   target
 ], SearchResultElement.prototype, "topo_dot", 2);
-__decorateClass$a([
+__decorateClass$c([
   target
 ], SearchResultElement.prototype, "item_name", 2);
-__decorateClass$a([
+__decorateClass$c([
   target
 ], SearchResultElement.prototype, "route_grade", 2);
-__decorateClass$a([
+__decorateClass$c([
   target
 ], SearchResultElement.prototype, "star_count", 2);
-__decorateClass$a([
+__decorateClass$c([
   target
 ], SearchResultElement.prototype, "crag_name", 2);
-__decorateClass$a([
+__decorateClass$c([
   target
 ], SearchResultElement.prototype, "county_name", 2);
-__decorateClass$a([
+__decorateClass$c([
   target
 ], SearchResultElement.prototype, "country_name", 2);
-__decorateClass$a([
+__decorateClass$c([
   target
 ], SearchResultElement.prototype, "logbook_indicator", 2);
-__decorateClass$a([
+__decorateClass$c([
   target
 ], SearchResultElement.prototype, "wishlist_indicator", 2);
-__decorateClass$a([
+__decorateClass$c([
   target
 ], SearchResultElement.prototype, "crag_icon", 2);
-__decorateClass$a([
+__decorateClass$c([
   target
 ], SearchResultElement.prototype, "extras_slot", 2);
-__decorateClass$a([
+__decorateClass$c([
   attr
 ], SearchResultElement.prototype, "slugFull", 1);
-__decorateClass$a([
+__decorateClass$c([
   attr
 ], SearchResultElement.prototype, "itemName", 1);
-__decorateClass$a([
+__decorateClass$c([
   attr
 ], SearchResultElement.prototype, "routeGrade", 1);
-__decorateClass$a([
+__decorateClass$c([
   attr
 ], SearchResultElement.prototype, "starCount", 1);
-__decorateClass$a([
+__decorateClass$c([
   attr
 ], SearchResultElement.prototype, "cragName", 1);
-__decorateClass$a([
+__decorateClass$c([
   attr
 ], SearchResultElement.prototype, "countyName", 1);
-__decorateClass$a([
+__decorateClass$c([
   attr
 ], SearchResultElement.prototype, "countryName", 1);
-__decorateClass$a([
+__decorateClass$c([
   attr
 ], SearchResultElement.prototype, "colorId", 1);
-__decorateClass$a([
+__decorateClass$c([
   attr
 ], SearchResultElement.prototype, "routeIdUkc", 1);
-__decorateClass$a([
+__decorateClass$c([
   attr
 ], SearchResultElement.prototype, "logStatus", 1);
-__decorateClass$a([
+__decorateClass$c([
   attr
 ], SearchResultElement.prototype, "wishlistStatus", 1);
-SearchResultElement = __decorateClass$a([
+SearchResultElement = __decorateClass$c([
   controller
 ], SearchResultElement);
 const SearchResultElement$1 = SearchResultElement;
@@ -2860,15 +2756,15 @@ const logbookIndicatorTemplate = (_el) => {
 `;
 };
 
-var __defProp$9 = Object.defineProperty;
-var __getOwnPropDesc$9 = Object.getOwnPropertyDescriptor;
-var __decorateClass$9 = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$9(target2, key) : target2;
+var __defProp$b = Object.defineProperty;
+var __getOwnPropDesc$b = Object.getOwnPropertyDescriptor;
+var __decorateClass$b = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$b(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$9(target2, key, result);
+    __defProp$b(target2, key, result);
   return result;
 };
 let LogbookIndicatorElement = class extends BaseCon$1 {
@@ -2886,16 +2782,16 @@ let LogbookIndicatorElement = class extends BaseCon$1 {
     return logbookIndicatorTemplate;
   }
 };
-__decorateClass$9([
+__decorateClass$b([
   attr
 ], LogbookIndicatorElement.prototype, "colorName", 1);
-__decorateClass$9([
+__decorateClass$b([
   target
 ], LogbookIndicatorElement.prototype, "stroke", 2);
-__decorateClass$9([
+__decorateClass$b([
   target
 ], LogbookIndicatorElement.prototype, "fill", 2);
-LogbookIndicatorElement = __decorateClass$9([
+LogbookIndicatorElement = __decorateClass$b([
   controller
 ], LogbookIndicatorElement);
 const LogbookIndicatorElement$1 = LogbookIndicatorElement;
@@ -2962,15 +2858,15 @@ const logentryTemplate = (element) => {
     `;
 };
 
-var __defProp$8 = Object.defineProperty;
-var __getOwnPropDesc$8 = Object.getOwnPropertyDescriptor;
-var __decorateClass$8 = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$8(target2, key) : target2;
+var __defProp$a = Object.defineProperty;
+var __getOwnPropDesc$a = Object.getOwnPropertyDescriptor;
+var __decorateClass$a = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$a(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$8(target2, key, result);
+    __defProp$a(target2, key, result);
   return result;
 };
 let LogbookResultElement = class extends SearchResultElement$1 {
@@ -3043,55 +2939,55 @@ let LogbookResultElement = class extends SearchResultElement$1 {
     return logentryTemplate;
   }
 };
-__decorateClass$8([
+__decorateClass$a([
   target
 ], LogbookResultElement.prototype, "ascensionist", 2);
-__decorateClass$8([
+__decorateClass$a([
   target
 ], LogbookResultElement.prototype, "partner_names", 2);
-__decorateClass$8([
+__decorateClass$a([
   target
 ], LogbookResultElement.prototype, "partner_names_with", 2);
-__decorateClass$8([
+__decorateClass$a([
   target
 ], LogbookResultElement.prototype, "ascent_style_indicator", 2);
-__decorateClass$8([
+__decorateClass$a([
   target
 ], LogbookResultElement.prototype, "ascent_style", 2);
-__decorateClass$8([
+__decorateClass$a([
   target
 ], LogbookResultElement.prototype, "ascent_notes", 2);
-__decorateClass$8([
+__decorateClass$a([
   target
 ], LogbookResultElement.prototype, "ascent_date", 2);
-__decorateClass$8([
+__decorateClass$a([
   targets
 ], LogbookResultElement.prototype, "crag_names", 2);
-__decorateClass$8([
+__decorateClass$a([
   targets
 ], LogbookResultElement.prototype, "county_names", 2);
-__decorateClass$8([
+__decorateClass$a([
   targets
 ], LogbookResultElement.prototype, "country_names", 2);
-__decorateClass$8([
+__decorateClass$a([
   attr
 ], LogbookResultElement.prototype, "cragName", 1);
-__decorateClass$8([
+__decorateClass$a([
   attr
 ], LogbookResultElement.prototype, "countyName", 1);
-__decorateClass$8([
+__decorateClass$a([
   attr
 ], LogbookResultElement.prototype, "countryName", 1);
-__decorateClass$8([
+__decorateClass$a([
   attr
 ], LogbookResultElement.prototype, "ascentNotes", 1);
-__decorateClass$8([
+__decorateClass$a([
   attr
 ], LogbookResultElement.prototype, "ascentStyle", 1);
-__decorateClass$8([
+__decorateClass$a([
   attr
 ], LogbookResultElement.prototype, "ascentStyleSimple", 1);
-LogbookResultElement = __decorateClass$8([
+LogbookResultElement = __decorateClass$a([
   controller
 ], LogbookResultElement);
 
@@ -3136,15 +3032,15 @@ const routeResultTemplate = (element) => {
     `;
 };
 
-var __defProp$7 = Object.defineProperty;
-var __getOwnPropDesc$7 = Object.getOwnPropertyDescriptor;
-var __decorateClass$7 = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$7(target2, key) : target2;
+var __defProp$9 = Object.defineProperty;
+var __getOwnPropDesc$9 = Object.getOwnPropertyDescriptor;
+var __decorateClass$9 = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$9(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$7(target2, key, result);
+    __defProp$9(target2, key, result);
   return result;
 };
 let RouteResultElement = class extends SearchResultElement$1 {
@@ -3168,39 +3064,38 @@ let RouteResultElement = class extends SearchResultElement$1 {
     return routeResultTemplate;
   }
 };
-__decorateClass$7([
+__decorateClass$9([
   target
 ], RouteResultElement.prototype, "ascensionist", 2);
-__decorateClass$7([
+__decorateClass$9([
   target
 ], RouteResultElement.prototype, "route_description", 2);
-__decorateClass$7([
+__decorateClass$9([
   target
 ], RouteResultElement.prototype, "fa_details", 2);
-RouteResultElement = __decorateClass$7([
+RouteResultElement = __decorateClass$9([
   controller
 ], RouteResultElement);
 
-var __defProp$6 = Object.defineProperty;
-var __getOwnPropDesc$6 = Object.getOwnPropertyDescriptor;
-var __decorateClass$6 = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$6(target, key) : target;
+var __defProp$8 = Object.defineProperty;
+var __getOwnPropDesc$8 = Object.getOwnPropertyDescriptor;
+var __decorateClass$8 = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$8(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$6(target, key, result);
+    __defProp$8(target, key, result);
   return result;
 };
 const sharedStorage$4 = UkcLocalStorage.sharedLogbook;
-let UkcResultsElement = class extends SearchResultsElement {
+let SearchResultsViewerElement = class extends BaseRoutesViewer$1 {
   get searchbarTag() {
     return "ukc-searchbar";
   }
-  searchResultsIdentifier = "ukc-search-results";
   connectedCallback() {
     super.connectedCallback();
-    sharedStorage$4.fetchLookup((_res) => this.updateLogbookAndWishlistStatusOfCells());
+    sharedStorage$4.fetchLogbookLookup((_res) => this.updateLogbookAndWishlistStatusOfCells());
   }
   appendRoute(target, route) {
     const el = super.appendRoute(target, route);
@@ -3238,354 +3133,60 @@ let UkcResultsElement = class extends SearchResultsElement {
     };
   }
 };
-UkcResultsElement = __decorateClass$6([
+SearchResultsViewerElement = __decorateClass$8([
   controller
-], UkcResultsElement);
-const UkcResultsElement$1 = UkcResultsElement;
+], SearchResultsViewerElement);
 
-var __defProp$5 = Object.defineProperty;
-var __getOwnPropDesc$5 = Object.getOwnPropertyDescriptor;
-var __decorateClass$5 = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$5(target2, key) : target2;
-  for (var i = decorators.length - 1, decorator; i >= 0; i--)
-    if (decorator = decorators[i])
-      result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
-  if (kind && result)
-    __defProp$5(target2, key, result);
-  return result;
-};
-const sharedStorage$3 = UkcLocalStorage.sharedLogbook;
-const generateApiUrl$3 = () => {
-  const targetOrigin = apiOrigin();
-  return `${targetOrigin}/v1/rockfax/search/logbook`;
-};
-let UkcLogbookElement = class extends UkcResultsElement$1 {
-  searchBarPlaceholderString = "Search all routes/crags...";
-  get apiUrl() {
-    return generateApiUrl$3();
-  }
-  lastHeaderString = "";
-  get sortOrderKey() {
-    return "logbook_sort_order";
-  }
-  get defaultSortOrder() {
-    return "date";
-  }
-  connectedCallback() {
-    this.innerHTML ||= this.template(this);
-    super.connectedCallback();
-    this.sort_button.style.display = "block";
-    this.sort_order.style.display = "block";
-    this.input.placeholder = "Filter your logbook...";
-    document.addEventListener("DOMContentLoaded", () => {
-      this.searchBar.submitSearchHandler = (resultsUrl) => {
-        window.location.href = resultsUrl;
-      };
-      this.input.value = this.urlFilter || "";
-      this.searchBar.input.value = "";
-    });
-  }
-  queryToUseDuringInit() {
-    return this.urlFilter || "";
-  }
-  searchResultsIdentifier = "ukc-logbook";
-  get allowEmptyQuery() {
-    return true;
-  }
-  get userIdFromUrl() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const id = urlParams.get("user_id");
-    if (id) {
-      return parseInt(id);
-    }
-    return Cookies.default().userIdUkc;
-  }
-  get userIdForRequest() {
-    return this.userIdFromUrl || Cookies.default().userIdUkc;
-  }
-  appendHeader(innerText, ascentCount, target2, objectDescriptor) {
-    const el = document.createElement("div");
-    el.classList.add("date-header");
-    const span = document.createElement("span");
-    span.innerText = innerText;
-    el.appendChild(span);
-    const span2 = document.createElement("span");
-    const word = objectDescriptor[ascentCount === 1 ? "singular" : "plural"];
-    span2.innerText = `${ascentCount} ${word}`;
-    el.appendChild(span2);
-    target2.search_results_container.appendChild(el);
-    return el;
-  }
-  appendRoute(target2, route, tagName) {
-    const el = appendRoute({ target: target2, route, tagName: "logbook-result" });
-    const myAscent = sharedStorage$3.bestAscent(route.id_ukc);
-    el.logStatus = sharedStorage$3.logbookStatus(route.id_ukc);
-    el.setAttribute("title", myAscent?.lastClimbedDescription || "not in your logbook");
-    const ascent = new UkcLocalStorage.AscentInfo(route.associated_ascent_entry);
-    if (ascent) {
-      el.ascentStyleSimple = escape(ascent.simple_style_name || "unknown");
-      el.partners = ascent.partners;
-      el.ascentStyle = ascent.ascent_style?.short_name || "unknown";
-      el.ascentNotes = ascent.notes;
-      el.ascent_date.innerText = this.sort_order.value === "date" ? "" : ascent.shortDateString;
-    }
-    el.wishlistStatus = sharedStorage$3.wishlistStatus(route.id_ukc);
-    return el;
-  }
-  async fetchResultsForPage(query, pageNo) {
-    this.lastHeaderString = "";
-    const res = await super.fetchResultsForPage(query, pageNo);
-    if (!this.response) {
-      return;
-    }
-    if (this.response.status === 401) {
-      this.responseMessage = res.error;
-      return res;
-    }
-    if (res.meta?.is_third_party) {
-      this.input.placeholder = `Filter ${res.meta.user_name_short}'s logbook...`;
-    }
-    this.search_results_title.innerHTML = `<span style="font-size: 0.8em">Logbook for <a href="/user/profile.php?id=${res.meta?.user_id}">${escape(res.meta?.user_name || "")}</a></span>`;
-    return res;
-  }
-  bodyForRequest(query, pageNo) {
-    const res = super.bodyForRequest(query, pageNo);
-    res.user_id = this.userIdForRequest;
-    return res;
-  }
-  htmlForSlot(slotName) {
-    if (slotName === "ukc-search-results-sort-order-options") {
-      return html$1`
-        <option value="date"      >Order by ascent date</option>
-        <option value="crag_name" >Order by crag name</option>
-        <option value="style"     >Order by ascent style</option>
-        <option value="grade"     >Order by route grade</option>
-        <!--<option value="voted_grade">Order by voted grade</option>-->
-      `;
-    }
-    return "";
-  }
-  buildResults(_data) {
-    const data = _data;
-    console.dir(data, { depth: null });
-    this.queue = [];
-    this.clearResultsDropdown();
-    this.apiData = data;
-    this.page_control.pageCount = data.meta?.total_pages;
-    this.page_control.currentPage = data.meta?.page;
-    if (data.objects?.length === 0) {
-      appendNoResults(this);
-    }
-    if (this.search_query_description) {
-      if (data.meta?.parsed_query) {
-        const c = data.meta?.total_matches;
-        this.search_query_description.innerHTML = data.meta.parsed_query.queryDescription + ` (${c}&nbsp;match${c === 1 ? "" : "es"})`;
-      } else {
-        this.search_query_description.innerHTML = "";
-      }
-    }
-    if (this.response.status === 401) {
-      this.search_results_container.innerHTML = this.privateDivString();
-      return;
-    }
-    data.objects.forEach((section) => {
-      this.queue.push(() => {
-        let title = section.title;
-        this.appendHeader(title, section.routes.length, this, data.meta.object_return_type.name);
-      });
-      section.routes.forEach((rte) => {
-        this.queue.push(() => {
-          this.appendRoute(this, rte);
-        });
-      });
-    });
-    this.processQueue();
-  }
-  privateDivString() {
-    return html$1`
-    <div class='d-flex w-75 mx-auto justify-content-center pt-5 pb-5' style='opacity:0.5;'><i class="fas fa-do-not-enter pr-2 mt-1"></i>${this.responseMessage}</div>
-    `;
-  }
-};
-UkcLogbookElement = __decorateClass$5([
-  controller
-], UkcLogbookElement);
-const UkcLogbookElement$1 = UkcLogbookElement;
+nGram(2);
+const trigram = nGram(3);
 
-var __defProp$4 = Object.defineProperty;
-var __getOwnPropDesc$4 = Object.getOwnPropertyDescriptor;
-var __decorateClass$4 = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$4(target, key) : target;
-  for (var i = decorators.length - 1, decorator; i >= 0; i--)
-    if (decorator = decorators[i])
-      result = (kind ? decorator(target, key, result) : decorator(result)) || result;
-  if (kind && result)
-    __defProp$4(target, key, result);
-  return result;
-};
-const sharedStorage$2 = UkcLocalStorage.sharedLogbook;
-const generateApiUrl$2 = () => {
-  const targetOrigin = apiOrigin();
-  return `${targetOrigin}/v1/rockfax/search/wishlist`;
-};
-let UkcWishlistElement = class extends UkcLogbookElement$1 {
-  get apiUrl() {
-    return generateApiUrl$2();
+/**
+ * Factory returning a function that converts a value string to n-grams.
+ *
+ * @param {number} n
+ */
+function nGram(n) {
+  if (
+    typeof n !== 'number' ||
+    Number.isNaN(n) ||
+    n < 1 ||
+    n === Number.POSITIVE_INFINITY
+  ) {
+    throw new Error('`' + n + '` is not a valid argument for `n-gram`')
   }
-  ascentsByDateLookup = {};
-  get sortOrderKey() {
-    return "wishlist_sort_order";
-  }
-  get defaultSortOrder() {
-    return "date";
-  }
-  connectedCallback() {
-    super.connectedCallback();
-    this.sort_button.style.display = "block";
-    this.sort_order.style.display = "block";
-    this.input.placeholder = "Filter your wishlist...";
-  }
-  searchResultsIdentifier = "ukc-wishlist";
-  get allowEmptyQuery() {
-    return true;
-  }
-  appendRoute(target, route, tagName) {
-    const el = appendRoute({ target, route, tagName: "logbook-result" });
-    const myAscent = sharedStorage$2.bestAscent(route.id_ukc);
-    el.logStatus = sharedStorage$2.logbookStatus(route.id_ukc);
-    el.setAttribute("title", myAscent?.lastClimbedDescription || "not in your logbook");
-    const ascent = new UkcLocalStorage.WishlistInfo(route.associated_ascent_entry);
-    el.partner_names_with.hidden = true;
-    if (ascent) {
-      el.ascentStyleSimple = ascent.simple_style_name || "unknown";
-      el.ascent_style_indicator.style.display = "none";
-      el.ascentNotes = ascent.notes;
-    }
-    el.wishlistStatus = sharedStorage$2.wishlistStatus(route.id_ukc);
-    return el;
-  }
-  async fetchResultsForPage(query, pageNo) {
-    const res = await super.fetchResultsForPage(query, pageNo);
-    if (this.response.status === 401) {
-      return res;
-    }
-    if (res.meta?.is_third_party) {
-      this.input.placeholder = `Filter ${escape(res.meta?.user_name_short || "")}'s wishlist...`;
-    }
-    this.search_results_title.innerHTML = `<span style="font-size: 0.8em">Wishlist for <a href="/user/profile.php?id=${res.meta?.user_id}">${escape(res.meta?.user_name || "")}</a></span>`;
-    return res;
-  }
-  bodyForRequest(query, pageNo) {
-    const res = super.bodyForRequest(query, pageNo);
-    res.user_id = this.userIdForRequest;
-    res.sort_by = this.sort_order.value;
-    return res;
-  }
-  htmlForSlot(slotName) {
-    if (slotName === "ukc-search-results-sort-order-options") {
-      return html$1`
-        <option value="date"      >Order by date added</option>
-        <option value="crag_name" >Order by crag name</option>
-        <option value="grade"     >Order by route grade</option>
-        <!--<option value="voted_grade">Order by voted grade</option>-->
-      `;
-    }
-    return "";
-  }
-};
-UkcWishlistElement = __decorateClass$4([
-  controller
-], UkcWishlistElement);
 
-var __defProp$3 = Object.defineProperty;
-var __getOwnPropDesc$3 = Object.getOwnPropertyDescriptor;
-var __decorateClass$3 = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$3(target, key) : target;
-  for (var i = decorators.length - 1, decorator; i >= 0; i--)
-    if (decorator = decorators[i])
-      result = (kind ? decorator(target, key, result) : decorator(result)) || result;
-  if (kind && result)
-    __defProp$3(target, key, result);
-  return result;
-};
-const sharedStorage$1 = UkcLocalStorage.sharedLogbook;
-const generateApiUrl$1 = () => {
-  const targetOrigin = apiOrigin();
-  return `${targetOrigin}/v1/rockfax/search/partner_ascents`;
-};
-let UkcPartnerAscentsElement = class extends UkcLogbookElement$1 {
-  get apiUrl() {
-    return generateApiUrl$1();
-  }
-  ascentsByDateLookup = {};
-  get sortOrderKey() {
-    return "partner_ascents_sort_order";
-  }
-  get defaultSortOrder() {
-    return "date";
-  }
-  connectedCallback() {
-    super.connectedCallback();
-    this.sort_button.style.display = "block";
-    this.sort_order.style.display = "block";
-    this.input.placeholder = `Filter your partners' ascents...`;
-  }
-  searchResultsIdentifier = "ukc-partner-ascents";
-  get allowEmptyQuery() {
-    return true;
-  }
-  appendRoute(target, route, tagName) {
-    const el = appendRoute({ target, route, tagName: "logbook-result" });
-    const myAscent = sharedStorage$1.bestAscent(route.id_ukc);
-    el.logStatus = sharedStorage$1.logbookStatus(route.id_ukc);
-    el.setAttribute("title", myAscent?.lastClimbedDescription || "not in your logbook");
-    const ascent = new UkcLocalStorage.AscentInfo(route.associated_ascent_entry);
-    if (ascent) {
-      el.ascentStyleSimple = ascent.simple_style_name || "unknown";
-      el.ascentNotes = ascent.notes;
-      el.ascensionistDetails = { name: ascent.user_name, id: ascent.user_id_ukc };
-      el.partners = ascent.partners;
-      el.ascentStyle = ascent.ascent_style?.short_name || "unknown";
-      el.ascent_date.innerText = this.sort_order.value === "date" ? "" : ascent.shortDateString;
+  return grams
+
+  /**
+   * Create n-grams from a given value.
+   *
+   * @template {string|Array<unknown>} T
+   * @param {T} [value]
+   * @returns {T extends any[] ? T : Array<string>}
+   */
+  function grams(value) {
+    /** @type {T extends any[] ? T : Array<string>} */
+    // @ts-expect-error: pretty sure this is fine.
+    const nGrams = [];
+
+    if (value === null || value === undefined) {
+      return nGrams
     }
-    el.wishlistStatus = sharedStorage$1.wishlistStatus(route.id_ukc);
-    return el;
-  }
-  async fetchResultsForPage(query, pageNo) {
-    const res = await super.fetchResultsForPage(query, pageNo);
-    if (this.response.status === 401) {
-      return res;
+
+    const source = typeof value.slice === 'function' ? value : String(value);
+    let index = source.length - n + 1;
+
+    if (index < 1) {
+      return nGrams
     }
-    if (res.meta?.is_third_party) {
-      this.input.placeholder = `Filter ${res.meta?.user_name_short}'s partners' ascents...`;
-    } else {
-      this.input.placeholder = `Filter your partners' ascents...`;
+
+    while (index--) {
+      nGrams[index] = source.slice(index, index + n);
     }
-    this.search_results_title.innerHTML = `<span style="font-size: 0.8em">Recent partner ascents for <a href="/user/profile.php?id=${res.meta?.user_id}">${escape(res.meta?.user_name || "")}</a></span>`;
-    return res;
+
+    return nGrams
   }
-  bodyForRequest(query, pageNo) {
-    const res = super.bodyForRequest(query, pageNo);
-    res.user_id = this.userIdForRequest;
-    res.sort_by = this.sort_order.value;
-    return res;
-  }
-  htmlForSlot(slotName) {
-    if (slotName === "ukc-search-results-sort-order-options") {
-      return html$1`
-        <option value="date"      >Order by ascent date</option>
-        <option value="crag_name" >Order by crag name</option>
-        <option value="grade"     >Order by route grade</option>
-        <option value="user_name" >Order by partner</option>
-        <!--<option value="voted_grade">Order by voted grade</option>-->
-      `;
-    }
-    return "";
-  }
-};
-UkcPartnerAscentsElement = __decorateClass$3([
-  controller
-], UkcPartnerAscentsElement);
+}
 
 /**
  * Obliterator Iterator Class
@@ -5493,270 +5094,188 @@ InvertedIndex.from = function(iterable, descriptor) {
  */
 var invertedIndex = InvertedIndex;
 
-nGram(2);
-const trigram = nGram(3);
-
-/**
- * Factory returning a function that converts a value string to n-grams.
- *
- * @param {number} n
- */
-function nGram(n) {
-  if (
-    typeof n !== 'number' ||
-    Number.isNaN(n) ||
-    n < 1 ||
-    n === Number.POSITIVE_INFINITY
-  ) {
-    throw new Error('`' + n + '` is not a valid argument for `n-gram`')
-  }
-
-  return grams
-
-  /**
-   * Create n-grams from a given value.
-   *
-   * @template {string|Array<unknown>} T
-   * @param {T} [value]
-   * @returns {T extends any[] ? T : Array<string>}
-   */
-  function grams(value) {
-    /** @type {T extends any[] ? T : Array<string>} */
-    // @ts-expect-error: pretty sure this is fine.
-    const nGrams = [];
-
-    if (value === null || value === undefined) {
-      return nGrams
-    }
-
-    const source = typeof value.slice === 'function' ? value : String(value);
-    let index = source.length - n + 1;
-
-    if (index < 1) {
-      return nGrams
-    }
-
-    while (index--) {
-      nGrams[index] = source.slice(index, index + n);
-    }
-
-    return nGrams
-  }
-}
-
-var __defProp$2 = Object.defineProperty;
-var __getOwnPropDesc$2 = Object.getOwnPropertyDescriptor;
-var __decorateClass$2 = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$2(target, key) : target;
+var __defProp$7 = Object.defineProperty;
+var __getOwnPropDesc$7 = Object.getOwnPropertyDescriptor;
+var __decorateClass$7 = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$7(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$2(target, key, result);
+    __defProp$7(target, key, result);
   return result;
 };
-const generateApiUrl = () => {
-  const targetOrigin = apiOrigin();
-  return `${targetOrigin}/v1/rockfax/search/route_ukc_for_crag`;
-};
-const sharedStorage = UkcLocalStorage.sharedLogbook;
-let RoutesViewerElement = class extends UkcLogbookElement$1 {
-  get apiUrl() {
-    return generateApiUrl();
+let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
+  index;
+  _apiData;
+  _apiDataEntireList;
+  set apiDataDescribingCurrentList(newVal) {
+    localStorage.setItem(this.localStorageKey + "-api-data", JSON.stringify(newVal));
+    this._apiData = newVal;
+  }
+  get apiDataDescribingCurrentList() {
+    if (!this._apiData) {
+      const str = localStorage.getItem(this.localStorageKey + "-api-data");
+      str && (this._apiData = JSON.parse(str));
+    }
+    return this._apiData;
+  }
+  set apiDataDescribingEntireList(newVal) {
+    localStorage.setItem(this.localStorageKey + "-api-data-entire-list", JSON.stringify(newVal));
+    this._apiDataEntireList = newVal;
+  }
+  get apiDataDescribingEntireList() {
+    if (!this._apiDataEntireList) {
+      const str = localStorage.getItem(this.localStorageKey + "-api-data-entire-list");
+      str && (this._apiDataEntireList = JSON.parse(str));
+    }
+    return this._apiDataEntireList;
   }
   lastCell = null;
+  isInitialFetchComplete = false;
   loadedCellCount = 0;
   cellsToLoadAtATime = 50;
   cellsLastLoadedAt = new Date().getTime();
   loadedRoutes = /* @__PURE__ */ new Set();
-  cragId;
-  searchResultsIdentifier = "routes-viewer";
-  isInitialFetchComplete = false;
-  _routesLookup;
-  set routesLookup(newVal) {
-    UkcLocalStorage.RoutesForCrag.store(newVal);
+  _routeLookup;
+  set routeLookup(newVal) {
+    localStorage.setItem(this.localStorageKey, JSON.stringify(newVal));
+    this._routeLookup = newVal;
   }
-  get routesLookup() {
-    return this._routesLookup || UkcLocalStorage.RoutesForCrag.fetch(this.cragId);
-  }
-  get sortOrderKey() {
-    return "routes_viewer_sort_order";
-  }
-  get defaultSortOrder() {
-    return "ltr";
+  get routeLookup() {
+    this._routeLookup ||= JSON.parse(localStorage.getItem(this.localStorageKey) || '{ "routes" : {} }');
+    return this._routeLookup;
   }
   connectedCallback() {
     super.connectedCallback();
-    this.sort_button.style.display = "block";
-    this.sort_order.style.display = "block";
-    this.input.placeholder = "Filter routes at this crag...";
-    this.sort_order.value = this.urlSortOrder || this.savedSortOrder;
     document.addEventListener("scroll", async (_evt) => {
       const scroll = this.lastCell?.getBoundingClientRect().top;
       const time = new Date().getTime();
       if (time - this.cellsLastLoadedAt > 500 && scroll && scroll < window.innerHeight + 400) {
         this.cellsLastLoadedAt = time;
-        this.loadCellsForObjectsWithIdsReturn(this.apiData);
+        this.loadCellsForObjectsWithIdsReturn(this.apiDataDescribingCurrentList);
       }
     });
-    this.page_control.style.display = "none";
-    this.performInitialFetch();
   }
-  index;
-  async performInitialFetch() {
-    if (!window.navigator.onLine) {
-      const routes = this.routesLookup;
-      const fakeData = { objects: Object.values(routes.routes) };
-      await this.buildInvertedIndex(fakeData);
-    }
-    const bodyWithNoQuery = this.bodyForRequest("", 0);
-    bodyWithNoQuery.return_type = "full";
-    const bodyWithQuery = this.bodyForRequest(this.urlFilter, 0);
-    bodyWithQuery.return_type = "ids";
-    const mainCall = fetch(
-      this.apiUrl,
-      {
-        method: "POST",
-        headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(bodyWithNoQuery)
-      }
-    );
-    const filterCall = fetch(
-      this.apiUrl,
-      {
-        method: "POST",
-        headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(bodyWithQuery)
-      }
-    );
-    const [data, ids] = await Promise.all([mainCall, filterCall]);
-    const [dataJson, idsJson] = await Promise.all([data.json(), ids.json()]);
-    this.routesLookup = this.buildRoutesLookup(dataJson);
-    dataJson.objects = this.buildIdsSectionArray(dataJson);
-    this.baseData = dataJson;
-    this.search_results_title.innerHTML = `<span style="font-size: 0.8em">Routes at ${escape(dataJson.meta.crag_name || "")}</span>`;
-    this.buildResults(idsJson);
-    this.isInitialFetchComplete = true;
-    void this.buildInvertedIndex(dataJson);
-  }
-  buildIdsSectionArray(data) {
-    return data.objects.map((section) => {
-      return {
-        title: section.title,
-        routes: section.routes,
-        ids: section.routes.map((rte) => rte.id_ukc)
-      };
-    });
-  }
-  async buildInvertedIndex(data) {
-    const addFun = (route) => {
-      const words = Array.from(new Set(
-        [
-          route.item_name,
-          route.buttress_name,
-          route.crag_name,
-          route.area_name,
-          route.country_name,
-          route.route_grade,
-          route.route_type_name,
-          route.first_ascent_string,
-          stars[route.star_count]
-        ].join(" ").toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "").split(/\s+/g).map((w) => trigramWrapped(w)).flat()
-      ));
-      return words;
-    };
-    const queryFun = (query) => {
-      const res = Array.from(new Set(
-        query.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "").split(/\s+/g).map((w) => trigramWrapped(w)).flat()
-      ));
-      console.log(res);
-      return res;
-    };
-    const index = new invertedIndex([addFun, queryFun]);
-    data.objects.forEach((section) => {
-      section.routes.forEach((route) => {
-        index.add(route);
-      });
-    });
-    this.index = index;
+  sortOrderChanged(evt) {
+    super.sortOrderChanged(evt);
   }
   get allowEmptyQuery() {
-    return true;
+    return false;
   }
-  async fetchResultsForPage(query, pageNo) {
-    if (!this.isInitialFetchComplete) {
-      return { meta: {}, objects: [] };
-    }
-    if (window.navigator.onLine) {
-      this.lastHeaderString = "";
-      const res = await super.fetchResultsForPage(query, pageNo);
-      this.search_results_title.innerHTML = `<span style="font-size: 0.8em">Routes at ${escape(res.meta.crag_name || "")}</span>`;
-      return res;
-    } else {
-      console.log("offline");
-      return this.fetchResultsForPageLocal(query, pageNo);
-    }
+  resultsSignature(data) {
+    console.log("data", data);
+    console.log(data?.objects.map((sec) => sec.title + sec.ids.join(",")).join() + "\n-----");
+    return data?.objects.map((sec) => sec.title + sec.ids.join(",")).join();
   }
-  async fetchResultsForPageLocal(query, pageNo) {
-    let objects = [];
-    console.log(this.index);
-    let count = 0;
-    const routes = this.index?.get(query).sort((a, b) => {
-      return b.order - a.order;
-    });
-    let currentSection = { title: "", ids: [] };
-    routes.forEach((route) => {
-      count++;
-      if (currentSection.title !== route.buttress_name) {
-        currentSection = { title: route.buttress_name, ids: [] };
-        objects.push(currentSection);
+  async _init() {
+    this.startProgressBar();
+    this.fetchUpdateForRouteLookup().then(async (res) => {
+      this.updateForRouteLookupFetched(res);
+      if (!this.routeLookup) {
+        this.fetchDataForQuery().then(async (res2) => {
+          if (this.resultsSignature(this.apiDataDescribingCurrentList) == this.resultsSignature(res2.data)) {
+            return;
+          }
+          this.buildResults(res2.data);
+          this.apiDataDescribingCurrentList = res2.data;
+        });
       }
-      currentSection.ids.push(route.id_ukc);
     });
-    const meta = {
-      is_third_party: false,
-      logbook_size: 286,
-      object_return_type: { name: { singular: "route", plural: "routes" } },
-      page: 0,
-      sort_by: "date",
-      total_matches: 286,
-      total_pages: 6,
-      user_id: 45296,
-      user_name: "Stephen Horne - Rockfax",
-      user_name_short: "Stephen",
-      parsed_query: {
-        queryDescription: `<span style="color:#F8CA68FF">\u26A0 No internet, using fallback search</span>`
+    if (this.routeLookup) {
+      this.fetchDataForQuery().then(async (res) => {
+        if (this.resultsSignature(this.apiDataDescribingCurrentList) == this.resultsSignature(res.data)) {
+          return;
+        }
+        this.buildResults(res.data);
+        this.apiDataDescribingCurrentList = res.data;
+      });
+      if (!this.query) {
+        if (this.apiDataDescribingEntireList) {
+          this.buildResults(this.apiDataDescribingEntireList);
+          this.stopProgressBar();
+        }
       }
-    };
-    meta.parsed_query.queryDescription;
-    meta.total_count = count;
-    return { meta, objects };
+    }
   }
-  bodyForRequest(query, pageNo) {
-    const type = Object.keys(this.routesLookup?.routes || {}).length ? "ids" : "full";
-    const cookie = Cookies.default().cookie;
-    return {
-      cookie,
-      search_query: query,
-      sort_by: this.sort_order.value,
-      direction: this.sortDirectionFromButton,
-      return_type: type,
-      crag_id: Number(this.cragId)
+  async updateForRouteLookupFetched(res) {
+    this.routeLookup = this.buildRoutesLookup(res.data);
+    this.buildRoutesLookup(res.data);
+    this.buildResults(this.apiDataDescribingCurrentList);
+    this.stopProgressBar();
+  }
+  buildRoutesLookup(data) {
+    const lookup = {};
+    data.objects.forEach((section) => {
+      section.routes.forEach((route) => {
+        lookup[route.id_ukc] = route;
+      });
+    });
+    const res = {
+      meta: {},
+      routes: lookup
     };
+    return res;
+  }
+  async fetchUpdateForRouteLookup() {
+    return await this.fetchDataParams("full", "");
+  }
+  async fetchDataForQuery(query = this.query) {
+    const res = await this.fetchDataParams("ids", query);
+    if (!query) {
+      this.apiDataDescribingEntireList = res.data;
+    }
+    return res;
+  }
+  async fetchDataParams(returnType, query) {
+    const body = this.bodyForRequestAndPage(query);
+    body.return_type = returnType;
+    const response = await fetch(
+      this.apiUrl,
+      {
+        method: "POST",
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(
+          body
+        )
+      }
+    );
+    const status = response.status;
+    const data = await response.json();
+    return { data, status };
+  }
+  trigram(s) {
+    let t = s;
+    while (t.length < 3) {
+      t = " " + t;
+    }
+    return trigram(t);
+  }
+  bodyForRequestAndPage(query, pageNo) {
+    const body = this.bodyForRequest(query);
+    return body;
+  }
+  toggleSortOrder() {
+    this.toggleArrowInSortButton();
+    this.lastSearch = void 0;
+    this.onInputUpdated();
+    localStorage.setItem(this.sortDirectionKey, this.sortDirectionFromButton);
   }
   htmlForSlot(slotName) {
-    if (slotName === "ukc-search-results-sort-order-options") {
+    if (slotName === "routes-viewer-sort-order-options") {
       return html$1`
-        <option value="ltr" >Order left to right</option>
-        <option value="grade" >Order by route grade</option>
+        <option value="score"      >Order by search score</option>
+        <option value="crag_name" >Order by crag name</option>
+        <option value="grade"     >Order by route grade</option>
         <!--<option value="voted_grade">Order by voted grade</option>-->
       `;
+    }
+    const sup = super.htmlForSlot(slotName);
+    if (sup) {
+      return sup;
     }
     return "";
   }
@@ -5770,24 +5289,21 @@ let RoutesViewerElement = class extends UkcLogbookElement$1 {
     console.dir(data, { depth: null });
     this.queue = [];
     this.clearResultsDropdown();
-    this.page_control.pageCount = data.meta?.total_pages;
-    this.page_control.currentPage = data.meta?.page;
     if (data.objects?.length === 0) {
       appendNoResults(this);
     }
-    if (this.search_query_description) {
+    if (this.filter_query_description) {
       if (data.meta?.parsed_query) {
         const c = data.meta?.total_matches;
-        this.search_query_description.innerHTML = data.meta.parsed_query.queryDescription + ` (${c}&nbsp;match${c === 1 ? "" : "es"})`;
+        this.filter_query_description.innerHTML = data.meta.parsed_query.queryDescription + ` (${c}&nbsp;match${c === 1 ? "" : "es"})`;
       } else {
-        this.search_query_description.innerHTML = "";
+        this.filter_query_description.innerHTML = "";
       }
     }
     if (this.response?.status === 401) {
-      this.search_results_container.innerHTML = this.privateDivString();
+      this.routes_viewer_container.innerHTML = this.privateDivString();
       return;
     }
-    this.apiData = data;
     this.loadCellsForObjectsWithIdsReturn(data);
   }
   loadCellsForObjectsWithIdsReturn(data) {
@@ -5805,76 +5321,708 @@ let RoutesViewerElement = class extends UkcLogbookElement$1 {
           this.appendHeader(title, section.ids.length, this, data.meta.object_return_type.name);
         });
       }
-      section.ids.forEach((routeIdUkc) => {
+      section.ids.forEach((idOfElement) => {
         if (count > this.cellsToLoadAtATime) {
           return;
         }
-        if (!this.loadedRoutes.has(routeIdUkc)) {
-          this.loadedRoutes.add(routeIdUkc);
+        if (!this.loadedRoutes.has(idOfElement)) {
+          this.loadedRoutes.add(idOfElement);
           count++;
           this.queue.push(() => {
-            const rte = this.routesLookup?.routes[routeIdUkc];
+            const rte = this.routeLookup.routes[idOfElement];
             if (rte) {
               const el = this.appendRoute(this, rte);
               if (!this.queue.length) {
                 this.lastCell = el;
               }
             } else {
-              console.log("missing route", routeIdUkc);
+              console.log("missing route", idOfElement);
             }
           });
         }
       });
     });
     this.processQueue();
+  }
+  get orderFunctionForLocal() {
+    const dir = this.sortDirectionFromButton;
+    const order = this.sort_order_picker.value;
+    if (order === "ltr") {
+      if (dir === "asc") {
+        return (a, b) => {
+          return a.order - b.order;
+        };
+      }
+      return (a, b) => {
+        const res = b.order - a.order;
+        return res;
+      };
+    } else if (order === "grade") {
+      if (dir === "asc") {
+        return (a, b) => {
+          return a.grade_value_rf - b.grade_value_rf;
+        };
+      }
+      return (a, b) => {
+        return b.grade_value_rf - a.grade_value_rf;
+      };
+    }
+    throw new Error("missing order function");
+  }
+  async getRoutesFromIndex(query) {
+    this.index || await this._buildInvertedIndex(this.routeLookup);
+    if (!query) {
+      const routes = [];
+      for (const rte of this.index?.documents() || []) {
+        routes.push(rte);
+      }
+      return routes.sort(this.orderFunctionForLocal);
+    }
+    return this.index?.get(query).sort(this.orderFunctionForLocal);
+  }
+  _buildIdsSectionArray(data) {
+    return data.objects.map((section) => {
+      return {
+        title: section.title,
+        routes: section.routes,
+        ids: section.routes.map((rte) => rte.id_ukc)
+      };
+    });
+  }
+  async _buildInvertedIndex(lookup) {
+    const addFun = (route) => {
+      const words = Array.from(new Set(
+        [
+          route.item_name,
+          route.buttress_name,
+          route.crag_name,
+          route.area_name,
+          route.country_name,
+          route.route_grade,
+          route.route_type_name,
+          route.description_string,
+          route.first_ascent_string,
+          stars[route.star_count]
+        ].join(" ").toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "").split(/\s+/g).map((w) => this.trigram(w)).flat()
+      ));
+      return words;
+    };
+    const queryFun = (query) => {
+      const res = Array.from(new Set(
+        query.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "").split(/\s+/g).map((w) => this.trigram(w)).flat()
+      ));
+      return res;
+    };
+    const index = new invertedIndex([addFun, queryFun]);
+    Object.values(lookup.routes).forEach((route) => {
+      index.add(route);
+    });
+    this.index = index;
+  }
+  response;
+  onInputUpdated(force = false) {
+    const newValue = this.input.value.trim();
+    if (newValue) {
+      this.delete_text_button.classList.remove("hidden");
+    } else {
+      this.delete_text_button.classList.add("hidden");
+    }
+    clearTimeout(this.timeout);
+    const sortDirection = this.sortDirectionFromButton;
+    this.startProgressBar();
+    this.searchId++;
+    const currentSearchId = this.searchId;
+    this.timeout = setTimeout(async () => {
+      const query = this.fullQueryWithoutUrlFilter;
+      let results = await this.fetchDataForQuery(query);
+      if (!query) {
+        this.apiDataDescribingEntireList = results.data;
+      }
+      if (this.searchId > currentSearchId) {
+        return;
+      }
+      this.stopProgressBar();
+      this.searchId = currentSearchId;
+      this.lastSearch = query;
+      this.buildResults(results.data);
+      this.urlFilter = newValue;
+      this.urlSortDirection = sortDirection;
+      this.urlPage = 0;
+    }, this.searchDelay);
+  }
+};
+InfiniteScrollRoutesViewer = __decorateClass$7([
+  controller
+], InfiniteScrollRoutesViewer);
+const InfiniteScrollRoutesViewer$1 = InfiniteScrollRoutesViewer;
+
+var __defProp$6 = Object.defineProperty;
+var __getOwnPropDesc$6 = Object.getOwnPropertyDescriptor;
+var __decorateClass$6 = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$6(target, key) : target;
+  for (var i = decorators.length - 1, decorator; i >= 0; i--)
+    if (decorator = decorators[i])
+      result = (kind ? decorator(target, key, result) : decorator(result)) || result;
+  if (kind && result)
+    __defProp$6(target, key, result);
+  return result;
+};
+const sharedStorage$3 = UkcLocalStorage.sharedLogbook;
+const generateApiUrl$3 = () => {
+  const targetOrigin = apiOrigin();
+  return `${targetOrigin}/v1/rockfax/search/logbook`;
+};
+let LogbookViewerElement = class extends InfiniteScrollRoutesViewer$1 {
+  searchBarPlaceholderString = "Search all routes/crags...";
+  get apiUrl() {
+    return generateApiUrl$3();
+  }
+  get defaultSortOrder() {
+    return "date";
+  }
+  connectedCallback() {
+    super.connectedCallback();
+    this.sort_button.style.display = "block";
+    this.sort_order_picker.style.display = "block";
+    this.input.placeholder = "Filter your logbook...";
+    document.addEventListener("DOMContentLoaded", () => {
+      this.search_bar.submitSearchHandler = (resultsUrl) => {
+        window.location.href = resultsUrl;
+      };
+      this.input.value = this.urlFilter || "";
+      this.search_bar.input.value = "";
+    });
+  }
+  get allowEmptyQuery() {
+    return true;
+  }
+  get userIdFromUrl() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get("user_id");
+    if (id) {
+      return parseInt(id);
+    }
+    return Cookies.default().userIdUkc;
+  }
+  get userIdForRequest() {
+    return this.userIdFromUrl || Cookies.default().userIdUkc;
+  }
+  buildResults(_data) {
+    super.buildResults(_data);
+    this.routes_viewer_title.innerHTML = `<span style="font-size: 0.8em">Logbook for <a href="/user/profile.php?id=${_data.meta?.user_id}">${escape(_data.meta?.user_name || "")}</a></span>`;
+  }
+  appendRoute(target, route, tagName) {
+    const el = appendRoute({ target, route, tagName: "logbook-result" });
+    const myAscent = sharedStorage$3.bestAscent(route.id_ukc);
+    el.logStatus = sharedStorage$3.logbookStatus(route.id_ukc);
+    el.setAttribute("title", myAscent?.lastClimbedDescription || "not in your logbook");
+    const ascent = new UkcLocalStorage.AscentInfo(route.associated_ascent_entry);
+    if (ascent) {
+      el.ascentStyleSimple = escape(ascent.simple_style_name || "unknown");
+      el.partners = ascent.partners;
+      el.ascentStyle = ascent.ascent_style?.short_name || "unknown";
+      el.ascentNotes = ascent.notes;
+      el.ascent_date.innerText = this.sort_order_picker.value === "date" ? "" : ascent.shortDateString;
+    }
+    el.wishlistStatus = sharedStorage$3.wishlistStatus(route.id_ukc);
+    return el;
+  }
+  bodyForRequest(query, pageNo) {
+    const res = super.bodyForRequest(query, pageNo);
+    res.user_id = this.userIdForRequest;
+    return res;
+  }
+  htmlForSlot(slotName) {
+    if (slotName === "routes-viewer-sort-order-options") {
+      return html$1`
+      <option value="date"      >Order by ascent date</option>
+      <option value="crag_name" >Order by crag name</option>
+      <option value="style"     >Order by ascent style</option>
+      <option value="grade"     >Order by route grade</option>
+      <!--<option value="voted_grade">Order by voted grade</option>-->
+      `;
+    }
+    const sup = super.htmlForSlot(slotName);
+    if (sup) {
+      return sup;
+    }
+    return "";
   }
   buildRoutesLookup(data) {
     const lookup = {};
-    const wrapper = {
-      cragId: this.cragId,
-      routes: lookup,
-      lastUpdated: new Date()
-    };
     data.objects.forEach((section) => {
       section.routes.forEach((route) => {
-        lookup[route.id_ukc] = route;
+        lookup[route.associated_ascent_entry.id] = route;
       });
     });
-    return wrapper;
+    const res = {
+      meta: {},
+      routes: lookup
+    };
+    return res;
   }
-  loadCellsForObjectsWithFullReturn(data) {
-    if (!data)
-      return;
-    const objects = data.objects;
-    let count = 0;
-    objects.forEach((section) => {
-      if (count > this.cellsToLoadAtATime) {
+};
+LogbookViewerElement = __decorateClass$6([
+  controller
+], LogbookViewerElement);
+const LogbookViewerElement$1 = LogbookViewerElement;
+
+var __defProp$5 = Object.defineProperty;
+var __getOwnPropDesc$5 = Object.getOwnPropertyDescriptor;
+var __decorateClass$5 = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$5(target, key) : target;
+  for (var i = decorators.length - 1, decorator; i >= 0; i--)
+    if (decorator = decorators[i])
+      result = (kind ? decorator(target, key, result) : decorator(result)) || result;
+  if (kind && result)
+    __defProp$5(target, key, result);
+  return result;
+};
+const sharedStorage$2 = UkcLocalStorage.sharedLogbook;
+const generateApiUrl$2 = () => {
+  const targetOrigin = apiOrigin();
+  return `${targetOrigin}/v1/rockfax/search/wishlist`;
+};
+let WishlistViewerElement = class extends LogbookViewerElement$1 {
+  get apiUrl() {
+    return generateApiUrl$2();
+  }
+  buildResults(_data) {
+    super.buildResults(_data);
+    this.routes_viewer_title.innerHTML = `<span style="font-size: 0.8em">Wishlist for <a href="/user/profile.php?id=${_data.meta?.user_id}">${escape(_data.meta?.user_name || "")}</a></span>`;
+  }
+  appendRoute(target, route, tagName) {
+    const el = appendRoute({ target, route, tagName: "logbook-result" });
+    const myAscent = sharedStorage$2.bestAscent(route.id_ukc);
+    el.logStatus = sharedStorage$2.logbookStatus(route.id_ukc);
+    el.setAttribute("title", myAscent?.lastClimbedDescription || "not in your logbook");
+    const ascent = new UkcLocalStorage.WishlistInfo(route.associated_ascent_entry);
+    el.partner_names_with.hidden = true;
+    if (ascent) {
+      el.ascentStyleSimple = ascent.simple_style_name || "unknown";
+      el.ascent_style_indicator.style.display = "none";
+      el.ascentNotes = ascent.notes;
+    }
+    el.wishlistStatus = sharedStorage$2.wishlistStatus(route.id_ukc);
+    return el;
+  }
+  htmlForSlot(slotName) {
+    if (slotName === "routes-viewer-sort-order-options") {
+      return html$1`
+      <option value="date"      >Order by date added</option>
+      <option value="crag_name" >Order by crag name</option>
+      <option value="grade"     >Order by route grade</option>
+      <!--<option value="voted_grade">Order by voted grade</option>-->
+      `;
+    }
+    const sup = super.htmlForSlot(slotName);
+    if (sup) {
+      return sup;
+    }
+    return "";
+  }
+};
+WishlistViewerElement = __decorateClass$5([
+  controller
+], WishlistViewerElement);
+
+var __defProp$4 = Object.defineProperty;
+var __getOwnPropDesc$4 = Object.getOwnPropertyDescriptor;
+var __decorateClass$4 = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$4(target2, key) : target2;
+  for (var i = decorators.length - 1, decorator; i >= 0; i--)
+    if (decorator = decorators[i])
+      result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
+  if (kind && result)
+    __defProp$4(target2, key, result);
+  return result;
+};
+let PagedRoutesViewer = class extends BaseRoutesViewer$1 {
+  page_control;
+  currentPage = 1;
+  apiData;
+  _baseData;
+  set baseData(newVal) {
+    this._baseData = newVal;
+  }
+  get baseData() {
+    return this._baseData;
+  }
+  connectedCallback() {
+    super.connectedCallback();
+  }
+  sortOrderChanged(evt) {
+    super.sortOrderChanged(evt);
+  }
+  get allowEmptyQuery() {
+    return false;
+  }
+  async _init() {
+    this.page_control.onPageControlClicked = async (_pageControl) => {
+      this.startProgressBar();
+      const res = await this.fetchResults(this.fullQuery, _pageControl.currentPage);
+      this.urlPage = _pageControl.currentPage;
+      this.stopProgressBar();
+      this.buildResults(res);
+    };
+    this.startProgressBar();
+    const results = localStorage.getItem(this.localStorageKey);
+    const hasNoFilter = !this.urlFilter;
+    if (results) {
+      try {
+        this.buildResults(JSON.parse(results));
+        this.stopProgressBar();
+        localStorage.setItem(this.localStorageKey, "");
         return;
+      } catch (e) {
       }
-      if (!section.routes[0]?.isLoaded) {
-        this.queue.push(() => {
-          let title = section.title;
-          this.appendHeader(title, section.routes.length, this, data.meta.object_return_type.name);
-        });
+    }
+    let query = this.queryToUseDuringInit();
+    if (query !== null || this.allowEmptyQuery) {
+      let results2 = await this.fetchResults(query, this.urlPage);
+      this.buildResults(results2);
+      hasNoFilter && (this.baseData = results2);
+      this.stopProgressBar();
+    }
+  }
+  queryToUseDuringInit() {
+    return this.fullQuery || "";
+  }
+  bodyForRequestAndPage(query, pageNo) {
+    const body = super.bodyForRequest(query);
+    console.log(pageNo);
+    body.page = pageNo;
+    body.page_size = 100;
+    return body;
+  }
+  toggleSortOrder() {
+    this.toggleArrowInSortButton();
+    this.baseData = void 0;
+    this.lastSearch = void 0;
+    this.onInputUpdated();
+    localStorage.setItem(this.sortDirectionKey, this.sortDirectionFromButton);
+  }
+  htmlForSlot(slotName) {
+    if (slotName === "routes-viewer-sort-order-options") {
+      return html$1`
+        <option value="score"     >Order by search score</option>
+        <option value="crag_name" >Order by crag name</option>
+        <option value="grade"     >Order by route grade</option>
+      `;
+    }
+    if (slotName === "routes-viewer-page-control-slot") {
+      return html$1`
+        <page-control data-target='${this.elementName}.page_control'></page-control>
+      `;
+    }
+    const sup = super.htmlForSlot(slotName);
+    if (sup) {
+      return sup;
+    }
+    return "";
+  }
+  buildResults(_data) {
+    const data = _data;
+    console.log(data);
+    this.queue = [];
+    this.clearResultsDropdown();
+    this.apiData = data;
+    this.page_control.pageCount = data.meta?.total_pages;
+    this.page_control.currentPage = data.meta?.page;
+    if (data.objects?.length === 0) {
+      appendNoResults(this);
+    }
+    if (this.filter_query_description) {
+      if (data.meta?.parsed_query) {
+        const c = data.meta?.total_matches;
+        this.filter_query_description.innerHTML = data.meta.parsed_query.queryDescription + ` (${c}&nbsp;match${c === 1 ? "" : "es"})`;
+      } else {
+        this.filter_query_description.innerHTML = "";
       }
+    }
+    const objects = data.objects;
+    objects.forEach((section) => {
+      this.queue.push(() => {
+        let title = section.title;
+        this.appendHeader(title, section.routes.length, this, data.meta.object_return_type.name);
+      });
       section.routes.forEach((rte) => {
-        if (count > this.cellsToLoadAtATime) {
-          return;
-        }
-        const rte_asAny = rte;
-        if (!rte_asAny.isLoaded) {
-          rte_asAny.isLoaded = true;
-          count++;
-          this.queue.push(() => {
-            const el = this.appendRoute(this, rte);
-            if (!this.queue.length) {
-              this.lastCell = el;
-            }
-          });
-        }
+        this.queue.push(() => {
+          this.appendRoute(this, rte);
+        });
       });
     });
     this.processQueue();
+  }
+  async fetchResults(query, pageNo) {
+    return await (await this.fetchResponseForPage(query, pageNo))?.json();
+  }
+  response;
+  async fetchResponseForPage(query, pageNo) {
+    try {
+      query = query?.trim() || "";
+      const response = await fetch(
+        this.apiUrl,
+        {
+          method: "POST",
+          headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(
+            this.bodyForRequestAndPage(query, pageNo)
+          )
+        }
+      );
+      this.response = response.clone();
+      return response;
+    } catch (e) {
+      console.error("failed to fetch results");
+      console.error(e);
+      return void 0;
+    }
+  }
+  onInputUpdated(force = false) {
+    const newValue = this.input.value.trim();
+    if (newValue) {
+      this.delete_text_button.classList.remove("hidden");
+    } else {
+      this.delete_text_button.classList.add("hidden");
+    }
+    clearTimeout(this.timeout);
+    if (!force && !newValue && this.baseData) ;
+    const sortDirection = this.sortDirectionFromButton;
+    this.startProgressBar();
+    this.searchId++;
+    const currentSearchId = this.searchId;
+    this.timeout = setTimeout(async () => {
+      const query = this.fullQueryWithoutUrlFilter;
+      let results = await this.fetchResults(query, 0);
+      if (this.searchId > currentSearchId) {
+        return;
+      }
+      this.stopProgressBar();
+      this.searchId = currentSearchId;
+      this.lastSearch = query;
+      this.buildResults(results);
+      this.urlFilter = newValue;
+      this.urlSortDirection = sortDirection;
+      this.urlPage = 0;
+    }, this.searchDelay);
+  }
+};
+__decorateClass$4([
+  target
+], PagedRoutesViewer.prototype, "page_control", 2);
+PagedRoutesViewer = __decorateClass$4([
+  controller
+], PagedRoutesViewer);
+const PagedRoutesViewer$1 = PagedRoutesViewer;
+
+var __defProp$3 = Object.defineProperty;
+var __getOwnPropDesc$3 = Object.getOwnPropertyDescriptor;
+var __decorateClass$3 = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$3(target, key) : target;
+  for (var i = decorators.length - 1, decorator; i >= 0; i--)
+    if (decorator = decorators[i])
+      result = (kind ? decorator(target, key, result) : decorator(result)) || result;
+  if (kind && result)
+    __defProp$3(target, key, result);
+  return result;
+};
+const sharedStorage$1 = UkcLocalStorage.sharedLogbook;
+const generateApiUrl$1 = () => {
+  const targetOrigin = apiOrigin();
+  return `${targetOrigin}/v1/rockfax/search/partner_ascents`;
+};
+let PartnerAscentsViewerElement = class extends PagedRoutesViewer$1 {
+  get apiUrl() {
+    return generateApiUrl$1();
+  }
+  ascentsByDateLookup = {};
+  get defaultSortOrder() {
+    return "date";
+  }
+  connectedCallback() {
+    super.connectedCallback();
+    this.sort_button.style.display = "block";
+    this.sort_order_picker.style.display = "block";
+    this.input.placeholder = `Filter your partners' ascents...`;
+  }
+  get allowEmptyQuery() {
+    return true;
+  }
+  appendRoute(target, route, tagName) {
+    const el = appendRoute({ target, route, tagName: "logbook-result" });
+    const myAscent = sharedStorage$1.bestAscent(route.id_ukc);
+    el.logStatus = sharedStorage$1.logbookStatus(route.id_ukc);
+    el.setAttribute("title", myAscent?.lastClimbedDescription || "not in your logbook");
+    const ascent = new UkcLocalStorage.AscentInfo(route.associated_ascent_entry);
+    if (ascent) {
+      el.ascentStyleSimple = ascent.simple_style_name || "unknown";
+      el.ascentNotes = ascent.notes;
+      el.ascensionistDetails = { name: ascent.user_name, id: ascent.user_id_ukc };
+      el.partners = ascent.partners;
+      el.ascentStyle = ascent.ascent_style?.short_name || "unknown";
+      el.ascent_date.innerText = this.sort_order_picker.value === "date" ? "" : ascent.shortDateString;
+    }
+    el.wishlistStatus = sharedStorage$1.wishlistStatus(route.id_ukc);
+    return el;
+  }
+  async fetchResults(query, pageNo) {
+    const res = await super.fetchResults(query, pageNo);
+    if (res.meta?.is_third_party) {
+      this.input.placeholder = `Filter ${res.meta?.user_name_short}'s partners' ascents...`;
+    } else {
+      this.input.placeholder = `Filter your partners' ascents...`;
+    }
+    this.routes_viewer_title.innerHTML = `<span style="font-size: 0.8em">Recent partner ascents for <a href="/user/profile.php?id=${res.meta?.user_id}">${escape(res.meta?.user_name || "")}</a></span>`;
+    return res;
+  }
+  async fetchResponseForPage(query, pageNo) {
+    const res = await super.fetchResponseForPage(query, pageNo);
+    if (this.response.status === 401) {
+      return res;
+    }
+    return res;
+  }
+  get userIdFromUrl() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get("user_id");
+    if (id) {
+      return parseInt(id);
+    }
+    return Cookies.default().userIdUkc;
+  }
+  get userIdForRequest() {
+    return this.userIdFromUrl || Cookies.default().userIdUkc;
+  }
+  bodyForRequestAndPage(query, pageNo) {
+    const body = super.bodyForRequestAndPage(query, pageNo);
+    body.user_id = this.userIdForRequest;
+    body.sort_by = this.sort_order_picker.value;
+    return body;
+  }
+  htmlForSlot(slotName) {
+    if (slotName === "routes-viewer-sort-order-options") {
+      return html$1`
+        <option value="date"      >Order by ascent date</option>
+        <option value="crag_name" >Order by crag name</option>
+        <option value="grade"     >Order by route grade</option>
+        <option value="user_name" >Order by partner</option>
+        <!--<option value="voted_grade">Order by voted grade</option>-->
+      `;
+    }
+    const sup = super.htmlForSlot(slotName);
+    if (sup) {
+      return sup;
+    }
+    return "";
+  }
+};
+PartnerAscentsViewerElement = __decorateClass$3([
+  controller
+], PartnerAscentsViewerElement);
+
+var __defProp$2 = Object.defineProperty;
+var __getOwnPropDesc$2 = Object.getOwnPropertyDescriptor;
+var __decorateClass$2 = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$2(target, key) : target;
+  for (var i = decorators.length - 1, decorator; i >= 0; i--)
+    if (decorator = decorators[i])
+      result = (kind ? decorator(target, key, result) : decorator(result)) || result;
+  if (kind && result)
+    __defProp$2(target, key, result);
+  return result;
+};
+const generateApiUrl = () => {
+  const targetOrigin = apiOrigin();
+  return `${targetOrigin}/v1/rockfax/search/route_ukc_for_crag`;
+};
+const sharedStorage = UkcLocalStorage.sharedLogbook;
+let CragRoutesViewerElement = class extends InfiniteScrollRoutesViewer$1 {
+  cragId;
+  get apiUrl() {
+    return generateApiUrl();
+  }
+  get urlPage() {
+    return void 0;
+  }
+  set urlPage(newVal) {
+    return;
+  }
+  get isOnline() {
+    return window.navigator.onLine;
+  }
+  get sortOrderKey() {
+    return "routes_viewer_sort_order";
+  }
+  get defaultSortOrder() {
+    return "ltr";
+  }
+  get allowEmptyQuery() {
+    return true;
+  }
+  connectedCallback() {
+    super.connectedCallback();
+    this.sort_button.style.display = "block";
+    this.sort_order_picker.style.display = "block";
+    this.input.placeholder = "Filter routes at this crag...";
+    this.sort_order_picker.value = this.urlSortOrder || this.savedSortOrder;
+  }
+  sortOrderChanged(evt) {
+    if (this.isOnline) {
+      return super.toggleSortOrder();
+    }
+    this.reorderBaseData().then(() => {
+      this.lastSearch = void 0;
+      this.onInputUpdated();
+      this.urlSortOrder = this.sort_order_picker.value;
+      localStorage.setItem(this.sortOrderKey, this.sort_order_picker.value);
+    });
+  }
+  buildRoutesLookup(data) {
+    const lookup = super.buildRoutesLookup(data);
+    lookup.meta.crag_name = data.meta["crag_name"];
+    return lookup;
+  }
+  toggleSortOrder() {
+    if (this.isOnline) {
+      return super.toggleSortOrder();
+    }
+    this.sort_arrow.style.rotate = this.sortDirectionFromButton === "desc" ? "180deg" : "0deg";
+    this.reorderBaseData().then(() => {
+      this.lastSearch = void 0;
+      this.onInputUpdated();
+      this.urlSortDirection = this.sortDirectionFromButton;
+      localStorage.setItem(this.sortDirectionKey, this.sortDirectionFromButton);
+    });
+  }
+  get routeKeyForSortOrder() {
+    return this.sort_order_picker.value === "ltr" ? "buttress_name" : "route_grade";
+  }
+  async reorderBaseData() {
+  }
+  bodyForRequest(query, pageNo) {
+    const type = Object.keys(this.routeLookup || {}).length ? "ids" : "full";
+    const cookie = Cookies.default().cookie;
+    return {
+      cookie,
+      search_query: query,
+      sort_by: this.sort_order_picker.value,
+      direction: this.sortDirectionFromButton,
+      return_type: type,
+      crag_id: Number(this.cragId)
+    };
+  }
+  buildResults(_data) {
+    super.buildResults(_data);
+    this.routes_viewer_title.innerHTML = `<span style="font-size: 0.8em">Routes at ${escape(this.routeLookup.meta.crag_name || "")}</span>`;
+  }
+  async maybeBuildFromLocalStorage() {
+    if (this.routeLookup) {
+      await this._buildInvertedIndex(this.routeLookup);
+    }
   }
   appendRoute(target, route, tagName) {
     const el = appendRoute({ target, route, tagName: "route-result" });
@@ -5886,20 +6034,27 @@ let RoutesViewerElement = class extends UkcLogbookElement$1 {
     el.wishlistStatus = sharedStorage.wishlistStatus(route.id_ukc);
     return el;
   }
+  htmlForSlot(slotName) {
+    if (slotName === "routes-viewer-sort-order-options") {
+      return html$1`
+      <option value="ltr" >Order left to right</option>
+      <option value="grade" >Order by route grade</option>
+      <!--<option value="voted_grade">Order by voted grade</option>-->
+      `;
+    }
+    const sup = super.htmlForSlot(slotName);
+    if (sup) {
+      return sup;
+    }
+    return "";
+  }
 };
 __decorateClass$2([
   attr
-], RoutesViewerElement.prototype, "cragId", 2);
-RoutesViewerElement = __decorateClass$2([
+], CragRoutesViewerElement.prototype, "cragId", 2);
+CragRoutesViewerElement = __decorateClass$2([
   controller
-], RoutesViewerElement);
-const trigramWrapped = (s) => {
-  let t = s;
-  while (t.length < 3) {
-    t = " " + t;
-  }
-  return trigram(t);
-};
+], CragRoutesViewerElement);
 
 const cragIconTemplate = (_element) => {
   return html$1`
