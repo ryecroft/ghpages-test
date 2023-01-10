@@ -4,8 +4,8 @@ const VERSION = 'version_004'
 const URLS = [
   `${ GHPATH }/crag/index.html`,
   `${ GHPATH }/img/icon.png`,
-  `${ GHPATH }/crag/dist/assets/index.css`,
-  `${ GHPATH }/crag/dist/index.js`,
+  `${ GHPATH }/dist/assets/index.css`,
+  `${ GHPATH }/dist/index.js`,
   `https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css`,
   `https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css`,
 ]
