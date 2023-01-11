@@ -1286,16 +1286,18 @@ let BaseRoutesViewer = class extends BaseCon$1 {
   buildResults(data) {
     throw new Error("not implemented");
   }
-  async processQueue() {
+  processQueue() {
     if (this.queue.length) {
       this.preventLayoutShift = true;
       let i = 0;
-      const max = this.routes_viewer_container.children.length > 4 ? 1 : 15;
+      const max = this.routes_viewer_container.children.length > 4 ? 2 : 15;
       while (i < max && this.queue.length) {
         this.queue.shift()();
         i++;
       }
-      void this.processQueue();
+      setTimeout(() => {
+        this.processQueue();
+      }, 0);
     } else {
       this.preventLayoutShift = false;
     }
