@@ -1209,6 +1209,7 @@ let BaseRoutesViewer = class extends BaseCon$1 {
     this.lastSearch = void 0;
     this.onInputUpdated();
     this.urlSortOrder = this.sort_order_picker.value;
+    localStorage.setItem(this.sortOrderKey, this.sort_order_picker.value);
   }
   onInputFocus() {
   }
@@ -1244,6 +1245,7 @@ let BaseRoutesViewer = class extends BaseCon$1 {
     this.toggleArrowInSortButton();
     this.lastSearch = void 0;
     this.onInputUpdated();
+    localStorage.setItem(this.sortDirectionKey, this.sortDirectionFromButton);
   }
   toggleArrowInSortButton() {
     this.sort_arrow.style.rotate = this.sortDirectionFromButton === "desc" ? "180deg" : "0deg";
@@ -1830,6 +1832,7 @@ let BaseSearchbarElement = class extends BaseCon$1 {
     this.helpTextContainer.classList.add("hidden");
   }
   submitSearch() {
+    localStorage.setItem(this.localStorageKey, JSON.stringify(this.baseData));
     this.submitSearchHandler(this.fullResultsUrl);
   }
   submitSearchHandler = (resultsUrl) => {
@@ -2123,6 +2126,7 @@ var UkcLocalStorage;
       if (!routes) {
         return;
       }
+      localStorage.setItem(this.identifier(cragId), JSON.stringify(routes));
     }
   }
   UkcLocalStorage2.BaseRouteDataForCrag = BaseRouteDataForCrag;
@@ -2149,6 +2153,7 @@ var UkcLocalStorage;
       return `${this.identifier}_edit_date`;
     }
     set editDate(t) {
+      localStorage.setItem(this.editDateKey, t.getTime().toString());
     }
     get editDate() {
       let t = new Date(parseInt(localStorage.getItem(this.editDateKey)));
@@ -2211,6 +2216,7 @@ var UkcLocalStorage;
       const date = new Date(remoteDeets.last_updated);
       this.editDate = date;
       this.lookup.merge(remoteDeets);
+      localStorage.setItem(this.identifier, JSON.stringify(this.lookup));
     }
     bestAscent(routeIdUkc) {
       return this.lookup?.bestAscent(routeIdUkc);
@@ -3119,6 +3125,7 @@ let PagedRoutesViewer = class extends BaseRoutesViewer$1 {
       try {
         this.buildResults(JSON.parse(results));
         this.stopProgressBar();
+        localStorage.setItem(this.localStorageKey, "");
         return;
       } catch (e) {
       }
@@ -3150,6 +3157,7 @@ let PagedRoutesViewer = class extends BaseRoutesViewer$1 {
     this.baseData = void 0;
     this.lastSearch = void 0;
     this.onInputUpdated();
+    localStorage.setItem(this.sortDirectionKey, this.sortDirectionFromButton);
   }
   htmlForSlot(slotName) {
     if (slotName === "routes-viewer-sort-order-options") {
@@ -5312,6 +5320,7 @@ let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
   _apiData;
   _apiDataEntireList;
   set apiDataDescribingCurrentList(newVal) {
+    localStorage.setItem(this.localStorageKey + "-api-data", JSON.stringify(newVal));
     this._apiData = newVal;
   }
   get apiDataDescribingCurrentList() {
@@ -5322,6 +5331,7 @@ let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
     return this._apiData;
   }
   set apiDataDescribingEntireList(newVal) {
+    localStorage.setItem(this.localStorageKey + "-api-data-entire-list", JSON.stringify(newVal));
     this._apiDataEntireList = newVal;
   }
   get apiDataDescribingEntireList() {
@@ -5339,6 +5349,7 @@ let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
   loadedIds = /* @__PURE__ */ new Set();
   _routeLookup;
   set routeLookup(newVal) {
+    localStorage.setItem(this.localStorageKey, JSON.stringify(newVal));
     this._routeLookup = newVal;
   }
   get routeLookup() {
@@ -5469,6 +5480,7 @@ let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
     this.toggleArrowInSortButton();
     this.lastSearch = void 0;
     this.onInputUpdated();
+    localStorage.setItem(this.sortDirectionKey, this.sortDirectionFromButton);
   }
   htmlForSlot(slotName) {
     if (slotName === "routes-viewer-sort-order-options") {
