@@ -5370,33 +5370,25 @@ let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
   }
   async _init() {
     this.startProgressBar();
+    const currentQuery = this.query;
     this.fetchUpdateForRouteLookup().then(async (res) => {
       this.updateForRouteLookupFetched(res);
       if (!this.routeLookup) {
-        this.fetchDataForQuery().then(async (res2) => {
-          if (this.resultsSignature(this.apiDataDescribingCurrentList) == this.resultsSignature(res2)) {
-            return;
-          }
-          if (res2.status !== 200) {
-            console.log(res2);
-            return;
-          }
-          this.buildResults(res2);
-          this.apiDataDescribingCurrentList = res2;
+        if (currentQuery) {
+          void this.fetchDataForQuery("").then((data) => {
+            this.handleFetchedData(data);
+          });
+        }
+        this.fetchDataForQuery(currentQuery).then(async (data) => {
+          this.handleFetchedData(data);
+          this.apiDataDescribingCurrentList = data;
         });
       }
     });
     if (this.routeLookup) {
-      this.fetchDataForQuery().then(async (res) => {
-        if (this.resultsSignature(this.apiDataDescribingCurrentList) == this.resultsSignature(res)) {
-          return;
-        }
-        if (res.status !== 200) {
-          console.log(res);
-          return;
-        }
-        this.buildResults(res);
-        this.apiDataDescribingCurrentList = res;
+      this.fetchDataForQuery().then(async (data) => {
+        this.handleFetchedData(data);
+        this.apiDataDescribingCurrentList = data;
       });
       if (!this.query) {
         if (this.apiDataDescribingEntireList) {
@@ -5405,6 +5397,16 @@ let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
         }
       }
     }
+  }
+  handleFetchedData(data) {
+    if (this.resultsSignature(this.apiDataDescribingCurrentList) == this.resultsSignature(data)) {
+      return;
+    }
+    if (data.status !== 200) {
+      console.log(data);
+      return;
+    }
+    this.buildResults(data);
   }
   async updateForRouteLookupFetched(res) {
     this.routeLookup = this.buildRoutesLookup(res);
