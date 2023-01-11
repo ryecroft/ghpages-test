@@ -1209,7 +1209,6 @@ let BaseRoutesViewer = class extends BaseCon$1 {
     this.lastSearch = void 0;
     this.onInputUpdated();
     this.urlSortOrder = this.sort_order_picker.value;
-    localStorage.setItem(this.sortOrderKey, this.sort_order_picker.value);
   }
   onInputFocus() {
   }
@@ -1245,7 +1244,6 @@ let BaseRoutesViewer = class extends BaseCon$1 {
     this.toggleArrowInSortButton();
     this.lastSearch = void 0;
     this.onInputUpdated();
-    localStorage.setItem(this.sortDirectionKey, this.sortDirectionFromButton);
   }
   toggleArrowInSortButton() {
     this.sort_arrow.style.rotate = this.sortDirectionFromButton === "desc" ? "180deg" : "0deg";
@@ -1473,7 +1471,7 @@ let BaseSearchbarElement = class extends BaseCon$1 {
   hideAllExtrasTimeout;
   minQueryLength = 4;
   localStorageKey = "search-results";
-  apiData;
+  baseData;
   input;
   returnKeyAction;
   searchAbsolute;
@@ -1514,7 +1512,7 @@ let BaseSearchbarElement = class extends BaseCon$1 {
     if (this.input.value) {
       this.delete_text_button.classList.remove("hidden");
     } else {
-      this.apiData = void 0;
+      this.baseData = void 0;
       this.showQuerySuggestion();
       this.stopProgressBar();
     }
@@ -1618,7 +1616,7 @@ let BaseSearchbarElement = class extends BaseCon$1 {
   }
   _onSearchbarUpdated = () => {
     if (this.isSearchbarEmpty) {
-      this.apiData = void 0;
+      this.baseData = void 0;
       this.delete_text_button.classList.add("hidden");
       this.stopProgressBar();
     } else {
@@ -1717,7 +1715,7 @@ let BaseSearchbarElement = class extends BaseCon$1 {
       }
     }
     if (!this.isSearchbarEmpty) {
-      if (this.apiData) {
+      if (this.baseData) {
         this.showResultsDropdown();
       } else {
         this._onSearchbarUpdated();
@@ -1832,7 +1830,6 @@ let BaseSearchbarElement = class extends BaseCon$1 {
     this.helpTextContainer.classList.add("hidden");
   }
   submitSearch() {
-    localStorage.setItem(this.localStorageKey, JSON.stringify(this.apiData));
     this.submitSearchHandler(this.fullResultsUrl);
   }
   submitSearchHandler = (resultsUrl) => {
@@ -2009,10 +2006,11 @@ let RouteSearchbarElement = class extends BaseSearchbarElement$1 {
       if (this.searchId.getTime() > currentSearchId.getTime()) {
         return;
       }
+      const data = { data: results, status: response.status };
       this.stopProgressBar();
       this.searchId = currentSearchId;
       this.lastSearch = currentQuery;
-      this.buildResults(results);
+      this.buildResults(data);
       this.routes_viewer_container.style.opacity = "1";
     })();
   }
@@ -2039,20 +2037,21 @@ let RouteSearchbarElement = class extends BaseSearchbarElement$1 {
   }
   selectResultEntry(index) {
     super.selectResultEntry(index);
-    if (!this.apiData) {
+    if (!this.baseData) {
       return;
     }
   }
   queue = [];
-  buildResults(data) {
-    if (!data)
+  buildResults(_data) {
+    if (!_data)
       return;
+    const data = _data.data;
     this.queue = [];
     this.clearResultsDropdown();
     if (this.isSearchbarFocussed) {
       this.showResultsDropdown();
     }
-    this.apiData = data;
+    this.baseData = _data;
     if (data.objects?.length === 0) {
       appendNoResults(this);
     }
@@ -2063,7 +2062,7 @@ let RouteSearchbarElement = class extends BaseSearchbarElement$1 {
     }
     let routeCount = 0;
     let cragCount = 0;
-    data.objects?.forEach((element, idx) => {
+    data.objects[0]?.routes.forEach((element, idx) => {
       switch (element.type) {
         case "route_ukc": {
           routeCount++;
@@ -2110,21 +2109,6 @@ const RouteSearchbarElement$1 = RouteSearchbarElement;
 
 var UkcLocalStorage;
 ((UkcLocalStorage2) => {
-  class RouteLookupForCrag {
-    static identifier(cragId) {
-      return `crag_routes_lookup_for_crag_${cragId}`;
-    }
-    static fetch(cragId) {
-      const data = localStorage.getItem(this.identifier(cragId));
-      if (data)
-        return JSON.parse(data);
-      return void 0;
-    }
-    static store(routes) {
-      localStorage.setItem(this.identifier(routes.cragId), JSON.stringify(routes));
-    }
-  }
-  UkcLocalStorage2.RouteLookupForCrag = RouteLookupForCrag;
   class BaseRouteDataForCrag {
     static identifier(cragId) {
       return `base_routedata_for_crag_${cragId}`;
@@ -2139,7 +2123,6 @@ var UkcLocalStorage;
       if (!routes) {
         return;
       }
-      localStorage.setItem(this.identifier(cragId), JSON.stringify(routes));
     }
   }
   UkcLocalStorage2.BaseRouteDataForCrag = BaseRouteDataForCrag;
@@ -2166,7 +2149,6 @@ var UkcLocalStorage;
       return `${this.identifier}_edit_date`;
     }
     set editDate(t) {
-      localStorage.setItem(this.editDateKey, t.getTime().toString());
     }
     get editDate() {
       let t = new Date(parseInt(localStorage.getItem(this.editDateKey)));
@@ -2229,7 +2211,6 @@ var UkcLocalStorage;
       const date = new Date(remoteDeets.last_updated);
       this.editDate = date;
       this.lookup.merge(remoteDeets);
-      localStorage.setItem(this.identifier, JSON.stringify(this.lookup));
     }
     bestAscent(routeIdUkc) {
       return this.lookup?.bestAscent(routeIdUkc);
@@ -3091,17 +3072,225 @@ RouteResultElement = __decorateClass$a([
 
 var __defProp$9 = Object.defineProperty;
 var __getOwnPropDesc$9 = Object.getOwnPropertyDescriptor;
-var __decorateClass$9 = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$9(target, key) : target;
+var __decorateClass$9 = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$9(target2, key) : target2;
+  for (var i = decorators.length - 1, decorator; i >= 0; i--)
+    if (decorator = decorators[i])
+      result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
+  if (kind && result)
+    __defProp$9(target2, key, result);
+  return result;
+};
+let PagedRoutesViewer = class extends BaseRoutesViewer$1 {
+  page_control;
+  currentPage = 1;
+  _baseData;
+  set baseData(newVal) {
+    this._baseData = newVal;
+  }
+  get baseData() {
+    return this._baseData;
+  }
+  connectedCallback() {
+    super.connectedCallback();
+  }
+  sortOrderChanged(evt) {
+    super.sortOrderChanged(evt);
+  }
+  get allowEmptyQuery() {
+    return false;
+  }
+  async _init() {
+    this.page_control.onPageControlClicked = async (_pageControl) => {
+      this.startProgressBar();
+      const results2 = await this.fetchResults(this.fullQuery, _pageControl.currentPage);
+      if (results2.status !== 200) {
+        console.log(results2);
+        return;
+      }
+      this.urlPage = _pageControl.currentPage;
+      this.stopProgressBar();
+      this.buildResults(results2);
+    };
+    this.startProgressBar();
+    const results = localStorage.getItem(this.localStorageKey);
+    const hasNoFilter = !this.urlFilter;
+    if (results) {
+      try {
+        this.buildResults(JSON.parse(results));
+        this.stopProgressBar();
+        return;
+      } catch (e) {
+      }
+    }
+    let query = this.queryToUseDuringInit();
+    if (query !== null || this.allowEmptyQuery) {
+      let results2 = await this.fetchResults(query, this.urlPage);
+      if (results2.status !== 200) {
+        console.log(results2);
+        return;
+      }
+      this.buildResults(results2);
+      hasNoFilter && (this.baseData = results2);
+      this.stopProgressBar();
+    }
+  }
+  queryToUseDuringInit() {
+    return this.fullQuery || "";
+  }
+  bodyForRequestAndPage(query, pageNo) {
+    const body = super.bodyForRequest(query);
+    console.log(pageNo);
+    body.page = pageNo;
+    body.page_size = 100;
+    return body;
+  }
+  toggleSortOrder() {
+    this.toggleArrowInSortButton();
+    this.baseData = void 0;
+    this.lastSearch = void 0;
+    this.onInputUpdated();
+  }
+  htmlForSlot(slotName) {
+    if (slotName === "routes-viewer-sort-order-options") {
+      return html$1`
+        <option value="score"     >Order by search score</option>
+        <option value="crag_name" >Order by crag name</option>
+        <option value="grade"     >Order by route grade</option>
+      `;
+    }
+    if (slotName === "routes-viewer-page-control-slot") {
+      return html$1`
+        <page-control data-target='${this.elementName}.page_control'></page-control>
+      `;
+    }
+    const sup = super.htmlForSlot(slotName);
+    if (sup) {
+      return sup;
+    }
+    return "";
+  }
+  buildResults(_data) {
+    if (!_data)
+      return;
+    const data = _data.data;
+    console.log(data);
+    this.queue = [];
+    this.clearResultsDropdown();
+    this.page_control.pageCount = data.meta?.total_pages;
+    this.page_control.currentPage = data.meta?.page;
+    if (data.objects?.length === 0) {
+      appendNoResults(this);
+    }
+    if (this.filter_query_description) {
+      if (data.meta?.parsed_query) {
+        const c = data.meta?.total_matches;
+        this.filter_query_description.innerHTML = data.meta.parsed_query.queryDescription + ` (${c}&nbsp;match${c === 1 ? "" : "es"})`;
+      } else {
+        this.filter_query_description.innerHTML = "";
+      }
+    }
+    const objects = data.objects;
+    console.log(objects);
+    objects.forEach((section) => {
+      this.queue.push(() => {
+        let title = section.title;
+        this.appendHeader(title, section.routes.length, this, data.meta.object_return_type.name);
+      });
+      section.routes.forEach((rte) => {
+        this.queue.push(() => {
+          this.appendRoute(this, rte);
+        });
+      });
+    });
+    this.processQueue();
+  }
+  async fetchResults(query, pageNo) {
+    const response = await await this.fetchResponseForPage(query, pageNo);
+    const status = response?.status;
+    const data = await response.json();
+    return { data, status };
+  }
+  response;
+  async fetchResponseForPage(query, pageNo) {
+    try {
+      query = query?.trim() || "";
+      const response = await fetch(
+        this.apiUrl,
+        {
+          method: "POST",
+          headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(
+            this.bodyForRequestAndPage(query, pageNo)
+          )
+        }
+      );
+      this.response = response.clone();
+      return response;
+    } catch (e) {
+      console.error("failed to fetch results");
+      console.error(e);
+      return void 0;
+    }
+  }
+  onInputUpdated(force = false) {
+    const newValue = this.input.value.trim();
+    if (newValue) {
+      this.delete_text_button.classList.remove("hidden");
+    } else {
+      this.delete_text_button.classList.add("hidden");
+    }
+    clearTimeout(this.timeout);
+    if (!force && !newValue && this.baseData) ;
+    const sortDirection = this.sortDirectionFromButton;
+    this.startProgressBar();
+    this.searchId++;
+    const currentSearchId = this.searchId;
+    this.timeout = setTimeout(async () => {
+      const query = this.fullQueryWithoutUrlFilter;
+      let results = await this.fetchResults(query, 0);
+      if (this.searchId > currentSearchId) {
+        return;
+      }
+      this.stopProgressBar();
+      this.searchId = currentSearchId;
+      if (results.status !== 200) {
+        console.log();
+        console.log(results);
+        return;
+      }
+      this.lastSearch = query;
+      this.buildResults(results);
+      this.urlFilter = newValue;
+      this.urlSortDirection = sortDirection;
+      this.urlPage = 0;
+    }, this.searchDelay);
+  }
+};
+__decorateClass$9([
+  target
+], PagedRoutesViewer.prototype, "page_control", 2);
+PagedRoutesViewer = __decorateClass$9([
+  controller
+], PagedRoutesViewer);
+const PagedRoutesViewer$1 = PagedRoutesViewer;
+
+var __defProp$8 = Object.defineProperty;
+var __getOwnPropDesc$8 = Object.getOwnPropertyDescriptor;
+var __decorateClass$8 = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$8(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$9(target, key, result);
+    __defProp$8(target, key, result);
   return result;
 };
 const sharedStorage$4 = UkcLocalStorage.sharedLogbook;
-let SearchResultsViewerElement = class extends BaseRoutesViewer$1 {
+let SearchResultsViewerElement = class extends PagedRoutesViewer$1 {
   get searchbarTag() {
     return "ukc-searchbar";
   }
@@ -3145,7 +3334,7 @@ let SearchResultsViewerElement = class extends BaseRoutesViewer$1 {
     };
   }
 };
-SearchResultsViewerElement = __decorateClass$9([
+SearchResultsViewerElement = __decorateClass$8([
   controller
 ], SearchResultsViewerElement);
 
@@ -5108,22 +5297,21 @@ InvertedIndex.from = function(iterable, descriptor) {
  */
 var invertedIndex = InvertedIndex;
 
-var __defProp$8 = Object.defineProperty;
-var __getOwnPropDesc$8 = Object.getOwnPropertyDescriptor;
-var __decorateClass$8 = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$8(target, key) : target;
+var __defProp$7 = Object.defineProperty;
+var __getOwnPropDesc$7 = Object.getOwnPropertyDescriptor;
+var __decorateClass$7 = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$7(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$8(target, key, result);
+    __defProp$7(target, key, result);
   return result;
 };
 let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
   _apiData;
   _apiDataEntireList;
   set apiDataDescribingCurrentList(newVal) {
-    localStorage.setItem(this.localStorageKey + "-api-data", JSON.stringify(newVal));
     this._apiData = newVal;
   }
   get apiDataDescribingCurrentList() {
@@ -5134,7 +5322,6 @@ let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
     return this._apiData;
   }
   set apiDataDescribingEntireList(newVal) {
-    localStorage.setItem(this.localStorageKey + "-api-data-entire-list", JSON.stringify(newVal));
     this._apiDataEntireList = newVal;
   }
   get apiDataDescribingEntireList() {
@@ -5152,7 +5339,6 @@ let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
   loadedIds = /* @__PURE__ */ new Set();
   _routeLookup;
   set routeLookup(newVal) {
-    localStorage.setItem(this.localStorageKey, JSON.stringify(newVal));
     this._routeLookup = newVal;
   }
   get routeLookup() {
@@ -5180,7 +5366,7 @@ let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
     return false;
   }
   resultsSignature(data) {
-    return data?.objects.map((sec) => sec.title + sec.ids.join(",")).join();
+    return data?.data.objects.map((sec) => sec.title + sec.ids.join(",")).join();
   }
   async _init() {
     this.startProgressBar();
@@ -5188,29 +5374,29 @@ let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
       this.updateForRouteLookupFetched(res);
       if (!this.routeLookup) {
         this.fetchDataForQuery().then(async (res2) => {
-          if (this.resultsSignature(this.apiDataDescribingCurrentList) == this.resultsSignature(res2.data)) {
+          if (this.resultsSignature(this.apiDataDescribingCurrentList) == this.resultsSignature(res2)) {
             return;
           }
           if (res2.status !== 200) {
             console.log(res2);
             return;
           }
-          this.buildResults(res2.data);
-          this.apiDataDescribingCurrentList = res2.data;
+          this.buildResults(res2);
+          this.apiDataDescribingCurrentList = res2;
         });
       }
     });
     if (this.routeLookup) {
       this.fetchDataForQuery().then(async (res) => {
-        if (this.resultsSignature(this.apiDataDescribingCurrentList) == this.resultsSignature(res.data)) {
+        if (this.resultsSignature(this.apiDataDescribingCurrentList) == this.resultsSignature(res)) {
           return;
         }
         if (res.status !== 200) {
           console.log(res);
           return;
         }
-        this.buildResults(res.data);
-        this.apiDataDescribingCurrentList = res.data;
+        this.buildResults(res);
+        this.apiDataDescribingCurrentList = res;
       });
       if (!this.query) {
         if (this.apiDataDescribingEntireList) {
@@ -5221,12 +5407,13 @@ let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
     }
   }
   async updateForRouteLookupFetched(res) {
-    this.routeLookup = this.buildRoutesLookup(res.data);
-    this.buildRoutesLookup(res.data);
+    this.routeLookup = this.buildRoutesLookup(res);
+    this.buildRoutesLookup(res);
     this.buildResults(this.apiDataDescribingCurrentList);
     this.stopProgressBar();
   }
-  buildRoutesLookup(data) {
+  buildRoutesLookup(_data) {
+    const data = _data.data;
     const lookup = {};
     const res = {
       meta: {},
@@ -5234,9 +5421,10 @@ let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
     };
     if (!data)
       return res;
+    const keyFun = this.keyFunctionForPuttingRouteInIndex();
     data.objects.forEach((section) => {
       section.routes.forEach((route) => {
-        lookup[route.id_ukc] = route;
+        lookup[keyFun(route)] = route;
       });
     });
     return res;
@@ -5247,7 +5435,7 @@ let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
   async fetchDataForQuery(query = this.query) {
     const res = await this.fetchDataParams("ids", query);
     if (!query) {
-      this.apiDataDescribingEntireList = res.data;
+      this.apiDataDescribingEntireList = res;
     }
     return res;
   }
@@ -5279,7 +5467,6 @@ let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
     this.toggleArrowInSortButton();
     this.lastSearch = void 0;
     this.onInputUpdated();
-    localStorage.setItem(this.sortDirectionKey, this.sortDirectionFromButton);
   }
   htmlForSlot(slotName) {
     if (slotName === "routes-viewer-sort-order-options") {
@@ -5301,7 +5488,7 @@ let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
       return;
     }
     this.loadedIds = /* @__PURE__ */ new Set();
-    const data = _data;
+    const data = _data.data;
     this.loadedCellCount = 0;
     console.debug(data, { depth: null });
     this.queue = [];
@@ -5321,12 +5508,12 @@ let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
       this.routes_viewer_container.innerHTML = this.privateDivString();
       return;
     }
-    this.loadCellsForObjectsWithIdsReturn(data);
+    this.loadCellsForObjectsWithIdsReturn(_data);
   }
   loadCellsForObjectsWithIdsReturn(data) {
     if (!data)
       return;
-    const objects = data.objects;
+    const objects = data.data.objects;
     let count = 0;
     objects.forEach((section) => {
       if (count > this.cellsToLoadAtATime) {
@@ -5335,7 +5522,7 @@ let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
       if (!this.loadedIds.has(section.ids[0])) {
         this.queue.push(() => {
           let title = section.title;
-          this.appendHeader(title, section.ids.length, this, data.meta.object_return_type.name);
+          this.appendHeader(title, section.ids.length, this, data.data.meta.object_return_type.name);
         });
       }
       section.ids.forEach((idOfElement) => {
@@ -5390,15 +5577,15 @@ let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
       }
       this.searchId = currentSearchId;
       this.lastSearch = query;
-      this.apiDataDescribingCurrentList = results.data;
-      this.buildResults(results.data);
+      this.apiDataDescribingCurrentList = results;
+      this.buildResults(results);
       this.urlFilter = newValue;
       this.urlSortDirection = sortDirection;
       this.urlPage = 0;
     }, this.searchDelay);
   }
 };
-InfiniteScrollRoutesViewer = __decorateClass$8([
+InfiniteScrollRoutesViewer = __decorateClass$7([
   controller
 ], InfiniteScrollRoutesViewer);
 const InfiniteScrollRoutesViewer$1 = InfiniteScrollRoutesViewer;
@@ -8926,15 +9113,15 @@ ${JSON.stringify(m,null,4)}`);function M(){R&&(d={tagName:"",hrefValue:"",openin
 `)?p+=P-e:(!P||P>e)&&p++;}l.cb({tag:n,deleteFrom:n.leftOuterWhitespace,deleteTo:s+p,insert:u,rangesArr:r,proposedReturn:[n.leftOuterWhitespace,s+p,u]}),M(),H(e,l,r);}else n={};A(e)||(n={});}k&&(k=!1);}if((!C||t[e]==="<"&&E(t,E(t,e))&&t[E(t,e)]==="/"&&t.startsWith("script",E(t,E(t,e))))&&y(e)&&!y(e-1)&&!`'"`.includes(t[e+1])&&(!`'"`.includes(t[e+2])||/\w/.test(t[e+1]))&&!(t[e+1]==="c"&&t[e+2]===":")&&!(t[e+1]==="f"&&t[e+2]==="m"&&t[e+3]==="t"&&t[e+4]===":")&&!(t[e+1]==="s"&&t[e+2]==="q"&&t[e+3]==="l"&&t[e+4]===":")&&!(t[e+1]==="x"&&t[e+2]===":")&&!(t[e+1]==="f"&&t[e+2]==="n"&&t[e+3]===":")&&G(n,t,e)){if(A(E(t,e)))continue;if(n.nameEnds&&n.nameEnds<e&&!n.lastClosingBracketAt&&(n.onlyPlausible===!0&&n.attributes&&n.attributes.length||n.onlyPlausible===!1)){let s=L(t,e,n.leftOuterWhitespace,e,n.lastOpeningBracketAt,e);l.cb({tag:n,deleteFrom:n.leftOuterWhitespace,deleteTo:e,insert:s,rangesArr:r,proposedReturn:[n.leftOuterWhitespace,e,s]}),H(e,l,r),n={},o={};}if(n.lastOpeningBracketAt!==void 0&&n.onlyPlausible&&n.name&&!n.quotes&&(n.lastOpeningBracketAt=void 0,n.name=void 0,n.onlyPlausible=!1),(n.lastOpeningBracketAt===void 0||!n.onlyPlausible)&&!n.quotes&&(n.lastOpeningBracketAt=e,n.slashPresent=!1,n.attributes=[],V===null?n.leftOuterWhitespace=e:l.trimOnlySpaces&&V===0?n.leftOuterWhitespace=w||e:n.leftOuterWhitespace=V,`${t[e+1]}${t[e+2]}${t[e+3]}`=="!--"||`${t[e+1]}${t[e+2]}${t[e+3]}${t[e+4]}${t[e+5]}${t[e+6]}${t[e+7]}${t[e+8]}`=="![CDATA[")){let s=!0;t[e+2]==="-"&&(s=!1);let i;for(let a=e;a<h;a++)if((!i&&s&&`${t[a-2]}${t[a-1]}${t[a]}`=="]]>"||!s&&`${t[a-2]}${t[a-1]}${t[a]}`=="-->")&&(i=a),i&&(i<a&&t[a].trim()||t[a+1]===void 0)){let g=a;(t[a+1]===void 0&&!t[a].trim()||t[a]===">")&&(g+=1),(!b.length||b[b.length-1][0]!==n.lastOpeningBracketAt)&&b.push([n.lastOpeningBracketAt,i+1]),(!$$1.length||$$1[$$1.length-1][0]!==n.lastOpeningBracketAt)&&$$1.push([n.lastOpeningBracketAt,i+1]);let u=L(t,a,n.leftOuterWhitespace,g,n.lastOpeningBracketAt,i);l.cb({tag:n,deleteFrom:n.leftOuterWhitespace,deleteTo:g,insert:u,rangesArr:r,proposedReturn:[n.leftOuterWhitespace,g,u]}),e=a-1,t[a]===">"&&(e=a),n={},o={};break}}}!t[e].trim()||t[e].charCodeAt(0)===847?(V===null&&(V=e,n.lastOpeningBracketAt!==void 0&&n.lastOpeningBracketAt<e&&n.nameStarts&&n.nameStarts<n.lastOpeningBracketAt&&e===n.lastOpeningBracketAt+1&&!c.some(s=>s.name===n.name)&&(n.onlyPlausible=!0,n.name=void 0,n.nameStarts=void 0)),(t[e]===`
 `||t[e]==="\r")&&(N=e,J&&(J=!1))):(V!==null&&(!n.quotes&&o.equalsAt>V-1&&o.nameEnds&&o.equalsAt>o.nameEnds&&t[e]!=='"'&&t[e]!=="'"&&(U(o)&&n.attributes.push(o),o={},n.equalsSpottedAt=void 0),V=null),J||(J=!0,F&&!C&&typeof N=="number"&&e&&N<e-1&&(t.slice(N+1,e).trim()?N=null:r.push([N+1,e])))),t[e]===" "?w===null&&(w=e):w!==null&&(w=null),n.name==="script"&&(C=!n.slashPresent);}if(t&&(l.trimOnlySpaces&&t[0]===" "||!l.trimOnlySpaces&&!t[0].trim()))for(let e=0;e<h;e++)if(l.trimOnlySpaces&&t[e]!==" "||!l.trimOnlySpaces&&t[e].trim()){r.push([0,e]);break}else t[e+1]||r.push([0,e+1]);if(t&&(l.trimOnlySpaces&&t[~-t.length]===" "||!l.trimOnlySpaces&&!t[~-t.length].trim())){for(let e=t.length;e--;)if(l.trimOnlySpaces&&t[e]!==" "||!l.trimOnlySpaces&&t[e].trim()){r.push([e+1,h]);break}}let O=r.current();if((!m||!m.cb)&&O){if(O[0]&&!O[0][0]){O[0][1];r.ranges[0]=[r.ranges[0][0],r.ranges[0][1]];}if(O[O.length-1]&&O[O.length-1][1]===t.length){O[O.length-1][0];if(r.ranges){let s=r.ranges[r.ranges.length-1][0];t[s-1]&&(l.trimOnlySpaces&&t[s-1]===" "||!l.trimOnlySpaces&&!t[s-1].trim())&&(s-=1);let i=r.ranges[r.ranges.length-1][2];r.ranges[r.ranges.length-1]=[s,r.ranges[r.ranges.length-1][1]],i?.trim()&&r.ranges[r.ranges.length-1].push(i.trimEnd());}}}return {log:{timeTakenInMilliseconds:Date.now()-D},result:_$1(t,r.current()),ranges:r.current(),allTagLocations:b,filteredTagLocations:$$1}}
 
-var __defProp$7 = Object.defineProperty;
-var __getOwnPropDesc$7 = Object.getOwnPropertyDescriptor;
-var __decorateClass$7 = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$7(target, key) : target;
+var __defProp$6 = Object.defineProperty;
+var __getOwnPropDesc$6 = Object.getOwnPropertyDescriptor;
+var __decorateClass$6 = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$6(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$7(target, key, result);
+    __defProp$6(target, key, result);
   return result;
 };
 let OfflineInfiniteScrollRoutesViewer = class extends InfiniteScrollRoutesViewer$1 {
@@ -8961,9 +9148,9 @@ let OfflineInfiniteScrollRoutesViewer = class extends InfiniteScrollRoutesViewer
     }
   }
   trigram(s, prefixWhitespace = true, postfixWhitespace = true) {
-    let t = s;
-    prefixWhitespace && (t = `   ${s}`);
-    postfixWhitespace && (t = `${s}   `);
+    let t = s.replace(/\-$/g, "");
+    prefixWhitespace && (t = `   ${t}`);
+    postfixWhitespace && (t = `${t}   `);
     const res = trigram(t);
     return res;
   }
@@ -8985,7 +9172,7 @@ let OfflineInfiniteScrollRoutesViewer = class extends InfiniteScrollRoutesViewer
     for (const route of routes) {
       matchedIds.add(fun(route));
     }
-    const allIds = this.apiDataDescribingEntireList.objects.map((section) => {
+    const allIds = this.apiDataDescribingEntireList.data.objects.map((section) => {
       return section.ids;
     }).flat();
     const ids = new Set(allIds);
@@ -8995,13 +9182,13 @@ let OfflineInfiniteScrollRoutesViewer = class extends InfiniteScrollRoutesViewer
   async fetchDataForQuery(query = this.query) {
     if (!this.isOnline) {
       const data = await this.fetchResponseForPageLocal(query);
-      return { data, status: 200 };
+      return data;
     }
     const res = await super.fetchDataForQuery(query);
     return res;
   }
-  loadCellsForScroll() {
-    let data = this.isOnline ? this.apiDataDescribingCurrentList : this.fetchResponseForPageLocal(this.query);
+  async loadCellsForScroll() {
+    let data = this.isOnline ? this.apiDataDescribingCurrentList : await this.fetchResponseForPageLocal(this.query);
     this.loadCellsForObjectsWithIdsReturn(data);
   }
   async fetchResponseForPageLocal(query) {
@@ -9023,7 +9210,7 @@ let OfflineInfiniteScrollRoutesViewer = class extends InfiniteScrollRoutesViewer
       const id = idKeyFun(route);
       currentSection.ids.push(id);
     });
-    const meta = baseData?.meta || {};
+    const meta = baseData?.data.meta || {};
     meta.is_third_party = false;
     meta.logbook_size = count;
     meta.object_return_type = { name: { singular: "route", plural: "routes" } };
@@ -9035,7 +9222,10 @@ let OfflineInfiniteScrollRoutesViewer = class extends InfiniteScrollRoutesViewer
       queryDescription: `<span style="color:#F8CA68FF">\u26A0 No internet, using fallback search (no ranges)</span>`
     };
     meta.total_count = count;
-    return { meta, objects };
+    return {
+      data: { meta, objects },
+      status: 200
+    };
   }
   async _buildInvertedIndex(lookup) {
     const addFun = (route) => {
@@ -9115,20 +9305,20 @@ let OfflineInfiniteScrollRoutesViewer = class extends InfiniteScrollRoutesViewer
     };
   }
 };
-OfflineInfiniteScrollRoutesViewer = __decorateClass$7([
+OfflineInfiniteScrollRoutesViewer = __decorateClass$6([
   controller
 ], OfflineInfiniteScrollRoutesViewer);
 const OfflineInfiniteScrollRoutesViewer$1 = OfflineInfiniteScrollRoutesViewer;
 
-var __defProp$6 = Object.defineProperty;
-var __getOwnPropDesc$6 = Object.getOwnPropertyDescriptor;
-var __decorateClass$6 = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$6(target, key) : target;
+var __defProp$5 = Object.defineProperty;
+var __getOwnPropDesc$5 = Object.getOwnPropertyDescriptor;
+var __decorateClass$5 = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$5(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$6(target, key, result);
+    __defProp$5(target, key, result);
   return result;
 };
 const sharedStorage$3 = UkcLocalStorage.sharedLogbook;
@@ -9173,7 +9363,8 @@ let LogbookViewerElement = class extends OfflineInfiniteScrollRoutesViewer$1 {
   }
   buildResults(_data) {
     super.buildResults(_data);
-    this.routes_viewer_title.innerHTML = `<span style="font-size: 0.8em">Logbook for <a href="/user/profile.php?id=${_data?.meta?.user_id}">${escape(_data?.meta?.user_name || "")}</a></span>`;
+    const meta = _data?.data?.meta;
+    this.routes_viewer_title.innerHTML = `<span style="font-size: 0.8em">Logbook for <a href="/user/profile.php?id=${meta?.user_id}">${escape(meta?.user_name || "")}</a></span>`;
   }
   appendRoute(target, route, tagName) {
     const el = appendRoute({ target, route, tagName: "logbook-result" });
@@ -9212,39 +9403,24 @@ let LogbookViewerElement = class extends OfflineInfiniteScrollRoutesViewer$1 {
     }
     return "";
   }
-  buildRoutesLookup(data) {
-    const lookup = {};
-    const res = {
-      meta: {},
-      routes: lookup
-    };
-    if (!data)
-      return res;
-    data.objects.forEach((section) => {
-      section.routes.forEach((route) => {
-        lookup[route.associated_ascent_entry.id] = route;
-      });
-    });
-    return res;
-  }
   keyFunctionForPuttingRouteInIndex() {
     return (rte) => rte.associated_ascent_entry.id;
   }
 };
-LogbookViewerElement = __decorateClass$6([
+LogbookViewerElement = __decorateClass$5([
   controller
 ], LogbookViewerElement);
 const LogbookViewerElement$1 = LogbookViewerElement;
 
-var __defProp$5 = Object.defineProperty;
-var __getOwnPropDesc$5 = Object.getOwnPropertyDescriptor;
-var __decorateClass$5 = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$5(target, key) : target;
+var __defProp$4 = Object.defineProperty;
+var __getOwnPropDesc$4 = Object.getOwnPropertyDescriptor;
+var __decorateClass$4 = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$4(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$5(target, key, result);
+    __defProp$4(target, key, result);
   return result;
 };
 const sharedStorage$2 = UkcLocalStorage.sharedLogbook;
@@ -9273,7 +9449,8 @@ let WishlistViewerElement = class extends LogbookViewerElement$1 {
   }
   buildResults(_data) {
     super.buildResults(_data);
-    this.routes_viewer_title.innerHTML = `<span style="font-size: 0.8em">Wishlist for <a href="/user/profile.php?id=${_data?.meta?.user_id}">${escape(_data?.meta?.user_name || "")}</a></span>`;
+    const meta = _data?.data?.meta;
+    this.routes_viewer_title.innerHTML = `<span style="font-size: 0.8em">Wishlist for <a href="/user/profile.php?id=${meta?.user_id}">${escape(meta?.user_name || "")}</a></span>`;
   }
   appendRoute(target, route, tagName) {
     const el = appendRoute({ target, route, tagName: "logbook-result" });
@@ -9306,216 +9483,9 @@ let WishlistViewerElement = class extends LogbookViewerElement$1 {
     return "";
   }
 };
-WishlistViewerElement = __decorateClass$5([
+WishlistViewerElement = __decorateClass$4([
   controller
 ], WishlistViewerElement);
-
-var __defProp$4 = Object.defineProperty;
-var __getOwnPropDesc$4 = Object.getOwnPropertyDescriptor;
-var __decorateClass$4 = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$4(target2, key) : target2;
-  for (var i = decorators.length - 1, decorator; i >= 0; i--)
-    if (decorator = decorators[i])
-      result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
-  if (kind && result)
-    __defProp$4(target2, key, result);
-  return result;
-};
-let PagedRoutesViewer = class extends BaseRoutesViewer$1 {
-  page_control;
-  currentPage = 1;
-  apiData;
-  _baseData;
-  set baseData(newVal) {
-    this._baseData = newVal;
-  }
-  get baseData() {
-    return this._baseData;
-  }
-  connectedCallback() {
-    super.connectedCallback();
-  }
-  sortOrderChanged(evt) {
-    super.sortOrderChanged(evt);
-  }
-  get allowEmptyQuery() {
-    return false;
-  }
-  async _init() {
-    this.page_control.onPageControlClicked = async (_pageControl) => {
-      this.startProgressBar();
-      const results2 = await this.fetchResults(this.fullQuery, _pageControl.currentPage);
-      if (results2.statusCode !== 200) {
-        console.log(results2);
-        return;
-      }
-      this.urlPage = _pageControl.currentPage;
-      this.stopProgressBar();
-      this.buildResults(results2);
-    };
-    this.startProgressBar();
-    const results = localStorage.getItem(this.localStorageKey);
-    const hasNoFilter = !this.urlFilter;
-    if (results) {
-      try {
-        this.buildResults(JSON.parse(results));
-        this.stopProgressBar();
-        localStorage.setItem(this.localStorageKey, "");
-        return;
-      } catch (e) {
-      }
-    }
-    let query = this.queryToUseDuringInit();
-    if (query !== null || this.allowEmptyQuery) {
-      let results2 = await this.fetchResults(query, this.urlPage);
-      if (results2.statusCode !== 200) {
-        console.log(results2);
-        return;
-      }
-      this.buildResults(results2);
-      hasNoFilter && (this.baseData = results2);
-      this.stopProgressBar();
-    }
-  }
-  queryToUseDuringInit() {
-    return this.fullQuery || "";
-  }
-  bodyForRequestAndPage(query, pageNo) {
-    const body = super.bodyForRequest(query);
-    console.log(pageNo);
-    body.page = pageNo;
-    body.page_size = 100;
-    return body;
-  }
-  toggleSortOrder() {
-    this.toggleArrowInSortButton();
-    this.baseData = void 0;
-    this.lastSearch = void 0;
-    this.onInputUpdated();
-    localStorage.setItem(this.sortDirectionKey, this.sortDirectionFromButton);
-  }
-  htmlForSlot(slotName) {
-    if (slotName === "routes-viewer-sort-order-options") {
-      return html$1`
-        <option value="score"     >Order by search score</option>
-        <option value="crag_name" >Order by crag name</option>
-        <option value="grade"     >Order by route grade</option>
-      `;
-    }
-    if (slotName === "routes-viewer-page-control-slot") {
-      return html$1`
-        <page-control data-target='${this.elementName}.page_control'></page-control>
-      `;
-    }
-    const sup = super.htmlForSlot(slotName);
-    if (sup) {
-      return sup;
-    }
-    return "";
-  }
-  buildResults(_data) {
-    if (!_data)
-      return;
-    const data = _data;
-    console.log(data);
-    this.queue = [];
-    this.clearResultsDropdown();
-    this.apiData = data;
-    this.page_control.pageCount = data.meta?.total_pages;
-    this.page_control.currentPage = data.meta?.page;
-    if (data.objects?.length === 0) {
-      appendNoResults(this);
-    }
-    if (this.filter_query_description) {
-      if (data.meta?.parsed_query) {
-        const c = data.meta?.total_matches;
-        this.filter_query_description.innerHTML = data.meta.parsed_query.queryDescription + ` (${c}&nbsp;match${c === 1 ? "" : "es"})`;
-      } else {
-        this.filter_query_description.innerHTML = "";
-      }
-    }
-    const objects = data.objects;
-    objects.forEach((section) => {
-      this.queue.push(() => {
-        let title = section.title;
-        this.appendHeader(title, section.routes.length, this, data.meta.object_return_type.name);
-      });
-      section.routes.forEach((rte) => {
-        this.queue.push(() => {
-          this.appendRoute(this, rte);
-        });
-      });
-    });
-    this.processQueue();
-  }
-  async fetchResults(query, pageNo) {
-    return await (await this.fetchResponseForPage(query, pageNo))?.json();
-  }
-  response;
-  async fetchResponseForPage(query, pageNo) {
-    try {
-      query = query?.trim() || "";
-      const response = await fetch(
-        this.apiUrl,
-        {
-          method: "POST",
-          headers: {
-            "Accept": "application/json",
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(
-            this.bodyForRequestAndPage(query, pageNo)
-          )
-        }
-      );
-      this.response = response.clone();
-      return response;
-    } catch (e) {
-      console.error("failed to fetch results");
-      console.error(e);
-      return void 0;
-    }
-  }
-  onInputUpdated(force = false) {
-    const newValue = this.input.value.trim();
-    if (newValue) {
-      this.delete_text_button.classList.remove("hidden");
-    } else {
-      this.delete_text_button.classList.add("hidden");
-    }
-    clearTimeout(this.timeout);
-    if (!force && !newValue && this.baseData) ;
-    const sortDirection = this.sortDirectionFromButton;
-    this.startProgressBar();
-    this.searchId++;
-    const currentSearchId = this.searchId;
-    this.timeout = setTimeout(async () => {
-      const query = this.fullQueryWithoutUrlFilter;
-      let results = await this.fetchResults(query, 0);
-      if (this.searchId > currentSearchId) {
-        return;
-      }
-      this.stopProgressBar();
-      this.searchId = currentSearchId;
-      if (results.statusCode !== 200) {
-        console.log(results);
-        return;
-      }
-      this.lastSearch = query;
-      this.buildResults(results);
-      this.urlFilter = newValue;
-      this.urlSortDirection = sortDirection;
-      this.urlPage = 0;
-    }, this.searchDelay);
-  }
-};
-__decorateClass$4([
-  target
-], PagedRoutesViewer.prototype, "page_control", 2);
-PagedRoutesViewer = __decorateClass$4([
-  controller
-], PagedRoutesViewer);
-const PagedRoutesViewer$1 = PagedRoutesViewer;
 
 var __defProp$3 = Object.defineProperty;
 var __getOwnPropDesc$3 = Object.getOwnPropertyDescriptor;
@@ -9571,15 +9541,15 @@ let PartnerAscentsViewerElement = class extends PagedRoutesViewer$1 {
     if (!this.isOnline) {
       this.clearResultsDropdown();
       appendNoResults(this, "Partner ascents are not available offline");
-      return;
+      return void 0;
     }
     const res = await super.fetchResults(query, pageNo);
-    if (res.meta?.is_third_party) {
-      this.input.placeholder = `Filter ${res.meta?.user_name_short}'s partners' ascents...`;
+    if (res.data?.meta?.is_third_party) {
+      this.input.placeholder = `Filter ${res.data?.meta?.user_name_short}'s partners' ascents...`;
     } else {
       this.input.placeholder = `Filter your partners' ascents...`;
     }
-    this.routes_viewer_title.innerHTML = `<span style="font-size: 0.8em">Recent partner ascents for <a href="/user/profile.php?id=${res.meta?.user_id}">${escape(res.meta?.user_name || "")}</a></span>`;
+    this.routes_viewer_title.innerHTML = `<span style="font-size: 0.8em">Recent partner ascents for <a href="/user/profile.php?id=${res.data?.meta?.user_id}">${escape(res.data?.meta?.user_name || "")}</a></span>`;
     return res;
   }
   async fetchResponseForPage(query, pageNo) {
@@ -9672,7 +9642,7 @@ let CragRoutesViewerElement = class extends OfflineInfiniteScrollRoutesViewer$1 
   }
   buildRoutesLookup(data) {
     const lookup = super.buildRoutesLookup(data);
-    lookup.meta.crag_name = data.meta["crag_name"];
+    lookup.meta.crag_name = data.data.meta["crag_name"];
     return lookup;
   }
   keyFunctionForPuttingRouteInIndex() {
@@ -9692,7 +9662,8 @@ let CragRoutesViewerElement = class extends OfflineInfiniteScrollRoutesViewer$1 
   }
   buildResults(_data) {
     super.buildResults(_data);
-    this.routes_viewer_title.innerHTML = `<span style="font-size: 0.8em">Routes at ${escape(_data?.meta?.crag_name || "")}</span>`;
+    const meta = _data?.data?.meta;
+    this.routes_viewer_title.innerHTML = `<span style="font-size: 0.8em">Routes at ${escape(meta?.crag_name || "")}</span>`;
   }
   appendRoute(target, route, tagName) {
     const el = appendRoute({ target, route, tagName: "route-result" });
