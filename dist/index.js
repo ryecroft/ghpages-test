@@ -5387,7 +5387,7 @@ let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
       if (!this.routeLookup) {
         if (currentQuery) {
           void this.fetchDataForQuery("").then((data) => {
-            this.handleFetchedData(data);
+            this.apiDataDescribingEntireList = data;
           });
         }
         this.fetchDataForQuery(currentQuery).then(async (data) => {
@@ -9201,10 +9201,6 @@ let OfflineInfiniteScrollRoutesViewer = class extends InfiniteScrollRoutesViewer
     const res = await super.fetchDataForQuery(query);
     return res;
   }
-  async loadCellsForScroll() {
-    let data = this.isOnline ? this.apiDataDescribingCurrentList : await this.fetchResponseForPageLocal(this.query);
-    this.loadCellsForObjectsWithIdsReturn(data);
-  }
   async fetchResponseForPageLocal(query) {
     const baseData = this.apiDataDescribingEntireList;
     let objects = [];
@@ -9236,10 +9232,11 @@ let OfflineInfiniteScrollRoutesViewer = class extends InfiniteScrollRoutesViewer
       queryDescription: `<span style="color:#F8CA68FF">\u26A0 No internet, using fallback search (no ranges)</span>`
     };
     meta.total_count = count;
-    return {
+    const data = {
       data: { meta, objects },
       status: 200
     };
+    return data;
   }
   async _buildInvertedIndex(lookup) {
     const addFun = (route) => {
