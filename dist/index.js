@@ -1,6 +1,6 @@
 (function () {
 'use strict';
-const style = "*,\n::after,\n::before {\n  box-sizing: border-box;\n}\n\n.icon-nightmode-toggle {\n  position: absolute;\n  right: 5pt;\n  top: 5pt;\n  display: inline-block;\n  background-color: rgba(0, 0, 0, 0.392);\n  cursor: pointer;\n  width: var(--icon-size);\n  height: var(--icon-size);\n  -webkit-mask-size: var(--icon-size) var(--icon-size);\n  -webkit-mask-repeat: no-repeat;\n  -webkit-mask-position: center;\n  mask-size: var(--icon-size) var(--icon-size);\n  mask-repeat: no-repeat;\n  mask-position: center;\n  mask: url(\"/assets/moon.svg\");\n  -webkit-mask: url(\"/assets/moon.svg\");\n}\n\n.icon-nightmode-toggle:focus {\n  background-color: var(--flash-color);\n}\n\ninput[type=search]::-webkit-search-decoration,\ninput[type=search]::-webkit-search-cancel-button,\ninput[type=search]::-webkit-search-results-button,\ninput[type=search]::-webkit-search-results-decoration {\n  display: none;\n}\n\nukc-searchbar {\n  margin-bottom: 12px;\n  transition: all;\n}\n\n.nightmode .icon-nightmode-toggle {\n  width: var(--icon-size);\n  height: var(--icon-size);\n  -webkit-mask-size: var(--icon-size) var(--icon-size);\n  -webkit-mask-repeat: no-repeat;\n  -webkit-mask-position: center;\n  mask-size: var(--icon-size) var(--icon-size);\n  mask-repeat: no-repeat;\n  mask-position: center;\n  mask: url(\"/assets/sun.svg\");\n  -webkit-mask: url(\"/assets/sun.svg\");\n  background-color: rgba(255, 255, 255, 0.492);\n}\n\n.nightmode .rfd-search {\n  --background-color-page: #19181f;\n  --background-color-page-semi: #19181fa5;\n  --brightness-multiplier: 100%;\n  --background-color: #282630;\n  --background-color-2: var(--background-color-page-semi);\n  --title-color: rgb(217, 217, 217);\n  --subtitle-color: rgba(255, 255, 255, 0.62);\n  --subtitle-color-2: rgba(255, 255, 255, 0.492);\n  --subtitle-color-3: rgba(255, 255, 255, 0.39);\n  --subtitle-color-4: rgba(255, 255, 255, 0.28);\n  --flash-color: hotpink;\n  --border-color: #565656;\n}\n\n.nightmode .rfd-search logbook-result .result-entry-container {\n  border-bottom: solid #212029 1px;\n}\n\n.nightmode .rfd-search page-button {\n  background-color: var(--background-color);\n  color: var(--subtitle-color-2);\n}\n\n.nightmode .rfd-search .page-control-current {\n  color: var(--subtitle-color-2);\n  background-color: var(--background-color-2);\n}\n\n.nightmode .rfd-search #page-control-next.disabled,\n.nightmode .rfd-search #page-control-previous.disabled {\n  background-color: var(--background-color);\n}\n\n.nightmode .rfd-search #search-widget {\n  box-shadow: 0px 0px 10px rgba(1, 1, 1, 0.2);\n}\n\n.nightmode .rfd-search .gray-background input {\n  background-color: var(--background-color);\n}\n\n@media (hover: hover) and (pointer: fine) {\n  .nightmode .icon-nightmode-toggle:hover {\n    background-color: var(--flash-color);\n  }\n  .nightmode .result-entry:hover {\n    border-radius: calc(var(--radius) * 0.7);\n  }\n  .nightmode .mouse-over:hover {\n    color: var(--flash-color);\n  }\n  .nightmode .icon:hover {\n    background-color: var(--flash-color);\n  }\n  .nightmode .result-entry-container:hover {\n    background-color: var(--background-color-2);\n  }\n  .nightmode .page-control-page:hover {\n    border-color: var(--flash-color);\n    color: var(--flash-color);\n    z-index: 2;\n  }\n  .nightmode .page-control-current:hover {\n    border-color: var(--background-color-2);\n    color: var(--subtitle-color-2);\n    z-index: 2;\n  }\n  .nightmode #page-control-next.disabled:hover,\n.nightmode #page-control-previous.disabled:hover {\n    color: var(--subtitle-color-2);\n  }\n  .nightmode #page-control-next:hover,\n.nightmode #page-control-previous:hover {\n    border-color: var(--flash-color);\n    color: var(--flash-color);\n    z-index: 2;\n  }\n  .nightmode a:hover {\n    color: var(--flash-color);\n  }\n  .nightmode .page-control-page:hover {\n    color: var(--flash-color);\n  }\n  .nightmode .page-control-current:hover {\n    color: var(--subtitle-color-2);\n  }\n  .nightmode #page-control-next.disabled:hover,\n.nightmode #page-control-previous.disabled:hover {\n    color: var(--subtitle-color-2);\n  }\n}\n\nhtml {\n  --background-color-page: #e8e8e8;\n  --base-mask-size: 2rem;\n  --icon-size: var(--base-mask-size);\n  --big-screen-multiplier: 0.45;\n}\n\n.rfd-search {\n  --background-color-page-semi: #eeeeef;\n  --brightness-multiplier: 100%;\n  --background-color: white;\n  --background-color-2: #dadada;\n  --title-color: rgba(0, 0, 0, 0.75);\n  --subtitle-color: rgba(0, 0, 0, 0.65);\n  --subtitle-color-2: rgba(0, 0, 0, 0.5);\n  --subtitle-color-3: rgba(0, 0, 0, 0.45);\n  --subtitle-color-4: rgba(0, 0, 0, 0.35);\n  --flash-color: var(--flash-color);\n  --border-color: #444444;\n  --base-padding: 10pt;\n  --base-font-size: 1.1rem;\n  --base-font-size-2: calc(var(--base-font-size) * 0.9);\n  --base-font-size-3: calc(var(--base-font-size-2) * 0.9);\n  --base-font-size-4: calc(var(--base-font-size-3) * 1);\n  --base-result-icon-size: 1.7rem;\n  --padding: var(--base-padding);\n  --font-size: var(--base-font-size);\n  --font-size-2: var(--base-font-size-2);\n  --font-size-3: var(--base-font-size-3);\n  --font-size-4: var(--base-font-size-4);\n  --page-control-font-size: 1.3rem;\n  --page-control-size: calc(var(--page-control-font-size) * 1.8);\n  --result-icon-size: var(--base-result-icon-size);\n  --radius: 10pt;\n  --page-control-radius: 5pt;\n  --radius-search-results: 0pt;\n  --border-width: 1pt;\n  --search-container-z-index: 1030;\n  --gray-view-opacity-animation-duration: 0.2s;\n  margin-bottom: 16px;\n}\n\n.rfd-search crag-icon *,\n.rfd-search topo-dot *,\n.rfd-search external-link-icon * {\n  width: var(--result-icon-size);\n  height: var(--result-icon-size);\n}\n\n.rfd-search select {\n  background-color: var(--background-color);\n  color: var(--subtitle-color);\n  border: none;\n}\n\n.rfd-search {\n  width: 100%;\n  font-size: var(--font-size);\n  position: relative;\n}\n\n.rfd-search ::-webkit-scrollbar-thumb {\n  filter: brightness(80%);\n}\n\n.rfd-search #searchbar-footer,\n.rfd-search #searchbar-query-suggestion-flex {\n  filter: brightness(90%);\n}\n\n.rfd-search ::-webkit-scrollbar {\n  height: 10pt;\n  width: 5pt;\n}\n\n.rfd-search ::-webkit-scrollbar-thumb {\n  background: var(--background-color-2);\n}\n\n.rfd-search ::-webkit-scrollbar-track {\n  background: rgba(1, 1, 1, 0);\n}\n\n.rfd-search scrollbar-thumb {\n  background: var(--background-color-2);\n}\n\n.rfd-search scrollbar-track {\n  background: rgba(1, 1, 1, 0);\n}\n\n.rfd-search ul {\n  list-style-type: none;\n  margin: 0pt;\n  padding: 0pt;\n  padding-bottom: var(--padding);\n  outline: none;\n}\n\n.rfd-search ul a:link {\n  color: unset;\n}\n\n.rfd-search ul a:visited {\n  color: unset;\n}\n\n.rfd-search ul a:hover {\n  color: unset;\n}\n\n.rfd-search ul a:active {\n  color: unset;\n}\n\n.rfd-search input {\n  outline: none;\n  width: 100%;\n  font-size: var(--font-size);\n  border-radius: var(--radius);\n  color: rgba(0, 0, 0, 0);\n  background-color: var(--background-color);\n  color: var(--title-color);\n  border: none;\n  transition-property: all;\n}\n\n.rfd-search a {\n  text-decoration: none !important;\n}\n\n.rfd-search a:link {\n  color: cadetblue;\n}\n\n.rfd-search a:visited {\n  color: cadetblue;\n}\n\n.rfd-search a:active {\n  color: var(--flash-color);\n}\n\n.rfd-search #name-dash {\n  display: none;\n}\n\n.rfd-search .logged-clean logbook-indicator,\n.rfd-search .logged-followed logbook-indicator,\n.rfd-search .logged-dogged logbook-indicator {\n  display: block;\n}\n\n.rfd-search .on-wishlist wishlist-indicator {\n  display: block;\n}\n\n.rfd-search .logged-clean.on-wishlist wishlist-indicator,\n.rfd-search .logged-followed.on-wishlist wishlist-indicator,\n.rfd-search .logged-dogged.on-wishlist wishlist-indicator {\n  right: 24px;\n}\n\n.rfd-search logbook-indicator {\n  display: none;\n  position: absolute;\n  top: 0px;\n  right: -6px;\n  width: calc(var(--result-icon-size) * 1);\n  height: calc(var(--result-icon-size) * 1);\n}\n\n.rfd-search wishlist-indicator {\n  display: none;\n  position: absolute;\n  top: -1px;\n  right: 4px;\n  width: calc(var(--result-icon-size) * 0.5);\n  height: calc(var(--result-icon-size) * 0.5);\n}\n\n.rfd-search input,\n.rfd-search #search-query-description,\n.rfd-search .search-results-search-query-description {\n  padding: calc(var(--padding) * 0.65);\n  padding-left: var(--padding);\n}\n\n.rfd-search #filter-icon {\n  left: 16px;\n  position: absolute;\n  top: 50%;\n  transform: translateY(-50%);\n  background-color: var(--subtitle-color);\n}\n\n.rfd-search #filter-bar-container input {\n  width: calc(100% - (var(--padding) * 2 - 8px));\n  display: block;\n  padding: var(--padding);\n  padding-top: calc(var(--padding) - 2px);\n  padding-bottom: calc(var(--padding) - 2px);\n  padding-left: 40px;\n  margin: var(--padding);\n  margin-right: calc(var(--padding) - 4px);\n  margin-left: calc(var(--padding) - 4px);\n  border-width: var(--border-width);\n  background-color: var(--background-color-page-semi);\n  transition: all 0.2s;\n}\n\n.rfd-search #name-and-grade {\n  display: flex;\n  justify-content: space-between;\n  font-weight: 500;\n}\n\n.rfd-search #gray-view {\n  width: 100vw;\n  height: 100vh;\n  background-color: rgba(0, 0, 0, 0.7);\n  position: fixed;\n  top: 0vw;\n  left: 0vw;\n  z-index: calc(var(--search-container-z-index) - 1);\n  opacity: 1;\n  backdrop-filter: blur(5px);\n  -webkit-backdrop-filter: blur(5px);\n}\n\n.rfd-search #search-container {\n  position: relative;\n  z-index: var(--search-container-z-index);\n}\n\n.rfd-search #search-container input {\n  padding-right: calc(var(--icon-size) + var(--padding));\n  padding-left: calc(var(--icon-size) + var(--padding) - 4px);\n  transition: all 0.2s;\n}\n\n.rfd-search #searchbar-inner-container {\n  position: relative;\n}\n\n.rfd-search #search-absolute {\n  position: absolute;\n  top: 0;\n  width: 100%;\n  transition: transform 0.3s ease-out;\n}\n\n.rfd-search #search-results-header-container,\n.rfd-search #search-widget,\n.rfd-search #search-results-widget {\n  border-width: var(--border-width);\n  background-color: var(--background-color);\n  transition: all 0.2s;\n  overflow: hidden;\n}\n\n.rfd-search #search-widget {\n  box-shadow: 0px 0px 10px rgba(1, 1, 1, 0.1);\n  transition: opacity 0.3s;\n  border-radius: var(--radius);\n}\n\n.rfd-search #search-results-header-container,\n.rfd-search #search-results-widget {\n  margin-left: calc(-50vw + 50%);\n  margin-right: calc(-51vw + 51%);\n}\n\n.rfd-search #searchbar-footer {\n  background-color: var(--background-color);\n  font-size: var(--font-size-4);\n  color: var(--subtitle-color-2);\n  border-bottom-left-radius: var(--radius);\n  border-bottom-right-radius: var(--radius);\n  filter: brightness(90%);\n}\n\n.rfd-search #search-results-container {\n  contain: layout paint;\n  overflow-y: auto;\n  overflow-x: hidden;\n  overscroll-behavior-y: contain;\n  scrollbar-color: var(--background-color-2) rgba(1, 1, 1, 0);\n  transition: opacity 0.3s ease-out;\n}\n\n.rfd-search #search-icon {\n  position: absolute;\n  left: 4pt;\n  top: 50%;\n  transform: translateY(-50%);\n  background-color: var(--subtitle-color);\n}\n\n.rfd-search #filter-bar-container {\n  position: relative;\n}\n\n.rfd-search #input-hidden {\n  background-color: rgba(0, 0, 0, 0) !important;\n}\n\n.rfd-search #delete-search-text-button,\n.rfd-search #filter-delete-text-button {\n  position: absolute;\n  right: 0px;\n  top: 50%;\n  transform: translateY(-50%);\n  cursor: pointer;\n}\n\n.rfd-search #filter-delete-text-button {\n  right: 10px;\n}\n\n.rfd-search #return-key-action {\n  padding: var(--padding);\n  margin-top: calc(var(--padding) * 5);\n}\n\n.rfd-search #search-results-header-container {\n  backface-visibility: hidden;\n  background-color: var(--background-color);\n  position: sticky;\n  z-index: 2;\n  width: 100vw;\n  margin-left: -15px;\n}\n\n.rfd-search .routes-viewer-header {\n  padding-left: var(--padding);\n  width: 100vw;\n}\n\n.rfd-search .result-icon {\n  display: inline-block;\n}\n\n.rfd-search .gray-background input {\n  background-color: #e0e0e0;\n  transition: background-color 0.2s ease;\n}\n\n.rfd-search .normal-background input {\n  background-color: var(--background-color);\n  transition: background-color 0.2s ease;\n}\n\n.rfd-search .searchbar-help-text-container {\n  transition: height 0.2s ease;\n  overscroll-behavior-y: contain;\n}\n\n.rfd-search #searchbar-help-text {\n  padding: calc(var(--padding) * 2);\n}\n\n.rfd-search #placeholder-short-display {\n  color: var(--title-color);\n  opacity: 0.5;\n  margin-left: -6px;\n}\n\n.rfd-search #searchbar-short-display-container {\n  position: absolute;\n  left: 4pt;\n  transform: translateY(-8%);\n}\n\n.rfd-search #search-icon-short-display {\n  background-color: var(--subtitle-color);\n  display: inline-block;\n  transform: translateY(30%);\n}\n\n.rfd-search #searchbar-query-suggestion-flex {\n  position: relative;\n  padding-right: calc(var(--icon-size) + var(--padding));\n  border-bottom-left-radius: var(--radius);\n  border-bottom-right-radius: var(--radius);\n}\n\n.rfd-search .ascent-notes a,\n.rfd-search .ascent-details a {\n  color: #bbdcee !important;\n  opacity: 0.7;\n  line-height: 1.3em;\n}\n\n.rfd-search #help-button,\n.rfd-search #filter-bar-help-button {\n  position: absolute;\n  right: 0pt;\n  top: 50%;\n  transform: translateY(-50%);\n}\n\n.rfd-search #searchbar-query-suggestion-flex,\n.rfd-search #search-query-description,\n.rfd-search .search-results-search-query-description {\n  font-size: var(--font-size-3);\n  color: var(--subtitle-color-2);\n  background-color: var(--background-color);\n}\n\n.rfd-search #focus-searchbar {\n  display: none;\n}\n\n.rfd-search .logged {\n  background-color: green;\n}\n\n.rfd-search .page-control {\n  display: flex;\n  justify-content: flex-end;\n  align-content: center;\n  margin-top: var(--padding);\n  margin-bottom: var(--padding);\n  margin-left: calc(-50vw + 50%);\n  margin-right: calc(-50vw + 50% + var(--padding));\n}\n\n.rfd-search .fa-button {\n  border: 0;\n  width: 40px;\n  height: 40px;\n  background-color: var(--background-color);\n  border-radius: var(--radius);\n  color: var(--subtitle-color);\n  transition: background-color 0.2s ease-out;\n}\n\n.rfd-search .fa-button:hover {\n  background-color: var(--background-color-2);\n}\n\n.rfd-search .fa-button i {\n  transition: rotate 0.2s ease-out;\n}\n\n.rfd-search .hidden {\n  display: none;\n}\n\n.rfd-search #page-control-previous,\n.rfd-search #page-control-next,\n.rfd-search page-button {\n  display: flex;\n  align-items: center;\n  text-align: center;\n  aspect-ratio: 1/1;\n  font-family: monospace;\n  background-color: var(--background-color);\n  border: solid;\n  color: var(--subtitle-color-2);\n  margin-left: calc(var(--border-width) * -1);\n  border-width: var(--border-width);\n  border-color: var(--background-color-2);\n  justify-content: center;\n  font-weight: 900;\n  cursor: pointer;\n  font-size: var(--page-control-font-size);\n  height: var(--page-control-size);\n  width: var(--page-control-size);\n}\n\n.rfd-search #page-control-previous {\n  border-top-left-radius: var(--page-control-radius);\n  border-bottom-left-radius: var(--page-control-radius);\n}\n\n.rfd-search #page-control-next {\n  border-top-right-radius: var(--page-control-radius);\n  border-bottom-right-radius: var(--page-control-radius);\n}\n\n.rfd-search page-button {\n  display: flex;\n  justify-content: center;\n  align-content: center;\n}\n\n.rfd-search .date-header {\n  display: flex;\n  justify-content: space-between;\n  font-size: var(--font-size-3);\n  color: var(--subtitle-color-2);\n  padding: var(--padding);\n  padding-right: calc(var(--padding) / 2);\n  padding-top: calc(var(--padding) / 2);\n  padding-bottom: calc(var(--padding) / 2 - 2px);\n  background-color: var(--background-color-page-semi);\n}\n\n.rfd-search .page-control-current {\n  border-color: var(--background-color-2);\n  color: var(--subtitle-color-2);\n  background-color: var(--background-color-2);\n  filter: brightness(110%);\n  cursor: default;\n}\n\n.rfd-search #page-control-next.disabled,\n.rfd-search #page-control-previous.disabled {\n  background-color: var(--background-color);\n  border-color: var(--background-color-2);\n  cursor: default;\n  opacity: 0.4;\n}\n\n.rfd-search .routes-viewer-controls {\n  color: var(--subtitle-color-2);\n  font-size: 0.9em;\n  display: flex;\n  justify-content: flex-start;\n  align-items: center;\n  margin-bottom: 0px;\n}\n\n.rfd-search .routes-viewer-sort-order {\n  flex-grow: 0;\n  font-family: monospace;\n  font-weight: 600;\n  margin-bottom: 0px;\n}\n\n.rfd-search .result-entry {\n  display: flex;\n}\n\n.rfd-search .result-icon-area {\n  margin-top: -4pt;\n  width: 30pt;\n}\n\n.rfd-search .ascent-details {\n  display: flex;\n  justify-content: space-between;\n  margin-top: 10px;\n  color: var(--subtitle-color-4);\n  font-size: calc(var(--font-size-4) * 0.9);\n}\n\n.rfd-search .ascent-notes {\n  margin-top: 14px;\n  margin-bottom: 18px;\n  font-style: italic;\n  line-height: calc(var(--font-size-4) * 1.2);\n  color: var(--subtitle-color-2);\n  font-size: calc(var(--font-size-4) * 0.9);\n}\n\n.rfd-search .result-text-area {\n  width: 100%;\n  max-width: calc(100% - 36px);\n  display: flex;\n  flex-direction: column;\n}\n\n.rfd-search .result-title {\n  overflow-x: clip;\n  text-overflow: ellipsis;\n  white-space: pre;\n}\n\n.rfd-search .result-crag-name {\n  overflow-x: clip;\n  text-overflow: ellipsis;\n}\n\n.rfd-search .result-entry-start {\n  margin-bottom: 6pt;\n  display: block;\n}\n\n.rfd-search .result-entry-end {\n  display: flex;\n  align-items: baseline;\n}\n\n.rfd-search .selected .result-entry {\n  background-color: var(--background-color-2);\n}\n\n.rfd-search .selected .result-entry * {\n  background-color: var(--background-color-2);\n}\n\n.rfd-search .footer-content {\n  padding: 10px;\n}\n\n.rfd-search .keycode {\n  display: none;\n  background-color: var(--background-color-2);\n  border-radius: 3pt;\n  padding: 4pt;\n}\n\n.rfd-search .display-if-necessary {\n  display: block;\n}\n\n.rfd-search .result-entry {\n  font-size: var(--font-size-2);\n  color: var(--title-color);\n  padding: var(--padding);\n  padding-top: calc(var(--padding) + 4px);\n  padding-bottom: calc(var(--padding) + 2px);\n  display: flex;\n}\n\n.rfd-search .result-entry-end {\n  white-space: nowrap;\n}\n\n.rfd-search .result-entry-start {\n  white-space: nowrap;\n}\n\n.rfd-search .result-grade {\n  font-size: var(--font-size-3);\n  font-style: italic;\n  color: var(--subtitle-color);\n  white-space: pre;\n}\n\n.rfd-search .result-star-count {\n  font-size: var(--font-size-2);\n  font-style: italic;\n  font-weight: bolder;\n  color: hotpink;\n}\n\n.rfd-search .result-crag-name {\n  font-size: var(--font-size-4);\n  color: var(--subtitle-color-2);\n}\n\n.rfd-search .result-context,\n.rfd-search .result-sub-context {\n  font-style: italic;\n  font-size: var(--font-size-4);\n  color: var(--subtitle-color-4);\n}\n\n.rfd-search .search-container {\n  background-color: none;\n}\n\n.rfd-search .loader-stopped,\n.rfd-search .divider {\n  opacity: 1;\n  height: var(--border-width);\n  background-color: var(--background-color-2);\n}\n\n.rfd-search .divider-no-height-set {\n  opacity: 1;\n  background-color: var(--background-color-2);\n}\n\n.rfd-search .icon {\n  background-color: var(--subtitle-color);\n  margin-right: 4pt;\n  cursor: pointer;\n}\n\n.rfd-search .icon:focus {\n  background-color: var(--flash-color);\n}\n\n.rfd-search .icon-magnifying-glass {\n  width: var(--icon-size);\n  height: var(--icon-size);\n  -webkit-mask-size: var(--icon-size) var(--icon-size);\n  -webkit-mask-repeat: no-repeat;\n  -webkit-mask-position: center;\n  mask-size: var(--icon-size) var(--icon-size);\n  mask-repeat: no-repeat;\n  mask-position: center;\n  mask: url(\"/assets/magnifying-glass.svg\");\n  -webkit-mask: url(\"/assets/magnifying-glass.svg\");\n}\n\n.rfd-search .icon-question-mark {\n  width: var(--icon-size);\n  height: var(--icon-size);\n  -webkit-mask-size: var(--icon-size) var(--icon-size);\n  -webkit-mask-repeat: no-repeat;\n  -webkit-mask-position: center;\n  mask-size: var(--icon-size) var(--icon-size);\n  mask-repeat: no-repeat;\n  mask-position: center;\n  mask: url(\"/assets/question-mark.svg\");\n  -webkit-mask: url(\"/assets/question-mark.svg\");\n}\n\n.rfd-search .icon-external-link {\n  width: var(--icon-size);\n  height: var(--icon-size);\n  -webkit-mask-size: var(--icon-size) var(--icon-size);\n  -webkit-mask-repeat: no-repeat;\n  -webkit-mask-position: center;\n  mask-size: var(--icon-size) var(--icon-size);\n  mask-repeat: no-repeat;\n  mask-position: center;\n  mask: url(\"/assets/external-link.svg\");\n  -webkit-mask: url(\"/assets/external-link.svg\");\n}\n\n.rfd-search .icon-circle-times {\n  width: var(--icon-size);\n  height: var(--icon-size);\n  -webkit-mask-size: var(--icon-size) var(--icon-size);\n  -webkit-mask-repeat: no-repeat;\n  -webkit-mask-position: center;\n  mask-size: var(--icon-size) var(--icon-size);\n  mask-repeat: no-repeat;\n  mask-position: center;\n  mask: url(\"/assets/circle-times.svg\");\n  -webkit-mask: url(\"/assets/circle-times.svg\");\n}\n\n.rfd-search .result-entry-container {\n  line-height: 1;\n}\n\n.rfd-search #search-results-widget .result-entry-container {\n  border-bottom: solid var(--background-color-page-semi) 1px;\n}\n\n.rfd-search route-result .result-text-area,\n.rfd-search logbook-result .result-text-area {\n  max-width: 100%;\n  padding-left: 40px;\n}\n\n.rfd-search .ascent-style-indicator {\n  margin-left: -15px;\n  margin-right: 4px;\n}\n\n.rfd-search .mouse-over {\n  color: cadetblue;\n  cursor: pointer;\n}\n\n.rfd-search .mouse-over:focus {\n  color: var(--flash-color);\n}\n\n.rfd-search .fade-in {\n  -webkit-animation: fadein var(--gray-view-opacity-animation-duration) linear forwards;\n  animation: fadein var(--gray-view-opacity-animation-duration) linear forwards;\n}\n\n@-webkit-keyframes fadein {\n  0% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 1;\n  }\n}\n\n@-moz-keyframes fadein {\n  0% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 1;\n  }\n}\n\n@-o-keyframes fadein {\n  0% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 1;\n  }\n}\n\n@keyframes fadein {\n  0% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 1;\n  }\n}\n\n.rfd-search .fade-out {\n  -webkit-animation: fadeout var(--gray-view-opacity-animation-duration) linear forwards;\n  animation: fadeout var(--gray-view-opacity-animation-duration) linear forwards;\n}\n\n@-webkit-keyframes fadeout {\n  0% {\n    opacity: 1;\n  }\n  100% {\n    opacity: 0;\n  }\n}\n\n@-moz-keyframes fadeout {\n  0% {\n    opacity: 1;\n  }\n  100% {\n    opacity: 0;\n  }\n}\n\n@-o-keyframes fadeout {\n  0% {\n    opacity: 1;\n  }\n  100% {\n    opacity: 0;\n  }\n}\n\n@keyframes fadeout {\n  0% {\n    opacity: 1;\n  }\n  100% {\n    opacity: 0;\n  }\n}\n\n.loader-stopped {\n  position: relative;\n  background: var(--background-color-2);\n  overflow: hidden;\n}\n\n.loader-spinning {\n  position: relative;\n  height: 2px;\n  background: transparent;\n  overflow: hidden;\n  animation: loader-rainbow 1.5s infinite linear;\n}\n\n.loader-spinning:after {\n  display: block;\n  content: \" \";\n  position: absolute;\n  height: 100%;\n  background: hotpink;\n  left: 0;\n  transform: translate3d(-150%, 0, 0);\n  animation: loader-stripe 1.5s infinite linear;\n}\n\n@keyframes loader-stripe {\n  0% {\n    transform: translate3d(-100%, 0, 0);\n  }\n  100% {\n    transform: translate3d(100%, 0, 0);\n  }\n}\n\n@keyframes loader-rainbow {\n  0% {\n    background: var(--background-color-2);\n  }\n  50% {\n    background: hotpink;\n  }\n  100% {\n    background: var(--background-color-2);\n  }\n}\n\n@media only screen and (min-width: 768px) {\n  :root {\n    --icon-size: 2rem;\n  }\n  .rfd-search {\n    --page-control-size: 18pt;\n    --radius: 4pt;\n    --page-control-radius: 4pt;\n    --radius-search-results: 4pt;\n    --border-width: 1pt;\n    --font-size: 0.9rem;\n    --page-control-font-size: var(--font-size-3);\n    --font-size-2: calc(var(--font-size) * 0.9);\n    --font-size-3: calc(var(--font-size-2) * 0.9);\n    --font-size-4: calc(var(--font-size-3) * 0.9);\n    --result-icon-size: 1.5rem;\n  }\n  .rfd-search logbook-indicator {\n    right: -5px;\n  }\n  .rfd-search wishlist-indicator {\n    right: 0px;\n  }\n  .rfd-search #name-dash {\n    display: inline-block;\n  }\n  .rfd-search #star-count-and-route-grade {\n    display: flex;\n    flex-direction: row-reverse;\n    translate: 0 1.5px;\n  }\n  .rfd-search #star-count-and-route-grade * {\n    margin-right: 0.2rem;\n  }\n  .rfd-search #search-icon {\n    background-color: var(--subtitle-color);\n  }\n  .rfd-search input {\n    padding-top: 4pt;\n    padding-bottom: 4pt;\n  }\n  .rfd-search #focus-searchbar,\n.rfd-search .keycode {\n    display: unset;\n  }\n  .rfd-search #search-results-header-container {\n    border-top-left-radius: var(--radius);\n    border-top-right-radius: var(--radius);\n  }\n  .rfd-search #searchbar-help-text {\n    padding: calc(var(--base-padding) * var(--big-screen-multiplier) * 2);\n  }\n  .rfd-search #search-results-header-container,\n.rfd-search #search-results-widget {\n    margin-right: 50%;\n    margin-left: 50%;\n    transform: translateX(-50%);\n    min-width: 700px;\n    box-shadow: 0px 0px 10px rgba(1, 1, 1, 0.1);\n  }\n  .rfd-search #placeholder-short-display {\n    margin-left: 0px;\n    position: absolute;\n    white-space: nowrap;\n    transform: translate(4px, 15px);\n  }\n  .rfd-search #searchbar-short-display-container {\n    transform: translateY(-26%);\n  }\n  .rfd-search #search-results-header-container {\n    border-top-left-radius: var(--radius-search-results);\n    border-top-right-radius: var(--radius-search-results);\n  }\n  .rfd-search .page-control {\n    width: 400pt;\n    margin-right: 50%;\n    margin-left: 50%;\n    transform: translateX(-50%);\n    min-width: 700px;\n  }\n  .rfd-search #filter-bar-container input {\n    padding-top: calc(var(--padding) / 2);\n    padding-bottom: calc(var(--padding) / 2);\n  }\n  .rfd-search #search-container {\n    max-width: 500pt;\n    left: 50%;\n    transform: translateX(-50%);\n  }\n  .rfd-search #search-results-header-container {\n    width: unset;\n  }\n  .rfd-search #search-query-description,\n.rfd-search .search-results-search-query-description {\n    padding: calc(var(--base-padding) * var(--big-screen-multiplier) * 2);\n  }\n  .rfd-search #searchbar-query-suggestion-flex,\n.rfd-search #search-query-description,\n.rfd-search .search-results-search-query-description {\n    font-size: calc(var(--font-size-2) * 0.9);\n  }\n  .rfd-search .result-entry-container {\n    line-height: 1;\n  }\n  .rfd-search .ascent-details {\n    font-size: var(--font-size-3);\n  }\n  .rfd-search .ascent-notes {\n    font-size: var(--font-size-3);\n  }\n  .rfd-search .result-entry {\n    padding-top: calc(var(--padding) / 1.85);\n    padding-bottom: calc(var(--padding) / 1.85);\n    align-items: center;\n  }\n  .rfd-search .result-crag-name {\n    padding-bottom: 2pt;\n  }\n  .rfd-search .selected .result-entry {\n    border-radius: calc(var(--radius) * 0.7);\n  }\n  .rfd-search .icon {\n    margin-right: unset;\n  }\n  .rfd-search .result-entry-end {\n    padding-left: var(--padding);\n    flex-direction: column;\n    align-items: baseline;\n    flex-grow: 1;\n  }\n  .rfd-search .footer-content {\n    padding: 4px;\n    padding-right: 10px;\n  }\n  .rfd-search .nightmode #search-results-header-container,\n.rfd-search .nightmode #search-results-widget {\n    box-shadow: 0px 0px 10px rgba(1, 1, 1, 0.2);\n  }\n  .rfd-search .result-icon-area {\n    margin-top: unset;\n  }\n  .rfd-search .result-text-area {\n    flex-direction: row;\n    justify-content: space-between;\n  }\n  .rfd-search .result-entry-start {\n    align-self: center;\n    margin-bottom: unset;\n  }\n  .rfd-search .result-entry-end {\n    flex-direction: column;\n    align-items: flex-end;\n  }\n  .rfd-search .ascent-style-indicator {\n    margin-left: -13px;\n  }\n}\n\nselect {\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  appearance: none;\n  text-overflow: \"\";\n}";
+const style = "*,\n::after,\n::before {\n  box-sizing: border-box;\n}\n\n.icon-nightmode-toggle {\n  position: absolute;\n  right: 5pt;\n  top: 5pt;\n  display: inline-block;\n  background-color: rgba(0, 0, 0, 0.392);\n  cursor: pointer;\n  width: var(--icon-size);\n  height: var(--icon-size);\n  -webkit-mask-size: var(--icon-size) var(--icon-size);\n  -webkit-mask-repeat: no-repeat;\n  -webkit-mask-position: center;\n  mask-size: var(--icon-size) var(--icon-size);\n  mask-repeat: no-repeat;\n  mask-position: center;\n  mask: url(\"/assets/moon.svg\");\n  -webkit-mask: url(\"/assets/moon.svg\");\n}\n\n.icon-nightmode-toggle:focus {\n  background-color: var(--flash-color);\n}\n\ninput[type=search]::-webkit-search-decoration,\ninput[type=search]::-webkit-search-cancel-button,\ninput[type=search]::-webkit-search-results-button,\ninput[type=search]::-webkit-search-results-decoration {\n  display: none;\n}\n\nukc-searchbar {\n  margin-bottom: 12px;\n  transition: all;\n}\n\n.nightmode .icon-nightmode-toggle {\n  width: var(--icon-size);\n  height: var(--icon-size);\n  -webkit-mask-size: var(--icon-size) var(--icon-size);\n  -webkit-mask-repeat: no-repeat;\n  -webkit-mask-position: center;\n  mask-size: var(--icon-size) var(--icon-size);\n  mask-repeat: no-repeat;\n  mask-position: center;\n  mask: url(\"/assets/sun.svg\");\n  -webkit-mask: url(\"/assets/sun.svg\");\n  background-color: rgba(255, 255, 255, 0.492);\n}\n\n.nightmode .rfd-search {\n  --background-color-page: #19181f;\n  --background-color-page-semi: #19181fa5;\n  --brightness-multiplier: 100%;\n  --background-color: #282630;\n  --background-color-2: var(--background-color-page-semi);\n  --title-color: rgb(217, 217, 217);\n  --subtitle-color: rgba(255, 255, 255, 0.62);\n  --subtitle-color-2: rgba(255, 255, 255, 0.492);\n  --subtitle-color-3: rgba(255, 255, 255, 0.39);\n  --subtitle-color-4: rgba(255, 255, 255, 0.28);\n  --flash-color: hotpink;\n  --border-color: #565656;\n}\n\n.nightmode .rfd-search logbook-result .result-entry-container {\n  border-bottom: solid #212029 1px;\n}\n\n.nightmode .rfd-search page-button {\n  background-color: var(--background-color);\n  color: var(--subtitle-color-2);\n}\n\n.nightmode .rfd-search .page-control-current {\n  color: var(--subtitle-color-2);\n  background-color: var(--background-color-2);\n}\n\n.nightmode .rfd-search #page-control-next.disabled,\n.nightmode .rfd-search #page-control-previous.disabled {\n  background-color: var(--background-color);\n}\n\n.nightmode .rfd-search #search-widget {\n  box-shadow: 0px 0px 10px rgba(1, 1, 1, 0.2);\n}\n\n.nightmode .rfd-search .gray-background input {\n  background-color: var(--background-color);\n}\n\n@media (hover: hover) and (pointer: fine) {\n  .nightmode .icon-nightmode-toggle:hover {\n    background-color: var(--flash-color);\n  }\n  .nightmode .result-entry:hover {\n    border-radius: calc(var(--radius) * 0.7);\n  }\n  .nightmode .mouse-over:hover {\n    color: var(--flash-color);\n  }\n  .nightmode .icon:hover {\n    background-color: var(--flash-color);\n  }\n  .nightmode .result-entry-container:hover {\n    background-color: var(--background-color-2);\n  }\n  .nightmode .page-control-page:hover {\n    border-color: var(--flash-color);\n    color: var(--flash-color);\n    z-index: 2;\n  }\n  .nightmode .page-control-current:hover {\n    border-color: var(--background-color-2);\n    color: var(--subtitle-color-2);\n    z-index: 2;\n  }\n  .nightmode #page-control-next.disabled:hover,\n.nightmode #page-control-previous.disabled:hover {\n    color: var(--subtitle-color-2);\n  }\n  .nightmode #page-control-next:hover,\n.nightmode #page-control-previous:hover {\n    border-color: var(--flash-color);\n    color: var(--flash-color);\n    z-index: 2;\n  }\n  .nightmode a:hover {\n    color: var(--flash-color);\n  }\n  .nightmode .page-control-page:hover {\n    color: var(--flash-color);\n  }\n  .nightmode .page-control-current:hover {\n    color: var(--subtitle-color-2);\n  }\n  .nightmode #page-control-next.disabled:hover,\n.nightmode #page-control-previous.disabled:hover {\n    color: var(--subtitle-color-2);\n  }\n}\n\nhtml {\n  --background-color-page: #e8e8e8;\n  --base-mask-size: 2rem;\n  --icon-size: var(--base-mask-size);\n  --big-screen-multiplier: 0.45;\n}\n\n.rfd-search {\n  --background-color-page-semi: #eeeeef;\n  --brightness-multiplier: 100%;\n  --background-color: white;\n  --background-color-2: #dadada;\n  --title-color: rgba(0, 0, 0, 0.75);\n  --subtitle-color: rgba(0, 0, 0, 0.65);\n  --subtitle-color-2: rgba(0, 0, 0, 0.5);\n  --subtitle-color-3: rgba(0, 0, 0, 0.45);\n  --subtitle-color-4: rgba(0, 0, 0, 0.35);\n  --flash-color: var(--flash-color);\n  --border-color: #444444;\n  --base-padding: 10pt;\n  --base-font-size: 1.1rem;\n  --base-font-size-2: calc(var(--base-font-size) * 0.9);\n  --base-font-size-3: calc(var(--base-font-size-2) * 0.9);\n  --base-font-size-4: calc(var(--base-font-size-3) * 1);\n  --base-result-icon-size: 1.7rem;\n  --padding: var(--base-padding);\n  --font-size: var(--base-font-size);\n  --font-size-2: var(--base-font-size-2);\n  --font-size-3: var(--base-font-size-3);\n  --font-size-4: var(--base-font-size-4);\n  --page-control-font-size: 1.3rem;\n  --page-control-size: calc(var(--page-control-font-size) * 1.8);\n  --result-icon-size: var(--base-result-icon-size);\n  --radius: 10pt;\n  --page-control-radius: 5pt;\n  --radius-search-results: 0pt;\n  --border-width: 1pt;\n  --search-container-z-index: 1030;\n  --gray-view-opacity-animation-duration: 0.2s;\n  margin-bottom: 16px;\n}\n\n.rfd-search crag-icon *,\n.rfd-search buttress-icon *,\n.rfd-search topo-dot *,\n.rfd-search external-link-icon * {\n  width: var(--result-icon-size);\n  height: var(--result-icon-size);\n}\n\n.rfd-search select {\n  background-color: var(--background-color);\n  color: var(--subtitle-color);\n  border: none;\n}\n\n.rfd-search {\n  width: 100%;\n  font-size: var(--font-size);\n  position: relative;\n}\n\n.rfd-search ::-webkit-scrollbar-thumb {\n  filter: brightness(80%);\n}\n\n.rfd-search #searchbar-footer,\n.rfd-search #searchbar-query-suggestion-flex {\n  filter: brightness(90%);\n}\n\n.rfd-search ::-webkit-scrollbar {\n  height: 10pt;\n  width: 5pt;\n}\n\n.rfd-search ::-webkit-scrollbar-thumb {\n  background: var(--background-color-2);\n}\n\n.rfd-search ::-webkit-scrollbar-track {\n  background: rgba(1, 1, 1, 0);\n}\n\n.rfd-search scrollbar-thumb {\n  background: var(--background-color-2);\n}\n\n.rfd-search scrollbar-track {\n  background: rgba(1, 1, 1, 0);\n}\n\n.rfd-search ul {\n  list-style-type: none;\n  margin: 0pt;\n  padding: 0pt;\n  padding-bottom: var(--padding);\n  outline: none;\n}\n\n.rfd-search ul a:link {\n  color: unset;\n}\n\n.rfd-search ul a:visited {\n  color: unset;\n}\n\n.rfd-search ul a:hover {\n  color: unset;\n}\n\n.rfd-search ul a:active {\n  color: unset;\n}\n\n.rfd-search input {\n  outline: none;\n  width: 100%;\n  font-size: var(--font-size);\n  border-radius: var(--radius);\n  color: rgba(0, 0, 0, 0);\n  background-color: var(--background-color);\n  color: var(--title-color);\n  border: none;\n  transition-property: all;\n}\n\n.rfd-search a {\n  text-decoration: none !important;\n}\n\n.rfd-search a:link {\n  color: cadetblue;\n}\n\n.rfd-search a:visited {\n  color: cadetblue;\n}\n\n.rfd-search a:active {\n  color: var(--flash-color);\n}\n\n.rfd-search #name-dash {\n  display: none;\n}\n\n.rfd-search .logged-clean logbook-indicator,\n.rfd-search .logged-followed logbook-indicator,\n.rfd-search .logged-dogged logbook-indicator {\n  display: block;\n}\n\n.rfd-search .on-wishlist wishlist-indicator {\n  display: block;\n}\n\n.rfd-search .logged-clean.on-wishlist wishlist-indicator,\n.rfd-search .logged-followed.on-wishlist wishlist-indicator,\n.rfd-search .logged-dogged.on-wishlist wishlist-indicator {\n  right: 24px;\n}\n\n.rfd-search logbook-indicator {\n  display: none;\n  position: absolute;\n  top: 0px;\n  right: -6px;\n  width: calc(var(--result-icon-size) * 1);\n  height: calc(var(--result-icon-size) * 1);\n}\n\n.rfd-search wishlist-indicator {\n  display: none;\n  position: absolute;\n  top: -1px;\n  right: 4px;\n  width: calc(var(--result-icon-size) * 0.5);\n  height: calc(var(--result-icon-size) * 0.5);\n}\n\n.rfd-search input,\n.rfd-search #search-query-description,\n.rfd-search .search-results-search-query-description {\n  padding: calc(var(--padding) * 0.65);\n  padding-left: var(--padding);\n}\n\n.rfd-search #filter-icon {\n  left: 16px;\n  position: absolute;\n  top: 50%;\n  transform: translateY(-50%);\n  background-color: var(--subtitle-color);\n}\n\n.rfd-search #filter-bar-container input {\n  width: calc(100% - (var(--padding) * 2 - 8px));\n  display: block;\n  padding: var(--padding);\n  padding-top: calc(var(--padding) - 2px);\n  padding-bottom: calc(var(--padding) - 2px);\n  padding-left: 40px;\n  margin: var(--padding);\n  margin-right: calc(var(--padding) - 4px);\n  margin-left: calc(var(--padding) - 4px);\n  border-width: var(--border-width);\n  background-color: var(--background-color-page-semi);\n  transition: all 0.2s;\n}\n\n.rfd-search #name-and-grade {\n  display: flex;\n  justify-content: space-between;\n  font-weight: 500;\n}\n\n.rfd-search #gray-view {\n  width: 100vw;\n  height: 100vh;\n  background-color: rgba(0, 0, 0, 0.7);\n  position: fixed;\n  top: 0vw;\n  left: 0vw;\n  z-index: calc(var(--search-container-z-index) - 1);\n  opacity: 1;\n  backdrop-filter: blur(5px);\n  -webkit-backdrop-filter: blur(5px);\n}\n\n.rfd-search #search-container {\n  position: relative;\n  z-index: var(--search-container-z-index);\n}\n\n.rfd-search #search-container input {\n  padding-right: calc(var(--icon-size) + var(--padding));\n  padding-left: calc(var(--icon-size) + var(--padding) - 4px);\n  transition: all 0.2s;\n}\n\n.rfd-search #searchbar-inner-container {\n  position: relative;\n}\n\n.rfd-search #search-absolute {\n  position: absolute;\n  top: 0;\n  width: 100%;\n  transition: transform 0.3s ease-out;\n}\n\n.rfd-search #search-results-header-container,\n.rfd-search #search-widget,\n.rfd-search #search-results-widget {\n  border-width: var(--border-width);\n  background-color: var(--background-color);\n  transition: all 0.2s;\n  overflow: hidden;\n}\n\n.rfd-search #search-widget {\n  box-shadow: 0px 0px 10px rgba(1, 1, 1, 0.1);\n  transition: opacity 0.3s;\n  border-radius: var(--radius);\n}\n\n.rfd-search #search-results-header-container,\n.rfd-search #search-results-widget {\n  margin-left: calc(-50vw + 50%);\n  margin-right: calc(-51vw + 51%);\n}\n\n.rfd-search #searchbar-footer {\n  background-color: var(--background-color);\n  font-size: var(--font-size-4);\n  color: var(--subtitle-color-2);\n  border-bottom-left-radius: var(--radius);\n  border-bottom-right-radius: var(--radius);\n  filter: brightness(90%);\n}\n\n.rfd-search #search-results-container {\n  contain: layout paint;\n  overflow-y: auto;\n  overflow-x: hidden;\n  overscroll-behavior-y: contain;\n  scrollbar-color: var(--background-color-2) rgba(1, 1, 1, 0);\n  transition: opacity 0.3s ease-out;\n}\n\n.rfd-search #search-icon {\n  position: absolute;\n  left: 4pt;\n  top: 50%;\n  transform: translateY(-50%);\n  background-color: var(--subtitle-color);\n}\n\n.rfd-search #filter-bar-container {\n  position: relative;\n}\n\n.rfd-search #input-hidden {\n  background-color: rgba(0, 0, 0, 0) !important;\n}\n\n.rfd-search #delete-search-text-button,\n.rfd-search #filter-delete-text-button {\n  position: absolute;\n  right: 0px;\n  top: 50%;\n  transform: translateY(-50%);\n  cursor: pointer;\n}\n\n.rfd-search #filter-delete-text-button {\n  right: 10px;\n}\n\n.rfd-search #return-key-action {\n  padding: var(--padding);\n  margin-top: calc(var(--padding) * 5);\n}\n\n.rfd-search #search-results-header-container {\n  backface-visibility: hidden;\n  background-color: var(--background-color);\n  position: sticky;\n  z-index: 2;\n  width: 100vw;\n  margin-left: -15px;\n}\n\n.rfd-search .routes-viewer-header {\n  padding-left: var(--padding);\n  width: 100vw;\n}\n\n.rfd-search .result-icon {\n  display: inline-block;\n}\n\n.rfd-search .gray-background input {\n  background-color: #e0e0e0;\n  transition: background-color 0.2s ease;\n}\n\n.rfd-search .normal-background input {\n  background-color: var(--background-color);\n  transition: background-color 0.2s ease;\n}\n\n.rfd-search .searchbar-help-text-container {\n  transition: height 0.2s ease;\n  overscroll-behavior-y: contain;\n}\n\n.rfd-search #searchbar-help-text {\n  padding: calc(var(--padding) * 2);\n}\n\n.rfd-search #placeholder-short-display {\n  color: var(--title-color);\n  opacity: 0.5;\n  margin-left: -6px;\n}\n\n.rfd-search #searchbar-short-display-container {\n  position: absolute;\n  left: 4pt;\n  transform: translateY(-8%);\n}\n\n.rfd-search #search-icon-short-display {\n  background-color: var(--subtitle-color);\n  display: inline-block;\n  transform: translateY(30%);\n}\n\n.rfd-search #searchbar-query-suggestion-flex {\n  position: relative;\n  padding-right: calc(var(--icon-size) + var(--padding));\n  border-bottom-left-radius: var(--radius);\n  border-bottom-right-radius: var(--radius);\n}\n\n.rfd-search .ascent-notes a,\n.rfd-search .ascent-details a {\n  color: #bbdcee !important;\n  opacity: 0.7;\n  line-height: 1.3em;\n}\n\n.rfd-search #help-button,\n.rfd-search #filter-bar-help-button {\n  position: absolute;\n  right: 0pt;\n  top: 50%;\n  transform: translateY(-50%);\n}\n\n.rfd-search #searchbar-query-suggestion-flex,\n.rfd-search #search-query-description,\n.rfd-search .search-results-search-query-description {\n  font-size: var(--font-size-3);\n  color: var(--subtitle-color-2);\n  background-color: var(--background-color);\n}\n\n.rfd-search #focus-searchbar {\n  display: none;\n}\n\n.rfd-search .logged {\n  background-color: green;\n}\n\n.rfd-search .page-control {\n  display: flex;\n  justify-content: flex-end;\n  align-content: center;\n  margin-top: var(--padding);\n  margin-bottom: var(--padding);\n  margin-left: calc(-50vw + 50%);\n  margin-right: calc(-50vw + 50% + var(--padding));\n}\n\n.rfd-search .fa-button {\n  border: 0;\n  width: 40px;\n  height: 40px;\n  background-color: var(--background-color);\n  border-radius: var(--radius);\n  color: var(--subtitle-color);\n  transition: background-color 0.2s ease-out;\n}\n\n.rfd-search .fa-button:hover {\n  background-color: var(--background-color-2);\n}\n\n.rfd-search .fa-button i {\n  transition: rotate 0.2s ease-out;\n}\n\n.rfd-search .hidden {\n  display: none;\n}\n\n.rfd-search #page-control-previous,\n.rfd-search #page-control-next,\n.rfd-search page-button {\n  display: flex;\n  align-items: center;\n  text-align: center;\n  aspect-ratio: 1/1;\n  font-family: monospace;\n  background-color: var(--background-color);\n  border: solid;\n  color: var(--subtitle-color-2);\n  margin-left: calc(var(--border-width) * -1);\n  border-width: var(--border-width);\n  border-color: var(--background-color-2);\n  justify-content: center;\n  font-weight: 900;\n  cursor: pointer;\n  font-size: var(--page-control-font-size);\n  height: var(--page-control-size);\n  width: var(--page-control-size);\n}\n\n.rfd-search #page-control-previous {\n  border-top-left-radius: var(--page-control-radius);\n  border-bottom-left-radius: var(--page-control-radius);\n}\n\n.rfd-search #page-control-next {\n  border-top-right-radius: var(--page-control-radius);\n  border-bottom-right-radius: var(--page-control-radius);\n}\n\n.rfd-search page-button {\n  display: flex;\n  justify-content: center;\n  align-content: center;\n}\n\n.rfd-search .date-header {\n  display: flex;\n  justify-content: space-between;\n  font-size: var(--font-size-3);\n  color: var(--subtitle-color-2);\n  padding: var(--padding);\n  padding-right: calc(var(--padding) / 2);\n  padding-top: calc(var(--padding) / 2);\n  padding-bottom: calc(var(--padding) / 2 - 2px);\n  background-color: var(--background-color-page-semi);\n}\n\n.rfd-search .page-control-current {\n  border-color: var(--background-color-2);\n  color: var(--subtitle-color-2);\n  background-color: var(--background-color-2);\n  filter: brightness(110%);\n  cursor: default;\n}\n\n.rfd-search #page-control-next.disabled,\n.rfd-search #page-control-previous.disabled {\n  background-color: var(--background-color);\n  border-color: var(--background-color-2);\n  cursor: default;\n  opacity: 0.4;\n}\n\n.rfd-search .routes-viewer-controls {\n  color: var(--subtitle-color-2);\n  font-size: 0.9em;\n  display: flex;\n  justify-content: flex-start;\n  align-items: center;\n  margin-bottom: 0px;\n}\n\n.rfd-search .routes-viewer-sort-order {\n  flex-grow: 0;\n  font-family: monospace;\n  font-weight: 600;\n  margin-bottom: 0px;\n}\n\n.rfd-search .result-entry {\n  display: flex;\n}\n\n.rfd-search .result-icon-area {\n  margin-top: -4pt;\n  width: 30pt;\n}\n\n.rfd-search .ascent-details {\n  display: flex;\n  justify-content: space-between;\n  margin-top: 10px;\n  color: var(--subtitle-color-4);\n  font-size: calc(var(--font-size-4) * 0.9);\n}\n\n.rfd-search .ascent-notes {\n  margin-top: 14px;\n  margin-bottom: 18px;\n  font-style: italic;\n  line-height: calc(var(--font-size-4) * 1.2);\n  color: var(--subtitle-color-2);\n  font-size: calc(var(--font-size-4) * 0.9);\n}\n\n.rfd-search .result-text-area {\n  width: 100%;\n  max-width: calc(100% - 36px);\n  display: flex;\n  flex-direction: column;\n}\n\n.rfd-search .result-title {\n  overflow-x: clip;\n  text-overflow: ellipsis;\n  white-space: pre;\n}\n\n.rfd-search .result-crag-name {\n  overflow-x: clip;\n  text-overflow: ellipsis;\n}\n\n.rfd-search .result-entry-start {\n  margin-bottom: 6pt;\n  display: block;\n}\n\n.rfd-search .result-entry-end {\n  display: flex;\n  align-items: baseline;\n}\n\n.rfd-search .selected .result-entry {\n  background-color: var(--background-color-2);\n}\n\n.rfd-search .selected .result-entry * {\n  background-color: var(--background-color-2);\n}\n\n.rfd-search .footer-content {\n  padding: 10px;\n}\n\n.rfd-search .keycode {\n  display: none;\n  background-color: var(--background-color-2);\n  border-radius: 3pt;\n  padding: 4pt;\n}\n\n.rfd-search .display-if-necessary {\n  display: block;\n}\n\n.rfd-search .result-entry {\n  font-size: var(--font-size-2);\n  color: var(--title-color);\n  padding: var(--padding);\n  padding-top: calc(var(--padding) + 4px);\n  padding-bottom: calc(var(--padding) + 2px);\n  display: flex;\n}\n\n.rfd-search .result-entry-end {\n  white-space: nowrap;\n}\n\n.rfd-search .result-entry-start {\n  white-space: nowrap;\n}\n\n.rfd-search .result-grade {\n  font-size: var(--font-size-3);\n  font-style: italic;\n  color: var(--subtitle-color);\n  white-space: pre;\n}\n\n.rfd-search .result-star-count {\n  font-size: var(--font-size-2);\n  font-style: italic;\n  font-weight: bolder;\n  color: hotpink;\n}\n\n.rfd-search .result-crag-name {\n  font-size: var(--font-size-4);\n  color: var(--subtitle-color-2);\n}\n\n.rfd-search .result-context,\n.rfd-search .result-sub-context {\n  font-style: italic;\n  font-size: var(--font-size-4);\n  color: var(--subtitle-color-4);\n}\n\n.rfd-search .search-container {\n  background-color: none;\n}\n\n.rfd-search .loader-stopped,\n.rfd-search .divider {\n  opacity: 1;\n  height: var(--border-width);\n  background-color: var(--background-color-2);\n}\n\n.rfd-search .divider-no-height-set {\n  opacity: 1;\n  background-color: var(--background-color-2);\n}\n\n.rfd-search .icon {\n  background-color: var(--subtitle-color);\n  margin-right: 4pt;\n  cursor: pointer;\n}\n\n.rfd-search .icon:focus {\n  background-color: var(--flash-color);\n}\n\n.rfd-search .icon-magnifying-glass {\n  width: var(--icon-size);\n  height: var(--icon-size);\n  -webkit-mask-size: var(--icon-size) var(--icon-size);\n  -webkit-mask-repeat: no-repeat;\n  -webkit-mask-position: center;\n  mask-size: var(--icon-size) var(--icon-size);\n  mask-repeat: no-repeat;\n  mask-position: center;\n  mask: url(\"/assets/magnifying-glass.svg\");\n  -webkit-mask: url(\"/assets/magnifying-glass.svg\");\n}\n\n.rfd-search .icon-question-mark {\n  width: var(--icon-size);\n  height: var(--icon-size);\n  -webkit-mask-size: var(--icon-size) var(--icon-size);\n  -webkit-mask-repeat: no-repeat;\n  -webkit-mask-position: center;\n  mask-size: var(--icon-size) var(--icon-size);\n  mask-repeat: no-repeat;\n  mask-position: center;\n  mask: url(\"/assets/question-mark.svg\");\n  -webkit-mask: url(\"/assets/question-mark.svg\");\n}\n\n.rfd-search .icon-external-link {\n  width: var(--icon-size);\n  height: var(--icon-size);\n  -webkit-mask-size: var(--icon-size) var(--icon-size);\n  -webkit-mask-repeat: no-repeat;\n  -webkit-mask-position: center;\n  mask-size: var(--icon-size) var(--icon-size);\n  mask-repeat: no-repeat;\n  mask-position: center;\n  mask: url(\"/assets/external-link.svg\");\n  -webkit-mask: url(\"/assets/external-link.svg\");\n}\n\n.rfd-search .icon-circle-times {\n  width: var(--icon-size);\n  height: var(--icon-size);\n  -webkit-mask-size: var(--icon-size) var(--icon-size);\n  -webkit-mask-repeat: no-repeat;\n  -webkit-mask-position: center;\n  mask-size: var(--icon-size) var(--icon-size);\n  mask-repeat: no-repeat;\n  mask-position: center;\n  mask: url(\"/assets/circle-times.svg\");\n  -webkit-mask: url(\"/assets/circle-times.svg\");\n}\n\n.rfd-search .result-entry-container {\n  line-height: 1;\n}\n\n.rfd-search #search-results-widget .result-entry-container {\n  border-bottom: solid var(--background-color-page-semi) 1px;\n}\n\n.rfd-search route-result .result-text-area,\n.rfd-search logbook-result .result-text-area {\n  max-width: 100%;\n  padding-left: 40px;\n}\n\n.rfd-search .ascent-style-indicator {\n  margin-left: -15px;\n  margin-right: 4px;\n}\n\n.rfd-search .mouse-over {\n  color: cadetblue;\n  cursor: pointer;\n}\n\n.rfd-search .mouse-over:focus {\n  color: var(--flash-color);\n}\n\n.rfd-search .fade-in {\n  -webkit-animation: fadein var(--gray-view-opacity-animation-duration) linear forwards;\n  animation: fadein var(--gray-view-opacity-animation-duration) linear forwards;\n}\n\n@-webkit-keyframes fadein {\n  0% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 1;\n  }\n}\n\n@-moz-keyframes fadein {\n  0% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 1;\n  }\n}\n\n@-o-keyframes fadein {\n  0% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 1;\n  }\n}\n\n@keyframes fadein {\n  0% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 1;\n  }\n}\n\n.rfd-search .fade-out {\n  -webkit-animation: fadeout var(--gray-view-opacity-animation-duration) linear forwards;\n  animation: fadeout var(--gray-view-opacity-animation-duration) linear forwards;\n}\n\n@-webkit-keyframes fadeout {\n  0% {\n    opacity: 1;\n  }\n  100% {\n    opacity: 0;\n  }\n}\n\n@-moz-keyframes fadeout {\n  0% {\n    opacity: 1;\n  }\n  100% {\n    opacity: 0;\n  }\n}\n\n@-o-keyframes fadeout {\n  0% {\n    opacity: 1;\n  }\n  100% {\n    opacity: 0;\n  }\n}\n\n@keyframes fadeout {\n  0% {\n    opacity: 1;\n  }\n  100% {\n    opacity: 0;\n  }\n}\n\n.loader-stopped {\n  position: relative;\n  background: var(--background-color-2);\n  overflow: hidden;\n}\n\n.loader-spinning {\n  position: relative;\n  height: 2px;\n  background: transparent;\n  overflow: hidden;\n  animation: loader-rainbow 1.5s infinite linear;\n}\n\n.loader-spinning:after {\n  display: block;\n  content: \" \";\n  position: absolute;\n  height: 100%;\n  background: hotpink;\n  left: 0;\n  transform: translate3d(-150%, 0, 0);\n  animation: loader-stripe 1.5s infinite linear;\n}\n\n@keyframes loader-stripe {\n  0% {\n    transform: translate3d(-100%, 0, 0);\n  }\n  100% {\n    transform: translate3d(100%, 0, 0);\n  }\n}\n\n@keyframes loader-rainbow {\n  0% {\n    background: var(--background-color-2);\n  }\n  50% {\n    background: hotpink;\n  }\n  100% {\n    background: var(--background-color-2);\n  }\n}\n\n@media only screen and (min-width: 768px) {\n  :root {\n    --icon-size: 2rem;\n  }\n  .rfd-search {\n    --page-control-size: 18pt;\n    --radius: 4pt;\n    --page-control-radius: 4pt;\n    --radius-search-results: 4pt;\n    --border-width: 1pt;\n    --font-size: 0.9rem;\n    --page-control-font-size: var(--font-size-3);\n    --font-size-2: calc(var(--font-size) * 0.9);\n    --font-size-3: calc(var(--font-size-2) * 0.9);\n    --font-size-4: calc(var(--font-size-3) * 0.9);\n    --result-icon-size: 1.5rem;\n  }\n  .rfd-search logbook-indicator {\n    right: -5px;\n  }\n  .rfd-search wishlist-indicator {\n    right: 0px;\n  }\n  .rfd-search #name-dash {\n    display: inline-block;\n  }\n  .rfd-search #star-count-and-route-grade {\n    display: flex;\n    flex-direction: row-reverse;\n    translate: 0 1.5px;\n  }\n  .rfd-search #star-count-and-route-grade * {\n    margin-right: 0.2rem;\n  }\n  .rfd-search #search-icon {\n    background-color: var(--subtitle-color);\n  }\n  .rfd-search input {\n    padding-top: 4pt;\n    padding-bottom: 4pt;\n  }\n  .rfd-search #focus-searchbar,\n.rfd-search .keycode {\n    display: unset;\n  }\n  .rfd-search #search-results-header-container {\n    border-top-left-radius: var(--radius);\n    border-top-right-radius: var(--radius);\n  }\n  .rfd-search #searchbar-help-text {\n    padding: calc(var(--base-padding) * var(--big-screen-multiplier) * 2);\n  }\n  .rfd-search #search-results-header-container,\n.rfd-search #search-results-widget {\n    margin-right: 50%;\n    margin-left: 50%;\n    transform: translateX(-50%);\n    min-width: 700px;\n    box-shadow: 0px 0px 10px rgba(1, 1, 1, 0.1);\n  }\n  .rfd-search #placeholder-short-display {\n    margin-left: 0px;\n    position: absolute;\n    white-space: nowrap;\n    transform: translate(4px, 15px);\n  }\n  .rfd-search #searchbar-short-display-container {\n    transform: translateY(-26%);\n  }\n  .rfd-search #search-results-header-container {\n    border-top-left-radius: var(--radius-search-results);\n    border-top-right-radius: var(--radius-search-results);\n  }\n  .rfd-search .page-control {\n    width: 400pt;\n    margin-right: 50%;\n    margin-left: 50%;\n    transform: translateX(-50%);\n    min-width: 700px;\n  }\n  .rfd-search #filter-bar-container input {\n    padding-top: calc(var(--padding) / 2);\n    padding-bottom: calc(var(--padding) / 2);\n  }\n  .rfd-search #search-container {\n    max-width: 500pt;\n    left: 50%;\n    transform: translateX(-50%);\n  }\n  .rfd-search #search-results-header-container {\n    width: unset;\n  }\n  .rfd-search #search-query-description,\n.rfd-search .search-results-search-query-description {\n    padding: calc(var(--base-padding) * var(--big-screen-multiplier) * 2);\n  }\n  .rfd-search #searchbar-query-suggestion-flex,\n.rfd-search #search-query-description,\n.rfd-search .search-results-search-query-description {\n    font-size: calc(var(--font-size-2) * 0.9);\n  }\n  .rfd-search .result-entry-container {\n    line-height: 1;\n  }\n  .rfd-search .ascent-details {\n    font-size: var(--font-size-3);\n  }\n  .rfd-search .ascent-notes {\n    font-size: var(--font-size-3);\n  }\n  .rfd-search .result-entry {\n    padding-top: calc(var(--padding) / 1.85);\n    padding-bottom: calc(var(--padding) / 1.85);\n    align-items: center;\n  }\n  .rfd-search .result-crag-name {\n    padding-bottom: 2pt;\n  }\n  .rfd-search .selected .result-entry {\n    border-radius: calc(var(--radius) * 0.7);\n  }\n  .rfd-search .icon {\n    margin-right: unset;\n  }\n  .rfd-search .result-entry-end {\n    padding-left: var(--padding);\n    flex-direction: column;\n    align-items: baseline;\n    flex-grow: 1;\n  }\n  .rfd-search .footer-content {\n    padding: 4px;\n    padding-right: 10px;\n  }\n  .rfd-search .nightmode #search-results-header-container,\n.rfd-search .nightmode #search-results-widget {\n    box-shadow: 0px 0px 10px rgba(1, 1, 1, 0.2);\n  }\n  .rfd-search .result-icon-area {\n    margin-top: unset;\n  }\n  .rfd-search .result-text-area {\n    flex-direction: row;\n    justify-content: space-between;\n  }\n  .rfd-search .result-entry-start {\n    align-self: center;\n    margin-bottom: unset;\n  }\n  .rfd-search .result-entry-end {\n    flex-direction: column;\n    align-items: flex-end;\n  }\n  .rfd-search .ascent-style-indicator {\n    margin-left: -13px;\n  }\n}\n\nselect {\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  appearance: none;\n  text-overflow: \"\";\n}";
 
 function closestShadowPiercing(el, tagName) {
     const closest = el.closest(tagName);
@@ -499,15 +499,15 @@ const DOMPurify = {
 const html$1 = (raw, ...keys) => keys.length === 0 ? raw[0] : String.raw({ raw }, ...keys);
 const escape = (s) => s ? DOMPurify.sanitize(s) : s;
 
-var __defProp$l = Object.defineProperty;
-var __getOwnPropDesc$l = Object.getOwnPropertyDescriptor;
-var __decorateClass$l = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$l(target, key) : target;
+var __defProp$m = Object.defineProperty;
+var __getOwnPropDesc$m = Object.getOwnPropertyDescriptor;
+var __decorateClass$m = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$m(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$l(target, key, result);
+    __defProp$m(target, key, result);
   return result;
 };
 let BaseCon = class extends HTMLElement {
@@ -548,20 +548,20 @@ let BaseCon = class extends HTMLElement {
     return "";
   }
 };
-BaseCon = __decorateClass$l([
+BaseCon = __decorateClass$m([
   controller
 ], BaseCon);
 const BaseCon$1 = BaseCon;
 
-var __defProp$k = Object.defineProperty;
-var __getOwnPropDesc$k = Object.getOwnPropertyDescriptor;
-var __decorateClass$k = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$k(target2, key) : target2;
+var __defProp$l = Object.defineProperty;
+var __getOwnPropDesc$l = Object.getOwnPropertyDescriptor;
+var __decorateClass$l = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$l(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$k(target2, key, result);
+    __defProp$l(target2, key, result);
   return result;
 };
 let PageButtonElement = class extends BaseCon$1 {
@@ -579,13 +579,13 @@ let PageButtonElement = class extends BaseCon$1 {
     super.connectedCallback();
   }
 };
-__decorateClass$k([
+__decorateClass$l([
   target
 ], PageButtonElement.prototype, "span", 2);
-__decorateClass$k([
+__decorateClass$l([
   attr
 ], PageButtonElement.prototype, "pageNumber", 1);
-PageButtonElement = __decorateClass$k([
+PageButtonElement = __decorateClass$l([
   controller
 ], PageButtonElement);
 
@@ -599,15 +599,15 @@ const pageControlTemplate = (element) => {
 `;
 };
 
-var __defProp$j = Object.defineProperty;
-var __getOwnPropDesc$j = Object.getOwnPropertyDescriptor;
-var __decorateClass$j = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$j(target2, key) : target2;
+var __defProp$k = Object.defineProperty;
+var __getOwnPropDesc$k = Object.getOwnPropertyDescriptor;
+var __decorateClass$k = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$k(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$j(target2, key, result);
+    __defProp$k(target2, key, result);
   return result;
 };
 let PageControlElement = class extends BaseCon$1 {
@@ -718,16 +718,16 @@ let PageControlElement = class extends BaseCon$1 {
     return arr;
   }
 };
-__decorateClass$j([
+__decorateClass$k([
   target
 ], PageControlElement.prototype, "previous", 2);
-__decorateClass$j([
+__decorateClass$k([
   targets
 ], PageControlElement.prototype, "pages", 2);
-__decorateClass$j([
+__decorateClass$k([
   target
 ], PageControlElement.prototype, "next", 2);
-PageControlElement = __decorateClass$j([
+PageControlElement = __decorateClass$k([
   controller
 ], PageControlElement);
 
@@ -808,10 +808,7 @@ function performIfMobile(func) {
 function appendDivider(target, idx) {
   const divider = document.createElement("hr");
   divider.classList.add("divider-no-height-set");
-  const el = target.routes_viewer_container.children[idx];
-  if (el) {
-    target.routes_viewer_container.insertBefore(divider, el);
-  }
+  target.routes_viewer_container.appendChild(divider);
 }
 function appendRoute({ target, route, tagName }) {
   tagName ||= "search-result";
@@ -851,6 +848,23 @@ function appendCrag({ target, crag }) {
   el.wishlistStatus = false;
   target.routes_viewer_container.appendChild(el);
   el.resultType = "crag";
+  return el;
+}
+function appendButtress({ target, buttress }) {
+  const el = document.createElement("search-result");
+  el.classList.remove("hidden");
+  el.classList.add("crag-entry");
+  el.itemName = escape(`${buttress.crag_name} (${buttress.item_name})`);
+  const routeTypes = buttress.route_type_names_string.replace(/\|\|/g, "/").replace(/\|/g, "");
+  el.routeGrade = routeTypes;
+  el.cragName = buttress.rock_type_names_string.replace("UNKNOWN", "Unknown");
+  el.countyName = escape(buttress.county_name);
+  el.countryName = escape(buttress.country_name);
+  el.slugFull = buttress.slug;
+  el.logStatus = "unclimbed";
+  el.wishlistStatus = false;
+  target.routes_viewer_container.appendChild(el);
+  el.resultType = "buttress";
   return el;
 }
 function appendNoResults(target, message) {
@@ -981,15 +995,15 @@ class UkcSid {
   ukcId = 0;
 }
 
-var __defProp$i = Object.defineProperty;
-var __getOwnPropDesc$i = Object.getOwnPropertyDescriptor;
-var __decorateClass$i = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$i(target2, key) : target2;
+var __defProp$j = Object.defineProperty;
+var __getOwnPropDesc$j = Object.getOwnPropertyDescriptor;
+var __decorateClass$j = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$j(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$i(target2, key, result);
+    __defProp$j(target2, key, result);
   return result;
 };
 let BaseRoutesViewer = class extends BaseCon$1 {
@@ -1031,7 +1045,7 @@ let BaseRoutesViewer = class extends BaseCon$1 {
       this.input.value = query || "";
     this.input.dispatchEvent(new Event("input", { bubbles: true }));
   }
-  searchBarPlaceholderString = "Perform a new search...";
+  searchBarPlaceholderString = "Search all routes/crags...";
   timeout;
   searchId = 0;
   preventLayoutShift = false;
@@ -1272,7 +1286,7 @@ let BaseRoutesViewer = class extends BaseCon$1 {
   buildResults(data) {
     throw new Error("not implemented");
   }
-  processQueue() {
+  async processQueue() {
     if (this.queue.length) {
       this.preventLayoutShift = true;
       let i = 0;
@@ -1281,9 +1295,7 @@ let BaseRoutesViewer = class extends BaseCon$1 {
         this.queue.shift()();
         i++;
       }
-      setTimeout(() => {
-        this.processQueue();
-      }, 0);
+      void this.processQueue();
     } else {
       this.preventLayoutShift = false;
     }
@@ -1359,37 +1371,37 @@ let BaseRoutesViewer = class extends BaseCon$1 {
     `;
   }
 };
-__decorateClass$i([
+__decorateClass$j([
   target
 ], BaseRoutesViewer.prototype, "routes_viewer_container", 2);
-__decorateClass$i([
+__decorateClass$j([
   target
 ], BaseRoutesViewer.prototype, "input", 2);
-__decorateClass$i([
+__decorateClass$j([
   target
 ], BaseRoutesViewer.prototype, "progress_bar", 2);
-__decorateClass$i([
+__decorateClass$j([
   target
 ], BaseRoutesViewer.prototype, "delete_text_button", 2);
-__decorateClass$i([
+__decorateClass$j([
   target
 ], BaseRoutesViewer.prototype, "filter_query_description", 2);
-__decorateClass$i([
+__decorateClass$j([
   target
 ], BaseRoutesViewer.prototype, "header_container", 2);
-__decorateClass$i([
+__decorateClass$j([
   target
 ], BaseRoutesViewer.prototype, "routes_viewer_title", 2);
-__decorateClass$i([
+__decorateClass$j([
   target
 ], BaseRoutesViewer.prototype, "sort_order_picker", 2);
-__decorateClass$i([
+__decorateClass$j([
   target
 ], BaseRoutesViewer.prototype, "sort_arrow", 2);
-__decorateClass$i([
+__decorateClass$j([
   target
 ], BaseRoutesViewer.prototype, "sort_button", 2);
-BaseRoutesViewer = __decorateClass$i([
+BaseRoutesViewer = __decorateClass$j([
   controller
 ], BaseRoutesViewer);
 const BaseRoutesViewer$1 = BaseRoutesViewer;
@@ -1451,15 +1463,15 @@ const searchbarTemplate = (element) => {
     `;
 };
 
-var __defProp$h = Object.defineProperty;
-var __getOwnPropDesc$h = Object.getOwnPropertyDescriptor;
-var __decorateClass$h = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$h(target2, key) : target2;
+var __defProp$i = Object.defineProperty;
+var __getOwnPropDesc$i = Object.getOwnPropertyDescriptor;
+var __decorateClass$i = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$i(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$h(target2, key, result);
+    __defProp$i(target2, key, result);
   return result;
 };
 let BaseSearchbarElement = class extends BaseCon$1 {
@@ -1851,55 +1863,55 @@ let BaseSearchbarElement = class extends BaseCon$1 {
     return isVisible;
   }
 };
-__decorateClass$h([
+__decorateClass$i([
   target
 ], BaseSearchbarElement.prototype, "input", 2);
-__decorateClass$h([
+__decorateClass$i([
   target
 ], BaseSearchbarElement.prototype, "returnKeyAction", 2);
-__decorateClass$h([
+__decorateClass$i([
   target
 ], BaseSearchbarElement.prototype, "searchAbsolute", 2);
-__decorateClass$h([
+__decorateClass$i([
   target
 ], BaseSearchbarElement.prototype, "helpButton", 2);
-__decorateClass$h([
+__decorateClass$i([
   target
 ], BaseSearchbarElement.prototype, "delete_text_button", 2);
-__decorateClass$h([
+__decorateClass$i([
   target
 ], BaseSearchbarElement.prototype, "searchWidget", 2);
-__decorateClass$h([
+__decorateClass$i([
   target
 ], BaseSearchbarElement.prototype, "progress_bar", 2);
-__decorateClass$h([
+__decorateClass$i([
   target
 ], BaseSearchbarElement.prototype, "routes_viewer_container", 2);
-__decorateClass$h([
+__decorateClass$i([
   target
 ], BaseSearchbarElement.prototype, "searchbarInnerContainer", 2);
-__decorateClass$h([
+__decorateClass$i([
   target
 ], BaseSearchbarElement.prototype, "searchbarQuerySuggestion", 2);
-__decorateClass$h([
+__decorateClass$i([
   target
 ], BaseSearchbarElement.prototype, "querySuggestionContainer", 2);
-__decorateClass$h([
+__decorateClass$i([
   target
 ], BaseSearchbarElement.prototype, "helpTextContainer", 2);
-__decorateClass$h([
+__decorateClass$i([
   target
 ], BaseSearchbarElement.prototype, "filter_query_description", 2);
-__decorateClass$h([
+__decorateClass$i([
   target
 ], BaseSearchbarElement.prototype, "searchbarFooter", 2);
-__decorateClass$h([
+__decorateClass$i([
   target
 ], BaseSearchbarElement.prototype, "showAllResultsSpan", 2);
-__decorateClass$h([
+__decorateClass$i([
   target
 ], BaseSearchbarElement.prototype, "grayView", 2);
-BaseSearchbarElement = __decorateClass$h([
+BaseSearchbarElement = __decorateClass$i([
   controller
 ], BaseSearchbarElement);
 const BaseSearchbarElement$1 = BaseSearchbarElement;
@@ -1918,15 +1930,15 @@ const isAppleSafari = () => {
 
 const html = "<h6>🛟 Route &amp; Crag Search Help</h6>\n<p>You should probably try out the suggestions to get an feel of the stuff you can do before you waste time reading all this…</p>\n<p>…but if you really want to know everything about the search, here you go:</p>\n<p>Searches are checked against the following properties of a route (and the equivalents for a crag):</p>\n<ul>\n<li><code>name</code></li>\n<li><code>crag name</code></li>\n<li><code>buttress name</code></li>\n<li><code>area name</code></li>\n<li><code>country name</code></li>\n<li><code>first ascent</code> potentially including dates and names, but could be one or the other or neither</li>\n<li><code>rock type name</code> one of eg [ granite, gritstone, sandstone, limestone, schist, rhylite, ... ] (there are loads)</li>\n<li><code>route type name</code> one of [ sport, trad, winter, bouldering, aid ] (this list is complete)</li>\n<li><code>description</code></li>\n<li><code>route grade</code></li>\n<li><code>tech grade</code></li>\n</ul>\n<p>A match is found if all of the tokens of the search query match one or more of the fields (more on tokens later, but think &quot;words&quot; for now). This means you can very quickly write a query that returns very few results by typing a combination of fragments of the various fields, like <code>mal wom</code> returns <code>Wombat E2</code> at Malham as the first result because token1 (<code>mal</code>) matches the crag name (<code>Malham</code>) and token2 (<code>wom</code>) matches the route's name. You could be even more precise and search <code>mal wom e2</code> but for this instance it's not needed. (Note that this stuff is true at the time of writing but could change if more routes are added).</p>\n<p>The scoring of results is done by applying multipliers depending on where a match is found. The higher the field is on the list above, the more valuble a match against it is considered, so if a query matches against one route's <code>name</code> and another's <code>description</code>, the one against the <code>name</code> will be considered a better match and appear nearer the top. The popularity of the route is taken into account so a route with loads of ascents will be given a higher search score than one with none.</p>\n<p>For the most part this is all anyone really needs, but there are also a few advanced options you can use if you want:</p>\n<ul>\n<li>exact-phrase matches, eg <code>&quot;captain nemo&quot;</code></li>\n<li>route-star ranges, eg <code>*-**</code></li>\n<li>grade ranges, eg <code>vs-e3</code></li>\n<li>date ranges, eg <code>1984-1986</code> (for first ascents - note that not all routes have fa details so these will be excluded from a search with a date range!)</li>\n<li>difficulty for grade / grade quality, eg <code>|soft|</code></li>\n<li>regular expressions, eg <code>/chris (?!craggs)/</code></li>\n<li>negations, eg <code>-crack</code></li>\n</ul>\n<h6>Exact phrase matches</h6>\n<p>Surround multiple words with double quotes to require a match on that phrase, eg <code>&quot;bat route&quot; malham</code> creates the tokens <code>bat route</code> and <code>malham</code>. Another example is <code>roof crack stanage</code> currently returns 45 routes, where as <code>&quot;roof crack&quot; stanage</code> returns only 9.</p>\n<h6>Route-star ranges</h6>\n<p>Asterisks get special treatment in search queries now. A sequence of them is considered to be a star rating for a route, so <code>*</code> is treated as 1-star, <code>**</code> treated as 2-stars and <code>***</code> treated as 3-stars. Typing just one sequence creates a search where the route is required to have at least that many stars, eg <code>bat route **</code> will only return routes with 2 or more stars that also match the other search tokens <code>bat</code> and <code>route</code>.</p>\n<p>Adding a dash and a second star sequence will create a range, eg <code>*-**</code> means &quot;match routes with at least one and at most two stars&quot;.</p>\n<h6>Grade ranges</h6>\n<p>As above with stars, but with grades. Eg <code>vs-e1</code> will match routes with a grade of either <code>VS</code>, <code>HVS</code> or <code>E1</code>.</p>\n<h6>Date ranges (only years)</h6>\n<p>Date ranges will check against the first-ascent date field and require the route to have been put up between the start date and the end date (inclusive). Eg <code>1970-1974</code> will match routes put up between 01-01-1970 and 31-12-1974. You should note that not all routes have had the first ascent date filled in, and these routes will be excluded from any search that includes date ranges, so you might not get the results you expect.</p>\n<h6>Difficulty for grade</h6>\n<p>Not sure what to call this so we'll use &quot;difficulty for grade&quot;. We've calculated a value based on the grade voting system that assigns a route a value from one of:</p>\n<ul>\n<li><code>soft</code></li>\n<li><code>benchmark</code></li>\n<li><code>hard</code></li>\n</ul>\n<p>You can search for routes with these charateristics by using the special pipe-syntax, eg <code>|soft|</code>. If you don't wrap the token in pipes, you'll just be searching the other text fields, so <code>soft</code>, with no pipes, would get you a match if the token appeard in the description for example and <code>|soft|</code> will <em>only</em> match against routes that have been marked as soft, and not check the other fields for the token.</p>\n<p>A continuation of this system which uses the same syntax allows you to search for routes that are voted to be a completely different grade using the following tokens:</p>\n<ul>\n<li><code>undergraded</code></li>\n<li><code>overgraded</code></li>\n</ul>\n<p>eg <code>|overgraded|</code>. Note that this is based on votes, so if there are no votes for a route and you include one of these tokens it won't appear, regardless of whether it is in reality over or undergraded. Note also that whilst you can combine these with soft/benchmark/hard, doing so doesn't really make sense.</p>\n<h6>Shorthands</h6>\n<p>The grade quality stuff all have shorthand variants:</p>\n<ul>\n<li><code>|s</code> = <code>|soft|</code></li>\n<li><code>|b</code> = <code>|benchmark|</code></li>\n<li><code>|h</code> = <code>|hard|</code></li>\n<li><code>|u</code> = <code>|undergraded|</code></li>\n<li><code>|o</code> = <code>|overgraded|</code></li>\n</ul>\n<h6>Regular expressions</h6>\n<p>Finally we reach the most pointless feature, regular expressions - we need only add an email function and this search bar will be complete.</p>\n<p>Regular expressions, for those that don't know, are a way of describing patterns in strings. They are a very powerful tool for searching and manipulating text, and completely unnecessary in this search bar. However, if you do want to use them, they are possible by surrounding the expression with forward slashes, eg <code>/chris (?!craggs)/</code> will match any routes that mention <code>'chris'</code> but not those that mention <code>'chris craggs'</code>. Or <code>e2-e3 /crap|damp|horrible/</code> will return you a list of probably not classic routes.</p>\n<p>Note that pure-regex queries are not allowed due to the cost of the queries against the database. You should always add any of the other query types mentioned above if you're using a regex.</p>\n<h6>Negation</h6>\n<p>Extra finally, if you precede any token with a minus character you will negate it and require that it is not matched, eg <code>-&quot;mark leach&quot; bat malham</code>.</p>\n";
 
-var __defProp$g = Object.defineProperty;
-var __getOwnPropDesc$g = Object.getOwnPropertyDescriptor;
-var __decorateClass$g = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$g(target, key) : target;
+var __defProp$h = Object.defineProperty;
+var __getOwnPropDesc$h = Object.getOwnPropertyDescriptor;
+var __decorateClass$h = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$h(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$g(target, key, result);
+    __defProp$h(target, key, result);
   return result;
 };
 let myQueryExamples = new Set(queryExamples);
@@ -2051,6 +2063,7 @@ let RouteSearchbarElement = class extends BaseSearchbarElement$1 {
     const data = _data.data;
     this.queue = [];
     this.clearResultsDropdown();
+    console.log(data);
     if (this.isSearchbarFocussed) {
       this.showResultsDropdown();
     }
@@ -2065,9 +2078,15 @@ let RouteSearchbarElement = class extends BaseSearchbarElement$1 {
     }
     let routeCount = 0;
     let cragCount = 0;
+    let buttressCount = 0;
     data.objects[0]?.routes.forEach((element, idx) => {
       switch (element.type) {
         case "route_ukc": {
+          if (routeCount === 0 && buttressCount + cragCount) {
+            this.queue.push(() => {
+              appendDivider(this);
+            });
+          }
           routeCount++;
           this.queue.push(() => {
             this.appendRoute(this, element);
@@ -2081,11 +2100,18 @@ let RouteSearchbarElement = class extends BaseSearchbarElement$1 {
           });
           break;
         }
-      }
-      if (routeCount == 1 && cragCount) {
-        this.queue.push(() => {
-          appendDivider(this, idx);
-        });
+        case "buttress_ukc": {
+          if (buttressCount === 0 && cragCount) {
+            this.queue.push(() => {
+              appendDivider(this);
+            });
+          }
+          buttressCount++;
+          this.queue.push(() => {
+            this.appendButtress(this, element);
+          });
+          break;
+        }
       }
     });
     this.showAllResultsSpan.classList.remove("hidden");
@@ -2098,6 +2124,9 @@ let RouteSearchbarElement = class extends BaseSearchbarElement$1 {
       Promise.resolve().then(() => this.processQueue());
     }
   }
+  appendButtress(target, buttress) {
+    return appendButtress({ target, buttress });
+  }
   appendCrag(target, crag) {
     return appendCrag({ target, crag });
   }
@@ -2105,7 +2134,7 @@ let RouteSearchbarElement = class extends BaseSearchbarElement$1 {
     return appendRoute({ target, route });
   }
 };
-RouteSearchbarElement = __decorateClass$g([
+RouteSearchbarElement = __decorateClass$h([
   controller
 ], RouteSearchbarElement);
 const RouteSearchbarElement$1 = RouteSearchbarElement;
@@ -2373,15 +2402,15 @@ var UkcLocalStorage;
 })(UkcLocalStorage || (UkcLocalStorage = {}));
 globalThis.logbook = new UkcLocalStorage.LogbookDetails();
 
-var __defProp$f = Object.defineProperty;
-var __getOwnPropDesc$f = Object.getOwnPropertyDescriptor;
-var __decorateClass$f = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$f(target, key) : target;
+var __defProp$g = Object.defineProperty;
+var __getOwnPropDesc$g = Object.getOwnPropertyDescriptor;
+var __decorateClass$g = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$g(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$f(target, key, result);
+    __defProp$g(target, key, result);
   return result;
 };
 const sharedStorage$5 = UkcLocalStorage.sharedLogbook;
@@ -2416,7 +2445,7 @@ let UkcSearchbarElement = class extends RouteSearchbarElement$1 {
     }
   }
 };
-UkcSearchbarElement = __decorateClass$f([
+UkcSearchbarElement = __decorateClass$g([
   controller
 ], UkcSearchbarElement);
 
@@ -2429,15 +2458,15 @@ const topoDotTemplate = (_el) => {
 `;
 };
 
-var __defProp$e = Object.defineProperty;
-var __getOwnPropDesc$e = Object.getOwnPropertyDescriptor;
-var __decorateClass$e = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$e(target2, key) : target2;
+var __defProp$f = Object.defineProperty;
+var __getOwnPropDesc$f = Object.getOwnPropertyDescriptor;
+var __decorateClass$f = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$f(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$e(target2, key, result);
+    __defProp$f(target2, key, result);
   return result;
 };
 let TopoDotElement = class extends BaseCon$1 {
@@ -2462,16 +2491,16 @@ let TopoDotElement = class extends BaseCon$1 {
     return topoDotTemplate;
   }
 };
-__decorateClass$e([
+__decorateClass$f([
   attr
 ], TopoDotElement.prototype, "colorName", 1);
-__decorateClass$e([
+__decorateClass$f([
   target
 ], TopoDotElement.prototype, "stroke", 2);
-__decorateClass$e([
+__decorateClass$f([
   target
 ], TopoDotElement.prototype, "fill", 2);
-TopoDotElement = __decorateClass$e([
+TopoDotElement = __decorateClass$f([
   controller
 ], TopoDotElement);
 const TopoDotElement$1 = TopoDotElement;
@@ -2487,6 +2516,7 @@ const routeTemplate = (element) => {
                     <div class="result-icon-area">
                         <topo-dot data-target='${el.elementName}.topo_dot' color-name='${el.colorName}' class='result-icon' alt='icon'></topo-dot>
                         <crag-icon data-target='${el.elementName}.crag_icon' class='result-icon' alt='icon'></crag-icon>
+                        <buttress-icon data-target='${el.elementName}.buttress_icon' class='result-icon' alt='icon'></buttress-icon>
                     </div>
                     <div class="result-text-area">
                         <div class='result-entry-start'>
@@ -2515,15 +2545,15 @@ const routeTemplate = (element) => {
     `;
 };
 
-var __defProp$d = Object.defineProperty;
-var __getOwnPropDesc$d = Object.getOwnPropertyDescriptor;
-var __decorateClass$d = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$d(target2, key) : target2;
+var __defProp$e = Object.defineProperty;
+var __getOwnPropDesc$e = Object.getOwnPropertyDescriptor;
+var __decorateClass$e = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$e(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$d(target2, key, result);
+    __defProp$e(target2, key, result);
   return result;
 };
 let SearchResultElement = class extends BaseCon$1 {
@@ -2538,6 +2568,7 @@ let SearchResultElement = class extends BaseCon$1 {
   logbook_indicator;
   wishlist_indicator;
   crag_icon;
+  buttress_icon;
   extras_slot;
   set slugFull(_v) {
     if (this.href)
@@ -2639,6 +2670,14 @@ let SearchResultElement = class extends BaseCon$1 {
         this.county_name?.classList.remove("hidden");
         this.country_name?.classList.remove("hidden");
         break;
+      case "buttress":
+        this.crag_name?.classList.remove("hidden");
+        this.item_name?.classList.remove("hidden");
+        this.buttress_icon?.classList.remove("hidden");
+        this.route_grade?.classList.remove("hidden");
+        this.county_name?.classList.remove("hidden");
+        this.country_name?.classList.remove("hidden");
+        break;
       case "no-result":
         this.item_name?.classList.remove("hidden");
         break;
@@ -2653,6 +2692,7 @@ let SearchResultElement = class extends BaseCon$1 {
     this.county_name?.classList.add("hidden");
     this.country_name?.classList.add("hidden");
     this.crag_icon?.classList.add("hidden");
+    this.buttress_icon?.classList.add("hidden");
   }
   get url() {
     let origin = window.location.origin;
@@ -2672,76 +2712,79 @@ let SearchResultElement = class extends BaseCon$1 {
     window.open(this.url, "_self");
   }
 };
-__decorateClass$d([
+__decorateClass$e([
   target
 ], SearchResultElement.prototype, "href", 2);
-__decorateClass$d([
+__decorateClass$e([
   target
 ], SearchResultElement.prototype, "topo_dot", 2);
-__decorateClass$d([
+__decorateClass$e([
   target
 ], SearchResultElement.prototype, "item_name", 2);
-__decorateClass$d([
+__decorateClass$e([
   target
 ], SearchResultElement.prototype, "route_grade", 2);
-__decorateClass$d([
+__decorateClass$e([
   target
 ], SearchResultElement.prototype, "star_count", 2);
-__decorateClass$d([
+__decorateClass$e([
   target
 ], SearchResultElement.prototype, "crag_name", 2);
-__decorateClass$d([
+__decorateClass$e([
   target
 ], SearchResultElement.prototype, "county_name", 2);
-__decorateClass$d([
+__decorateClass$e([
   target
 ], SearchResultElement.prototype, "country_name", 2);
-__decorateClass$d([
+__decorateClass$e([
   target
 ], SearchResultElement.prototype, "logbook_indicator", 2);
-__decorateClass$d([
+__decorateClass$e([
   target
 ], SearchResultElement.prototype, "wishlist_indicator", 2);
-__decorateClass$d([
+__decorateClass$e([
   target
 ], SearchResultElement.prototype, "crag_icon", 2);
-__decorateClass$d([
+__decorateClass$e([
+  target
+], SearchResultElement.prototype, "buttress_icon", 2);
+__decorateClass$e([
   target
 ], SearchResultElement.prototype, "extras_slot", 2);
-__decorateClass$d([
+__decorateClass$e([
   attr
 ], SearchResultElement.prototype, "slugFull", 1);
-__decorateClass$d([
+__decorateClass$e([
   attr
 ], SearchResultElement.prototype, "itemName", 1);
-__decorateClass$d([
+__decorateClass$e([
   attr
 ], SearchResultElement.prototype, "routeGrade", 1);
-__decorateClass$d([
+__decorateClass$e([
   attr
 ], SearchResultElement.prototype, "starCount", 1);
-__decorateClass$d([
+__decorateClass$e([
   attr
 ], SearchResultElement.prototype, "cragName", 1);
-__decorateClass$d([
+__decorateClass$e([
   attr
 ], SearchResultElement.prototype, "countyName", 1);
-__decorateClass$d([
+__decorateClass$e([
   attr
 ], SearchResultElement.prototype, "countryName", 1);
-__decorateClass$d([
+__decorateClass$e([
   attr
 ], SearchResultElement.prototype, "colorId", 1);
-__decorateClass$d([
+__decorateClass$e([
   attr
 ], SearchResultElement.prototype, "routeIdUkc", 1);
-__decorateClass$d([
+__decorateClass$e([
   attr
 ], SearchResultElement.prototype, "logStatus", 1);
-__decorateClass$d([
+__decorateClass$e([
   attr
 ], SearchResultElement.prototype, "wishlistStatus", 1);
-SearchResultElement = __decorateClass$d([
+SearchResultElement = __decorateClass$e([
   controller
 ], SearchResultElement);
 const SearchResultElement$1 = SearchResultElement;
@@ -2755,15 +2798,15 @@ const logbookIndicatorTemplate = (_el) => {
 `;
 };
 
-var __defProp$c = Object.defineProperty;
-var __getOwnPropDesc$c = Object.getOwnPropertyDescriptor;
-var __decorateClass$c = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$c(target2, key) : target2;
+var __defProp$d = Object.defineProperty;
+var __getOwnPropDesc$d = Object.getOwnPropertyDescriptor;
+var __decorateClass$d = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$d(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$c(target2, key, result);
+    __defProp$d(target2, key, result);
   return result;
 };
 let LogbookIndicatorElement = class extends BaseCon$1 {
@@ -2781,16 +2824,16 @@ let LogbookIndicatorElement = class extends BaseCon$1 {
     return logbookIndicatorTemplate;
   }
 };
-__decorateClass$c([
+__decorateClass$d([
   attr
 ], LogbookIndicatorElement.prototype, "colorName", 1);
-__decorateClass$c([
+__decorateClass$d([
   target
 ], LogbookIndicatorElement.prototype, "stroke", 2);
-__decorateClass$c([
+__decorateClass$d([
   target
 ], LogbookIndicatorElement.prototype, "fill", 2);
-LogbookIndicatorElement = __decorateClass$c([
+LogbookIndicatorElement = __decorateClass$d([
   controller
 ], LogbookIndicatorElement);
 const LogbookIndicatorElement$1 = LogbookIndicatorElement;
@@ -2857,15 +2900,15 @@ const logentryTemplate = (element) => {
     `;
 };
 
-var __defProp$b = Object.defineProperty;
-var __getOwnPropDesc$b = Object.getOwnPropertyDescriptor;
-var __decorateClass$b = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$b(target2, key) : target2;
+var __defProp$c = Object.defineProperty;
+var __getOwnPropDesc$c = Object.getOwnPropertyDescriptor;
+var __decorateClass$c = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$c(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$b(target2, key, result);
+    __defProp$c(target2, key, result);
   return result;
 };
 let LogbookResultElement = class extends SearchResultElement$1 {
@@ -2938,55 +2981,55 @@ let LogbookResultElement = class extends SearchResultElement$1 {
     return logentryTemplate;
   }
 };
-__decorateClass$b([
+__decorateClass$c([
   target
 ], LogbookResultElement.prototype, "ascensionist", 2);
-__decorateClass$b([
+__decorateClass$c([
   target
 ], LogbookResultElement.prototype, "partner_names", 2);
-__decorateClass$b([
+__decorateClass$c([
   target
 ], LogbookResultElement.prototype, "partner_names_with", 2);
-__decorateClass$b([
+__decorateClass$c([
   target
 ], LogbookResultElement.prototype, "ascent_style_indicator", 2);
-__decorateClass$b([
+__decorateClass$c([
   target
 ], LogbookResultElement.prototype, "ascent_style", 2);
-__decorateClass$b([
+__decorateClass$c([
   target
 ], LogbookResultElement.prototype, "ascent_notes", 2);
-__decorateClass$b([
+__decorateClass$c([
   target
 ], LogbookResultElement.prototype, "ascent_date", 2);
-__decorateClass$b([
+__decorateClass$c([
   targets
 ], LogbookResultElement.prototype, "crag_names", 2);
-__decorateClass$b([
+__decorateClass$c([
   targets
 ], LogbookResultElement.prototype, "county_names", 2);
-__decorateClass$b([
+__decorateClass$c([
   targets
 ], LogbookResultElement.prototype, "country_names", 2);
-__decorateClass$b([
+__decorateClass$c([
   attr
 ], LogbookResultElement.prototype, "cragName", 1);
-__decorateClass$b([
+__decorateClass$c([
   attr
 ], LogbookResultElement.prototype, "countyName", 1);
-__decorateClass$b([
+__decorateClass$c([
   attr
 ], LogbookResultElement.prototype, "countryName", 1);
-__decorateClass$b([
+__decorateClass$c([
   attr
 ], LogbookResultElement.prototype, "ascentNotes", 1);
-__decorateClass$b([
+__decorateClass$c([
   attr
 ], LogbookResultElement.prototype, "ascentStyle", 1);
-__decorateClass$b([
+__decorateClass$c([
   attr
 ], LogbookResultElement.prototype, "ascentStyleSimple", 1);
-LogbookResultElement = __decorateClass$b([
+LogbookResultElement = __decorateClass$c([
   controller
 ], LogbookResultElement);
 
@@ -3031,15 +3074,15 @@ const routeResultTemplate = (element) => {
     `;
 };
 
-var __defProp$a = Object.defineProperty;
-var __getOwnPropDesc$a = Object.getOwnPropertyDescriptor;
-var __decorateClass$a = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$a(target2, key) : target2;
+var __defProp$b = Object.defineProperty;
+var __getOwnPropDesc$b = Object.getOwnPropertyDescriptor;
+var __decorateClass$b = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$b(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$a(target2, key, result);
+    __defProp$b(target2, key, result);
   return result;
 };
 let RouteResultElement = class extends SearchResultElement$1 {
@@ -3063,28 +3106,28 @@ let RouteResultElement = class extends SearchResultElement$1 {
     return routeResultTemplate;
   }
 };
-__decorateClass$a([
+__decorateClass$b([
   target
 ], RouteResultElement.prototype, "ascensionist", 2);
-__decorateClass$a([
+__decorateClass$b([
   target
 ], RouteResultElement.prototype, "route_description", 2);
-__decorateClass$a([
+__decorateClass$b([
   target
 ], RouteResultElement.prototype, "fa_details", 2);
-RouteResultElement = __decorateClass$a([
+RouteResultElement = __decorateClass$b([
   controller
 ], RouteResultElement);
 
-var __defProp$9 = Object.defineProperty;
-var __getOwnPropDesc$9 = Object.getOwnPropertyDescriptor;
-var __decorateClass$9 = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$9(target2, key) : target2;
+var __defProp$a = Object.defineProperty;
+var __getOwnPropDesc$a = Object.getOwnPropertyDescriptor;
+var __decorateClass$a = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$a(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$9(target2, key, result);
+    __defProp$a(target2, key, result);
   return result;
 };
 let PagedRoutesViewer = class extends BaseRoutesViewer$1 {
@@ -3278,27 +3321,28 @@ let PagedRoutesViewer = class extends BaseRoutesViewer$1 {
     }, this.searchDelay);
   }
 };
-__decorateClass$9([
+__decorateClass$a([
   target
 ], PagedRoutesViewer.prototype, "page_control", 2);
-PagedRoutesViewer = __decorateClass$9([
+PagedRoutesViewer = __decorateClass$a([
   controller
 ], PagedRoutesViewer);
 const PagedRoutesViewer$1 = PagedRoutesViewer;
 
-var __defProp$8 = Object.defineProperty;
-var __getOwnPropDesc$8 = Object.getOwnPropertyDescriptor;
-var __decorateClass$8 = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$8(target, key) : target;
+var __defProp$9 = Object.defineProperty;
+var __getOwnPropDesc$9 = Object.getOwnPropertyDescriptor;
+var __decorateClass$9 = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$9(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$8(target, key, result);
+    __defProp$9(target, key, result);
   return result;
 };
 const sharedStorage$4 = UkcLocalStorage.sharedLogbook;
 let SearchResultsViewerElement = class extends PagedRoutesViewer$1 {
+  searchBarPlaceholderString = "Perform a new search...";
   get searchbarTag() {
     return "ukc-searchbar";
   }
@@ -3342,7 +3386,7 @@ let SearchResultsViewerElement = class extends PagedRoutesViewer$1 {
     };
   }
 };
-SearchResultsViewerElement = __decorateClass$8([
+SearchResultsViewerElement = __decorateClass$9([
   controller
 ], SearchResultsViewerElement);
 
@@ -5305,15 +5349,15 @@ InvertedIndex.from = function(iterable, descriptor) {
  */
 var invertedIndex = InvertedIndex;
 
-var __defProp$7 = Object.defineProperty;
-var __getOwnPropDesc$7 = Object.getOwnPropertyDescriptor;
-var __decorateClass$7 = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$7(target, key) : target;
+var __defProp$8 = Object.defineProperty;
+var __getOwnPropDesc$8 = Object.getOwnPropertyDescriptor;
+var __decorateClass$8 = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$8(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$7(target, key, result);
+    __defProp$8(target, key, result);
   return result;
 };
 let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
@@ -5599,7 +5643,7 @@ let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
     }, this.searchDelay);
   }
 };
-InfiniteScrollRoutesViewer = __decorateClass$7([
+InfiniteScrollRoutesViewer = __decorateClass$8([
   controller
 ], InfiniteScrollRoutesViewer);
 const InfiniteScrollRoutesViewer$1 = InfiniteScrollRoutesViewer;
@@ -9127,15 +9171,15 @@ ${JSON.stringify(m,null,4)}`);function M(){R&&(d={tagName:"",hrefValue:"",openin
 `)?p+=P-e:(!P||P>e)&&p++;}l.cb({tag:n,deleteFrom:n.leftOuterWhitespace,deleteTo:s+p,insert:u,rangesArr:r,proposedReturn:[n.leftOuterWhitespace,s+p,u]}),M(),H(e,l,r);}else n={};A(e)||(n={});}k&&(k=!1);}if((!C||t[e]==="<"&&E(t,E(t,e))&&t[E(t,e)]==="/"&&t.startsWith("script",E(t,E(t,e))))&&y(e)&&!y(e-1)&&!`'"`.includes(t[e+1])&&(!`'"`.includes(t[e+2])||/\w/.test(t[e+1]))&&!(t[e+1]==="c"&&t[e+2]===":")&&!(t[e+1]==="f"&&t[e+2]==="m"&&t[e+3]==="t"&&t[e+4]===":")&&!(t[e+1]==="s"&&t[e+2]==="q"&&t[e+3]==="l"&&t[e+4]===":")&&!(t[e+1]==="x"&&t[e+2]===":")&&!(t[e+1]==="f"&&t[e+2]==="n"&&t[e+3]===":")&&G(n,t,e)){if(A(E(t,e)))continue;if(n.nameEnds&&n.nameEnds<e&&!n.lastClosingBracketAt&&(n.onlyPlausible===!0&&n.attributes&&n.attributes.length||n.onlyPlausible===!1)){let s=L(t,e,n.leftOuterWhitespace,e,n.lastOpeningBracketAt,e);l.cb({tag:n,deleteFrom:n.leftOuterWhitespace,deleteTo:e,insert:s,rangesArr:r,proposedReturn:[n.leftOuterWhitespace,e,s]}),H(e,l,r),n={},o={};}if(n.lastOpeningBracketAt!==void 0&&n.onlyPlausible&&n.name&&!n.quotes&&(n.lastOpeningBracketAt=void 0,n.name=void 0,n.onlyPlausible=!1),(n.lastOpeningBracketAt===void 0||!n.onlyPlausible)&&!n.quotes&&(n.lastOpeningBracketAt=e,n.slashPresent=!1,n.attributes=[],V===null?n.leftOuterWhitespace=e:l.trimOnlySpaces&&V===0?n.leftOuterWhitespace=w||e:n.leftOuterWhitespace=V,`${t[e+1]}${t[e+2]}${t[e+3]}`=="!--"||`${t[e+1]}${t[e+2]}${t[e+3]}${t[e+4]}${t[e+5]}${t[e+6]}${t[e+7]}${t[e+8]}`=="![CDATA[")){let s=!0;t[e+2]==="-"&&(s=!1);let i;for(let a=e;a<h;a++)if((!i&&s&&`${t[a-2]}${t[a-1]}${t[a]}`=="]]>"||!s&&`${t[a-2]}${t[a-1]}${t[a]}`=="-->")&&(i=a),i&&(i<a&&t[a].trim()||t[a+1]===void 0)){let g=a;(t[a+1]===void 0&&!t[a].trim()||t[a]===">")&&(g+=1),(!b.length||b[b.length-1][0]!==n.lastOpeningBracketAt)&&b.push([n.lastOpeningBracketAt,i+1]),(!$$1.length||$$1[$$1.length-1][0]!==n.lastOpeningBracketAt)&&$$1.push([n.lastOpeningBracketAt,i+1]);let u=L(t,a,n.leftOuterWhitespace,g,n.lastOpeningBracketAt,i);l.cb({tag:n,deleteFrom:n.leftOuterWhitespace,deleteTo:g,insert:u,rangesArr:r,proposedReturn:[n.leftOuterWhitespace,g,u]}),e=a-1,t[a]===">"&&(e=a),n={},o={};break}}}!t[e].trim()||t[e].charCodeAt(0)===847?(V===null&&(V=e,n.lastOpeningBracketAt!==void 0&&n.lastOpeningBracketAt<e&&n.nameStarts&&n.nameStarts<n.lastOpeningBracketAt&&e===n.lastOpeningBracketAt+1&&!c.some(s=>s.name===n.name)&&(n.onlyPlausible=!0,n.name=void 0,n.nameStarts=void 0)),(t[e]===`
 `||t[e]==="\r")&&(N=e,J&&(J=!1))):(V!==null&&(!n.quotes&&o.equalsAt>V-1&&o.nameEnds&&o.equalsAt>o.nameEnds&&t[e]!=='"'&&t[e]!=="'"&&(U(o)&&n.attributes.push(o),o={},n.equalsSpottedAt=void 0),V=null),J||(J=!0,F&&!C&&typeof N=="number"&&e&&N<e-1&&(t.slice(N+1,e).trim()?N=null:r.push([N+1,e])))),t[e]===" "?w===null&&(w=e):w!==null&&(w=null),n.name==="script"&&(C=!n.slashPresent);}if(t&&(l.trimOnlySpaces&&t[0]===" "||!l.trimOnlySpaces&&!t[0].trim()))for(let e=0;e<h;e++)if(l.trimOnlySpaces&&t[e]!==" "||!l.trimOnlySpaces&&t[e].trim()){r.push([0,e]);break}else t[e+1]||r.push([0,e+1]);if(t&&(l.trimOnlySpaces&&t[~-t.length]===" "||!l.trimOnlySpaces&&!t[~-t.length].trim())){for(let e=t.length;e--;)if(l.trimOnlySpaces&&t[e]!==" "||!l.trimOnlySpaces&&t[e].trim()){r.push([e+1,h]);break}}let O=r.current();if((!m||!m.cb)&&O){if(O[0]&&!O[0][0]){O[0][1];r.ranges[0]=[r.ranges[0][0],r.ranges[0][1]];}if(O[O.length-1]&&O[O.length-1][1]===t.length){O[O.length-1][0];if(r.ranges){let s=r.ranges[r.ranges.length-1][0];t[s-1]&&(l.trimOnlySpaces&&t[s-1]===" "||!l.trimOnlySpaces&&!t[s-1].trim())&&(s-=1);let i=r.ranges[r.ranges.length-1][2];r.ranges[r.ranges.length-1]=[s,r.ranges[r.ranges.length-1][1]],i?.trim()&&r.ranges[r.ranges.length-1].push(i.trimEnd());}}}return {log:{timeTakenInMilliseconds:Date.now()-D},result:_$1(t,r.current()),ranges:r.current(),allTagLocations:b,filteredTagLocations:$$1}}
 
-var __defProp$6 = Object.defineProperty;
-var __getOwnPropDesc$6 = Object.getOwnPropertyDescriptor;
-var __decorateClass$6 = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$6(target, key) : target;
+var __defProp$7 = Object.defineProperty;
+var __getOwnPropDesc$7 = Object.getOwnPropertyDescriptor;
+var __decorateClass$7 = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$7(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$6(target, key, result);
+    __defProp$7(target, key, result);
   return result;
 };
 let OfflineInfiniteScrollRoutesViewer = class extends InfiniteScrollRoutesViewer$1 {
@@ -9316,20 +9360,20 @@ let OfflineInfiniteScrollRoutesViewer = class extends InfiniteScrollRoutesViewer
     };
   }
 };
-OfflineInfiniteScrollRoutesViewer = __decorateClass$6([
+OfflineInfiniteScrollRoutesViewer = __decorateClass$7([
   controller
 ], OfflineInfiniteScrollRoutesViewer);
 const OfflineInfiniteScrollRoutesViewer$1 = OfflineInfiniteScrollRoutesViewer;
 
-var __defProp$5 = Object.defineProperty;
-var __getOwnPropDesc$5 = Object.getOwnPropertyDescriptor;
-var __decorateClass$5 = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$5(target, key) : target;
+var __defProp$6 = Object.defineProperty;
+var __getOwnPropDesc$6 = Object.getOwnPropertyDescriptor;
+var __decorateClass$6 = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$6(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$5(target, key, result);
+    __defProp$6(target, key, result);
   return result;
 };
 const sharedStorage$3 = UkcLocalStorage.sharedLogbook;
@@ -9418,20 +9462,20 @@ let LogbookViewerElement = class extends OfflineInfiniteScrollRoutesViewer$1 {
     return (rte) => rte.associated_ascent_entry.id;
   }
 };
-LogbookViewerElement = __decorateClass$5([
+LogbookViewerElement = __decorateClass$6([
   controller
 ], LogbookViewerElement);
 const LogbookViewerElement$1 = LogbookViewerElement;
 
-var __defProp$4 = Object.defineProperty;
-var __getOwnPropDesc$4 = Object.getOwnPropertyDescriptor;
-var __decorateClass$4 = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$4(target, key) : target;
+var __defProp$5 = Object.defineProperty;
+var __getOwnPropDesc$5 = Object.getOwnPropertyDescriptor;
+var __decorateClass$5 = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$5(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$4(target, key, result);
+    __defProp$5(target, key, result);
   return result;
 };
 const sharedStorage$2 = UkcLocalStorage.sharedLogbook;
@@ -9494,19 +9538,19 @@ let WishlistViewerElement = class extends LogbookViewerElement$1 {
     return "";
   }
 };
-WishlistViewerElement = __decorateClass$4([
+WishlistViewerElement = __decorateClass$5([
   controller
 ], WishlistViewerElement);
 
-var __defProp$3 = Object.defineProperty;
-var __getOwnPropDesc$3 = Object.getOwnPropertyDescriptor;
-var __decorateClass$3 = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$3(target, key) : target;
+var __defProp$4 = Object.defineProperty;
+var __getOwnPropDesc$4 = Object.getOwnPropertyDescriptor;
+var __decorateClass$4 = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$4(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$3(target, key, result);
+    __defProp$4(target, key, result);
   return result;
 };
 const sharedStorage$1 = UkcLocalStorage.sharedLogbook;
@@ -9604,19 +9648,19 @@ let PartnerAscentsViewerElement = class extends PagedRoutesViewer$1 {
     return "";
   }
 };
-PartnerAscentsViewerElement = __decorateClass$3([
+PartnerAscentsViewerElement = __decorateClass$4([
   controller
 ], PartnerAscentsViewerElement);
 
-var __defProp$2 = Object.defineProperty;
-var __getOwnPropDesc$2 = Object.getOwnPropertyDescriptor;
-var __decorateClass$2 = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$2(target, key) : target;
+var __defProp$3 = Object.defineProperty;
+var __getOwnPropDesc$3 = Object.getOwnPropertyDescriptor;
+var __decorateClass$3 = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$3(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$2(target, key, result);
+    __defProp$3(target, key, result);
   return result;
 };
 const generateApiUrl = () => {
@@ -9701,10 +9745,10 @@ let CragRoutesViewerElement = class extends OfflineInfiniteScrollRoutesViewer$1 
     return "";
   }
 };
-__decorateClass$2([
+__decorateClass$3([
   attr
 ], CragRoutesViewerElement.prototype, "cragId", 2);
-CragRoutesViewerElement = __decorateClass$2([
+CragRoutesViewerElement = __decorateClass$3([
   controller
 ], CragRoutesViewerElement);
 
@@ -9714,6 +9758,45 @@ const cragIconTemplate = (_element) => {
     <path data-target='crag-icon.stroke' fill-rule="evenodd" clip-rule="evenodd" d="M35.2797 13.6441C36.5208 11.8103 38.5673 10.7879 40.6491 10.7879C42.7304 10.7879 44.7598 11.8813 45.9602 13.6813L45.9703 13.6964L62.1445 38.4495C65.1097 42.9245 61.3358 47.8788 56.9047 47.8788H6.53211C1.71195 47.8788 -1.67085 42.6244 1.08555 38.2616L1.09176 38.2518L18.4137 11.1955C19.7424 9.03294 22.0318 8.12122 24.0381 8.12122C26.0129 8.12122 28.2465 9.06783 29.5495 11.1478L33.2254 16.6014L35.2797 13.6441Z" fill="black"/>
     <path data-target='crag-icon.fill' d="M58.9054 40.5833L42.7332 15.8333C42.233 15.0833 41.3994 14.6667 40.6491 14.6667C39.8155 14.6667 38.9819 15.0833 38.4817 15.8333L33.1772 23.4697L26.2888 13.25C25.7887 12.4167 24.8717 12 24.0381 12C23.1211 12 22.2041 12.4167 21.704 13.25L4.36471 40.3333C3.36437 41.9167 4.53143 44 6.53211 44H56.9047C58.7386 44 59.9057 42.0833 58.9054 40.5833Z" fill="white"/>
     <line data-target='crag-icon.stroke' x1="32.7288" y1="18.7442" x2="38.7442" y2="29.2712" stroke="black" stroke-width="4" stroke-linecap="round"/>
+</svg>
+`;
+};
+
+var __defProp$2 = Object.defineProperty;
+var __getOwnPropDesc$2 = Object.getOwnPropertyDescriptor;
+var __decorateClass$2 = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$2(target2, key) : target2;
+  for (var i = decorators.length - 1, decorator; i >= 0; i--)
+    if (decorator = decorators[i])
+      result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
+  if (kind && result)
+    __defProp$2(target2, key, result);
+  return result;
+};
+let CragIconElement = class extends BaseCon$1 {
+  stroke;
+  fill;
+  get template() {
+    return cragIconTemplate;
+  }
+};
+__decorateClass$2([
+  target
+], CragIconElement.prototype, "stroke", 2);
+__decorateClass$2([
+  target
+], CragIconElement.prototype, "fill", 2);
+CragIconElement = __decorateClass$2([
+  controller
+], CragIconElement);
+
+const template = (_element) => {
+  return html$1`
+<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M58.9054 40.5833L42.7332 15.8333C42.233 15.0833 41.3994 14.6667 40.6491 14.6667C39.8155 14.6667 38.9819 15.0833 38.4817 15.8333L33.1772 23.4697L26.2888 13.25C25.7887 12.4167 24.8717 12 24.0381 12C23.1211 12 22.2041 12.4167 21.704 13.25L4.36471 40.3333C3.36437 41.9167 4.53143 44 6.53211 44H56.9047C58.7386 44 59.9057 42.0833 58.9054 40.5833Z" fill="white" fill-opacity="0.3"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M40.6491 10.7879C38.5673 10.7879 36.5208 11.8103 35.2797 13.6441L33.2254 16.6014L29.5495 11.1478C28.2465 9.06783 26.0129 8.12122 24.0381 8.12122C22.0318 8.12122 19.7424 9.03294 18.4137 11.1955L1.09176 38.2518L1.08555 38.2616C-1.67085 42.6244 1.71195 47.8788 6.53211 47.8788H56.9047C61.3358 47.8788 65.1097 42.9245 62.1445 38.4495L45.9703 13.6964L45.9602 13.6813C44.7598 11.8813 42.7304 10.7879 40.6491 10.7879ZM58.9054 40.5833L42.7332 15.8333C42.233 15.0833 41.3994 14.6667 40.6491 14.6667C39.8155 14.6667 38.9819 15.0833 38.4817 15.8333L34.1054 22.1335L48.1 44H56.9047C58.7386 44 59.9057 42.0833 58.9054 40.5833Z" fill="black"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M33.1772 23.4697L34.1054 22.1335L48.1 44H6.53211C4.53143 44 3.36437 41.9167 4.36471 40.3333L21.704 13.25C22.2041 12.4167 23.1211 12 24.0381 12C24.8717 12 25.7887 12.4167 26.2888 13.25L33.1772 23.4697Z" fill="white"/>
+    <line x1="31.7648" y1="17.5963" x2="49.5963" y2="45.2352" stroke="black" stroke-width="4" stroke-linecap="round"/>
 </svg>
 `;
 };
@@ -9729,22 +9812,14 @@ var __decorateClass$1 = (decorators, target2, key, kind) => {
     __defProp$1(target2, key, result);
   return result;
 };
-let CragIconElement = class extends BaseCon$1 {
-  stroke;
-  fill;
+let ButtressIconElement = class extends BaseCon$1 {
   get template() {
-    return cragIconTemplate;
+    return template;
   }
 };
-__decorateClass$1([
-  target
-], CragIconElement.prototype, "stroke", 2);
-__decorateClass$1([
-  target
-], CragIconElement.prototype, "fill", 2);
-CragIconElement = __decorateClass$1([
+ButtressIconElement = __decorateClass$1([
   controller
-], CragIconElement);
+], ButtressIconElement);
 
 const wishlistIndicatorTemplate = (_el) => {
   return html$1`

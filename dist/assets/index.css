@@ -189,6 +189,7 @@ html {
 }
 
 .rfd-search crag-icon *,
+.rfd-search buttress-icon *,
 .rfd-search topo-dot *,
 .rfd-search external-link-icon * {
   width: var(--result-icon-size);
