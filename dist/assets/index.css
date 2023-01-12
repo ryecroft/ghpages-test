@@ -366,7 +366,7 @@ html {
 
 .rfd-search #gray-view {
   width: 100vw;
-  height: 100vh;
+  height: 140vh;
   background-color: rgba(0, 0, 0, 0.7);
   position: fixed;
   top: 0vw;
@@ -559,6 +559,26 @@ html {
 
 .rfd-search #focus-searchbar {
   display: none;
+}
+
+.rfd-search .important {
+  font-weight: bold;
+  color: #be2730;
+}
+
+.rfd-search .pitch-grade {
+  font-weight: bold;
+  color: var(--title-color);
+}
+
+.rfd-search .pitch-number {
+  font-weight: bold;
+  color: var(--title-color);
+}
+
+.rfd-search .pitch-length {
+  font-weight: medium;
+  color: var(--title-color);
 }
 
 .rfd-search .logged {
@@ -1144,8 +1164,8 @@ html {
     font-size: var(--font-size-3);
   }
   .rfd-search .result-entry {
-    padding-top: calc(var(--padding) / 1.85);
-    padding-bottom: calc(var(--padding) / 1.85);
+    padding-top: calc(var(--padding) / 1);
+    padding-bottom: calc(var(--padding) / 1);
     align-items: center;
   }
   .rfd-search .result-crag-name {
