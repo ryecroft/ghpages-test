@@ -39,6 +39,42 @@ ukc-searchbar {
   transition: all;
 }
 
+filters-controller {
+  display: block;
+  width: 100vw;
+  height: 600px;
+  position: fixed;
+  bottom: 0;
+  z-index: 100000;
+}
+
+filters-controller .rfd-search .filters-controller-content {
+  width: 100vw;
+  height: 100vh;
+  padding: var(--padding);
+  background-color: var(--background-color-page);
+  z-index: 2000000 !important;
+  position: absolute;
+  top: 100vh;
+  border-top-left-radius: 10pt;
+  border-top-right-radius: 10pt;
+  transition: top 0.2s ease-out;
+}
+
+filters-controller .rfd-search #gray-view {
+  opacity: 0;
+  width: 100vw;
+  height: 140vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  top: 0vw;
+  left: 0vw;
+  z-index: 1 !important;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  transition: opacity 0.2s ease-out;
+}
+
 .nightmode .icon-nightmode-toggle {
   width: var(--icon-size);
   height: var(--icon-size);
@@ -577,7 +613,7 @@ html {
 }
 
 .rfd-search .pitch-length {
-  font-weight: medium;
+  font-weight: 500;
   color: var(--title-color);
 }
 
