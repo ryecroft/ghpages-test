@@ -53,12 +53,13 @@ filters-controller .rfd-search .filters-controller-content {
   height: 100vh;
   padding: var(--padding);
   background-color: var(--background-color-page);
+  color: white;
   z-index: 2000000 !important;
   position: absolute;
   top: 100vh;
   border-top-left-radius: 10pt;
   border-top-right-radius: 10pt;
-  transition: top 0.2s ease-out;
+  transition: top 0.3s ease-out;
 }
 
 filters-controller .rfd-search #gray-view {
