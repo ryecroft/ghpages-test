@@ -92,7 +92,7 @@ filters-controller .rfd-search #gray-view {
 
 .nightmode .rfd-search {
   --background-color-page: #19181f;
-  --background-color-page-semi: #19181fa5;
+  --background-color-page-semi: #1e1d25ff;
   --brightness-multiplier: 100%;
   --background-color: #282630;
   --background-color-2: var(--background-color-page-semi);
@@ -510,6 +510,7 @@ html {
 }
 
 .rfd-search #search-results-header-container {
+  overflow: visible;
   backface-visibility: hidden;
   background-color: var(--background-color);
   position: sticky;
@@ -692,7 +693,7 @@ html {
   align-content: center;
 }
 
-.rfd-search .date-header {
+.rfd-search section-header {
   display: flex;
   justify-content: space-between;
   font-size: var(--font-size-3);
@@ -1181,10 +1182,6 @@ html {
   }
   .rfd-search #search-results-header-container {
     width: unset;
-  }
-  .rfd-search #search-query-description,
-.rfd-search .search-results-search-query-description {
-    padding: calc(var(--base-padding) * var(--big-screen-multiplier) * 2);
   }
   .rfd-search #searchbar-query-suggestion-flex,
 .rfd-search #search-query-description,
