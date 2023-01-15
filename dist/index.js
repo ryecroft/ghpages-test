@@ -4375,8 +4375,8 @@ const TopoDotElement$1 = TopoDotElement;
 const routeTemplate = (element) => {
   const el = element;
   return html$1`
-        <li class='result-entry-container'>
-            <a data-target='${el.elementName}.href' href='${el.url}' style="position:relative;display:block;">
+        <!--<li class='result-entry-container'>-->
+            <a class='result-entry-container' data-target='${el.elementName}.href' href='${el.url}' style="position:relative;display:block;">
                 <wishlist-indicator data-target='${el.elementName}.wishlist_indicator' alt='wishlist-indicator'></wishlist-indicator>
                 <logbook-indicator data-target='${el.elementName}.logbook_indicator' color-name='green' alt='logbook-indicator'></logbook-indicator>
                 <div class='result-entry'>
@@ -4408,7 +4408,7 @@ const routeTemplate = (element) => {
                     </div>
                 </div>
             </a>
-        </li>
+        <!--</li>-->
     `;
 };
 
@@ -4708,8 +4708,8 @@ const LogbookIndicatorElement$1 = LogbookIndicatorElement;
 const logentryTemplate = (element) => {
   const el = element;
   return html$1`
-        <li class='result-entry-container'>
-            <a data-target='${el.elementName}.href' href='${el.url}' style="position:relative;display:block;">
+        <!--<li class='result-entry-container'>-->
+            <a class='result-entry-container' data-target='${el.elementName}.href' href='${el.url}' style="position:relative;display:block;">
                 <wishlist-indicator data-target='${el.elementName}.wishlist_indicator' alt='wishlist-indicator'></wishlist-indicator>
                 <logbook-indicator data-target='${el.elementName}.logbook_indicator' color-name='green' alt='logbook-indicator'></logbook-indicator>
                 <div class='result-entry d-flex flex-column align-items-start'>
@@ -4763,7 +4763,7 @@ const logentryTemplate = (element) => {
                     </div>
                 </div>
             </a>
-        </li>
+        <!--</li>-->
     `;
 };
 
@@ -4908,8 +4908,8 @@ LogbookResultElement = __decorateClass$e([
 const routeResultTemplate = (element) => {
   const el = element;
   return html$1`
-        <li class='result-entry-container'>
-            <a data-target='${el.elementName}.href' href='${el.url}' style="position:relative;display:block;">
+        <!--<li class='result-entry-container'>-->
+            <a class='result-entry-container' data-target='${el.elementName}.href' href='${el.url}' style="position:relative;display:block;">
                 <wishlist-indicator data-target='${el.elementName}.wishlist_indicator' alt='wishlist-indicator'></wishlist-indicator>
                 <logbook-indicator data-target='${el.elementName}.logbook_indicator' color-name='green' alt='logbook-indicator'></logbook-indicator>
                 <div class='result-entry d-flex flex-column align-items-start'>
@@ -4942,7 +4942,7 @@ const routeResultTemplate = (element) => {
                     </div>
                 </div>
             </a>
-        </li>
+        <!--</li>-->
     `;
 };
 
