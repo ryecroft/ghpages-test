@@ -2696,8 +2696,6 @@ var __decorateClass$l = (decorators, target2, key, kind) => {
   return result;
 };
 let BaseRoutesViewer = class extends BaseCon$1 {
-  observerClosed;
-  observerOpen;
   get apiUrl() {
     return generateApiUrl$4();
   }
@@ -2839,7 +2837,7 @@ let BaseRoutesViewer = class extends BaseCon$1 {
     });
     document.addEventListener("scroll", this.handleScrollListeners.bind(this));
     this.filter_query_description.addEventListener("click", (evt) => {
-      this.header_container.style.top = "-64px";
+      this.header_container.style.top = "-55px";
     });
     this.input.addEventListener("focus", () => this.onInputFocus());
     this.input.addEventListener("input", () => this.onInputUpdated());
@@ -2886,7 +2884,7 @@ let BaseRoutesViewer = class extends BaseCon$1 {
     let diff = scroll - this.lastScroll;
     this.lastScroll = scroll;
     if (diff > 30) {
-      this.header_container.style.top = "-64px";
+      this.header_container.style.top = "-55px";
     }
     if (diff > 0) {
       return;
@@ -2990,14 +2988,6 @@ let BaseRoutesViewer = class extends BaseCon$1 {
   clearResultsDropdown() {
     this.routes_viewer_container.innerHTML = "";
     this.headerDeets = [];
-    this.observerClosed = new IntersectionObserver(this.onIntersectionClosed.bind(this), {
-      rootMargin: "-50px",
-      threshold: 0.25
-    });
-    this.observerOpen = new IntersectionObserver(this.onIntersectionOpen.bind(this), {
-      rootMargin: "-150px",
-      threshold: 0.25
-    });
     if (this.fixed_section_header.left_label) {
       this.fixed_section_header.left_label.innerHTML = "";
       this.fixed_section_header.right_label.innerHTML = "";
@@ -3030,12 +3020,12 @@ let BaseRoutesViewer = class extends BaseCon$1 {
     return appendRoute({ target: target2, route, tagName });
   }
   onIntersectionClosed(entries, observer) {
-    if (this.header_container.style.top === "-64px")
+    if (this.header_container.style.top === "-55px")
       return;
     this._onIntersection(entries, "closed");
   }
   onIntersectionOpen(entries, observer) {
-    if (this.header_container.style.top !== "-64px")
+    if (this.header_container.style.top !== "-55px")
       return;
     this._onIntersection(entries, "open");
   }
@@ -3076,8 +3066,6 @@ let BaseRoutesViewer = class extends BaseCon$1 {
       this.fixed_section_header.left_label.innerText = this.headerDeets[0].leftText;
       this.fixed_section_header.right_label.innerText = this.headerDeets[0].rightText;
     }
-    this.observerClosed?.observe(header);
-    this.observerOpen?.observe(header);
     return header;
   }
   submitSearch() {
