@@ -1,6 +1,6 @@
 (function () {
 'use strict';
-const style = "*,\n::after,\n::before {\n  box-sizing: border-box;\n}\n\n.icon-nightmode-toggle {\n  position: absolute;\n  right: 5pt;\n  top: 5pt;\n  display: inline-block;\n  background-color: rgba(0, 0, 0, 0.392);\n  cursor: pointer;\n  width: var(--icon-size);\n  height: var(--icon-size);\n  -webkit-mask-size: var(--icon-size) var(--icon-size);\n  -webkit-mask-repeat: no-repeat;\n  -webkit-mask-position: center;\n  mask-size: var(--icon-size) var(--icon-size);\n  mask-repeat: no-repeat;\n  mask-position: center;\n  mask: url(\"/assets/moon.svg\");\n  -webkit-mask: url(\"/assets/moon.svg\");\n}\n\n.icon-nightmode-toggle:focus {\n  background-color: var(--flash-color);\n}\n\ninput[type=search]::-webkit-search-decoration,\ninput[type=search]::-webkit-search-cancel-button,\ninput[type=search]::-webkit-search-results-button,\ninput[type=search]::-webkit-search-results-decoration {\n  display: none;\n}\n\nukc-searchbar {\n  margin-bottom: 12px;\n  transition: all;\n}\n\nfilters-controller {\n  display: block;\n  width: 100vw;\n  height: 600px;\n  position: fixed;\n  bottom: 0;\n  z-index: 100000;\n}\n\nfilters-controller .rfd-search .filters-controller-content {\n  width: 100vw;\n  height: 100vh;\n  padding: var(--padding);\n  background-color: var(--background-color-page);\n  color: white;\n  z-index: 2000000 !important;\n  position: absolute;\n  top: 100vh;\n  border-top-left-radius: 10pt;\n  border-top-right-radius: 10pt;\n  transition: top 0.3s ease-out;\n}\n\nfilters-controller .rfd-search #gray-view {\n  opacity: 0;\n  width: 100vw;\n  height: 140vh;\n  background-color: rgba(0, 0, 0, 0.7);\n  position: fixed;\n  top: 0vw;\n  left: 0vw;\n  z-index: 1 !important;\n  backdrop-filter: blur(5px);\n  -webkit-backdrop-filter: blur(5px);\n  transition: opacity 0.2s ease-out;\n}\n\n.nightmode .icon-nightmode-toggle {\n  width: var(--icon-size);\n  height: var(--icon-size);\n  -webkit-mask-size: var(--icon-size) var(--icon-size);\n  -webkit-mask-repeat: no-repeat;\n  -webkit-mask-position: center;\n  mask-size: var(--icon-size) var(--icon-size);\n  mask-repeat: no-repeat;\n  mask-position: center;\n  mask: url(\"/assets/sun.svg\");\n  -webkit-mask: url(\"/assets/sun.svg\");\n  background-color: rgba(255, 255, 255, 0.492);\n}\n\n.nightmode .rfd-search {\n  --background-color-page: #19181f;\n  --background-color-page-semi: #1e1d25ff;\n  --brightness-multiplier: 100%;\n  --background-color: #282630;\n  --background-color-2: var(--background-color-page-semi);\n  --title-color: rgb(217, 217, 217);\n  --subtitle-color: rgba(255, 255, 255, 0.62);\n  --subtitle-color-2: rgba(255, 255, 255, 0.492);\n  --subtitle-color-3: rgba(255, 255, 255, 0.39);\n  --subtitle-color-4: rgba(255, 255, 255, 0.28);\n  --flash-color: hotpink;\n  --border-color: #565656;\n}\n\n.nightmode .rfd-search logbook-result .result-entry-container {\n  border-bottom: solid #212029 1px;\n}\n\n.nightmode .rfd-search page-button {\n  background-color: var(--background-color);\n  color: var(--subtitle-color-2);\n}\n\n.nightmode .rfd-search .page-control-current {\n  color: var(--subtitle-color-2);\n  background-color: var(--background-color-2);\n}\n\n.nightmode .rfd-search #page-control-next.disabled,\n.nightmode .rfd-search #page-control-previous.disabled {\n  background-color: var(--background-color);\n}\n\n.nightmode .rfd-search #search-widget {\n  box-shadow: 0px 0px 10px rgba(1, 1, 1, 0.2);\n}\n\n.nightmode .rfd-search .gray-background input {\n  background-color: var(--background-color);\n}\n\n@media (hover: hover) and (pointer: fine) {\n  .nightmode .icon-nightmode-toggle:hover {\n    background-color: var(--flash-color);\n  }\n  .nightmode .result-entry:hover {\n    border-radius: calc(var(--radius) * 0.7);\n  }\n  .nightmode .mouse-over:hover {\n    color: var(--flash-color);\n  }\n  .nightmode .icon:hover {\n    background-color: var(--flash-color);\n  }\n  .nightmode .result-entry-container:hover {\n    background-color: var(--background-color-2);\n  }\n  .nightmode .page-control-page:hover {\n    border-color: var(--flash-color);\n    color: var(--flash-color);\n    z-index: 2;\n  }\n  .nightmode .page-control-current:hover {\n    border-color: var(--background-color-2);\n    color: var(--subtitle-color-2);\n    z-index: 2;\n  }\n  .nightmode #page-control-next.disabled:hover,\n.nightmode #page-control-previous.disabled:hover {\n    color: var(--subtitle-color-2);\n  }\n  .nightmode #page-control-next:hover,\n.nightmode #page-control-previous:hover {\n    border-color: var(--flash-color);\n    color: var(--flash-color);\n    z-index: 2;\n  }\n  .nightmode a:hover {\n    color: var(--flash-color);\n  }\n  .nightmode .page-control-page:hover {\n    color: var(--flash-color);\n  }\n  .nightmode .page-control-current:hover {\n    color: var(--subtitle-color-2);\n  }\n  .nightmode #page-control-next.disabled:hover,\n.nightmode #page-control-previous.disabled:hover {\n    color: var(--subtitle-color-2);\n  }\n}\n\nhtml {\n  --background-color-page: #e8e8e8;\n  --base-mask-size: 2rem;\n  --icon-size: var(--base-mask-size);\n  --big-screen-multiplier: 0.45;\n}\n\n.rfd-search {\n  --background-color-page-semi: #eeeeef;\n  --brightness-multiplier: 100%;\n  --background-color: white;\n  --background-color-2: #dadada;\n  --title-color: rgba(0, 0, 0, 0.75);\n  --subtitle-color: rgba(0, 0, 0, 0.65);\n  --subtitle-color-2: rgba(0, 0, 0, 0.5);\n  --subtitle-color-3: rgba(0, 0, 0, 0.45);\n  --subtitle-color-4: rgba(0, 0, 0, 0.35);\n  --flash-color: var(--flash-color);\n  --border-color: #444444;\n  --base-padding: 10pt;\n  --base-font-size: 1.1rem;\n  --base-font-size-2: calc(var(--base-font-size) * 0.9);\n  --base-font-size-3: calc(var(--base-font-size-2) * 0.9);\n  --base-font-size-4: calc(var(--base-font-size-3) * 1);\n  --base-result-icon-size: 1.7rem;\n  --padding: var(--base-padding);\n  --font-size: var(--base-font-size);\n  --font-size-2: var(--base-font-size-2);\n  --font-size-3: var(--base-font-size-3);\n  --font-size-4: var(--base-font-size-4);\n  --page-control-font-size: 1.3rem;\n  --page-control-size: calc(var(--page-control-font-size) * 1.8);\n  --result-icon-size: var(--base-result-icon-size);\n  --radius: 10pt;\n  --page-control-radius: 5pt;\n  --radius-search-results: 0pt;\n  --border-width: 1pt;\n  --search-container-z-index: 1030;\n  --gray-view-opacity-animation-duration: 0.2s;\n  margin-bottom: 16px;\n}\n\n.rfd-search crag-icon *,\n.rfd-search buttress-icon *,\n.rfd-search topo-dot *,\n.rfd-search external-link-icon * {\n  width: var(--result-icon-size);\n  height: var(--result-icon-size);\n}\n\n.rfd-search select {\n  background-color: var(--background-color);\n  color: var(--subtitle-color);\n  border: none;\n}\n\n.rfd-search {\n  width: 100%;\n  font-size: var(--font-size);\n  position: relative;\n}\n\n.rfd-search ::-webkit-scrollbar-thumb {\n  filter: brightness(80%);\n}\n\n.rfd-search #searchbar-footer,\n.rfd-search #searchbar-query-suggestion-flex {\n  filter: brightness(90%);\n}\n\n.rfd-search ::-webkit-scrollbar {\n  height: 10pt;\n  width: 5pt;\n}\n\n.rfd-search ::-webkit-scrollbar-thumb {\n  background: var(--background-color-2);\n}\n\n.rfd-search ::-webkit-scrollbar-track {\n  background: rgba(1, 1, 1, 0);\n}\n\n.rfd-search scrollbar-thumb {\n  background: var(--background-color-2);\n}\n\n.rfd-search scrollbar-track {\n  background: rgba(1, 1, 1, 0);\n}\n\n.rfd-search ul {\n  list-style-type: none;\n  margin: 0pt;\n  padding: 0pt;\n  padding-bottom: var(--padding);\n  outline: none;\n}\n\n.rfd-search ul a:link {\n  color: unset;\n}\n\n.rfd-search ul a:visited {\n  color: unset;\n}\n\n.rfd-search ul a:hover {\n  color: unset;\n}\n\n.rfd-search ul a:active {\n  color: unset;\n}\n\n.rfd-search input {\n  outline: none;\n  width: 100%;\n  font-size: var(--font-size);\n  border-radius: var(--radius);\n  color: rgba(0, 0, 0, 0);\n  background-color: var(--background-color);\n  color: var(--title-color);\n  border: none;\n  transition-property: all;\n}\n\n.rfd-search a {\n  text-decoration: none !important;\n}\n\n.rfd-search a:link {\n  color: cadetblue;\n}\n\n.rfd-search a:visited {\n  color: cadetblue;\n}\n\n.rfd-search a:active {\n  color: var(--flash-color);\n}\n\n.rfd-search #name-dash {\n  display: none;\n}\n\n.rfd-search .logged-clean logbook-indicator,\n.rfd-search .logged-followed logbook-indicator,\n.rfd-search .logged-dogged logbook-indicator {\n  display: block;\n}\n\n.rfd-search .on-wishlist wishlist-indicator {\n  display: block;\n}\n\n.rfd-search .logged-clean.on-wishlist wishlist-indicator,\n.rfd-search .logged-followed.on-wishlist wishlist-indicator,\n.rfd-search .logged-dogged.on-wishlist wishlist-indicator {\n  right: 24px;\n}\n\n.rfd-search logbook-indicator {\n  display: none;\n  position: absolute;\n  top: 0px;\n  right: -6px;\n  width: calc(var(--result-icon-size) * 1);\n  height: calc(var(--result-icon-size) * 1);\n}\n\n.rfd-search wishlist-indicator {\n  display: none;\n  position: absolute;\n  top: -1px;\n  right: 4px;\n  width: calc(var(--result-icon-size) * 0.5);\n  height: calc(var(--result-icon-size) * 0.5);\n}\n\n.rfd-search input,\n.rfd-search #search-query-description,\n.rfd-search .search-results-search-query-description {\n  padding: calc(var(--padding) * 0.65);\n  padding-left: var(--padding);\n}\n\n.rfd-search #filter-icon {\n  left: 16px;\n  position: absolute;\n  top: 50%;\n  transform: translateY(-50%);\n  background-color: var(--subtitle-color);\n}\n\n.rfd-search #filter-bar-container input {\n  width: calc(100% - (var(--padding) * 2 - 8px));\n  display: block;\n  padding: var(--padding);\n  padding-top: calc(var(--padding) - 2px);\n  padding-bottom: calc(var(--padding) - 2px);\n  padding-left: 40px;\n  margin: var(--padding);\n  margin-right: calc(var(--padding) - 4px);\n  margin-left: calc(var(--padding) - 4px);\n  border-width: var(--border-width);\n  background-color: var(--background-color-page-semi);\n  transition: all 0.2s;\n}\n\n.rfd-search #name-and-grade {\n  display: flex;\n  justify-content: space-between;\n  font-weight: 500;\n}\n\n.rfd-search #gray-view {\n  width: 100vw;\n  height: 140vh;\n  background-color: rgba(0, 0, 0, 0.7);\n  position: fixed;\n  top: 0vw;\n  left: 0vw;\n  z-index: calc(var(--search-container-z-index) - 1);\n  opacity: 1;\n  backdrop-filter: blur(5px);\n  -webkit-backdrop-filter: blur(5px);\n}\n\n.rfd-search #search-container {\n  position: relative;\n  z-index: var(--search-container-z-index);\n}\n\n.rfd-search #search-container input {\n  padding-right: calc(var(--icon-size) + var(--padding));\n  padding-left: calc(var(--icon-size) + var(--padding) - 4px);\n  transition: all 0.2s;\n}\n\n.rfd-search #searchbar-inner-container {\n  position: relative;\n}\n\n.rfd-search #search-absolute {\n  position: absolute;\n  top: 0;\n  width: 100%;\n  transition: transform 0.3s ease-out;\n}\n\n.rfd-search #search-results-header-container,\n.rfd-search #search-widget,\n.rfd-search #search-results-widget {\n  border-width: var(--border-width);\n  background-color: var(--background-color);\n  transition: all 0.2s;\n  overflow: hidden;\n}\n\n.rfd-search #search-widget {\n  box-shadow: 0px 0px 10px rgba(1, 1, 1, 0.1);\n  transition: opacity 0.3s;\n  border-radius: var(--radius);\n}\n\n.rfd-search #search-results-header-container,\n.rfd-search #search-results-widget {\n  margin-left: calc(-50vw + 50%);\n  margin-right: calc(-51vw + 51%);\n}\n\n.rfd-search #searchbar-footer {\n  background-color: var(--background-color);\n  font-size: var(--font-size-4);\n  color: var(--subtitle-color-2);\n  border-bottom-left-radius: var(--radius);\n  border-bottom-right-radius: var(--radius);\n  filter: brightness(90%);\n}\n\n.rfd-search #search-results-container {\n  contain: layout paint;\n  overflow-y: auto;\n  overflow-x: hidden;\n  overscroll-behavior-y: contain;\n  scrollbar-color: var(--background-color-2) rgba(1, 1, 1, 0);\n  transition: opacity 0.3s ease-out;\n}\n\n.rfd-search #search-icon {\n  position: absolute;\n  left: 4pt;\n  top: 50%;\n  transform: translateY(-50%);\n  background-color: var(--subtitle-color);\n}\n\n.rfd-search #filter-bar-container {\n  position: relative;\n}\n\n.rfd-search #input-hidden {\n  background-color: rgba(0, 0, 0, 0) !important;\n}\n\n.rfd-search #delete-search-text-button,\n.rfd-search #filter-delete-text-button {\n  position: absolute;\n  right: 0px;\n  top: 50%;\n  transform: translateY(-50%);\n  cursor: pointer;\n}\n\n.rfd-search #filter-delete-text-button {\n  right: 10px;\n}\n\n.rfd-search #return-key-action {\n  padding: var(--padding);\n  margin-top: calc(var(--padding) * 5);\n}\n\n.rfd-search #search-results-header-container {\n  overflow: visible;\n  backface-visibility: hidden;\n  background-color: var(--background-color);\n  position: sticky;\n  z-index: 2;\n  width: 100vw;\n  margin-left: -15px;\n}\n\n.rfd-search .routes-viewer-header {\n  padding-left: var(--padding);\n  width: 100vw;\n}\n\n.rfd-search .result-icon {\n  display: inline-block;\n}\n\n.rfd-search .gray-background input {\n  background-color: #e0e0e0;\n  transition: background-color 0.2s ease;\n}\n\n.rfd-search .normal-background input {\n  background-color: var(--background-color);\n  transition: background-color 0.2s ease;\n}\n\n.rfd-search .searchbar-help-text-container {\n  transition: height 0.2s ease;\n  overscroll-behavior-y: contain;\n}\n\n.rfd-search #searchbar-help-text {\n  padding: calc(var(--padding) * 2);\n}\n\n.rfd-search #placeholder-short-display {\n  color: var(--title-color);\n  opacity: 0.5;\n  margin-left: -6px;\n}\n\n.rfd-search #searchbar-short-display-container {\n  position: absolute;\n  left: 4pt;\n  transform: translateY(-8%);\n}\n\n.rfd-search #search-icon-short-display {\n  background-color: var(--subtitle-color);\n  display: inline-block;\n  transform: translateY(30%);\n}\n\n.rfd-search #searchbar-query-suggestion-flex {\n  position: relative;\n  padding-right: calc(var(--icon-size) + var(--padding));\n  border-bottom-left-radius: var(--radius);\n  border-bottom-right-radius: var(--radius);\n}\n\n.rfd-search .ascent-notes a,\n.rfd-search .ascent-details a {\n  color: #bbdcee !important;\n  opacity: 0.7;\n  line-height: 1.3em;\n}\n\n.rfd-search #help-button,\n.rfd-search #filter-bar-help-button {\n  position: absolute;\n  right: 0pt;\n  top: 50%;\n  transform: translateY(-50%);\n}\n\n.rfd-search #searchbar-query-suggestion-flex,\n.rfd-search #search-query-description,\n.rfd-search .search-results-search-query-description {\n  font-size: var(--font-size-3);\n  color: var(--subtitle-color-2);\n  background-color: var(--background-color);\n}\n\n.rfd-search #focus-searchbar {\n  display: none;\n}\n\n.rfd-search .important {\n  font-weight: bold;\n  color: #be2730;\n}\n\n.rfd-search .pitch-grade {\n  font-weight: bold;\n  color: var(--title-color);\n}\n\n.rfd-search .pitch-number {\n  font-weight: bold;\n  color: var(--title-color);\n}\n\n.rfd-search .pitch-length {\n  font-weight: 500;\n  color: var(--title-color);\n}\n\n.rfd-search .logged {\n  background-color: green;\n}\n\n.rfd-search .page-control {\n  display: flex;\n  justify-content: flex-end;\n  align-content: center;\n  margin-top: var(--padding);\n  margin-bottom: var(--padding);\n  margin-left: calc(-50vw + 50%);\n  margin-right: calc(-50vw + 50% + var(--padding));\n}\n\n.rfd-search .fa-button {\n  border: 0;\n  width: 40px;\n  height: 40px;\n  background-color: var(--background-color);\n  border-radius: var(--radius);\n  color: var(--subtitle-color);\n  transition: background-color 0.2s ease-out;\n}\n\n.rfd-search .fa-button:hover {\n  background-color: var(--background-color-2);\n}\n\n.rfd-search .fa-button i {\n  transition: rotate 0.2s ease-out;\n}\n\n.rfd-search .hidden {\n  display: none;\n}\n\n.rfd-search #page-control-previous,\n.rfd-search #page-control-next,\n.rfd-search page-button {\n  display: flex;\n  align-items: center;\n  text-align: center;\n  aspect-ratio: 1/1;\n  font-family: monospace;\n  background-color: var(--background-color);\n  border: solid;\n  color: var(--subtitle-color-2);\n  margin-left: calc(var(--border-width) * -1);\n  border-width: var(--border-width);\n  border-color: var(--background-color-2);\n  justify-content: center;\n  font-weight: 900;\n  cursor: pointer;\n  font-size: var(--page-control-font-size);\n  height: var(--page-control-size);\n  width: var(--page-control-size);\n}\n\n.rfd-search #page-control-previous {\n  border-top-left-radius: var(--page-control-radius);\n  border-bottom-left-radius: var(--page-control-radius);\n}\n\n.rfd-search #page-control-next {\n  border-top-right-radius: var(--page-control-radius);\n  border-bottom-right-radius: var(--page-control-radius);\n}\n\n.rfd-search page-button {\n  display: flex;\n  justify-content: center;\n  align-content: center;\n}\n\n.rfd-search section-header {\n  display: flex;\n  justify-content: space-between;\n  font-size: var(--font-size-3);\n  color: var(--subtitle-color-2);\n  padding: var(--padding);\n  padding-right: calc(var(--padding) / 2);\n  padding-top: calc(var(--padding) / 2);\n  padding-bottom: calc(var(--padding) / 2 - 2px);\n  background-color: var(--background-color-page-semi);\n}\n\n.rfd-search .page-control-current {\n  border-color: var(--background-color-2);\n  color: var(--subtitle-color-2);\n  background-color: var(--background-color-2);\n  filter: brightness(110%);\n  cursor: default;\n}\n\n.rfd-search #page-control-next.disabled,\n.rfd-search #page-control-previous.disabled {\n  background-color: var(--background-color);\n  border-color: var(--background-color-2);\n  cursor: default;\n  opacity: 0.4;\n}\n\n.rfd-search .routes-viewer-controls {\n  color: var(--subtitle-color-2);\n  font-size: 0.9em;\n  display: flex;\n  justify-content: flex-start;\n  align-items: center;\n  margin-bottom: 0px;\n}\n\n.rfd-search .routes-viewer-sort-order {\n  flex-grow: 0;\n  font-family: monospace;\n  font-weight: 600;\n  margin-bottom: 0px;\n}\n\n.rfd-search .result-entry {\n  display: flex;\n}\n\n.rfd-search .result-icon-area {\n  margin-top: -4pt;\n  width: 30pt;\n}\n\n.rfd-search .ascent-details {\n  display: flex;\n  justify-content: space-between;\n  margin-top: 10px;\n  color: var(--subtitle-color-4);\n  font-size: calc(var(--font-size-4) * 0.9);\n}\n\n.rfd-search .ascent-notes {\n  margin-top: 14px;\n  margin-bottom: 18px;\n  font-style: italic;\n  line-height: calc(var(--font-size-4) * 1.2);\n  color: var(--subtitle-color-2);\n  font-size: calc(var(--font-size-4) * 0.9);\n}\n\n.rfd-search .result-text-area {\n  width: 100%;\n  max-width: calc(100% - 36px);\n  display: flex;\n  flex-direction: column;\n}\n\n.rfd-search .result-title {\n  overflow-x: clip;\n  text-overflow: ellipsis;\n  white-space: pre;\n}\n\n.rfd-search .result-crag-name {\n  overflow-x: clip;\n  text-overflow: ellipsis;\n}\n\n.rfd-search .result-entry-start {\n  margin-bottom: 6pt;\n  display: block;\n}\n\n.rfd-search .result-entry-end {\n  display: flex;\n  align-items: baseline;\n}\n\n.rfd-search .selected .result-entry {\n  background-color: var(--background-color-2);\n}\n\n.rfd-search .selected .result-entry * {\n  background-color: var(--background-color-2);\n}\n\n.rfd-search .footer-content {\n  padding: 10px;\n}\n\n.rfd-search .keycode {\n  display: none;\n  background-color: var(--background-color-2);\n  border-radius: 3pt;\n  padding: 4pt;\n}\n\n.rfd-search .display-if-necessary {\n  display: block;\n}\n\n.rfd-search .result-entry {\n  font-size: var(--font-size-2);\n  color: var(--title-color);\n  padding: var(--padding);\n  padding-top: calc(var(--padding) + 4px);\n  padding-bottom: calc(var(--padding) + 2px);\n  display: flex;\n}\n\n.rfd-search .result-entry-end {\n  white-space: nowrap;\n}\n\n.rfd-search .result-entry-start {\n  white-space: nowrap;\n}\n\n.rfd-search .result-grade {\n  font-size: var(--font-size-3);\n  font-style: italic;\n  color: var(--subtitle-color);\n  white-space: pre;\n}\n\n.rfd-search .result-star-count {\n  font-size: var(--font-size-2);\n  font-style: italic;\n  font-weight: bolder;\n  color: hotpink;\n}\n\n.rfd-search .result-crag-name {\n  font-size: var(--font-size-4);\n  color: var(--subtitle-color-2);\n}\n\n.rfd-search .result-context,\n.rfd-search .result-sub-context {\n  font-style: italic;\n  font-size: var(--font-size-4);\n  color: var(--subtitle-color-4);\n}\n\n.rfd-search .search-container {\n  background-color: none;\n}\n\n.rfd-search .loader-stopped,\n.rfd-search .divider {\n  opacity: 1;\n  height: var(--border-width);\n  background-color: var(--background-color-2);\n}\n\n.rfd-search .divider-no-height-set {\n  opacity: 1;\n  background-color: var(--background-color-2);\n}\n\n.rfd-search .icon {\n  background-color: var(--subtitle-color);\n  margin-right: 4pt;\n  cursor: pointer;\n}\n\n.rfd-search .icon:focus {\n  background-color: var(--flash-color);\n}\n\n.rfd-search .icon-magnifying-glass {\n  width: var(--icon-size);\n  height: var(--icon-size);\n  -webkit-mask-size: var(--icon-size) var(--icon-size);\n  -webkit-mask-repeat: no-repeat;\n  -webkit-mask-position: center;\n  mask-size: var(--icon-size) var(--icon-size);\n  mask-repeat: no-repeat;\n  mask-position: center;\n  mask: url(\"/assets/magnifying-glass.svg\");\n  -webkit-mask: url(\"/assets/magnifying-glass.svg\");\n}\n\n.rfd-search .icon-question-mark {\n  width: var(--icon-size);\n  height: var(--icon-size);\n  -webkit-mask-size: var(--icon-size) var(--icon-size);\n  -webkit-mask-repeat: no-repeat;\n  -webkit-mask-position: center;\n  mask-size: var(--icon-size) var(--icon-size);\n  mask-repeat: no-repeat;\n  mask-position: center;\n  mask: url(\"/assets/question-mark.svg\");\n  -webkit-mask: url(\"/assets/question-mark.svg\");\n}\n\n.rfd-search .icon-external-link {\n  width: var(--icon-size);\n  height: var(--icon-size);\n  -webkit-mask-size: var(--icon-size) var(--icon-size);\n  -webkit-mask-repeat: no-repeat;\n  -webkit-mask-position: center;\n  mask-size: var(--icon-size) var(--icon-size);\n  mask-repeat: no-repeat;\n  mask-position: center;\n  mask: url(\"/assets/external-link.svg\");\n  -webkit-mask: url(\"/assets/external-link.svg\");\n}\n\n.rfd-search .icon-circle-times {\n  width: var(--icon-size);\n  height: var(--icon-size);\n  -webkit-mask-size: var(--icon-size) var(--icon-size);\n  -webkit-mask-repeat: no-repeat;\n  -webkit-mask-position: center;\n  mask-size: var(--icon-size) var(--icon-size);\n  mask-repeat: no-repeat;\n  mask-position: center;\n  mask: url(\"/assets/circle-times.svg\");\n  -webkit-mask: url(\"/assets/circle-times.svg\");\n}\n\n.rfd-search .result-entry-container {\n  line-height: 1;\n}\n\n.rfd-search #search-results-widget .result-entry-container {\n  border-bottom: solid var(--background-color-page-semi) 1px;\n}\n\n.rfd-search route-result .result-text-area,\n.rfd-search logbook-result .result-text-area {\n  max-width: 100%;\n  padding-left: 40px;\n}\n\n.rfd-search .ascent-style-indicator {\n  margin-left: -15px;\n  margin-right: 4px;\n}\n\n.rfd-search .mouse-over {\n  color: cadetblue;\n  cursor: pointer;\n}\n\n.rfd-search .mouse-over:focus {\n  color: var(--flash-color);\n}\n\n.rfd-search .fade-in {\n  -webkit-animation: fadein var(--gray-view-opacity-animation-duration) linear forwards;\n  animation: fadein var(--gray-view-opacity-animation-duration) linear forwards;\n}\n\n@-webkit-keyframes fadein {\n  0% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 1;\n  }\n}\n\n@-moz-keyframes fadein {\n  0% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 1;\n  }\n}\n\n@-o-keyframes fadein {\n  0% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 1;\n  }\n}\n\n@keyframes fadein {\n  0% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 1;\n  }\n}\n\n.rfd-search .fade-out {\n  -webkit-animation: fadeout var(--gray-view-opacity-animation-duration) linear forwards;\n  animation: fadeout var(--gray-view-opacity-animation-duration) linear forwards;\n}\n\n@-webkit-keyframes fadeout {\n  0% {\n    opacity: 1;\n  }\n  100% {\n    opacity: 0;\n  }\n}\n\n@-moz-keyframes fadeout {\n  0% {\n    opacity: 1;\n  }\n  100% {\n    opacity: 0;\n  }\n}\n\n@-o-keyframes fadeout {\n  0% {\n    opacity: 1;\n  }\n  100% {\n    opacity: 0;\n  }\n}\n\n@keyframes fadeout {\n  0% {\n    opacity: 1;\n  }\n  100% {\n    opacity: 0;\n  }\n}\n\n.loader-stopped {\n  position: relative;\n  background: var(--background-color-2);\n  overflow: hidden;\n}\n\n.loader-spinning {\n  position: relative;\n  height: 2px;\n  background: transparent;\n  overflow: hidden;\n  animation: loader-rainbow 1.5s infinite linear;\n}\n\n.loader-spinning:after {\n  display: block;\n  content: \" \";\n  position: absolute;\n  height: 100%;\n  background: hotpink;\n  left: 0;\n  transform: translate3d(-150%, 0, 0);\n  animation: loader-stripe 1.5s infinite linear;\n}\n\n@keyframes loader-stripe {\n  0% {\n    transform: translate3d(-100%, 0, 0);\n  }\n  100% {\n    transform: translate3d(100%, 0, 0);\n  }\n}\n\n@keyframes loader-rainbow {\n  0% {\n    background: var(--background-color-2);\n  }\n  50% {\n    background: hotpink;\n  }\n  100% {\n    background: var(--background-color-2);\n  }\n}\n\n@media only screen and (min-width: 768px) {\n  :root {\n    --icon-size: 2rem;\n  }\n  .rfd-search {\n    --page-control-size: 18pt;\n    --radius: 4pt;\n    --page-control-radius: 4pt;\n    --radius-search-results: 4pt;\n    --border-width: 1pt;\n    --font-size: 0.9rem;\n    --page-control-font-size: var(--font-size-3);\n    --font-size-2: calc(var(--font-size) * 0.9);\n    --font-size-3: calc(var(--font-size-2) * 0.9);\n    --font-size-4: calc(var(--font-size-3) * 0.9);\n    --result-icon-size: 1.5rem;\n  }\n  .rfd-search logbook-indicator {\n    right: -5px;\n  }\n  .rfd-search wishlist-indicator {\n    right: 0px;\n  }\n  .rfd-search #name-dash {\n    display: inline-block;\n  }\n  .rfd-search #star-count-and-route-grade {\n    display: flex;\n    flex-direction: row-reverse;\n    translate: 0 1.5px;\n  }\n  .rfd-search #star-count-and-route-grade * {\n    margin-right: 0.2rem;\n  }\n  .rfd-search #search-icon {\n    background-color: var(--subtitle-color);\n  }\n  .rfd-search input {\n    padding-top: 4pt;\n    padding-bottom: 4pt;\n  }\n  .rfd-search #focus-searchbar,\n.rfd-search .keycode {\n    display: unset;\n  }\n  .rfd-search #search-results-header-container {\n    border-top-left-radius: var(--radius);\n    border-top-right-radius: var(--radius);\n  }\n  .rfd-search #searchbar-help-text {\n    padding: calc(var(--base-padding) * var(--big-screen-multiplier) * 2);\n  }\n  .rfd-search #search-results-header-container,\n.rfd-search #search-results-widget {\n    margin-right: 50%;\n    margin-left: 50%;\n    transform: translateX(-50%);\n    min-width: 700px;\n    box-shadow: 0px 0px 10px rgba(1, 1, 1, 0.1);\n  }\n  .rfd-search #placeholder-short-display {\n    margin-left: 0px;\n    position: absolute;\n    white-space: nowrap;\n    transform: translate(4px, 15px);\n  }\n  .rfd-search #searchbar-short-display-container {\n    transform: translateY(-26%);\n  }\n  .rfd-search #search-results-header-container {\n    border-top-left-radius: var(--radius-search-results);\n    border-top-right-radius: var(--radius-search-results);\n  }\n  .rfd-search .page-control {\n    width: 400pt;\n    margin-right: 50%;\n    margin-left: 50%;\n    transform: translateX(-50%);\n    min-width: 700px;\n  }\n  .rfd-search #filter-bar-container input {\n    padding-top: calc(var(--padding) / 2);\n    padding-bottom: calc(var(--padding) / 2);\n  }\n  .rfd-search #search-container {\n    max-width: 500pt;\n    left: 50%;\n    transform: translateX(-50%);\n  }\n  .rfd-search #search-results-header-container {\n    width: unset;\n  }\n  .rfd-search #searchbar-query-suggestion-flex,\n.rfd-search #search-query-description,\n.rfd-search .search-results-search-query-description {\n    font-size: calc(var(--font-size-2) * 0.9);\n  }\n  .rfd-search .result-entry-container {\n    line-height: 1;\n  }\n  .rfd-search .ascent-details {\n    font-size: var(--font-size-3);\n  }\n  .rfd-search .ascent-notes {\n    font-size: var(--font-size-3);\n  }\n  .rfd-search .result-entry {\n    padding-top: calc(var(--padding) / 1);\n    padding-bottom: calc(var(--padding) / 1);\n    align-items: center;\n  }\n  .rfd-search .result-crag-name {\n    padding-bottom: 2pt;\n  }\n  .rfd-search .selected .result-entry {\n    border-radius: calc(var(--radius) * 0.7);\n  }\n  .rfd-search .icon {\n    margin-right: unset;\n  }\n  .rfd-search .result-entry-end {\n    padding-left: var(--padding);\n    flex-direction: column;\n    align-items: baseline;\n    flex-grow: 1;\n  }\n  .rfd-search .footer-content {\n    padding: 4px;\n    padding-right: 10px;\n  }\n  .rfd-search .nightmode #search-results-header-container,\n.rfd-search .nightmode #search-results-widget {\n    box-shadow: 0px 0px 10px rgba(1, 1, 1, 0.2);\n  }\n  .rfd-search .result-icon-area {\n    margin-top: unset;\n  }\n  .rfd-search .result-text-area {\n    flex-direction: row;\n    justify-content: space-between;\n  }\n  .rfd-search .result-entry-start {\n    align-self: center;\n    margin-bottom: unset;\n  }\n  .rfd-search .result-entry-end {\n    flex-direction: column;\n    align-items: flex-end;\n  }\n  .rfd-search .ascent-style-indicator {\n    margin-left: -13px;\n  }\n}\n\nselect {\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  appearance: none;\n  text-overflow: \"\";\n}";
+const style = "*,\n::after,\n::before {\n  box-sizing: border-box;\n}\n\n.icon-nightmode-toggle {\n  position: absolute;\n  right: 5pt;\n  top: 5pt;\n  display: inline-block;\n  background-color: rgba(0, 0, 0, 0.392);\n  cursor: pointer;\n  width: var(--icon-size);\n  height: var(--icon-size);\n  -webkit-mask-size: var(--icon-size) var(--icon-size);\n  -webkit-mask-repeat: no-repeat;\n  -webkit-mask-position: center;\n  mask-size: var(--icon-size) var(--icon-size);\n  mask-repeat: no-repeat;\n  mask-position: center;\n  mask: url(\"/assets/moon.svg\");\n  -webkit-mask: url(\"/assets/moon.svg\");\n}\n\n.icon-nightmode-toggle:focus {\n  background-color: var(--flash-color);\n}\n\ninput[type=search]::-webkit-search-decoration,\ninput[type=search]::-webkit-search-cancel-button,\ninput[type=search]::-webkit-search-results-button,\ninput[type=search]::-webkit-search-results-decoration {\n  display: none;\n}\n\nukc-searchbar {\n  margin-bottom: 12px;\n  transition: all;\n}\n\nfilters-controller {\n  display: block;\n  width: 100vw;\n  height: 600px;\n  position: fixed;\n  bottom: 0;\n  z-index: 100000;\n}\n\nfilters-controller .rfd-search .filters-controller-content {\n  width: 100vw;\n  height: 100vh;\n  padding: var(--padding);\n  background-color: var(--background-color-page);\n  color: white;\n  z-index: 2000000 !important;\n  position: absolute;\n  top: 100vh;\n  border-top-left-radius: 10pt;\n  border-top-right-radius: 10pt;\n  transition: top 0.3s ease-out;\n}\n\nfilters-controller .rfd-search #gray-view {\n  opacity: 0;\n  width: 100vw;\n  height: 140vh;\n  background-color: rgba(0, 0, 0, 0.7);\n  position: fixed;\n  top: 0vw;\n  left: 0vw;\n  z-index: 1 !important;\n  backdrop-filter: blur(5px);\n  -webkit-backdrop-filter: blur(5px);\n  transition: opacity 0.2s ease-out;\n}\n\n.nightmode .icon-nightmode-toggle {\n  width: var(--icon-size);\n  height: var(--icon-size);\n  -webkit-mask-size: var(--icon-size) var(--icon-size);\n  -webkit-mask-repeat: no-repeat;\n  -webkit-mask-position: center;\n  mask-size: var(--icon-size) var(--icon-size);\n  mask-repeat: no-repeat;\n  mask-position: center;\n  mask: url(\"/assets/sun.svg\");\n  -webkit-mask: url(\"/assets/sun.svg\");\n  background-color: rgba(255, 255, 255, 0.492);\n}\n\n.nightmode .rfd-search {\n  --background-color-page: #19181f;\n  --background-color-page-semi: #1e1d25ff;\n  --brightness-multiplier: 100%;\n  --background-color: #282630;\n  --background-color-2: var(--background-color-page-semi);\n  --title-color: rgb(217, 217, 217);\n  --subtitle-color: rgba(255, 255, 255, 0.62);\n  --subtitle-color-2: rgba(255, 255, 255, 0.492);\n  --subtitle-color-3: rgba(255, 255, 255, 0.39);\n  --subtitle-color-4: rgba(255, 255, 255, 0.28);\n  --flash-color: hotpink;\n  --border-color: #565656;\n}\n\n.nightmode .rfd-search logbook-result .result-entry-container {\n  border-bottom: solid #212029 1px;\n}\n\n.nightmode .rfd-search page-button {\n  background-color: var(--background-color);\n  color: var(--subtitle-color-2);\n}\n\n.nightmode .rfd-search .page-control-current {\n  color: var(--subtitle-color-2);\n  background-color: var(--background-color-2);\n}\n\n.nightmode .rfd-search #page-control-next.disabled,\n.nightmode .rfd-search #page-control-previous.disabled {\n  background-color: var(--background-color);\n}\n\n.nightmode .rfd-search #search-widget {\n  box-shadow: 0px 0px 10px rgba(1, 1, 1, 0.2);\n}\n\n.nightmode .rfd-search .gray-background input {\n  background-color: var(--background-color);\n}\n\n@media (hover: hover) and (pointer: fine) {\n  .nightmode .icon-nightmode-toggle:hover {\n    background-color: var(--flash-color);\n  }\n  .nightmode .result-entry:hover {\n    border-radius: calc(var(--radius) * 0.7);\n  }\n  .nightmode .mouse-over:hover {\n    color: var(--flash-color);\n  }\n  .nightmode .icon:hover {\n    background-color: var(--flash-color);\n  }\n  .nightmode .result-entry-container:hover {\n    background-color: var(--background-color-2);\n  }\n  .nightmode .page-control-page:hover {\n    border-color: var(--flash-color);\n    color: var(--flash-color);\n    z-index: 2;\n  }\n  .nightmode .page-control-current:hover {\n    border-color: var(--background-color-2);\n    color: var(--subtitle-color-2);\n    z-index: 2;\n  }\n  .nightmode #page-control-next.disabled:hover,\n.nightmode #page-control-previous.disabled:hover {\n    color: var(--subtitle-color-2);\n  }\n  .nightmode #page-control-next:hover,\n.nightmode #page-control-previous:hover {\n    border-color: var(--flash-color);\n    color: var(--flash-color);\n    z-index: 2;\n  }\n  .nightmode a:hover {\n    color: var(--flash-color);\n  }\n  .nightmode .page-control-page:hover {\n    color: var(--flash-color);\n  }\n  .nightmode .page-control-current:hover {\n    color: var(--subtitle-color-2);\n  }\n  .nightmode #page-control-next.disabled:hover,\n.nightmode #page-control-previous.disabled:hover {\n    color: var(--subtitle-color-2);\n  }\n}\n\nhtml {\n  --background-color-page: #e8e8e8;\n  --base-mask-size: 2rem;\n  --icon-size: var(--base-mask-size);\n  --big-screen-multiplier: 0.45;\n}\n\n.rfd-search {\n  --background-color-page-semi: #eeeeef;\n  --brightness-multiplier: 100%;\n  --background-color: white;\n  --background-color-2: #dadada;\n  --title-color: rgba(0, 0, 0, 0.75);\n  --subtitle-color: rgba(0, 0, 0, 0.65);\n  --subtitle-color-2: rgba(0, 0, 0, 0.5);\n  --subtitle-color-3: rgba(0, 0, 0, 0.45);\n  --subtitle-color-4: rgba(0, 0, 0, 0.35);\n  --flash-color: var(--flash-color);\n  --border-color: #444444;\n  --base-padding: 10pt;\n  --base-font-size: 1.1rem;\n  --base-font-size-2: calc(var(--base-font-size) * 0.9);\n  --base-font-size-3: calc(var(--base-font-size-2) * 0.9);\n  --base-font-size-4: calc(var(--base-font-size-3) * 1);\n  --base-result-icon-size: 1.7rem;\n  --padding: var(--base-padding);\n  --font-size: var(--base-font-size);\n  --font-size-2: var(--base-font-size-2);\n  --font-size-3: var(--base-font-size-3);\n  --font-size-4: var(--base-font-size-4);\n  --page-control-font-size: 1.3rem;\n  --page-control-size: calc(var(--page-control-font-size) * 1.8);\n  --result-icon-size: var(--base-result-icon-size);\n  --radius: 10pt;\n  --page-control-radius: 5pt;\n  --radius-search-results: 0pt;\n  --border-width: 1pt;\n  --search-container-z-index: 1030;\n  --gray-view-opacity-animation-duration: 0.2s;\n  margin-bottom: 16px;\n}\n\n.rfd-search crag-icon *,\n.rfd-search buttress-icon *,\n.rfd-search topo-dot *,\n.rfd-search external-link-icon * {\n  width: var(--result-icon-size);\n  height: var(--result-icon-size);\n}\n\n.rfd-search select {\n  background-color: var(--background-color);\n  color: var(--subtitle-color);\n  border: none;\n}\n\n.rfd-search {\n  width: 100%;\n  font-size: var(--font-size);\n  position: relative;\n}\n\n.rfd-search ::-webkit-scrollbar-thumb {\n  filter: brightness(80%);\n}\n\n.rfd-search #searchbar-footer,\n.rfd-search #searchbar-query-suggestion-flex {\n  filter: brightness(90%);\n}\n\n.rfd-search ::-webkit-scrollbar {\n  height: 10pt;\n  width: 5pt;\n}\n\n.rfd-search ::-webkit-scrollbar-thumb {\n  background: var(--background-color-2);\n}\n\n.rfd-search ::-webkit-scrollbar-track {\n  background: rgba(1, 1, 1, 0);\n}\n\n.rfd-search scrollbar-thumb {\n  background: var(--background-color-2);\n}\n\n.rfd-search scrollbar-track {\n  background: rgba(1, 1, 1, 0);\n}\n\n.rfd-search ul {\n  list-style-type: none;\n  margin: 0pt;\n  padding: 0pt;\n  padding-bottom: var(--padding);\n  outline: none;\n}\n\n.rfd-search ul a:link {\n  color: unset;\n}\n\n.rfd-search ul a:visited {\n  color: unset;\n}\n\n.rfd-search ul a:hover {\n  color: unset;\n}\n\n.rfd-search ul a:active {\n  color: unset;\n}\n\n.rfd-search input {\n  outline: none;\n  width: 100%;\n  font-size: var(--font-size);\n  border-radius: var(--radius);\n  color: rgba(0, 0, 0, 0);\n  background-color: var(--background-color);\n  color: var(--title-color);\n  border: none;\n  transition-property: all;\n}\n\n.rfd-search a {\n  text-decoration: none !important;\n}\n\n.rfd-search a:link {\n  color: cadetblue;\n}\n\n.rfd-search a:visited {\n  color: cadetblue;\n}\n\n.rfd-search a:active {\n  color: var(--flash-color);\n}\n\n.rfd-search #name-dash {\n  display: none;\n}\n\n.rfd-search .logged-clean logbook-indicator,\n.rfd-search .logged-followed logbook-indicator,\n.rfd-search .logged-dogged logbook-indicator {\n  display: block;\n}\n\n.rfd-search .on-wishlist wishlist-indicator {\n  display: block;\n}\n\n.rfd-search .logged-clean.on-wishlist wishlist-indicator,\n.rfd-search .logged-followed.on-wishlist wishlist-indicator,\n.rfd-search .logged-dogged.on-wishlist wishlist-indicator {\n  right: 24px;\n}\n\n.rfd-search logbook-indicator {\n  display: none;\n  position: absolute;\n  top: 0px;\n  right: -6px;\n  width: calc(var(--result-icon-size) * 1);\n  height: calc(var(--result-icon-size) * 1);\n}\n\n.rfd-search wishlist-indicator {\n  display: none;\n  position: absolute;\n  top: -1px;\n  right: 4px;\n  width: calc(var(--result-icon-size) * 0.5);\n  height: calc(var(--result-icon-size) * 0.5);\n}\n\n.rfd-search input,\n.rfd-search #search-query-description,\n.rfd-search .search-results-search-query-description {\n  padding: calc(var(--padding) * 0.65);\n  padding-left: var(--padding);\n}\n\n.rfd-search #filter-icon {\n  left: 16px;\n  position: absolute;\n  top: 50%;\n  transform: translateY(-50%);\n  background-color: var(--subtitle-color);\n}\n\n.rfd-search #filter-bar-container input {\n  width: calc(100% - (var(--padding) * 2 - 8px));\n  display: block;\n  padding: var(--padding);\n  padding-top: calc(var(--padding) - 2px);\n  padding-bottom: calc(var(--padding) - 2px);\n  padding-left: 40px;\n  margin: var(--padding);\n  margin-right: calc(var(--padding) - 4px);\n  margin-left: calc(var(--padding) - 4px);\n  border-width: var(--border-width);\n  background-color: var(--background-color-page-semi);\n  transition: all 0.2s;\n}\n\n.rfd-search #name-and-grade {\n  display: flex;\n  justify-content: space-between;\n  font-weight: 500;\n}\n\n.rfd-search #gray-view {\n  width: 100vw;\n  height: 140vh;\n  background-color: rgba(0, 0, 0, 0.7);\n  position: fixed;\n  top: 0vw;\n  left: 0vw;\n  z-index: calc(var(--search-container-z-index) - 1);\n  opacity: 1;\n  backdrop-filter: blur(5px);\n  -webkit-backdrop-filter: blur(5px);\n}\n\n.rfd-search #search-container {\n  position: relative;\n  z-index: var(--search-container-z-index);\n}\n\n.rfd-search #search-container input {\n  padding-right: calc(var(--icon-size) + var(--padding));\n  padding-left: calc(var(--icon-size) + var(--padding) - 4px);\n  transition: all 0.2s;\n}\n\n.rfd-search #searchbar-inner-container {\n  position: relative;\n}\n\n.rfd-search #search-absolute {\n  position: absolute;\n  top: 0;\n  width: 100%;\n  transition: transform 0.3s ease-out;\n}\n\n.rfd-search #search-results-header-container,\n.rfd-search #search-widget,\n.rfd-search #search-results-widget {\n  border-width: var(--border-width);\n  background-color: var(--background-color);\n  transition: all 0.2s;\n}\n\n.rfd-search #search-widget,\n.rfd-search #search-results-widget {\n  overflow: hidden;\n}\n\n.rfd-search #search-widget {\n  box-shadow: 0px 0px 10px rgba(1, 1, 1, 0.1);\n  transition: opacity 0.3s;\n  border-radius: var(--radius);\n}\n\n.rfd-search #search-results-header-container,\n.rfd-search #search-results-widget {\n  margin-left: calc(-50vw + 50%);\n  margin-right: calc(-51vw + 51%);\n}\n\n.rfd-search #searchbar-footer {\n  background-color: var(--background-color);\n  font-size: var(--font-size-4);\n  color: var(--subtitle-color-2);\n  border-bottom-left-radius: var(--radius);\n  border-bottom-right-radius: var(--radius);\n  filter: brightness(90%);\n}\n\n.rfd-search #search-results-container {\n  contain: layout paint;\n  overflow-y: auto;\n  overflow-x: hidden;\n  overscroll-behavior-y: contain;\n  scrollbar-color: var(--background-color-2) rgba(1, 1, 1, 0);\n  transition: opacity 0.3s ease-out;\n}\n\n.rfd-search #search-icon {\n  position: absolute;\n  left: 4pt;\n  top: 50%;\n  transform: translateY(-50%);\n  background-color: var(--subtitle-color);\n}\n\n.rfd-search #filter-bar-container {\n  position: relative;\n}\n\n.rfd-search #input-hidden {\n  background-color: rgba(0, 0, 0, 0) !important;\n}\n\n.rfd-search #delete-search-text-button,\n.rfd-search #filter-delete-text-button {\n  position: absolute;\n  right: 0px;\n  top: 50%;\n  transform: translateY(-50%);\n  cursor: pointer;\n}\n\n.rfd-search #filter-delete-text-button {\n  right: 10px;\n}\n\n.rfd-search #return-key-action {\n  padding: var(--padding);\n  margin-top: calc(var(--padding) * 5);\n}\n\n.rfd-search #search-results-header-container {\n  backface-visibility: hidden;\n  background-color: var(--background-color);\n  position: sticky;\n  z-index: 2;\n  width: 100vw;\n  margin-left: -15px;\n}\n\n.rfd-search .routes-viewer-header {\n  padding-left: var(--padding);\n  width: 100%;\n}\n\n.rfd-search .result-icon {\n  display: inline-block;\n}\n\n.rfd-search .gray-background input {\n  background-color: #e0e0e0;\n  transition: background-color 0.2s ease;\n}\n\n.rfd-search .normal-background input {\n  background-color: var(--background-color);\n  transition: background-color 0.2s ease;\n}\n\n.rfd-search .searchbar-help-text-container {\n  transition: height 0.2s ease;\n  overscroll-behavior-y: contain;\n}\n\n.rfd-search #searchbar-help-text {\n  padding: calc(var(--padding) * 2);\n}\n\n.rfd-search #placeholder-short-display {\n  color: var(--title-color);\n  opacity: 0.5;\n  margin-left: -6px;\n}\n\n.rfd-search #searchbar-short-display-container {\n  position: absolute;\n  left: 4pt;\n  transform: translateY(-8%);\n}\n\n.rfd-search #search-icon-short-display {\n  background-color: var(--subtitle-color);\n  display: inline-block;\n  transform: translateY(30%);\n}\n\n.rfd-search #searchbar-query-suggestion-flex {\n  position: relative;\n  padding-right: calc(var(--icon-size) + var(--padding));\n  border-bottom-left-radius: var(--radius);\n  border-bottom-right-radius: var(--radius);\n}\n\n.rfd-search .ascent-notes a,\n.rfd-search .ascent-details a {\n  color: #bbdcee !important;\n  opacity: 0.7;\n  line-height: 1.3em;\n}\n\n.rfd-search #help-button,\n.rfd-search #filter-bar-help-button {\n  position: absolute;\n  right: 0pt;\n  top: 50%;\n  transform: translateY(-50%);\n}\n\n.rfd-search #searchbar-query-suggestion-flex,\n.rfd-search #search-query-description,\n.rfd-search .search-results-search-query-description {\n  font-size: var(--font-size-3);\n  color: var(--subtitle-color-2);\n  background-color: var(--background-color);\n}\n\n.rfd-search #focus-searchbar {\n  display: none;\n}\n\n.rfd-search .important {\n  font-weight: bold;\n  color: #f8ca23;\n}\n\n.rfd-search .pitch-grade {\n  font-weight: bold;\n  color: var(--title-color);\n}\n\n.rfd-search .pitch-number {\n  font-weight: bold;\n  color: var(--title-color);\n}\n\n.rfd-search .pitch-length {\n  font-weight: 500;\n  color: var(--title-color);\n}\n\n.rfd-search .logged {\n  background-color: green;\n}\n\n.rfd-search .page-control {\n  display: flex;\n  justify-content: flex-end;\n  align-content: center;\n  margin-top: var(--padding);\n  margin-bottom: var(--padding);\n  margin-left: calc(-50vw + 50%);\n  margin-right: calc(-50vw + 50% + var(--padding));\n}\n\n.rfd-search .fa-button {\n  border: 0;\n  width: 40px;\n  height: 40px;\n  background-color: var(--background-color);\n  border-radius: var(--radius);\n  color: var(--subtitle-color);\n  transition: background-color 0.2s ease-out;\n}\n\n.rfd-search .fa-button:hover {\n  background-color: var(--background-color-2);\n}\n\n.rfd-search .fa-button i {\n  transition: rotate 0.2s ease-out;\n}\n\n.rfd-search .hidden {\n  display: none;\n}\n\n.rfd-search #page-control-previous,\n.rfd-search #page-control-next,\n.rfd-search page-button {\n  display: flex;\n  align-items: center;\n  text-align: center;\n  aspect-ratio: 1/1;\n  font-family: monospace;\n  background-color: var(--background-color);\n  border: solid;\n  color: var(--subtitle-color-2);\n  margin-left: calc(var(--border-width) * -1);\n  border-width: var(--border-width);\n  border-color: var(--background-color-2);\n  justify-content: center;\n  font-weight: 900;\n  cursor: pointer;\n  font-size: var(--page-control-font-size);\n  height: var(--page-control-size);\n  width: var(--page-control-size);\n}\n\n.rfd-search #page-control-previous {\n  border-top-left-radius: var(--page-control-radius);\n  border-bottom-left-radius: var(--page-control-radius);\n}\n\n.rfd-search #page-control-next {\n  border-top-right-radius: var(--page-control-radius);\n  border-bottom-right-radius: var(--page-control-radius);\n}\n\n.rfd-search page-button {\n  display: flex;\n  justify-content: center;\n  align-content: center;\n}\n\n.rfd-search section-header {\n  display: flex;\n  justify-content: space-between;\n  font-size: var(--font-size-3);\n  color: var(--subtitle-color-2);\n  padding: var(--padding);\n  padding-right: calc(var(--padding) / 2);\n  padding-top: calc(var(--padding) / 2);\n  padding-bottom: calc(var(--padding) / 2 - 2px);\n  background-color: var(--background-color-page-semi);\n}\n\n.rfd-search .page-control-current {\n  border-color: var(--background-color-2);\n  color: var(--subtitle-color-2);\n  background-color: var(--background-color-2);\n  filter: brightness(110%);\n  cursor: default;\n}\n\n.rfd-search #page-control-next.disabled,\n.rfd-search #page-control-previous.disabled {\n  background-color: var(--background-color);\n  border-color: var(--background-color-2);\n  cursor: default;\n  opacity: 0.4;\n}\n\n.rfd-search .routes-viewer-controls {\n  color: var(--subtitle-color-2);\n  font-size: 0.9em;\n  display: flex;\n  justify-content: flex-start;\n  align-items: center;\n  margin-bottom: 0px;\n}\n\n.rfd-search .routes-viewer-sort-order {\n  flex-grow: 0;\n  font-family: monospace;\n  font-weight: 600;\n  margin-bottom: 0px;\n}\n\n.rfd-search .result-entry {\n  display: flex;\n}\n\n.rfd-search .result-icon-area {\n  margin-top: -4pt;\n  width: 30pt;\n}\n\n.rfd-search .ascent-details {\n  display: flex;\n  justify-content: space-between;\n  margin-top: 10px;\n  color: var(--subtitle-color-4);\n  font-size: calc(var(--font-size-4) * 0.9);\n}\n\n.rfd-search .ascent-notes {\n  margin-top: 14px;\n  margin-bottom: 18px;\n  font-style: italic;\n  line-height: calc(var(--font-size-4) * 1.2);\n  color: var(--subtitle-color-2);\n  font-size: calc(var(--font-size-4) * 0.9);\n}\n\n.rfd-search .result-text-area {\n  width: 100%;\n  max-width: calc(100% - 36px);\n  display: flex;\n  flex-direction: column;\n}\n\n.rfd-search .result-title {\n  overflow-x: clip;\n  text-overflow: ellipsis;\n  white-space: pre;\n}\n\n.rfd-search .result-crag-name {\n  overflow-x: clip;\n  text-overflow: ellipsis;\n}\n\n.rfd-search .result-entry-start {\n  margin-bottom: 6pt;\n  display: block;\n}\n\n.rfd-search .result-entry-end {\n  display: flex;\n  align-items: baseline;\n}\n\n.rfd-search .selected .result-entry {\n  background-color: var(--background-color-2);\n}\n\n.rfd-search .selected .result-entry * {\n  background-color: var(--background-color-2);\n}\n\n.rfd-search .footer-content {\n  padding: 10px;\n}\n\n.rfd-search .keycode {\n  display: none;\n  background-color: var(--background-color-2);\n  border-radius: 3pt;\n  padding: 4pt;\n}\n\n.rfd-search .display-if-necessary {\n  display: block;\n}\n\n.rfd-search .result-entry {\n  font-size: var(--font-size-2);\n  color: var(--title-color);\n  padding: var(--padding);\n  padding-top: calc(var(--padding) + 4px);\n  padding-bottom: calc(var(--padding) + 2px);\n  display: flex;\n}\n\n.rfd-search .result-entry-end {\n  white-space: nowrap;\n}\n\n.rfd-search .result-entry-start {\n  white-space: nowrap;\n}\n\n.rfd-search .result-grade {\n  font-size: var(--font-size-3);\n  font-style: italic;\n  color: var(--subtitle-color);\n  white-space: pre;\n}\n\n.rfd-search .result-star-count {\n  font-size: var(--font-size-2);\n  font-style: italic;\n  font-weight: bolder;\n  color: hotpink;\n}\n\n.rfd-search .result-crag-name {\n  font-size: var(--font-size-4);\n  color: var(--subtitle-color-2);\n}\n\n.rfd-search .result-context,\n.rfd-search .result-sub-context {\n  font-style: italic;\n  font-size: var(--font-size-4);\n  color: var(--subtitle-color-4);\n}\n\n.rfd-search .search-container {\n  background-color: none;\n}\n\n.rfd-search .loader-stopped,\n.rfd-search .divider {\n  opacity: 1;\n  height: var(--border-width);\n  background-color: var(--background-color-2);\n}\n\n.rfd-search .divider-no-height-set {\n  opacity: 1;\n  background-color: var(--background-color-2);\n}\n\n.rfd-search .icon {\n  background-color: var(--subtitle-color);\n  margin-right: 4pt;\n  cursor: pointer;\n}\n\n.rfd-search .icon:focus {\n  background-color: var(--flash-color);\n}\n\n.rfd-search .icon-magnifying-glass {\n  width: var(--icon-size);\n  height: var(--icon-size);\n  -webkit-mask-size: var(--icon-size) var(--icon-size);\n  -webkit-mask-repeat: no-repeat;\n  -webkit-mask-position: center;\n  mask-size: var(--icon-size) var(--icon-size);\n  mask-repeat: no-repeat;\n  mask-position: center;\n  mask: url(\"/assets/magnifying-glass.svg\");\n  -webkit-mask: url(\"/assets/magnifying-glass.svg\");\n}\n\n.rfd-search .icon-question-mark {\n  width: var(--icon-size);\n  height: var(--icon-size);\n  -webkit-mask-size: var(--icon-size) var(--icon-size);\n  -webkit-mask-repeat: no-repeat;\n  -webkit-mask-position: center;\n  mask-size: var(--icon-size) var(--icon-size);\n  mask-repeat: no-repeat;\n  mask-position: center;\n  mask: url(\"/assets/question-mark.svg\");\n  -webkit-mask: url(\"/assets/question-mark.svg\");\n}\n\n.rfd-search .icon-external-link {\n  width: var(--icon-size);\n  height: var(--icon-size);\n  -webkit-mask-size: var(--icon-size) var(--icon-size);\n  -webkit-mask-repeat: no-repeat;\n  -webkit-mask-position: center;\n  mask-size: var(--icon-size) var(--icon-size);\n  mask-repeat: no-repeat;\n  mask-position: center;\n  mask: url(\"/assets/external-link.svg\");\n  -webkit-mask: url(\"/assets/external-link.svg\");\n}\n\n.rfd-search .icon-circle-times {\n  width: var(--icon-size);\n  height: var(--icon-size);\n  -webkit-mask-size: var(--icon-size) var(--icon-size);\n  -webkit-mask-repeat: no-repeat;\n  -webkit-mask-position: center;\n  mask-size: var(--icon-size) var(--icon-size);\n  mask-repeat: no-repeat;\n  mask-position: center;\n  mask: url(\"/assets/circle-times.svg\");\n  -webkit-mask: url(\"/assets/circle-times.svg\");\n}\n\n.rfd-search .result-entry-container {\n  line-height: 1;\n}\n\n.rfd-search #search-results-widget .result-entry-container {\n  border-bottom: solid var(--background-color-page-semi) 1px;\n}\n\n.rfd-search route-result .result-text-area,\n.rfd-search logbook-result .result-text-area {\n  max-width: 100%;\n  padding-left: 40px;\n}\n\n.rfd-search .ascent-style-indicator {\n  margin-left: -15px;\n  margin-right: 4px;\n}\n\n.rfd-search .mouse-over {\n  color: cadetblue;\n  cursor: pointer;\n}\n\n.rfd-search .mouse-over:focus {\n  color: var(--flash-color);\n}\n\n.rfd-search .fade-in {\n  -webkit-animation: fadein var(--gray-view-opacity-animation-duration) linear forwards;\n  animation: fadein var(--gray-view-opacity-animation-duration) linear forwards;\n}\n\n@-webkit-keyframes fadein {\n  0% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 1;\n  }\n}\n\n@-moz-keyframes fadein {\n  0% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 1;\n  }\n}\n\n@-o-keyframes fadein {\n  0% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 1;\n  }\n}\n\n@keyframes fadein {\n  0% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 1;\n  }\n}\n\n.rfd-search .fade-out {\n  -webkit-animation: fadeout var(--gray-view-opacity-animation-duration) linear forwards;\n  animation: fadeout var(--gray-view-opacity-animation-duration) linear forwards;\n}\n\n@-webkit-keyframes fadeout {\n  0% {\n    opacity: 1;\n  }\n  100% {\n    opacity: 0;\n  }\n}\n\n@-moz-keyframes fadeout {\n  0% {\n    opacity: 1;\n  }\n  100% {\n    opacity: 0;\n  }\n}\n\n@-o-keyframes fadeout {\n  0% {\n    opacity: 1;\n  }\n  100% {\n    opacity: 0;\n  }\n}\n\n@keyframes fadeout {\n  0% {\n    opacity: 1;\n  }\n  100% {\n    opacity: 0;\n  }\n}\n\n.loader-stopped {\n  position: relative;\n  background: var(--background-color-2);\n  overflow: hidden;\n}\n\n.loader-spinning {\n  position: relative;\n  height: 2px;\n  background: transparent;\n  overflow: hidden;\n  animation: loader-rainbow 1.5s infinite linear;\n}\n\n.loader-spinning:after {\n  display: block;\n  content: \" \";\n  position: absolute;\n  height: 100%;\n  background: hotpink;\n  left: 0;\n  transform: translate3d(-150%, 0, 0);\n  animation: loader-stripe 1.5s infinite linear;\n}\n\n@keyframes loader-stripe {\n  0% {\n    transform: translate3d(-100%, 0, 0);\n  }\n  100% {\n    transform: translate3d(100%, 0, 0);\n  }\n}\n\n@keyframes loader-rainbow {\n  0% {\n    background: var(--background-color-2);\n  }\n  50% {\n    background: hotpink;\n  }\n  100% {\n    background: var(--background-color-2);\n  }\n}\n\n@media only screen and (min-width: 768px) {\n  :root {\n    --icon-size: 2rem;\n  }\n  .rfd-search {\n    --page-control-size: 18pt;\n    --radius: 4pt;\n    --page-control-radius: 4pt;\n    --radius-search-results: 4pt;\n    --border-width: 1pt;\n    --font-size: 0.9rem;\n    --page-control-font-size: var(--font-size-3);\n    --font-size-2: calc(var(--font-size) * 0.9);\n    --font-size-3: calc(var(--font-size-2) * 0.9);\n    --font-size-4: calc(var(--font-size-3) * 0.9);\n    --result-icon-size: 1.5rem;\n  }\n  .rfd-search logbook-indicator {\n    right: -5px;\n  }\n  .rfd-search wishlist-indicator {\n    right: 0px;\n  }\n  .rfd-search #name-dash {\n    display: inline-block;\n  }\n  .rfd-search #star-count-and-route-grade {\n    display: flex;\n    flex-direction: row-reverse;\n    translate: 0 1.5px;\n  }\n  .rfd-search #star-count-and-route-grade * {\n    margin-right: 0.2rem;\n  }\n  .rfd-search #search-icon {\n    background-color: var(--subtitle-color);\n  }\n  .rfd-search input {\n    padding-top: 4pt;\n    padding-bottom: 4pt;\n  }\n  .rfd-search #focus-searchbar,\n.rfd-search .keycode {\n    display: unset;\n  }\n  .rfd-search #search-results-header-container {\n    border-top-left-radius: var(--radius);\n    border-top-right-radius: var(--radius);\n    width: 100%;\n  }\n  .rfd-search #searchbar-help-text {\n    padding: calc(var(--base-padding) * var(--big-screen-multiplier) * 2);\n  }\n  .rfd-search #search-results-header-container,\n.rfd-search #search-results-widget {\n    margin-right: 50%;\n    margin-left: 50%;\n    transform: translateX(-50%);\n    min-width: 700px;\n    box-shadow: 0px 0px 10px rgba(1, 1, 1, 0.1);\n  }\n  .rfd-search #placeholder-short-display {\n    margin-left: 0px;\n    position: absolute;\n    white-space: nowrap;\n    transform: translate(4px, 15px);\n  }\n  .rfd-search #searchbar-short-display-container {\n    transform: translateY(-26%);\n  }\n  .rfd-search #search-results-header-container {\n    border-top-left-radius: var(--radius-search-results);\n    border-top-right-radius: var(--radius-search-results);\n  }\n  .rfd-search .page-control {\n    width: 400pt;\n    margin-right: 50%;\n    margin-left: 50%;\n    transform: translateX(-50%);\n    min-width: 700px;\n  }\n  .rfd-search #filter-bar-container input {\n    padding-top: calc(var(--padding) / 2);\n    padding-bottom: calc(var(--padding) / 2);\n  }\n  .rfd-search #search-container {\n    max-width: 500pt;\n    left: 50%;\n    transform: translateX(-50%);\n  }\n  .rfd-search #search-results-header-container {\n    width: unset;\n  }\n  .rfd-search #searchbar-query-suggestion-flex,\n.rfd-search #search-query-description,\n.rfd-search .search-results-search-query-description {\n    font-size: calc(var(--font-size-2) * 0.9);\n  }\n  .rfd-search .result-entry-container {\n    line-height: 1;\n  }\n  .rfd-search .ascent-details {\n    font-size: var(--font-size-3);\n  }\n  .rfd-search .ascent-notes {\n    font-size: var(--font-size-3);\n  }\n  .rfd-search .result-entry {\n    padding-top: calc(var(--padding) / 1);\n    padding-bottom: calc(var(--padding) / 1);\n    align-items: center;\n  }\n  .rfd-search .result-crag-name {\n    padding-bottom: 2pt;\n  }\n  .rfd-search .selected .result-entry {\n    border-radius: calc(var(--radius) * 0.7);\n  }\n  .rfd-search .icon {\n    margin-right: unset;\n  }\n  .rfd-search .result-entry-end {\n    padding-left: var(--padding);\n    flex-direction: column;\n    align-items: baseline;\n    flex-grow: 1;\n  }\n  .rfd-search .footer-content {\n    padding: 4px;\n    padding-right: 10px;\n  }\n  .rfd-search .nightmode #search-results-header-container,\n.rfd-search .nightmode #search-results-widget {\n    box-shadow: 0px 0px 10px rgba(1, 1, 1, 0.2);\n  }\n  .rfd-search .result-icon-area {\n    margin-top: unset;\n  }\n  .rfd-search .result-text-area {\n    flex-direction: row;\n    justify-content: space-between;\n  }\n  .rfd-search .result-entry-start {\n    align-self: center;\n    margin-bottom: unset;\n  }\n  .rfd-search .result-entry-end {\n    flex-direction: column;\n    align-items: flex-end;\n  }\n  .rfd-search .ascent-style-indicator {\n    margin-left: -13px;\n  }\n}\n\nselect {\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  appearance: none;\n  text-overflow: \"\";\n}";
 
 function closestShadowPiercing(el, tagName) {
     const closest = el.closest(tagName);
@@ -2837,9 +2837,7 @@ let BaseRoutesViewer = class extends BaseCon$1 {
     document.addEventListener("DOMContentLoaded", () => {
       this.onDomContentLoaded();
     });
-    document.addEventListener("scroll", async (evt) => {
-      this.positionHeaderForScroll(evt);
-    });
+    document.addEventListener("scroll", this.handleScrollListeners.bind(this));
     this.filter_query_description.addEventListener("click", (evt) => {
       this.header_container.style.top = "-64px";
     });
@@ -2869,6 +2867,17 @@ let BaseRoutesViewer = class extends BaseCon$1 {
     return Math.max(document.documentElement.scrollHeight, document.body.scrollHeight) - window.innerHeight;
   }
   lastScroll = 0;
+  lastTimeScrollCalculated = 0;
+  get areWeInANewFrame() {
+    return Date.now() - this.lastTimeScrollCalculated > 16;
+  }
+  handleScrollListeners(evt) {
+    if (!this.areWeInANewFrame)
+      return false;
+    this.positionHeaderForScroll(evt);
+    this.lastTimeScrollCalculated = Date.now();
+    return true;
+  }
   positionHeaderForScroll(evt) {
     if (this.preventLayoutShift) {
       return;
@@ -2891,12 +2900,12 @@ let BaseRoutesViewer = class extends BaseCon$1 {
   }
   onDomContentLoaded() {
     this.searchbar = document.getElementsByTagName(this.searchbarTag)[0];
-    this.searchbar.searchWidget.style.opacity = "0";
+    this.searchbar.search_widget.style.opacity = "0";
     this.searchbar.input.addEventListener("focus", () => {
-      this.searchbar.searchWidget.style.opacity = "1";
+      this.searchbar.search_widget.style.opacity = "1";
     });
     this.searchbar.gray_view.addEventListener("click", () => {
-      this.searchbar.searchWidget.style.opacity = "0";
+      this.searchbar.search_widget.style.opacity = "0";
     });
     this.searchbar.placeholder = this.searchBarPlaceholderString;
     this.searchbar.input.value = this.urlQuery || "";
@@ -3174,15 +3183,15 @@ const searchbarTemplate = (element) => {
   return html$1`
         <div class='rfd-search'>
             <div data-target='${elementName}.gray_view' id='gray-view' class='hidden'></div>
-            <div id='search-container'>
-                <input data-target='${elementName}.inputHidden' id='input-hidden' spellcheck='false' autocorrect='off' autocomplete='off' autocapitalize='off' type='search' placeholder='' />
-                <div data-target='${elementName}.searchAbsolute' id='search-absolute'>
-                    <div data-target='${elementName}.searchbarShortDisplayContainer' id='searchbar-short-display-container'>
+            <div data-target='${elementName}.search_container' id='search-container'>
+                <input data-target='${elementName}.input_hidden' id='input-hidden' spellcheck='false' autocorrect='off' autocomplete='off' autocapitalize='off' type='search' placeholder='' />
+                <div data-target='${elementName}.search_absolute' id='search-absolute'>
+                    <div data-target='${elementName}.searchbar_short_display_container' id='searchbar-short-display-container'>
                         <span id='search-icon-short-display' class='icon icon-magnifying-glass' alt='icon'></span>
-                        <span data-target='${elementName}.searchbarShortDisplay' id='placeholder-short-display'>Search all routes/crags...</span>
+                        <span data-target='${elementName}.searchbar_short_display' id='placeholder-short-display'>Search all routes/crags...</span>
                     </div>
-                    <div data-target='${elementName}.searchWidget' id='search-widget'>
-                        <div data-target='${elementName}.searchbarInnerContainer' id='searchbar-inner-container'>
+                    <div data-target='${elementName}.search_widget' id='search-widget'>
+                        <div data-target='${elementName}.searchbar_inner_container' id='searchbar-inner-container'>
                             <span id='search-icon' class='icon icon-magnifying-glass' alt='icon'></span>
                             <input data-target='${elementName}.input' id='searchbar' spellcheck='false' autocorrect='off' autocomplete='off' autocapitalize='off' type='search' placeholder='Search all routes/crags...' data-results-url='/frontend/views/route_search/example.html' />
                             <span data-target='${elementName}.delete_text_button' id='delete-search-text-button' tabindex='-1' class='icon icon-circle-times hidden' alt='icon'></span>
@@ -3190,24 +3199,26 @@ const searchbarTemplate = (element) => {
                         <div>
                             <div data-target='${elementName}.progress_bar' id='progess' class='loader-stopped hidden'></div>
                             <div data-target='${elementName}.filter_query_description' id='search-query-description' class='hidden'></div>
-                            <div data-target='${elementName}.querySuggestionContainer' id='searchbar-help-text-container' class='hidden'>
+                            <div data-target='${elementName}.query_suggestion_container' id='searchbar-help-text-container' class='hidden'>
                                 <div id='searchbar-query-suggestion-flex'>
-                                    <div data-target='${elementName}.searchbarQuerySuggestion' id='searchbar-help-text'></div>
-                                    <div data-target='${elementName}.helpButton' tabindex='-1' id='help-button' class='icon icon-question-mark' alt='icon'></div>
+                                    <div data-target='${elementName}.searchbar_query_suggestion' id='searchbar-help-text'>
+                                        <a data-target='${elementName}.searchbar_query_suggestion_href' data-action='click:#updateRandomQuery' href="javascript:void(0);"></a>
+                                    </div>
+                                    <div data-target='${elementName}.help_button' tabindex='-1' id='help-button' class='icon icon-question-mark' alt='icon'></div>
                                 </div>
                             </div>
                         </div>
-                        <div data-target='${elementName}.helpTextContainer' class='hidden'>
+                        <div data-target='${elementName}.help_text_container' class='hidden'>
                         </div>
                         <ul data-target='${elementName}.routes_viewer_container' id='search-results-container' class='hidden'>
                         </ul>
-                        <div data-target='${elementName}.searchbarFooter' id='searchbar-footer' class='hidden'>
+                        <div data-target='${elementName}.searchbar_footer' id='searchbar-footer' class='hidden'>
                             <div id='searchbar-footer-content'>
                                 <div class='divider'></div>
                                 <div class='footer-content'>
                                     <div style='align-items:center; display:flex; flex-direction:row-reverse; min-height:2rem'>
-                                        <span data-target='${elementName}.returnKeyAction' class='mouse-over'>
-                                            <span data-target='${elementName}.showAllResultsSpan' id='return-key-action' style='padding-right:4px;padding-left:8px;'>show all results</span>
+                                        <span data-target='${elementName}.return_key_action' class='mouse-over'>
+                                            <span data-target='${elementName}.show_all_results_span' id='return-key-action' style='padding-right:4px;padding-left:8px;'>show all results</span>
                                             <span class='keycode'>⇧</span>
                                             <span class='keycode'>⏎</span>
                                         </span>
@@ -3249,23 +3260,25 @@ let BaseSearchbarElement = class extends BaseCon$1 {
   minQueryLength = 4;
   localStorageKey = "search-results";
   baseData;
+  search_container;
   input;
-  returnKeyAction;
-  searchAbsolute;
-  helpButton;
+  return_key_action;
+  search_absolute;
+  help_button;
   delete_text_button;
-  searchWidget;
+  search_widget;
   progress_bar;
   routes_viewer_container;
-  searchbarInnerContainer;
-  searchbarQuerySuggestion;
-  querySuggestionContainer;
-  helpTextContainer;
+  searchbar_inner_container;
+  searchbar_query_suggestion;
+  searchbar_query_suggestion_href;
+  query_suggestion_container;
+  help_text_container;
   filter_query_description;
-  searchbarFooter;
-  showAllResultsSpan;
+  searchbar_footer;
+  show_all_results_span;
   gray_view;
-  searchbarShortDisplay;
+  searchbar_short_display;
   get resultsUrlString() {
     throw new Error("must override");
   }
@@ -3307,25 +3320,36 @@ let BaseSearchbarElement = class extends BaseCon$1 {
     }
   }
   get jsSelectString() {
-    return html$1`document.getElementsByTagName('${this.elementName}')[0]`;
+    if (this.id)
+      return `document.querySelector('#${this.id}')`;
+    return html$1`document.querySelector('${this.elementName}')`;
   }
   get isHelpVisible() {
-    return !this.helpTextContainer.classList.contains("hidden");
+    return !this.help_text_container.classList.contains("hidden");
+  }
+  set placeholderString(newVal) {
+    this.placeholder = newVal;
+  }
+  get placeholderString() {
+    return this.placeholder;
   }
   set placeholder(newVal) {
-    this.input.placeholder = newVal;
-    this.searchbarShortDisplay.innerText = newVal;
+    this.input && (this.input.placeholder = newVal);
+    this.searchbar_short_display && (this.searchbar_short_display.innerText = newVal);
   }
   get placeholder() {
-    return this.input.placeholder;
+    return this.input?.placeholder;
   }
+  baseZIndex = 1e3;
   get template() {
     return searchbarTemplate;
   }
   isAndroid = getMobileOS() === "android";
   connectedCallback() {
     super.connectedCallback();
-    this.searchbarQuerySuggestion.innerHTML = `Here's some hint about the search bar`;
+    this.search_container.style.zIndex = "0";
+    this.style.zIndex = "0";
+    this.searchbar_query_suggestion.innerHTML = `Here's some hint about the search bar`;
     if (isMobile()) {
       this.minSearchDelay = 500;
       this.maxSearchDelay = 1e3;
@@ -3336,8 +3360,8 @@ let BaseSearchbarElement = class extends BaseCon$1 {
     this.input.addEventListener("focus", () => this.onSearchbarFocus());
     this.input.addEventListener("focusout", () => this.onSearchbarFocusout());
     this.gray_view.addEventListener("click", () => this.hideAllExtras);
-    this.helpButton.addEventListener("click", () => this.showHelp());
-    this.helpButton.addEventListener("mousedown", (evt) => evt.preventDefault());
+    this.help_button.addEventListener("click", () => this.showHelp());
+    this.help_button.addEventListener("mousedown", (evt) => evt.preventDefault());
     document.addEventListener("keydown", (e) => this.maybeFocusSearchbar(e));
     this.input.addEventListener("keydown", (e) => this.onKeyPressedEvent(e));
     document.addEventListener("click", (e) => this.maybeHideDropdown(e));
@@ -3346,23 +3370,29 @@ let BaseSearchbarElement = class extends BaseCon$1 {
       evt.preventDefault();
     });
     this.delete_text_button.addEventListener("mousedown", (evt) => evt.preventDefault());
-    this.returnKeyAction.addEventListener("click", () => this.submitSearch());
+    this.return_key_action.addEventListener("click", () => this.submitSearch());
     Object.defineProperty(this, "onKeyPressedEvent", { value: onKeyPressedEvent });
     Object.defineProperty(this, "onEnterKey", { value: onEnterKey });
     Object.defineProperty(this, "onArrowUpKey", { value: onArrowUpKey });
     Object.defineProperty(this, "onArrowDownKey", { value: onArrowDownKey });
+    document.addEventListener("DOMContentLoaded", () => {
+      this.baseZIndex = Number(window.getComputedStyle(this).zIndex?.replace("px", "") || "0");
+    });
     const sb = this.input;
     this.routes_viewer_container.ontouchstart = function(_e) {
       if (document.activeElement === sb) {
         sb.blur();
       }
     };
-    this.helpTextContainer.ontouchstart = function(_e) {
+    this.help_text_container.ontouchstart = function(_e) {
       if (document.activeElement === sb) {
         sb.blur();
       }
     };
     this.routes_viewer_container.style.maxHeight = `${window.innerHeight - 260}px`;
+  }
+  focus() {
+    this.input.focus();
   }
   buildResults(_data) {
     throw new Error("You need to override this");
@@ -3372,9 +3402,9 @@ let BaseSearchbarElement = class extends BaseCon$1 {
     this.hideAllExtras();
   }
   showQuerySuggestion() {
-    this.querySuggestionContainer.classList.remove("hidden");
+    this.query_suggestion_container.classList.remove("hidden");
     this.filter_query_description.classList.add("hidden");
-    this.searchbarFooter.classList.remove("display-if-necessary");
+    this.searchbar_footer.classList.remove("display-if-necessary");
     this.routes_viewer_container.classList.add("hidden");
     this.setVisibilityOfDeleteButton(this.input.value);
   }
@@ -3406,7 +3436,7 @@ let BaseSearchbarElement = class extends BaseCon$1 {
     return routes_viewer_container;
   }
   maybeHideDropdown(e) {
-    if (!this.searchWidget.contains(e.target)) {
+    if (!this.search_widget.contains(e.target)) {
       this.hideAllExtras();
     }
   }
@@ -3415,7 +3445,7 @@ let BaseSearchbarElement = class extends BaseCon$1 {
       this.baseData = void 0;
       this.stopProgressBar();
     }
-    this.searchbarShortDisplay.innerText = this.input.value;
+    this.searchbar_short_display.innerText = this.input.value;
     this.setVisibilityOfDeleteButton(this.input.value);
     let delay = Math.max(4e3 / this.input.value.length, this.minSearchDelay);
     delay = Math.min(delay, this.maxSearchDelay);
@@ -3439,19 +3469,19 @@ let BaseSearchbarElement = class extends BaseCon$1 {
   onEnterKey(_e) {
   }
   moveSearchbarHighIfMobile() {
-    if (this.searchAbsolute.style.position === "fixed") {
+    if (this.search_absolute.style.position === "fixed") {
       return;
     }
     performIfMobile(() => {
-      const rect = this.searchAbsolute.getBoundingClientRect();
+      const rect = this.search_absolute.getBoundingClientRect();
       this.input.style.caretColor = "transparent";
       this.input.style.paddingTop = "12pt";
       this.input.style.paddingBottom = "12pt";
-      this.searchAbsolute.style.position = "fixed";
-      this.searchAbsolute.style.top = rect.top + "px";
-      this.searchAbsolute.style.left = rect.left + "px";
-      this.searchAbsolute.style.width = rect.width + "px";
-      this.searchAbsolute.style.transform = `translateY( -${Math.abs(rect.top) - 22}px)`;
+      this.search_absolute.style.position = "fixed";
+      this.search_absolute.style.top = rect.top + "px";
+      this.search_absolute.style.left = rect.left + "px";
+      this.search_absolute.style.width = rect.width + "px";
+      this.search_absolute.style.transform = `translateY( -${Math.abs(rect.top) - 22}px)`;
       setTimeout(() => {
         this.input.style.caretColor = null;
       }, this.animateDuration);
@@ -3459,7 +3489,7 @@ let BaseSearchbarElement = class extends BaseCon$1 {
   }
   animateDuration = 300;
   resetSearchbarposition() {
-    if (this.searchAbsolute.style.position !== "fixed") {
+    if (this.search_absolute.style.position !== "fixed") {
       return;
     }
     setTimeout(() => {
@@ -3472,12 +3502,12 @@ let BaseSearchbarElement = class extends BaseCon$1 {
   _resetSearchbarposition() {
     this.input.style.paddingTop = null;
     this.input.style.paddingBottom = null;
-    this.searchAbsolute.style.transform = `translateY(0px)`;
+    this.search_absolute.style.transform = `translateY(0px)`;
     setTimeout(() => {
-      this.searchAbsolute.style.position = null;
-      this.searchAbsolute.style.top = null;
-      this.searchAbsolute.style.left = null;
-      this.searchAbsolute.style.width = null;
+      this.search_absolute.style.position = null;
+      this.search_absolute.style.top = null;
+      this.search_absolute.style.left = null;
+      this.search_absolute.style.width = null;
     }, this.animateDuration + 1);
   }
   onSearchbarFocus() {
@@ -3497,16 +3527,18 @@ let BaseSearchbarElement = class extends BaseCon$1 {
     this._onSearchbarFocus();
   }
   _onSearchbarFocus() {
-    this.searchWidget.classList.add("focussed");
+    this.search_widget.classList.add("focussed");
     this.moveSearchbarHighIfMobile();
     clearTimeout(this.hideAllExtrasTimeout);
     this.setGrayViewDisplayState("visible");
-    this.querySuggestionContainer.classList.add("hidden");
+    this.style.zIndex = this.baseZIndex + 10 + "";
+    this.search_container.style.zIndex = "var(--search-container-z-index)";
+    this.query_suggestion_container.classList.add("hidden");
     this.progress_bar.classList.add("hidden");
     if (this.isSearchbarFocussed) {
       this.progress_bar.classList.remove("hidden");
       if (this.isSearchbarEmpty && !this.isHelpVisible) {
-        this.querySuggestionContainer.classList.remove("hidden");
+        this.query_suggestion_container.classList.remove("hidden");
       }
     }
     if (!this.isSearchbarEmpty) {
@@ -3524,7 +3556,13 @@ let BaseSearchbarElement = class extends BaseCon$1 {
     }, 250);
   }
   onSearchbarFocusout() {
-    this.searchWidget.classList.remove("focussed");
+    this.search_widget.classList.remove("focussed");
+    setTimeout(() => {
+      if (this.isSearchbarFocussed)
+        return;
+      this.search_container.style.zIndex = "0";
+      this.style.zIndex = "0";
+    }, 500);
   }
   maybeFocusSearchbar(e) {
     if (this.isSearchbarFocussed) {
@@ -3555,10 +3593,10 @@ let BaseSearchbarElement = class extends BaseCon$1 {
   }
   showResultsDropdown() {
     this.routes_viewer_container.classList.remove("hidden");
-    this.searchWidget.classList.add("normal-background");
-    this.searchbarFooter.classList.add("display-if-necessary");
+    this.search_widget.classList.add("normal-background");
+    this.searchbar_footer.classList.add("display-if-necessary");
     this.filter_query_description.classList.remove("hidden");
-    this.querySuggestionContainer.classList.add("hidden");
+    this.query_suggestion_container.classList.add("hidden");
     if (isMobile()) {
       if (!this.isAndroid) {
         this.routes_viewer_container.style.maxHeight = `${window.innerHeight - 260}px`;
@@ -3571,12 +3609,12 @@ let BaseSearchbarElement = class extends BaseCon$1 {
     this.hideHelp();
     this.resetSearchbarposition();
     this.routes_viewer_container.classList.add("hidden");
-    this.searchWidget.classList.remove("normal-background");
-    this.searchbarFooter.classList.remove("display-if-necessary");
+    this.search_widget.classList.remove("normal-background");
+    this.searchbar_footer.classList.remove("display-if-necessary");
     this.filter_query_description.classList.add("hidden");
-    this.querySuggestionContainer.classList.add("hidden");
+    this.query_suggestion_container.classList.add("hidden");
     if (this.isSearchbarFocussed) {
-      this.querySuggestionContainer.classList.remove("hidden");
+      this.query_suggestion_container.classList.remove("hidden");
     }
     setTimeout(() => {
       if (this.isSearchbarFocussed) {
@@ -3599,7 +3637,7 @@ let BaseSearchbarElement = class extends BaseCon$1 {
     this.hiding = true;
     this.hideResultsDropdown();
     this.progress_bar.classList.add("hidden");
-    this.querySuggestionContainer.classList.add("hidden");
+    this.query_suggestion_container.classList.add("hidden");
     setTimeout(() => {
       this.hiding = false;
     }, 200);
@@ -3622,7 +3660,7 @@ let BaseSearchbarElement = class extends BaseCon$1 {
     alert("help text");
   }
   hideHelp() {
-    this.helpTextContainer.classList.add("hidden");
+    this.help_text_container.classList.add("hidden");
   }
   submitSearch() {
     localStorage.setItem(this.localStorageKey, JSON.stringify(this.baseData));
@@ -3649,22 +3687,25 @@ let BaseSearchbarElement = class extends BaseCon$1 {
 };
 __decorateClass$k([
   target
+], BaseSearchbarElement.prototype, "search_container", 2);
+__decorateClass$k([
+  target
 ], BaseSearchbarElement.prototype, "input", 2);
 __decorateClass$k([
   target
-], BaseSearchbarElement.prototype, "returnKeyAction", 2);
+], BaseSearchbarElement.prototype, "return_key_action", 2);
 __decorateClass$k([
   target
-], BaseSearchbarElement.prototype, "searchAbsolute", 2);
+], BaseSearchbarElement.prototype, "search_absolute", 2);
 __decorateClass$k([
   target
-], BaseSearchbarElement.prototype, "helpButton", 2);
+], BaseSearchbarElement.prototype, "help_button", 2);
 __decorateClass$k([
   target
 ], BaseSearchbarElement.prototype, "delete_text_button", 2);
 __decorateClass$k([
   target
-], BaseSearchbarElement.prototype, "searchWidget", 2);
+], BaseSearchbarElement.prototype, "search_widget", 2);
 __decorateClass$k([
   target
 ], BaseSearchbarElement.prototype, "progress_bar", 2);
@@ -3673,31 +3714,37 @@ __decorateClass$k([
 ], BaseSearchbarElement.prototype, "routes_viewer_container", 2);
 __decorateClass$k([
   target
-], BaseSearchbarElement.prototype, "searchbarInnerContainer", 2);
+], BaseSearchbarElement.prototype, "searchbar_inner_container", 2);
 __decorateClass$k([
   target
-], BaseSearchbarElement.prototype, "searchbarQuerySuggestion", 2);
+], BaseSearchbarElement.prototype, "searchbar_query_suggestion", 2);
 __decorateClass$k([
   target
-], BaseSearchbarElement.prototype, "querySuggestionContainer", 2);
+], BaseSearchbarElement.prototype, "searchbar_query_suggestion_href", 2);
 __decorateClass$k([
   target
-], BaseSearchbarElement.prototype, "helpTextContainer", 2);
+], BaseSearchbarElement.prototype, "query_suggestion_container", 2);
+__decorateClass$k([
+  target
+], BaseSearchbarElement.prototype, "help_text_container", 2);
 __decorateClass$k([
   target
 ], BaseSearchbarElement.prototype, "filter_query_description", 2);
 __decorateClass$k([
   target
-], BaseSearchbarElement.prototype, "searchbarFooter", 2);
+], BaseSearchbarElement.prototype, "searchbar_footer", 2);
 __decorateClass$k([
   target
-], BaseSearchbarElement.prototype, "showAllResultsSpan", 2);
+], BaseSearchbarElement.prototype, "show_all_results_span", 2);
 __decorateClass$k([
   target
 ], BaseSearchbarElement.prototype, "gray_view", 2);
 __decorateClass$k([
   target
-], BaseSearchbarElement.prototype, "searchbarShortDisplay", 2);
+], BaseSearchbarElement.prototype, "searchbar_short_display", 2);
+__decorateClass$k([
+  attr
+], BaseSearchbarElement.prototype, "placeholderString", 1);
 BaseSearchbarElement = __decorateClass$k([
   controller
 ], BaseSearchbarElement);
@@ -3730,6 +3777,7 @@ var __decorateClass$j = (decorators, target, key, kind) => {
 };
 let myQueryExamples = new Set(queryExamples);
 let RouteSearchbarElement = class extends BaseSearchbarElement$1 {
+  searchType;
   get resultsUrlString() {
     return window.location.origin + "/results/";
   }
@@ -3747,26 +3795,26 @@ let RouteSearchbarElement = class extends BaseSearchbarElement$1 {
     this.setRandomQueryExample();
   }
   showQuerySuggestion() {
-    const wasHidden = this.searchbarQuerySuggestion.classList.contains("hidden");
+    const wasHidden = this.searchbar_query_suggestion.classList.contains("hidden");
     super.showQuerySuggestion();
     if (wasHidden) {
       this.setRandomQueryExample();
     }
   }
   showHelp() {
-    this.helpTextContainer.innerHTML = html;
-    this.helpTextContainer.style.overflowY = "auto";
-    this.helpTextContainer.style.padding = "8pt";
-    this.helpTextContainer.style.fontSize = "10pt";
-    this.helpTextContainer.style.color = "var(--subtitle-color)";
-    this.helpTextContainer.style.paddingBottom = "0px";
-    this.helpTextContainer.classList.remove("hidden");
-    this.helpTextContainer.style.maxHeight = String(window.innerHeight * this.maxWindowHeightRatio) + "px";
-    isMobile() && (this.helpTextContainer.style.maxHeight = `${window.innerHeight - 122}px`);
+    this.help_text_container.innerHTML = html;
+    this.help_text_container.style.overflowY = "auto";
+    this.help_text_container.style.padding = "8pt";
+    this.help_text_container.style.fontSize = "10pt";
+    this.help_text_container.style.color = "var(--subtitle-color)";
+    this.help_text_container.style.paddingBottom = "0px";
+    this.help_text_container.classList.remove("hidden");
+    this.help_text_container.style.maxHeight = String(window.innerHeight * this.maxWindowHeightRatio) + "px";
+    isMobile() && (this.help_text_container.style.maxHeight = `${window.innerHeight - 122}px`);
     this.showResultsDropdown();
-    this.querySuggestionContainer.classList.add("hidden");
+    this.query_suggestion_container.classList.add("hidden");
     this.filter_query_description.classList.add("hidden");
-    this.searchbarFooter.classList.remove("display-if-necessary");
+    this.searchbar_footer.classList.remove("display-if-necessary");
     this.routes_viewer_container.classList.add("hidden");
     this.input.focus();
   }
@@ -3783,7 +3831,15 @@ let RouteSearchbarElement = class extends BaseSearchbarElement$1 {
     myQueryExamples.delete(random);
     const cleaned = random.replace(/&#8288;/g, "").replace(/&nbsp;/g, " ");
     this.randomQueryString = cleaned;
-    this.searchbarQuerySuggestion.innerHTML = html$1`Need inspiration? How about: <a href="javascript:${this.jsSelectString}.updateRandomQuery();void(0);">${random}</a>`;
+    this.searchbar_query_suggestion.innerHTML = html$1`Need inspiration? How about: <a href="javascript:${this.jsSelectString}.updateRandomQuery();void(0);">${random}</a>`;
+  }
+  _selectHandler;
+  set selectHandler(handler) {
+    console.log(handler);
+    this._selectHandler = handler;
+  }
+  get selectHandler() {
+    return this._selectHandler;
   }
   fetchResults() {
     const currentSearchId = new Date();
@@ -3799,7 +3855,7 @@ let RouteSearchbarElement = class extends BaseSearchbarElement$1 {
         body: JSON.stringify(
           {
             search_query: currentQuery,
-            page_size: 100,
+            search_type: this.searchType || "all",
             page: 0
           }
         )
@@ -3826,7 +3882,7 @@ let RouteSearchbarElement = class extends BaseSearchbarElement$1 {
       return;
     }
     if (this.query.trim().length < 3) {
-      this.searchbarQuerySuggestion.innerHTML = "Keep typing...";
+      this.searchbar_query_suggestion.innerHTML = "Keep typing...";
       this.hideResultsDropdown();
       this.clearResultsDropdown();
       return;
@@ -3901,8 +3957,8 @@ let RouteSearchbarElement = class extends BaseSearchbarElement$1 {
         }
       }
     });
-    this.showAllResultsSpan.classList.remove("hidden");
-    this.showAllResultsSpan.innerHTML = `Show all ${data.meta?.total_matches} results`;
+    this.show_all_results_span.classList.remove("hidden");
+    this.show_all_results_span.innerHTML = `Show all ${data.meta?.total_matches} results`;
     this.processQueue();
   }
   processQueue() {
@@ -3912,15 +3968,48 @@ let RouteSearchbarElement = class extends BaseSearchbarElement$1 {
     }
   }
   appendButtress(target, buttress) {
-    return appendButtress({ target, buttress });
+    const element = appendButtress({ target, buttress });
+    if (this.selectHandler) {
+      setTimeout(() => {
+        const href = element.querySelector("a");
+        href.href = "javascript: void(0)";
+        href.addEventListener("click", () => {
+          this.selectHandler(buttress);
+        });
+      });
+    }
+    return element;
   }
   appendCrag(target, crag) {
-    return appendCrag({ target, crag });
+    const element = appendCrag({ target, crag });
+    if (this.selectHandler) {
+      setTimeout(() => {
+        const href = element.querySelector("a");
+        href.href = "javascript: void(0)";
+        href.addEventListener("click", () => {
+          this.selectHandler(crag);
+        });
+      });
+    }
+    return element;
   }
   appendRoute(target, route) {
-    return appendRoute({ target, route });
+    const element = appendRoute({ target, route });
+    if (this.selectHandler) {
+      setTimeout(() => {
+        const href = element.querySelector("a");
+        href.href = "javascript: void(0)";
+        href.addEventListener("click", () => {
+          this.selectHandler(route);
+        });
+      });
+    }
+    return element;
   }
 };
+__decorateClass$j([
+  attr
+], RouteSearchbarElement.prototype, "searchType", 2);
 RouteSearchbarElement = __decorateClass$j([
   controller
 ], RouteSearchbarElement);
@@ -7191,16 +7280,20 @@ let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
     this._routeLookup ||= JSON.parse(localStorage.getItem(this.localStorageKey) || '{ "routes" : {} }');
     return this._routeLookup;
   }
-  connectedCallback() {
-    super.connectedCallback();
-    document.addEventListener("scroll", async (_evt) => {
-      const scroll = this.lastCell?.getBoundingClientRect().top;
-      const time = new Date().getTime();
-      if (time - this.cellsLastLoadedAt > 500 && scroll && scroll < window.innerHeight + 400) {
-        this.cellsLastLoadedAt = time;
-        this.loadCellsForScroll();
-      }
-    });
+  handleScrollListeners(evt) {
+    const shouldContinue = super.handleScrollListeners(evt);
+    if (shouldContinue) {
+      this.maybeLoadMoreCells(evt);
+    }
+    return shouldContinue;
+  }
+  maybeLoadMoreCells(evt) {
+    const scroll = this.lastCell?.getBoundingClientRect().top;
+    const time = new Date().getTime();
+    if (time - this.cellsLastLoadedAt > 500 && scroll && scroll < window.innerHeight + 400) {
+      this.cellsLastLoadedAt = time;
+      this.loadCellsForScroll();
+    }
   }
   loadCellsForScroll() {
     this.loadCellsForObjectsWithIdsReturn(this.apiDataDescribingCurrentList);
@@ -10973,16 +11066,13 @@ var __decorateClass$9 = (decorators, target, key, kind) => {
 let OfflineInfiniteScrollRoutesViewer = class extends InfiniteScrollRoutesViewer$1 {
   index;
   idsOfRoutesMatchingLocalSearch = /* @__PURE__ */ new Set();
-  connectedCallback() {
-    super.connectedCallback();
-    document.addEventListener("scroll", async (_evt) => {
-      const scroll = this.lastCell?.getBoundingClientRect().top;
-      const time = new Date().getTime();
-      if (time - this.cellsLastLoadedAt > 500 && scroll && scroll < window.innerHeight + 400) {
-        this.cellsLastLoadedAt = time;
-        this.loadCellsForObjectsWithIdsReturn(this.apiDataDescribingCurrentList);
-      }
-    });
+  maybeLoadMoreCells(evt) {
+    const scroll = this.lastCell?.getBoundingClientRect().top;
+    const time = new Date().getTime();
+    if (time - this.cellsLastLoadedAt > 500 && scroll && scroll < window.innerHeight + 400) {
+      this.cellsLastLoadedAt = time;
+      this.loadCellsForObjectsWithIdsReturn(this.apiDataDescribingCurrentList);
+    }
   }
   async _init() {
     super._init();

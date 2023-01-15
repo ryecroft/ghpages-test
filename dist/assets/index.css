@@ -442,6 +442,10 @@ html {
   border-width: var(--border-width);
   background-color: var(--background-color);
   transition: all 0.2s;
+}
+
+.rfd-search #search-widget,
+.rfd-search #search-results-widget {
   overflow: hidden;
 }
 
@@ -510,7 +514,6 @@ html {
 }
 
 .rfd-search #search-results-header-container {
-  overflow: visible;
   backface-visibility: hidden;
   background-color: var(--background-color);
   position: sticky;
@@ -521,7 +524,7 @@ html {
 
 .rfd-search .routes-viewer-header {
   padding-left: var(--padding);
-  width: 100vw;
+  width: 100%;
 }
 
 .rfd-search .result-icon {
@@ -601,7 +604,7 @@ html {
 
 .rfd-search .important {
   font-weight: bold;
-  color: #be2730;
+  color: #f8ca23;
 }
 
 .rfd-search .pitch-grade {
@@ -1139,6 +1142,7 @@ html {
   .rfd-search #search-results-header-container {
     border-top-left-radius: var(--radius);
     border-top-right-radius: var(--radius);
+    width: 100%;
   }
   .rfd-search #searchbar-help-text {
     padding: calc(var(--base-padding) * var(--big-screen-multiplier) * 2);
