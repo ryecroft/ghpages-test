@@ -59,7 +59,7 @@ filters-controller .rfd-search .filters-controller-content {
   top: 100vh;
   border-top-left-radius: 10pt;
   border-top-right-radius: 10pt;
-  transition: top 0.3s ease-out;
+  transition: top 0.3s cubic-bezier(0.22, 1, 0.3, 1);
 }
 
 filters-controller .rfd-search #gray-view {
