@@ -2835,7 +2835,7 @@ let BaseRoutesViewer = class extends BaseCon$1 {
     document.addEventListener("DOMContentLoaded", () => {
       this.onDomContentLoaded();
     });
-    document.addEventListener("scroll", this.handleScrollListeners.bind(this));
+    document.addEventListener("scroll", this._handleScrollListeners.bind(this));
     this.filter_query_description.addEventListener("click", (evt) => {
       this.header_container.style.top = "-55px";
     });
@@ -2867,14 +2867,18 @@ let BaseRoutesViewer = class extends BaseCon$1 {
   lastScroll = 0;
   lastTimeScrollCalculated = 0;
   get areWeInANewFrame() {
-    return Date.now() - this.lastTimeScrollCalculated > 16;
+    return Date.now() - this.lastTimeScrollCalculated > 15;
   }
-  handleScrollListeners(evt) {
+  _handleScrollListeners(evt) {
     if (!this.areWeInANewFrame)
       return false;
-    this.positionHeaderForScroll(evt);
+    this.onScrollMaxEvery16ms(evt);
     this.lastTimeScrollCalculated = Date.now();
     return true;
+  }
+  onScrollMaxEvery16ms(evt) {
+    this.positionHeaderForScroll(evt);
+    this.setTextOfFixedHeaderBasedOnScroll(evt);
   }
   positionHeaderForScroll(evt) {
     if (this.preventLayoutShift) {
@@ -2895,6 +2899,43 @@ let BaseRoutesViewer = class extends BaseCon$1 {
     const el = this.header_container;
     const height = this.filter_query_description.getBoundingClientRect().top - this.header_container.getBoundingClientRect().top;
     el.style.top = -height + "px";
+  }
+  currentHeader = null;
+  setTextOfFixedHeaderBasedOnScroll(evt) {
+    const deets = this.getClosestHeaderToFixedHeader();
+    if (!deets.current)
+      return;
+    if (this.currentHeader === deets.current)
+      return;
+    this.currentHeader = deets.current;
+    this.fixed_section_header.left_label.innerHTML = deets.current.left_label.innerHTML;
+    this.fixed_section_header.right_label.innerHTML = deets.current.right_label.innerHTML;
+  }
+  getClosestHeaderToFixedHeader() {
+    const headers = this.querySelectorAll("section-header");
+    const heads = {
+      previous: null,
+      current: null,
+      next: null
+    };
+    const fixedTop = this.fixed_section_header.getBoundingClientRect().top;
+    for (let idx = headers.length - 1; idx > 0; idx--) {
+      const element = headers[idx];
+      if (element === this.fixed_section_header)
+        continue;
+      const elementTop = element.getBoundingClientRect().top;
+      if (elementTop > fixedTop) {
+        heads.next = element;
+        heads.current = headers[idx - 1];
+        heads.previous = headers[idx - 2];
+      }
+    }
+    if (!heads.current)
+      heads.current = headers[headers.length - 1];
+    return heads;
+  }
+  headerTopIsLowerThanScroll(header, scroll) {
+    return header.getBoundingClientRect().top < scroll;
   }
   onDomContentLoaded() {
     this.searchbar = document.getElementsByTagName(this.searchbarTag)[0];
@@ -7272,12 +7313,9 @@ let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
     this._routeLookup ||= JSON.parse(localStorage.getItem(this.localStorageKey) || '{ "routes" : {} }');
     return this._routeLookup;
   }
-  handleScrollListeners(evt) {
-    const shouldContinue = super.handleScrollListeners(evt);
-    if (shouldContinue) {
-      this.maybeLoadMoreCells(evt);
-    }
-    return shouldContinue;
+  onScrollMaxEvery16ms(evt) {
+    super.onScrollMaxEvery16ms(evt);
+    this.maybeLoadMoreCells(evt);
   }
   maybeLoadMoreCells(evt) {
     const scroll = this.lastCell?.getBoundingClientRect().top;
