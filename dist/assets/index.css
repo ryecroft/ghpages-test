@@ -52,7 +52,7 @@ filters-controller .rfd-search .filters-controller-content {
   width: 100vw;
   height: 100vh;
   padding: var(--padding);
-  background-color: var(--background-color-page);
+  background-color: var(--background-color);
   color: white;
   z-index: 2000000 !important;
   position: absolute;
@@ -1243,9 +1243,6 @@ html {
   .rfd-search .result-entry-end {
     flex-direction: column;
     align-items: flex-end;
-  }
-  .rfd-search .ascent-style-indicator {
-    margin-left: -13px;
   }
 }
 
