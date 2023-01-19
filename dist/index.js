@@ -3165,6 +3165,8 @@ let BaseRoutesViewer = class extends BaseCon$1 {
   setVisibilityOfDeleteButton(str) {
     this.delete_text_button.classList[str ? "remove" : "add"]("hidden");
   }
+  willAppendRoute(route) {
+  }
 };
 __decorateClass$m([
   target
@@ -5163,6 +5165,7 @@ let PagedRoutesViewer = class extends BaseRoutesViewer$1 {
       section.routes.forEach((element, idx) => {
         switch (element.type) {
           case "route_ukc": {
+            this.willAppendRoute(element);
             this.queue.push(() => {
               this.appendRoute(this, element);
             });
@@ -11611,6 +11614,30 @@ let TopAscentsViewerElement = class extends PartnerAscentsViewerElement$1 {
     this.routes_viewer_title.innerHTML = `<span style="font-size: 0.8em">Recent winter ascents</span>`;
     console.log(res);
     return res;
+  }
+  currentRouteDate = void 0;
+  currentCragName = void 0;
+  willAppendRoute(route) {
+    if (this.sort_order_picker.value !== "crag_name")
+      return;
+    const date = new Date(route.associated_ascent_entry.ascent_date).getTime();
+    if (date !== this.currentRouteDate || route.crag_name !== this.currentCragName) {
+      this.currentRouteDate = date;
+      this.currentCragName = route.crag_name;
+      const dateElement = document.createElement("div");
+      dateElement.classList.add("date");
+      dateElement.innerText = new Date(route.associated_ascent_entry.ascent_date).toLocaleString("default", { weekday: "long", year: "numeric", month: "long", day: "numeric" });
+      dateElement.style.color = "var(--subtitle-color)";
+      dateElement.style.padding = "4px 12px";
+      dateElement.style.fontSize = "10px";
+      dateElement.style.backgroundColor = "var(--background-color-2)";
+      console.log(dateElement);
+      this.queue.push(
+        () => {
+          this.routes_viewer_container.appendChild(dateElement);
+        }
+      );
+    }
   }
 };
 TopAscentsViewerElement = __decorateClass$6([
