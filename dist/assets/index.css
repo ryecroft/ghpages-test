@@ -563,7 +563,7 @@ html {
 }
 
 .rfd-search #search-icon-short-display {
-  background-color: var(--subtitle-color);
+  background-color: var(--subtitle-color-3);
   display: inline-block;
   transform: translateY(30%);
 }
@@ -1098,6 +1098,13 @@ html {
   :root {
     --icon-size: 2rem;
   }
+  .big-screen-spacer {
+    display: block;
+    min-height: 1rem;
+  }
+  search-results-viewer {
+    margin-top: 12px;
+  }
   .rfd-search {
     --page-control-size: 18pt;
     --radius: 4pt;
@@ -1149,11 +1156,18 @@ html {
   }
   .rfd-search #search-results-header-container,
 .rfd-search #search-results-widget {
+    border: solid var(--background-color-2) var(--border-width);
     margin-right: 50%;
     margin-left: 50%;
     transform: translateX(-50%);
     min-width: 700px;
     box-shadow: 0px 0px 10px rgba(1, 1, 1, 0.1);
+  }
+  .rfd-search #search-results-widget {
+    border-top-width: 0;
+  }
+  .rfd-search #search-results-header-container {
+    border-bottom-width: 0;
   }
   .rfd-search #placeholder-short-display {
     margin-left: 0px;
@@ -1214,6 +1228,9 @@ html {
   }
   .rfd-search .icon {
     margin-right: unset;
+  }
+  .rfd-search .divider-no-height-set {
+    margin: 4px;
   }
   .rfd-search .result-entry-end {
     padding-left: var(--padding);
