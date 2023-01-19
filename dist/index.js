@@ -2429,6 +2429,9 @@ function apiOrigin() {
   if (origin.match(/dev\.|ryecroft.github.io/gi)) {
     return "https://dev.api.rockfax.app";
   }
+  if (origin.match(/route-viewer-dkk8m\.ondigitalocean\.app/gi)) {
+    return "https://dev.api.rockfax.app";
+  }
   return "https://api.rockfax.app";
 }
 const generateApiUrl$5 = () => {
