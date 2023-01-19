@@ -1,4 +1,4 @@
-const GHPATH = '/ghpages-test'
+const GHPATH = '/route-viewer-dkk8m'
 const APP_PREFIX = 'gppwa_'
 const VERSION = 'version_004'
 const URLS = [

@@ -2,14 +2,14 @@
   "name": "UKC Routes Viewer PWA",
   "short_name": "UKCpwa",
   "description": "UKC Crag Page Progressive Web App",
-  "scope": "/ghpages-test/",
-  "start_url": "/ghpages-test/",
+  "scope": "/route-viewer-dkk8m/",
+  "start_url": "/route-viewer-dkk8m/",
   "background_color": "#19181e",
   "theme_color": "#19181e",
   "display": "standalone",
   "icons": [
     {
-      "src": "/ghpages-test/img/icon.png",
+      "src": "/route-viewer-dkk8m/img/icon.png",
       "type": "image/png",
       "sizes": "700x700"
     }
