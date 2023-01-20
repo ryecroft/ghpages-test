@@ -2185,6 +2185,9 @@ const html$1 = (raw, ...keys) => keys.length === 0 ? raw[0] : String.raw({ raw }
 const escape = (s) => {
   return s ? purify.sanitize(s) : s;
 };
+const noBreaks = (s) => {
+  return s?.replace(/\s/g, "&nbsp");
+};
 
 var __defProp$q = Object.defineProperty;
 var __getOwnPropDesc$q = Object.getOwnPropertyDescriptor;
@@ -2482,7 +2485,10 @@ const searchResultsTemplate = (element) => {
                 </div>
                 <div data-target='${elementName}.progress_bar' id='search-results-progress' class='loader-stopped'></div>
                 <div data-target='${elementName}.filter_query_description' class='search-results-search-query-description' style='border-bottom: solid var(--background-color-page-semi) 1px;'></div>
-                <section-header data-target='${element.elementName}.fixed_section_header' class="position-absolute w-100" hidden><span>Thursday, 4 June 2015</span><span>10 routes</span></section-header>
+                <div class="position-absolute w-100">
+                    <section-header data-target='${element.elementName}.fixed_section_header' hidden><span>Thursday, 4 June 2015</span><span>10 routes</span></section-header>
+                    <section-header data-target='${element.elementName}.fixed_section_header_2' style='font-size:0.75em;padding-top:2px' hidden><span>Thursday, 4 June 2015</span><span>10 routes</span></section-header>
+                </div>
             </div>
             <div id='search-results-widget'>
                 <div data-target='${elementName}.routes_viewer_container' id='search-results-container-search-results'></div>
@@ -2732,6 +2738,7 @@ let BaseRoutesViewer = class extends BaseCon$1 {
   filters_button;
   filter_icon;
   fixed_section_header;
+  fixed_section_header_2;
   get query() {
     return this.input.value;
   }
@@ -2746,6 +2753,7 @@ let BaseRoutesViewer = class extends BaseCon$1 {
   searchBarPlaceholderString = "Search all routes/crags...";
   timeout;
   searchId = 0;
+  fixedHeaderFillingStrategy = "closest";
   preventLayoutShift = false;
   get template() {
     return searchResultsTemplate;
@@ -2922,26 +2930,32 @@ let BaseRoutesViewer = class extends BaseCon$1 {
   }
   currentHeader = null;
   setTextOfFixedHeaderBasedOnScroll(evt) {
-    const deets = this.getClosestHeaderToFixedHeader();
-    if (!deets.current)
-      return;
-    if (this.currentHeader === deets.current)
-      return;
-    this.currentHeader = deets.current;
-    this.fixed_section_header.left_label.innerHTML = deets.current.left_label.innerHTML;
-    this.fixed_section_header.right_label.innerHTML = deets.current.right_label.innerHTML;
+    const deets = this.getClosestHeaderToFixedHeader(this.fixed_section_header, ".main-header");
+    if (deets.current && this.currentHeader !== deets.current) {
+      this.currentHeader = deets.current;
+      this.fixed_section_header.left_label.innerHTML = deets.current.left_label.innerHTML;
+      this.fixed_section_header.right_label.innerHTML = deets.current.right_label.innerHTML;
+    }
+    if (this.fixedHeaderFillingStrategy === "closestTwo") {
+      const deets2 = this.getClosestHeaderToFixedHeader(this.fixed_section_header_2, ".sub-header");
+      if (!deets2.current)
+        return;
+      console.log("hallo");
+      this.fixed_section_header_2.left_label.innerHTML = deets2.current.left_label.innerHTML;
+      this.fixed_section_header_2.right_label.innerHTML = deets2.current.right_label.innerHTML;
+    }
   }
-  getClosestHeaderToFixedHeader() {
-    const headers = this.querySelectorAll("section-header");
+  getClosestHeaderToFixedHeader(fixedHeader, classNames) {
+    const headers = this.querySelectorAll(`section-header${classNames}`);
     const heads = {
       previous: null,
       current: null,
       next: null
     };
-    const fixedTop = this.fixed_section_header.getBoundingClientRect().top;
+    const fixedTop = fixedHeader.getBoundingClientRect().top;
     for (let idx = headers.length - 1; idx > 0; idx--) {
       const element = headers[idx];
-      if (element === this.fixed_section_header)
+      if (element === fixedHeader)
         continue;
       const elementTop = element.getBoundingClientRect().top;
       if (elementTop > fixedTop) {
@@ -3070,43 +3084,10 @@ let BaseRoutesViewer = class extends BaseCon$1 {
   appendRoute(target2, route, tagName) {
     return appendRoute({ target: target2, route, tagName });
   }
-  onIntersectionClosed(entries, observer) {
-    if (this.header_container.style.top === "-55px")
-      return;
-    this._onIntersection(entries, "closed");
-  }
-  onIntersectionOpen(entries, observer) {
-    if (this.header_container.style.top !== "-55px")
-      return;
-    this._onIntersection(entries, "open");
-  }
-  _onIntersection(entries, headerState) {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting === false) {
-        const el = entry.target;
-        if (el.getBoundingClientRect().top < 200) {
-          this.fixed_section_header.left_label.innerText = el.left_label.innerText;
-          this.fixed_section_header.right_label.innerText = el.right_label.innerText;
-        }
-      } else {
-        const el = entry.target;
-        if (el.getBoundingClientRect().top < 300) {
-          const idx = this.headerDeets.findIndex((h) => h.leftText === el.left_label.innerText);
-          const previous = this.headerDeets[idx - 1];
-          if (previous) {
-            this.fixed_section_header.left_label.innerText = previous.leftText;
-            this.fixed_section_header.right_label.innerText = previous.rightText;
-          } else {
-            this.fixed_section_header.left_label.innerText = el.left_label.innerText;
-            this.fixed_section_header.right_label.innerText = el.right_label.innerText;
-          }
-        }
-      }
-    });
-  }
   headerDeets = [];
   appendHeader(leftText, ascentCount, target2, objectDescriptor) {
     const header = document.createElement("section-header");
+    header.classList.add("main-header");
     target2.routes_viewer_container.appendChild(header);
     const word = objectDescriptor[ascentCount === 1 ? "singular" : "plural"];
     const rightText = `${ascentCount} ${word}`;
@@ -3212,6 +3193,9 @@ __decorateClass$n([
 __decorateClass$n([
   target
 ], BaseRoutesViewer.prototype, "fixed_section_header", 2);
+__decorateClass$n([
+  target
+], BaseRoutesViewer.prototype, "fixed_section_header_2", 2);
 BaseRoutesViewer = __decorateClass$n([
   controller
 ], BaseRoutesViewer);
@@ -4848,6 +4832,7 @@ let LogbookResultElement = class extends SearchResultElement$1 {
     if (this.country_names)
       this.country_names.forEach((el) => el.innerHTML = escape(v));
   }
+  showCragName = true;
   set ascentNotes(v) {
     if (this.ascent_notes) {
       this.ascent_notes.hidden = !v;
@@ -4882,22 +4867,43 @@ let LogbookResultElement = class extends SearchResultElement$1 {
       this.item_name.innerHTML = ev;
   }
   set ascensionistDetails(ascensionist) {
-    this.ascensionist.innerHTML = `<a href='/logbook/logbook/?user_id=${ascensionist.id}'>${escape(ascensionist.name)}</a>`;
+    this.ascensionist.innerHTML = this.linkForUserId(ascensionist.id, ascensionist.name);
   }
   set partners(partners) {
     if (this.partner_names_with)
       this.partner_names_with.hidden = partners.length === 0;
     const frags = partners.map((p) => {
       if (p.id) {
-        return `<a href='/logbook/logbook/?user_id=${p.id}'>${p.name}</a>`;
+        return this.linkForUserId(p.id, p.name);
       } else {
-        return p?.name;
+        return escape(noBreaks(p?.name));
       }
     });
     this.partner_names.innerHTML = escape(frags.join(", "));
   }
+  linkForUserId(userId, userName) {
+    if (window.location.host.match(/localhost/g)) {
+      return `<a href='/pages/logbook/?user_id=${userId}'>${escape(noBreaks(userName))}</a>`;
+    }
+    if (window.location.host.match(/dkk8m.ondigitalocean.app/g)) {
+      return `<a href='/logbook/?user_id=${userId}'>${escape(noBreaks(userName))}</a>`;
+    }
+    return `<a href='/logbook/logbook/?user_id=${userId}'>${escape(noBreaks(userName))}</a>`;
+  }
   get template() {
     return logentryTemplate;
+  }
+  connectedCallback() {
+    super.connectedCallback();
+    if (this.showCragName) {
+      this.crag_names.forEach((el) => el.style.display = "none");
+      this.county_names.forEach((el) => el.style.display = "none");
+      this.country_names.forEach((el) => el.style.display = "none");
+    } else {
+      this.crag_names.forEach((el) => el.style.display = "block");
+      this.county_names.forEach((el) => el.style.display = "block");
+      this.country_names.forEach((el) => el.style.display = "block");
+    }
   }
 };
 __decorateClass$g([
@@ -4939,6 +4945,9 @@ __decorateClass$g([
 __decorateClass$g([
   attr
 ], LogbookResultElement.prototype, "countryName", 1);
+__decorateClass$g([
+  attr
+], LogbookResultElement.prototype, "showCragName", 2);
 __decorateClass$g([
   attr
 ], LogbookResultElement.prototype, "ascentNotes", 1);
@@ -11521,6 +11530,8 @@ let PartnerAscentsViewerElement = class extends PagedRoutesViewer$1 {
   }
   appendRoute(target, route, tagName) {
     const el = appendRoute({ target, route, tagName: "logbook-result" });
+    const showCragName = !(this.sort_order_picker.value === "date" || this.sort_order_picker.value === "crag_name");
+    el.showCragName = showCragName;
     const myAscent = sharedStorage$1.bestAscent(route.id_ukc);
     el.logStatus = sharedStorage$1.logbookStatus(route.id_ukc);
     el.setAttribute("title", myAscent?.lastClimbedDescription || "not in your logbook");
@@ -11611,6 +11622,8 @@ let TopAscentsViewerElement = class extends PartnerAscentsViewerElement$1 {
   }
   connectedCallback() {
     super.connectedCallback();
+    this.fixedHeaderFillingStrategy = "closestTwo";
+    this.fixed_section_header_2.hidden = false;
     this.sort_button.style.display = "block";
     this.sort_order_picker.style.display = "block";
     this.input.placeholder = `Filter recent top ascents...`;
@@ -11643,16 +11656,13 @@ let TopAscentsViewerElement = class extends PartnerAscentsViewerElement$1 {
     if (date !== this.currentRouteDate || route.crag_name !== this.currentCragName) {
       this.currentRouteDate = date;
       this.currentCragName = route.crag_name;
-      const headerEl = document.createElement("div");
-      headerEl.classList.add("date");
-      headerEl.innerText = new Date(route.associated_ascent_entry.ascent_date).toLocaleString("default", { weekday: "long", year: "numeric", month: "long", day: "numeric" });
-      headerEl.style.color = "var(--subtitle-color-2)";
-      headerEl.style.padding = "4px 14px";
-      headerEl.style.fontSize = "var(--font-size-3)";
-      headerEl.style.backgroundColor = "var(--background-color-2)";
       this.queue.push(
         () => {
+          const headerEl = document.createElement("section-header");
+          headerEl.classList.add("sub-header");
           this.routes_viewer_container.appendChild(headerEl);
+          headerEl.left_label.innerText = new Date(route.associated_ascent_entry.ascent_date).toLocaleString("default", { weekday: "long", year: "numeric", month: "long", day: "numeric" });
+          headerEl.style.fontSize = "0.75em";
         }
       );
     }
@@ -11662,16 +11672,14 @@ let TopAscentsViewerElement = class extends PartnerAscentsViewerElement$1 {
     if (route.crag_name !== this.currentCragName || date !== this.currentRouteDate) {
       this.currentRouteDate = date;
       this.currentCragName = route.crag_name;
-      const headerEl = document.createElement("div");
-      headerEl.classList.add("date");
-      headerEl.innerHTML = this.linkForCragId(route.crag_id_ukc, route.crag_name);
-      headerEl.style.color = "var(--subtitle-color-2)";
-      headerEl.style.padding = "4px 14px";
-      headerEl.style.fontSize = "var(--font-size-3)";
-      headerEl.style.backgroundColor = "var(--background-color-2)";
       this.queue.push(
         () => {
+          const headerEl = document.createElement("section-header");
+          headerEl.classList.add("sub-header");
           this.routes_viewer_container.appendChild(headerEl);
+          headerEl.left_label.innerHTML = this.linkForCragId(route.crag_id_ukc, route.crag_name);
+          headerEl.right_label.innerHTML = route.county_name;
+          headerEl.style.fontSize = "0.75em";
         }
       );
     }
@@ -11795,7 +11803,6 @@ let CragRoutesViewerElement = class extends OfflineInfiniteScrollRoutesViewer$1 
   bodyForRequest(query, pageNo) {
     const type = Object.keys(this.routeLookup || {}).length ? "ids" : "full";
     const cookie = Cookies.default().cookie;
-    console.log(this.cragId);
     return {
       cookie,
       search_query: query,
