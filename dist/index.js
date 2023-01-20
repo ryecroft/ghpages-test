@@ -11948,7 +11948,7 @@ const flagIcons_min = '';
 const template$1 = (element) => {
   return html$1`
     <span data-target='${element.elementName}.left_label'></span>
-    <span><span data-target='${element.elementName}.right_label'></span><span data-target='${element.elementName}.flag_element' style='opacity:0.9;transform:translateY(1px)' hidden></span></span>
+    <span><span data-target='${element.elementName}.right_label'></span><span data-target='${element.elementName}.flag_element' style='opacity:0.9;transform:scale(0.8)' hidden></span></span>
 `;
 };
 
