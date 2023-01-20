@@ -2968,14 +2968,6 @@ let BaseRoutesViewer = class extends BaseCon$1 {
     });
     this.searchbar.placeholder = this.searchBarPlaceholderString;
     this.searchbar.delete_text_button.classList.remove("hidden");
-    this.searchbar.submitSearchHandler = (resultsUrl) => {
-      this.startProgressBar();
-      this.searchbar.resignFocus();
-      window.history.pushState({}, "", resultsUrl);
-      setTimeout(() => {
-        this._init();
-      }, 300);
-    };
   }
   sortOrderChanged(evt) {
     this.lastSearch = void 0;
@@ -5299,6 +5291,14 @@ let SearchResultsViewerElement = class extends PagedRoutesViewer$1 {
   onDomContentLoaded() {
     super.onDomContentLoaded();
     this.searchbar.setQueryWithoutDispatchingEvent(this.urlQuery || "", false);
+    this.searchbar.submitSearchHandler = (resultsUrl) => {
+      this.startProgressBar();
+      this.searchbar.resignFocus();
+      window.history.pushState({}, "", resultsUrl);
+      setTimeout(() => {
+        this._init();
+      }, 300);
+    };
   }
   appendRoute(target, route) {
     const el = super.appendRoute(target, route);
@@ -11664,7 +11664,7 @@ let TopAscentsViewerElement = class extends PartnerAscentsViewerElement$1 {
       this.currentCragName = route.crag_name;
       const headerEl = document.createElement("div");
       headerEl.classList.add("date");
-      headerEl.innerHTML = `<a style='color:#bbdcee;opacity: 0.75;' href='/logbook/crags/ -${route.crag_id_ukc}'>${escape(route.crag_name)}</a>`;
+      headerEl.innerHTML = this.linkForCragId(route.crag_id_ukc, route.crag_name);
       headerEl.style.color = "var(--subtitle-color-2)";
       headerEl.style.padding = "4px 14px";
       headerEl.style.fontSize = "var(--font-size-3)";
@@ -11675,6 +11675,15 @@ let TopAscentsViewerElement = class extends PartnerAscentsViewerElement$1 {
         }
       );
     }
+  }
+  linkForCragId(cragId, cragName) {
+    if (window.location.host.match(/localhost/g)) {
+      return `<a style='color:#bbdcee;opacity: 0.75;' href='/pages/crag/?crag_id=${cragId}'>${escape(cragName)}</a>`;
+    }
+    if (window.location.host.match(/dkk8m.ondigitalocean.app/g)) {
+      return `<a style='color:#bbdcee;opacity: 0.75;' href='/crag/?crag_id=${cragId}'>${escape(cragName)}</a>`;
+    }
+    return `<a style='color:#bbdcee;opacity: 0.75;' href='/logbook/crags/ -${cragId}'>${escape(cragName)}</a>`;
   }
 };
 TopAscentsViewerElement = __decorateClass$7([
@@ -11762,6 +11771,13 @@ let CragRoutesViewerElement = class extends OfflineInfiniteScrollRoutesViewer$1 
     return true;
   }
   connectedCallback() {
+    if (window.location.host.match(/dkk8m.ondigitalocean.app|localhost/)) {
+      let urlParams = new URLSearchParams(window.location.search);
+      const cragId = Number(urlParams.get("crag_id"));
+      console.error("turn this off for prod");
+      if (cragId)
+        this.cragId = cragId;
+    }
     super.connectedCallback();
     this.sort_button.style.display = "block";
     this.sort_order_picker.style.display = "block";
@@ -11779,6 +11795,7 @@ let CragRoutesViewerElement = class extends OfflineInfiniteScrollRoutesViewer$1 
   bodyForRequest(query, pageNo) {
     const type = Object.keys(this.routeLookup || {}).length ? "ids" : "full";
     const cookie = Cookies.default().cookie;
+    console.log(this.cragId);
     return {
       cookie,
       search_query: query,
