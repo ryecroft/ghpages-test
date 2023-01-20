@@ -2186,15 +2186,15 @@ const escape = (s) => {
   return s ? purify.sanitize(s) : s;
 };
 
-var __defProp$p = Object.defineProperty;
-var __getOwnPropDesc$p = Object.getOwnPropertyDescriptor;
-var __decorateClass$p = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$p(target, key) : target;
+var __defProp$q = Object.defineProperty;
+var __getOwnPropDesc$q = Object.getOwnPropertyDescriptor;
+var __decorateClass$q = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$q(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$p(target, key, result);
+    __defProp$q(target, key, result);
   return result;
 };
 let BaseCon = class extends HTMLElement {
@@ -2235,20 +2235,20 @@ let BaseCon = class extends HTMLElement {
     return "";
   }
 };
-BaseCon = __decorateClass$p([
+BaseCon = __decorateClass$q([
   controller
 ], BaseCon);
 const BaseCon$1 = BaseCon;
 
-var __defProp$o = Object.defineProperty;
-var __getOwnPropDesc$o = Object.getOwnPropertyDescriptor;
-var __decorateClass$o = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$o(target2, key) : target2;
+var __defProp$p = Object.defineProperty;
+var __getOwnPropDesc$p = Object.getOwnPropertyDescriptor;
+var __decorateClass$p = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$p(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$o(target2, key, result);
+    __defProp$p(target2, key, result);
   return result;
 };
 let PageButtonElement = class extends BaseCon$1 {
@@ -2266,13 +2266,13 @@ let PageButtonElement = class extends BaseCon$1 {
     super.connectedCallback();
   }
 };
-__decorateClass$o([
+__decorateClass$p([
   target
 ], PageButtonElement.prototype, "span", 2);
-__decorateClass$o([
+__decorateClass$p([
   attr
 ], PageButtonElement.prototype, "pageNumber", 1);
-PageButtonElement = __decorateClass$o([
+PageButtonElement = __decorateClass$p([
   controller
 ], PageButtonElement);
 
@@ -2286,15 +2286,15 @@ const pageControlTemplate = (element) => {
 `;
 };
 
-var __defProp$n = Object.defineProperty;
-var __getOwnPropDesc$n = Object.getOwnPropertyDescriptor;
-var __decorateClass$n = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$n(target2, key) : target2;
+var __defProp$o = Object.defineProperty;
+var __getOwnPropDesc$o = Object.getOwnPropertyDescriptor;
+var __decorateClass$o = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$o(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$n(target2, key, result);
+    __defProp$o(target2, key, result);
   return result;
 };
 let PageControlElement = class extends BaseCon$1 {
@@ -2405,16 +2405,16 @@ let PageControlElement = class extends BaseCon$1 {
     return arr;
   }
 };
-__decorateClass$n([
+__decorateClass$o([
   target
 ], PageControlElement.prototype, "previous", 2);
-__decorateClass$n([
+__decorateClass$o([
   targets
 ], PageControlElement.prototype, "pages", 2);
-__decorateClass$n([
+__decorateClass$o([
   target
 ], PageControlElement.prototype, "next", 2);
-PageControlElement = __decorateClass$n([
+PageControlElement = __decorateClass$o([
   controller
 ], PageControlElement);
 
@@ -2434,7 +2434,7 @@ function apiOrigin() {
   }
   return "https://api.rockfax.app";
 }
-const generateApiUrl$5 = () => {
+const generateApiUrl$6 = () => {
   const targetOrigin = apiOrigin();
   return `${targetOrigin}/v1/rockfax/search/routedb_search_ukc`;
 };
@@ -2690,20 +2690,20 @@ class UkcSid {
   ukcId = 0;
 }
 
-var __defProp$m = Object.defineProperty;
-var __getOwnPropDesc$m = Object.getOwnPropertyDescriptor;
-var __decorateClass$m = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$m(target2, key) : target2;
+var __defProp$n = Object.defineProperty;
+var __getOwnPropDesc$n = Object.getOwnPropertyDescriptor;
+var __decorateClass$n = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$n(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$m(target2, key, result);
+    __defProp$n(target2, key, result);
   return result;
 };
 let BaseRoutesViewer = class extends BaseCon$1 {
   get apiUrl() {
-    return generateApiUrl$5();
+    return generateApiUrl$6();
   }
   get localStorageKey() {
     return this.elementName;
@@ -2826,6 +2826,7 @@ let BaseRoutesViewer = class extends BaseCon$1 {
   responseMessage = "";
   connectedCallback() {
     super.connectedCallback();
+    this.maybeSetCookieFromUrl();
     this.sort_button.style.display = "none";
     this.sort_order_picker.style.display = "none";
     this.fixed_section_header.hidden = false;
@@ -2861,6 +2862,15 @@ let BaseRoutesViewer = class extends BaseCon$1 {
       }
     };
     this.input.focus();
+  }
+  maybeSetCookieFromUrl() {
+    if (window.location.host !== "route-viewer-dkk8m.ondigitalocean.app")
+      return;
+    let urlParams = new URLSearchParams(window.location.search);
+    const cookie = urlParams.get("ukcsid");
+    if (cookie) {
+      document.cookie = `ukcsid=${cookie}`;
+    }
   }
   resignFocus() {
     this.input.blur();
@@ -3171,46 +3181,46 @@ let BaseRoutesViewer = class extends BaseCon$1 {
   willAppendRoute(route) {
   }
 };
-__decorateClass$m([
+__decorateClass$n([
   target
 ], BaseRoutesViewer.prototype, "routes_viewer_container", 2);
-__decorateClass$m([
+__decorateClass$n([
   target
 ], BaseRoutesViewer.prototype, "input", 2);
-__decorateClass$m([
+__decorateClass$n([
   target
 ], BaseRoutesViewer.prototype, "progress_bar", 2);
-__decorateClass$m([
+__decorateClass$n([
   target
 ], BaseRoutesViewer.prototype, "delete_text_button", 2);
-__decorateClass$m([
+__decorateClass$n([
   target
 ], BaseRoutesViewer.prototype, "filter_query_description", 2);
-__decorateClass$m([
+__decorateClass$n([
   target
 ], BaseRoutesViewer.prototype, "header_container", 2);
-__decorateClass$m([
+__decorateClass$n([
   target
 ], BaseRoutesViewer.prototype, "routes_viewer_title", 2);
-__decorateClass$m([
+__decorateClass$n([
   target
 ], BaseRoutesViewer.prototype, "sort_order_picker", 2);
-__decorateClass$m([
+__decorateClass$n([
   target
 ], BaseRoutesViewer.prototype, "sort_arrow", 2);
-__decorateClass$m([
+__decorateClass$n([
   target
 ], BaseRoutesViewer.prototype, "sort_button", 2);
-__decorateClass$m([
+__decorateClass$n([
   target
 ], BaseRoutesViewer.prototype, "filters_button", 2);
-__decorateClass$m([
+__decorateClass$n([
   target
 ], BaseRoutesViewer.prototype, "filter_icon", 2);
-__decorateClass$m([
+__decorateClass$n([
   target
 ], BaseRoutesViewer.prototype, "fixed_section_header", 2);
-BaseRoutesViewer = __decorateClass$m([
+BaseRoutesViewer = __decorateClass$n([
   controller
 ], BaseRoutesViewer);
 const BaseRoutesViewer$1 = BaseRoutesViewer;
@@ -3273,15 +3283,15 @@ const searchbarTemplate = (element) => {
     `;
 };
 
-var __defProp$l = Object.defineProperty;
-var __getOwnPropDesc$l = Object.getOwnPropertyDescriptor;
-var __decorateClass$l = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$l(target2, key) : target2;
+var __defProp$m = Object.defineProperty;
+var __getOwnPropDesc$m = Object.getOwnPropertyDescriptor;
+var __decorateClass$m = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$m(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$l(target2, key, result);
+    __defProp$m(target2, key, result);
   return result;
 };
 let BaseSearchbarElement = class extends BaseCon$1 {
@@ -3718,67 +3728,67 @@ let BaseSearchbarElement = class extends BaseCon$1 {
     this.delete_text_button.classList[str ? "remove" : "add"]("hidden");
   }
 };
-__decorateClass$l([
+__decorateClass$m([
   target
 ], BaseSearchbarElement.prototype, "search_container", 2);
-__decorateClass$l([
+__decorateClass$m([
   target
 ], BaseSearchbarElement.prototype, "input", 2);
-__decorateClass$l([
+__decorateClass$m([
   target
 ], BaseSearchbarElement.prototype, "return_key_action", 2);
-__decorateClass$l([
+__decorateClass$m([
   target
 ], BaseSearchbarElement.prototype, "search_absolute", 2);
-__decorateClass$l([
+__decorateClass$m([
   target
 ], BaseSearchbarElement.prototype, "help_button", 2);
-__decorateClass$l([
+__decorateClass$m([
   target
 ], BaseSearchbarElement.prototype, "delete_text_button", 2);
-__decorateClass$l([
+__decorateClass$m([
   target
 ], BaseSearchbarElement.prototype, "search_widget", 2);
-__decorateClass$l([
+__decorateClass$m([
   target
 ], BaseSearchbarElement.prototype, "progress_bar", 2);
-__decorateClass$l([
+__decorateClass$m([
   target
 ], BaseSearchbarElement.prototype, "routes_viewer_container", 2);
-__decorateClass$l([
+__decorateClass$m([
   target
 ], BaseSearchbarElement.prototype, "searchbar_inner_container", 2);
-__decorateClass$l([
+__decorateClass$m([
   target
 ], BaseSearchbarElement.prototype, "searchbar_query_suggestion", 2);
-__decorateClass$l([
+__decorateClass$m([
   target
 ], BaseSearchbarElement.prototype, "searchbar_query_suggestion_href", 2);
-__decorateClass$l([
+__decorateClass$m([
   target
 ], BaseSearchbarElement.prototype, "query_suggestion_container", 2);
-__decorateClass$l([
+__decorateClass$m([
   target
 ], BaseSearchbarElement.prototype, "help_text_container", 2);
-__decorateClass$l([
+__decorateClass$m([
   target
 ], BaseSearchbarElement.prototype, "filter_query_description", 2);
-__decorateClass$l([
+__decorateClass$m([
   target
 ], BaseSearchbarElement.prototype, "searchbar_footer", 2);
-__decorateClass$l([
+__decorateClass$m([
   target
 ], BaseSearchbarElement.prototype, "show_all_results_span", 2);
-__decorateClass$l([
+__decorateClass$m([
   target
 ], BaseSearchbarElement.prototype, "gray_view", 2);
-__decorateClass$l([
+__decorateClass$m([
   target
 ], BaseSearchbarElement.prototype, "searchbar_short_display", 2);
-__decorateClass$l([
+__decorateClass$m([
   attr
 ], BaseSearchbarElement.prototype, "placeholderString", 1);
-BaseSearchbarElement = __decorateClass$l([
+BaseSearchbarElement = __decorateClass$m([
   controller
 ], BaseSearchbarElement);
 const BaseSearchbarElement$1 = BaseSearchbarElement;
@@ -3797,15 +3807,15 @@ const isAppleSafari = () => {
 
 const html = "<h6>🛟 Route &amp; Crag Search Help</h6>\n<p>You should probably try out the suggestions to get an feel of the stuff you can do before you waste time reading all this…</p>\n<p>…but if you really want to know everything about the search, here you go:</p>\n<p>Searches are checked against the following properties of a route (and the equivalents for a crag):</p>\n<ul>\n<li><code>name</code></li>\n<li><code>crag name</code></li>\n<li><code>buttress name</code></li>\n<li><code>area name</code></li>\n<li><code>country name</code></li>\n<li><code>first ascent</code> potentially including dates and names, but could be one or the other or neither</li>\n<li><code>rock type name</code> one of eg [ granite, gritstone, sandstone, limestone, schist, rhylite, ... ] (there are loads)</li>\n<li><code>route type name</code> one of [ sport, trad, winter, bouldering, aid ] (this list is complete)</li>\n<li><code>description</code></li>\n<li><code>route grade</code></li>\n<li><code>tech grade</code></li>\n</ul>\n<p>A match is found if all of the tokens of the search query match one or more of the fields (more on tokens later, but think &quot;words&quot; for now). This means you can very quickly write a query that returns very few results by typing a combination of fragments of the various fields, like <code>mal wom</code> returns <code>Wombat E2</code> at Malham as the first result because token1 (<code>mal</code>) matches the crag name (<code>Malham</code>) and token2 (<code>wom</code>) matches the route's name. You could be even more precise and search <code>mal wom e2</code> but for this instance it's not needed. (Note that this stuff is true at the time of writing but could change if more routes are added).</p>\n<p>The scoring of results is done by applying multipliers depending on where a match is found. The higher the field is on the list above, the more valuble a match against it is considered, so if a query matches against one route's <code>name</code> and another's <code>description</code>, the one against the <code>name</code> will be considered a better match and appear nearer the top. The popularity of the route is taken into account so a route with loads of ascents will be given a higher search score than one with none.</p>\n<p>For the most part this is all anyone really needs, but there are also a few advanced options you can use if you want:</p>\n<ul>\n<li>exact-phrase matches, eg <code>&quot;captain nemo&quot;</code></li>\n<li>route-star ranges, eg <code>*-**</code></li>\n<li>grade ranges, eg <code>vs-e3</code></li>\n<li>date ranges, eg <code>1984-1986</code> (for first ascents - note that not all routes have fa details so these will be excluded from a search with a date range!)</li>\n<li>difficulty for grade / grade quality, eg <code>|soft|</code></li>\n<li>regular expressions, eg <code>/chris (?!craggs)/</code></li>\n<li>negations, eg <code>-crack</code></li>\n</ul>\n<h6>Exact phrase matches</h6>\n<p>Surround multiple words with double quotes to require a match on that phrase, eg <code>&quot;bat route&quot; malham</code> creates the tokens <code>bat route</code> and <code>malham</code>. Another example is <code>roof crack stanage</code> currently returns 45 routes, where as <code>&quot;roof crack&quot; stanage</code> returns only 9.</p>\n<h6>Route-star ranges</h6>\n<p>Asterisks get special treatment in search queries now. A sequence of them is considered to be a star rating for a route, so <code>*</code> is treated as 1-star, <code>**</code> treated as 2-stars and <code>***</code> treated as 3-stars. Typing just one sequence creates a search where the route is required to have at least that many stars, eg <code>bat route **</code> will only return routes with 2 or more stars that also match the other search tokens <code>bat</code> and <code>route</code>.</p>\n<p>Adding a dash and a second star sequence will create a range, eg <code>*-**</code> means &quot;match routes with at least one and at most two stars&quot;.</p>\n<h6>Grade ranges</h6>\n<p>As above with stars, but with grades. Eg <code>vs-e1</code> will match routes with a grade of either <code>VS</code>, <code>HVS</code> or <code>E1</code>.</p>\n<h6>Date ranges (only years)</h6>\n<p>Date ranges will check against the first-ascent date field and require the route to have been put up between the start date and the end date (inclusive). Eg <code>1970-1974</code> will match routes put up between 01-01-1970 and 31-12-1974. You should note that not all routes have had the first ascent date filled in, and these routes will be excluded from any search that includes date ranges, so you might not get the results you expect.</p>\n<h6>Difficulty for grade</h6>\n<p>Not sure what to call this so we'll use &quot;difficulty for grade&quot;. We've calculated a value based on the grade voting system that assigns a route a value from one of:</p>\n<ul>\n<li><code>soft</code></li>\n<li><code>benchmark</code></li>\n<li><code>hard</code></li>\n</ul>\n<p>You can search for routes with these charateristics by using the special pipe-syntax, eg <code>|soft|</code>. If you don't wrap the token in pipes, you'll just be searching the other text fields, so <code>soft</code>, with no pipes, would get you a match if the token appeard in the description for example and <code>|soft|</code> will <em>only</em> match against routes that have been marked as soft, and not check the other fields for the token.</p>\n<p>A continuation of this system which uses the same syntax allows you to search for routes that are voted to be a completely different grade using the following tokens:</p>\n<ul>\n<li><code>undergraded</code></li>\n<li><code>overgraded</code></li>\n</ul>\n<p>eg <code>|overgraded|</code>. Note that this is based on votes, so if there are no votes for a route and you include one of these tokens it won't appear, regardless of whether it is in reality over or undergraded. Note also that whilst you can combine these with soft/benchmark/hard, doing so doesn't really make sense.</p>\n<h6>Shorthands</h6>\n<p>The grade quality stuff all have shorthand variants:</p>\n<ul>\n<li><code>|s</code> = <code>|soft|</code></li>\n<li><code>|b</code> = <code>|benchmark|</code></li>\n<li><code>|h</code> = <code>|hard|</code></li>\n<li><code>|u</code> = <code>|undergraded|</code></li>\n<li><code>|o</code> = <code>|overgraded|</code></li>\n</ul>\n<h6>Regular expressions</h6>\n<p>Finally we reach the most pointless feature, regular expressions - we need only add an email function and this search bar will be complete.</p>\n<p>Regular expressions, for those that don't know, are a way of describing patterns in strings. They are a very powerful tool for searching and manipulating text, and completely unnecessary in this search bar. However, if you do want to use them, they are possible by surrounding the expression with forward slashes, eg <code>/chris (?!craggs)/</code> will match any routes that mention <code>'chris'</code> but not those that mention <code>'chris craggs'</code>. Or <code>e2-e3 /crap|damp|horrible/</code> will return you a list of probably not classic routes.</p>\n<p>Note that pure-regex queries are not allowed due to the cost of the queries against the database. You should always add any of the other query types mentioned above if you're using a regex.</p>\n<h6>Negation</h6>\n<p>Extra finally, if you precede any token with a minus character you will negate it and require that it is not matched, eg <code>-&quot;mark leach&quot; bat malham</code>.</p>\n";
 
-var __defProp$k = Object.defineProperty;
-var __getOwnPropDesc$k = Object.getOwnPropertyDescriptor;
-var __decorateClass$k = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$k(target, key) : target;
+var __defProp$l = Object.defineProperty;
+var __getOwnPropDesc$l = Object.getOwnPropertyDescriptor;
+var __decorateClass$l = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$l(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$k(target, key, result);
+    __defProp$l(target, key, result);
   return result;
 };
 let myQueryExamples = new Set(queryExamples);
@@ -3879,7 +3889,7 @@ let RouteSearchbarElement = class extends BaseSearchbarElement$1 {
     const currentQuery = this.query.trim();
     (async () => {
       this.routes_viewer_container.style.opacity = "0.4";
-      const response = await fetch(generateApiUrl$5(), {
+      const response = await fetch(generateApiUrl$6(), {
         method: "POST",
         headers: {
           "Accept": "application/json",
@@ -4040,10 +4050,10 @@ let RouteSearchbarElement = class extends BaseSearchbarElement$1 {
     return element;
   }
 };
-__decorateClass$k([
+__decorateClass$l([
   attr
 ], RouteSearchbarElement.prototype, "searchType", 2);
-RouteSearchbarElement = __decorateClass$k([
+RouteSearchbarElement = __decorateClass$l([
   controller
 ], RouteSearchbarElement);
 const RouteSearchbarElement$1 = RouteSearchbarElement;
@@ -4314,15 +4324,15 @@ var UkcLocalStorage;
 })(UkcLocalStorage || (UkcLocalStorage = {}));
 globalThis.logbook = new UkcLocalStorage.LogbookDetails();
 
-var __defProp$j = Object.defineProperty;
-var __getOwnPropDesc$j = Object.getOwnPropertyDescriptor;
-var __decorateClass$j = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$j(target, key) : target;
+var __defProp$k = Object.defineProperty;
+var __getOwnPropDesc$k = Object.getOwnPropertyDescriptor;
+var __decorateClass$k = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$k(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$j(target, key, result);
+    __defProp$k(target, key, result);
   return result;
 };
 const sharedStorage$5 = UkcLocalStorage.sharedLogbook;
@@ -4357,7 +4367,7 @@ let UkcSearchbarElement = class extends RouteSearchbarElement$1 {
     }
   }
 };
-UkcSearchbarElement = __decorateClass$j([
+UkcSearchbarElement = __decorateClass$k([
   controller
 ], UkcSearchbarElement);
 
@@ -4370,15 +4380,15 @@ const topoDotTemplate = (_el) => {
 `;
 };
 
-var __defProp$i = Object.defineProperty;
-var __getOwnPropDesc$i = Object.getOwnPropertyDescriptor;
-var __decorateClass$i = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$i(target2, key) : target2;
+var __defProp$j = Object.defineProperty;
+var __getOwnPropDesc$j = Object.getOwnPropertyDescriptor;
+var __decorateClass$j = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$j(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$i(target2, key, result);
+    __defProp$j(target2, key, result);
   return result;
 };
 let TopoDotElement = class extends BaseCon$1 {
@@ -4403,16 +4413,16 @@ let TopoDotElement = class extends BaseCon$1 {
     return topoDotTemplate;
   }
 };
-__decorateClass$i([
+__decorateClass$j([
   attr
 ], TopoDotElement.prototype, "colorName", 1);
-__decorateClass$i([
+__decorateClass$j([
   target
 ], TopoDotElement.prototype, "stroke", 2);
-__decorateClass$i([
+__decorateClass$j([
   target
 ], TopoDotElement.prototype, "fill", 2);
-TopoDotElement = __decorateClass$i([
+TopoDotElement = __decorateClass$j([
   controller
 ], TopoDotElement);
 const TopoDotElement$1 = TopoDotElement;
@@ -4457,15 +4467,15 @@ const routeTemplate = (element) => {
     `;
 };
 
-var __defProp$h = Object.defineProperty;
-var __getOwnPropDesc$h = Object.getOwnPropertyDescriptor;
-var __decorateClass$h = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$h(target2, key) : target2;
+var __defProp$i = Object.defineProperty;
+var __getOwnPropDesc$i = Object.getOwnPropertyDescriptor;
+var __decorateClass$i = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$i(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$h(target2, key, result);
+    __defProp$i(target2, key, result);
   return result;
 };
 let SearchResultElement = class extends BaseCon$1 {
@@ -4624,79 +4634,79 @@ let SearchResultElement = class extends BaseCon$1 {
     window.open(this.url, "_self");
   }
 };
-__decorateClass$h([
+__decorateClass$i([
   target
 ], SearchResultElement.prototype, "href", 2);
-__decorateClass$h([
+__decorateClass$i([
   target
 ], SearchResultElement.prototype, "topo_dot", 2);
-__decorateClass$h([
+__decorateClass$i([
   target
 ], SearchResultElement.prototype, "item_name", 2);
-__decorateClass$h([
+__decorateClass$i([
   target
 ], SearchResultElement.prototype, "route_grade", 2);
-__decorateClass$h([
+__decorateClass$i([
   target
 ], SearchResultElement.prototype, "star_count", 2);
-__decorateClass$h([
+__decorateClass$i([
   target
 ], SearchResultElement.prototype, "crag_name", 2);
-__decorateClass$h([
+__decorateClass$i([
   target
 ], SearchResultElement.prototype, "county_name", 2);
-__decorateClass$h([
+__decorateClass$i([
   target
 ], SearchResultElement.prototype, "country_name", 2);
-__decorateClass$h([
+__decorateClass$i([
   target
 ], SearchResultElement.prototype, "logbook_indicator", 2);
-__decorateClass$h([
+__decorateClass$i([
   target
 ], SearchResultElement.prototype, "wishlist_indicator", 2);
-__decorateClass$h([
+__decorateClass$i([
   target
 ], SearchResultElement.prototype, "crag_icon", 2);
-__decorateClass$h([
+__decorateClass$i([
   target
 ], SearchResultElement.prototype, "buttress_icon", 2);
-__decorateClass$h([
+__decorateClass$i([
   target
 ], SearchResultElement.prototype, "extras_slot", 2);
-__decorateClass$h([
+__decorateClass$i([
   attr
 ], SearchResultElement.prototype, "slugFull", 1);
-__decorateClass$h([
+__decorateClass$i([
   attr
 ], SearchResultElement.prototype, "itemName", 1);
-__decorateClass$h([
+__decorateClass$i([
   attr
 ], SearchResultElement.prototype, "routeGrade", 1);
-__decorateClass$h([
+__decorateClass$i([
   attr
 ], SearchResultElement.prototype, "starCount", 1);
-__decorateClass$h([
+__decorateClass$i([
   attr
 ], SearchResultElement.prototype, "cragName", 1);
-__decorateClass$h([
+__decorateClass$i([
   attr
 ], SearchResultElement.prototype, "countyName", 1);
-__decorateClass$h([
+__decorateClass$i([
   attr
 ], SearchResultElement.prototype, "countryName", 1);
-__decorateClass$h([
+__decorateClass$i([
   attr
 ], SearchResultElement.prototype, "colorId", 1);
-__decorateClass$h([
+__decorateClass$i([
   attr
 ], SearchResultElement.prototype, "routeIdUkc", 1);
-__decorateClass$h([
+__decorateClass$i([
   attr
 ], SearchResultElement.prototype, "logStatus", 1);
-__decorateClass$h([
+__decorateClass$i([
   attr
 ], SearchResultElement.prototype, "wishlistStatus", 1);
-SearchResultElement = __decorateClass$h([
+SearchResultElement = __decorateClass$i([
   controller
 ], SearchResultElement);
 const SearchResultElement$1 = SearchResultElement;
@@ -4710,15 +4720,15 @@ const logbookIndicatorTemplate = (_el) => {
 `;
 };
 
-var __defProp$g = Object.defineProperty;
-var __getOwnPropDesc$g = Object.getOwnPropertyDescriptor;
-var __decorateClass$g = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$g(target2, key) : target2;
+var __defProp$h = Object.defineProperty;
+var __getOwnPropDesc$h = Object.getOwnPropertyDescriptor;
+var __decorateClass$h = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$h(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$g(target2, key, result);
+    __defProp$h(target2, key, result);
   return result;
 };
 let LogbookIndicatorElement = class extends BaseCon$1 {
@@ -4736,16 +4746,16 @@ let LogbookIndicatorElement = class extends BaseCon$1 {
     return logbookIndicatorTemplate;
   }
 };
-__decorateClass$g([
+__decorateClass$h([
   attr
 ], LogbookIndicatorElement.prototype, "colorName", 1);
-__decorateClass$g([
+__decorateClass$h([
   target
 ], LogbookIndicatorElement.prototype, "stroke", 2);
-__decorateClass$g([
+__decorateClass$h([
   target
 ], LogbookIndicatorElement.prototype, "fill", 2);
-LogbookIndicatorElement = __decorateClass$g([
+LogbookIndicatorElement = __decorateClass$h([
   controller
 ], LogbookIndicatorElement);
 const LogbookIndicatorElement$1 = LogbookIndicatorElement;
@@ -4812,15 +4822,15 @@ const logentryTemplate = (element) => {
     `;
 };
 
-var __defProp$f = Object.defineProperty;
-var __getOwnPropDesc$f = Object.getOwnPropertyDescriptor;
-var __decorateClass$f = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$f(target2, key) : target2;
+var __defProp$g = Object.defineProperty;
+var __getOwnPropDesc$g = Object.getOwnPropertyDescriptor;
+var __decorateClass$g = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$g(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$f(target2, key, result);
+    __defProp$g(target2, key, result);
   return result;
 };
 let LogbookResultElement = class extends SearchResultElement$1 {
@@ -4898,55 +4908,55 @@ let LogbookResultElement = class extends SearchResultElement$1 {
     return logentryTemplate;
   }
 };
-__decorateClass$f([
+__decorateClass$g([
   target
 ], LogbookResultElement.prototype, "ascensionist", 2);
-__decorateClass$f([
+__decorateClass$g([
   target
 ], LogbookResultElement.prototype, "partner_names", 2);
-__decorateClass$f([
+__decorateClass$g([
   target
 ], LogbookResultElement.prototype, "partner_names_with", 2);
-__decorateClass$f([
+__decorateClass$g([
   target
 ], LogbookResultElement.prototype, "ascent_style_indicator", 2);
-__decorateClass$f([
+__decorateClass$g([
   target
 ], LogbookResultElement.prototype, "ascent_style", 2);
-__decorateClass$f([
+__decorateClass$g([
   target
 ], LogbookResultElement.prototype, "ascent_notes", 2);
-__decorateClass$f([
+__decorateClass$g([
   target
 ], LogbookResultElement.prototype, "ascent_date", 2);
-__decorateClass$f([
+__decorateClass$g([
   targets
 ], LogbookResultElement.prototype, "crag_names", 2);
-__decorateClass$f([
+__decorateClass$g([
   targets
 ], LogbookResultElement.prototype, "county_names", 2);
-__decorateClass$f([
+__decorateClass$g([
   targets
 ], LogbookResultElement.prototype, "country_names", 2);
-__decorateClass$f([
+__decorateClass$g([
   attr
 ], LogbookResultElement.prototype, "cragName", 1);
-__decorateClass$f([
+__decorateClass$g([
   attr
 ], LogbookResultElement.prototype, "countyName", 1);
-__decorateClass$f([
+__decorateClass$g([
   attr
 ], LogbookResultElement.prototype, "countryName", 1);
-__decorateClass$f([
+__decorateClass$g([
   attr
 ], LogbookResultElement.prototype, "ascentNotes", 1);
-__decorateClass$f([
+__decorateClass$g([
   attr
 ], LogbookResultElement.prototype, "ascentStyle", 1);
-__decorateClass$f([
+__decorateClass$g([
   attr
 ], LogbookResultElement.prototype, "ascentStyleSimple", 1);
-LogbookResultElement = __decorateClass$f([
+LogbookResultElement = __decorateClass$g([
   controller
 ], LogbookResultElement);
 
@@ -4991,15 +5001,15 @@ const routeResultTemplate = (element) => {
     `;
 };
 
-var __defProp$e = Object.defineProperty;
-var __getOwnPropDesc$e = Object.getOwnPropertyDescriptor;
-var __decorateClass$e = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$e(target2, key) : target2;
+var __defProp$f = Object.defineProperty;
+var __getOwnPropDesc$f = Object.getOwnPropertyDescriptor;
+var __decorateClass$f = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$f(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$e(target2, key, result);
+    __defProp$f(target2, key, result);
   return result;
 };
 let RouteResultElement = class extends SearchResultElement$1 {
@@ -5027,28 +5037,28 @@ let RouteResultElement = class extends SearchResultElement$1 {
     return routeResultTemplate;
   }
 };
-__decorateClass$e([
+__decorateClass$f([
   target
 ], RouteResultElement.prototype, "ascensionist", 2);
-__decorateClass$e([
+__decorateClass$f([
   target
 ], RouteResultElement.prototype, "route_description", 2);
-__decorateClass$e([
+__decorateClass$f([
   target
 ], RouteResultElement.prototype, "fa_details", 2);
-RouteResultElement = __decorateClass$e([
+RouteResultElement = __decorateClass$f([
   controller
 ], RouteResultElement);
 
-var __defProp$d = Object.defineProperty;
-var __getOwnPropDesc$d = Object.getOwnPropertyDescriptor;
-var __decorateClass$d = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$d(target2, key) : target2;
+var __defProp$e = Object.defineProperty;
+var __getOwnPropDesc$e = Object.getOwnPropertyDescriptor;
+var __decorateClass$e = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$e(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$d(target2, key, result);
+    __defProp$e(target2, key, result);
   return result;
 };
 let PagedRoutesViewer = class extends BaseRoutesViewer$1 {
@@ -5255,23 +5265,23 @@ let PagedRoutesViewer = class extends BaseRoutesViewer$1 {
     }, this.searchDelay);
   }
 };
-__decorateClass$d([
+__decorateClass$e([
   target
 ], PagedRoutesViewer.prototype, "page_control", 2);
-PagedRoutesViewer = __decorateClass$d([
+PagedRoutesViewer = __decorateClass$e([
   controller
 ], PagedRoutesViewer);
 const PagedRoutesViewer$1 = PagedRoutesViewer;
 
-var __defProp$c = Object.defineProperty;
-var __getOwnPropDesc$c = Object.getOwnPropertyDescriptor;
-var __decorateClass$c = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$c(target, key) : target;
+var __defProp$d = Object.defineProperty;
+var __getOwnPropDesc$d = Object.getOwnPropertyDescriptor;
+var __decorateClass$d = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$d(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$c(target, key, result);
+    __defProp$d(target, key, result);
   return result;
 };
 const sharedStorage$4 = UkcLocalStorage.sharedLogbook;
@@ -5324,7 +5334,7 @@ let SearchResultsViewerElement = class extends PagedRoutesViewer$1 {
     return body;
   }
 };
-SearchResultsViewerElement = __decorateClass$c([
+SearchResultsViewerElement = __decorateClass$d([
   controller
 ], SearchResultsViewerElement);
 
@@ -7287,15 +7297,15 @@ InvertedIndex.from = function(iterable, descriptor) {
  */
 var invertedIndex = InvertedIndex;
 
-var __defProp$b = Object.defineProperty;
-var __getOwnPropDesc$b = Object.getOwnPropertyDescriptor;
-var __decorateClass$b = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$b(target, key) : target;
+var __defProp$c = Object.defineProperty;
+var __getOwnPropDesc$c = Object.getOwnPropertyDescriptor;
+var __decorateClass$c = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$c(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$b(target, key, result);
+    __defProp$c(target, key, result);
   return result;
 };
 let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
@@ -7579,7 +7589,7 @@ let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
     }, this.searchDelay);
   }
 };
-InfiniteScrollRoutesViewer = __decorateClass$b([
+InfiniteScrollRoutesViewer = __decorateClass$c([
   controller
 ], InfiniteScrollRoutesViewer);
 const InfiniteScrollRoutesViewer$1 = InfiniteScrollRoutesViewer;
@@ -11107,15 +11117,15 @@ ${JSON.stringify(m,null,4)}`);function M(){R&&(d={tagName:"",hrefValue:"",openin
 `)?p+=P-e:(!P||P>e)&&p++;}l.cb({tag:n,deleteFrom:n.leftOuterWhitespace,deleteTo:s+p,insert:u,rangesArr:r,proposedReturn:[n.leftOuterWhitespace,s+p,u]}),M(),H(e,l,r);}else n={};A(e)||(n={});}k&&(k=!1);}if((!C||t[e]==="<"&&E(t,E(t,e))&&t[E(t,e)]==="/"&&t.startsWith("script",E(t,E(t,e))))&&y(e)&&!y(e-1)&&!`'"`.includes(t[e+1])&&(!`'"`.includes(t[e+2])||/\w/.test(t[e+1]))&&!(t[e+1]==="c"&&t[e+2]===":")&&!(t[e+1]==="f"&&t[e+2]==="m"&&t[e+3]==="t"&&t[e+4]===":")&&!(t[e+1]==="s"&&t[e+2]==="q"&&t[e+3]==="l"&&t[e+4]===":")&&!(t[e+1]==="x"&&t[e+2]===":")&&!(t[e+1]==="f"&&t[e+2]==="n"&&t[e+3]===":")&&G(n,t,e)){if(A(E(t,e)))continue;if(n.nameEnds&&n.nameEnds<e&&!n.lastClosingBracketAt&&(n.onlyPlausible===!0&&n.attributes&&n.attributes.length||n.onlyPlausible===!1)){let s=L(t,e,n.leftOuterWhitespace,e,n.lastOpeningBracketAt,e);l.cb({tag:n,deleteFrom:n.leftOuterWhitespace,deleteTo:e,insert:s,rangesArr:r,proposedReturn:[n.leftOuterWhitespace,e,s]}),H(e,l,r),n={},o={};}if(n.lastOpeningBracketAt!==void 0&&n.onlyPlausible&&n.name&&!n.quotes&&(n.lastOpeningBracketAt=void 0,n.name=void 0,n.onlyPlausible=!1),(n.lastOpeningBracketAt===void 0||!n.onlyPlausible)&&!n.quotes&&(n.lastOpeningBracketAt=e,n.slashPresent=!1,n.attributes=[],V===null?n.leftOuterWhitespace=e:l.trimOnlySpaces&&V===0?n.leftOuterWhitespace=w||e:n.leftOuterWhitespace=V,`${t[e+1]}${t[e+2]}${t[e+3]}`=="!--"||`${t[e+1]}${t[e+2]}${t[e+3]}${t[e+4]}${t[e+5]}${t[e+6]}${t[e+7]}${t[e+8]}`=="![CDATA[")){let s=!0;t[e+2]==="-"&&(s=!1);let i;for(let a=e;a<h;a++)if((!i&&s&&`${t[a-2]}${t[a-1]}${t[a]}`=="]]>"||!s&&`${t[a-2]}${t[a-1]}${t[a]}`=="-->")&&(i=a),i&&(i<a&&t[a].trim()||t[a+1]===void 0)){let g=a;(t[a+1]===void 0&&!t[a].trim()||t[a]===">")&&(g+=1),(!b.length||b[b.length-1][0]!==n.lastOpeningBracketAt)&&b.push([n.lastOpeningBracketAt,i+1]),(!$$1.length||$$1[$$1.length-1][0]!==n.lastOpeningBracketAt)&&$$1.push([n.lastOpeningBracketAt,i+1]);let u=L(t,a,n.leftOuterWhitespace,g,n.lastOpeningBracketAt,i);l.cb({tag:n,deleteFrom:n.leftOuterWhitespace,deleteTo:g,insert:u,rangesArr:r,proposedReturn:[n.leftOuterWhitespace,g,u]}),e=a-1,t[a]===">"&&(e=a),n={},o={};break}}}!t[e].trim()||t[e].charCodeAt(0)===847?(V===null&&(V=e,n.lastOpeningBracketAt!==void 0&&n.lastOpeningBracketAt<e&&n.nameStarts&&n.nameStarts<n.lastOpeningBracketAt&&e===n.lastOpeningBracketAt+1&&!c.some(s=>s.name===n.name)&&(n.onlyPlausible=!0,n.name=void 0,n.nameStarts=void 0)),(t[e]===`
 `||t[e]==="\r")&&(N=e,J&&(J=!1))):(V!==null&&(!n.quotes&&o.equalsAt>V-1&&o.nameEnds&&o.equalsAt>o.nameEnds&&t[e]!=='"'&&t[e]!=="'"&&(U(o)&&n.attributes.push(o),o={},n.equalsSpottedAt=void 0),V=null),J||(J=!0,F&&!C&&typeof N=="number"&&e&&N<e-1&&(t.slice(N+1,e).trim()?N=null:r.push([N+1,e])))),t[e]===" "?w===null&&(w=e):w!==null&&(w=null),n.name==="script"&&(C=!n.slashPresent);}if(t&&(l.trimOnlySpaces&&t[0]===" "||!l.trimOnlySpaces&&!t[0].trim()))for(let e=0;e<h;e++)if(l.trimOnlySpaces&&t[e]!==" "||!l.trimOnlySpaces&&t[e].trim()){r.push([0,e]);break}else t[e+1]||r.push([0,e+1]);if(t&&(l.trimOnlySpaces&&t[~-t.length]===" "||!l.trimOnlySpaces&&!t[~-t.length].trim())){for(let e=t.length;e--;)if(l.trimOnlySpaces&&t[e]!==" "||!l.trimOnlySpaces&&t[e].trim()){r.push([e+1,h]);break}}let O=r.current();if((!m||!m.cb)&&O){if(O[0]&&!O[0][0]){O[0][1];r.ranges[0]=[r.ranges[0][0],r.ranges[0][1]];}if(O[O.length-1]&&O[O.length-1][1]===t.length){O[O.length-1][0];if(r.ranges){let s=r.ranges[r.ranges.length-1][0];t[s-1]&&(l.trimOnlySpaces&&t[s-1]===" "||!l.trimOnlySpaces&&!t[s-1].trim())&&(s-=1);let i=r.ranges[r.ranges.length-1][2];r.ranges[r.ranges.length-1]=[s,r.ranges[r.ranges.length-1][1]],i?.trim()&&r.ranges[r.ranges.length-1].push(i.trimEnd());}}}return {log:{timeTakenInMilliseconds:Date.now()-D},result:_$1(t,r.current()),ranges:r.current(),allTagLocations:b,filteredTagLocations:$$1}}
 
-var __defProp$a = Object.defineProperty;
-var __getOwnPropDesc$a = Object.getOwnPropertyDescriptor;
-var __decorateClass$a = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$a(target, key) : target;
+var __defProp$b = Object.defineProperty;
+var __getOwnPropDesc$b = Object.getOwnPropertyDescriptor;
+var __decorateClass$b = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$b(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$a(target, key, result);
+    __defProp$b(target, key, result);
   return result;
 };
 let OfflineInfiniteScrollRoutesViewer = class extends InfiniteScrollRoutesViewer$1 {
@@ -11293,31 +11303,31 @@ let OfflineInfiniteScrollRoutesViewer = class extends InfiniteScrollRoutesViewer
     };
   }
 };
-OfflineInfiniteScrollRoutesViewer = __decorateClass$a([
+OfflineInfiniteScrollRoutesViewer = __decorateClass$b([
   controller
 ], OfflineInfiniteScrollRoutesViewer);
 const OfflineInfiniteScrollRoutesViewer$1 = OfflineInfiniteScrollRoutesViewer;
 
-var __defProp$9 = Object.defineProperty;
-var __getOwnPropDesc$9 = Object.getOwnPropertyDescriptor;
-var __decorateClass$9 = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$9(target, key) : target;
+var __defProp$a = Object.defineProperty;
+var __getOwnPropDesc$a = Object.getOwnPropertyDescriptor;
+var __decorateClass$a = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$a(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$9(target, key, result);
+    __defProp$a(target, key, result);
   return result;
 };
 const sharedStorage$3 = UkcLocalStorage.sharedLogbook;
-const generateApiUrl$4 = () => {
+const generateApiUrl$5 = () => {
   const targetOrigin = apiOrigin();
   return `${targetOrigin}/v1/rockfax/search/logbook`;
 };
 let LogbookViewerElement = class extends OfflineInfiniteScrollRoutesViewer$1 {
   searchBarPlaceholderString = "Search all routes/crags...";
   get apiUrl() {
-    return generateApiUrl$4();
+    return generateApiUrl$5();
   }
   get defaultSortOrder() {
     return "date";
@@ -11395,30 +11405,30 @@ let LogbookViewerElement = class extends OfflineInfiniteScrollRoutesViewer$1 {
     return (rte) => rte.associated_ascent_entry.id;
   }
 };
-LogbookViewerElement = __decorateClass$9([
+LogbookViewerElement = __decorateClass$a([
   controller
 ], LogbookViewerElement);
 const LogbookViewerElement$1 = LogbookViewerElement;
 
-var __defProp$8 = Object.defineProperty;
-var __getOwnPropDesc$8 = Object.getOwnPropertyDescriptor;
-var __decorateClass$8 = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$8(target, key) : target;
+var __defProp$9 = Object.defineProperty;
+var __getOwnPropDesc$9 = Object.getOwnPropertyDescriptor;
+var __decorateClass$9 = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$9(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$8(target, key, result);
+    __defProp$9(target, key, result);
   return result;
 };
 const sharedStorage$2 = UkcLocalStorage.sharedLogbook;
-const generateApiUrl$3 = () => {
+const generateApiUrl$4 = () => {
   const targetOrigin = apiOrigin();
   return `${targetOrigin}/v1/rockfax/search/wishlist`;
 };
 let WishlistViewerElement = class extends LogbookViewerElement$1 {
   get apiUrl() {
-    return generateApiUrl$3();
+    return generateApiUrl$4();
   }
   routeKeyFunctionForSortOrder() {
     return (rte) => {
@@ -11472,29 +11482,29 @@ let WishlistViewerElement = class extends LogbookViewerElement$1 {
     return "";
   }
 };
-WishlistViewerElement = __decorateClass$8([
+WishlistViewerElement = __decorateClass$9([
   controller
 ], WishlistViewerElement);
 
-var __defProp$7 = Object.defineProperty;
-var __getOwnPropDesc$7 = Object.getOwnPropertyDescriptor;
-var __decorateClass$7 = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$7(target, key) : target;
+var __defProp$8 = Object.defineProperty;
+var __getOwnPropDesc$8 = Object.getOwnPropertyDescriptor;
+var __decorateClass$8 = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$8(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$7(target, key, result);
+    __defProp$8(target, key, result);
   return result;
 };
 const sharedStorage$1 = UkcLocalStorage.sharedLogbook;
-const generateApiUrl$2 = () => {
+const generateApiUrl$3 = () => {
   const targetOrigin = apiOrigin();
   return `${targetOrigin}/v1/rockfax/search/partner_ascents`;
 };
 let PartnerAscentsViewerElement = class extends PagedRoutesViewer$1 {
   get apiUrl() {
-    return generateApiUrl$2();
+    return generateApiUrl$3();
   }
   ascentsByDateLookup = {};
   get defaultSortOrder() {
@@ -11575,10 +11585,102 @@ let PartnerAscentsViewerElement = class extends PagedRoutesViewer$1 {
     return "";
   }
 };
-PartnerAscentsViewerElement = __decorateClass$7([
+PartnerAscentsViewerElement = __decorateClass$8([
   controller
 ], PartnerAscentsViewerElement);
 const PartnerAscentsViewerElement$1 = PartnerAscentsViewerElement;
+
+var __defProp$7 = Object.defineProperty;
+var __getOwnPropDesc$7 = Object.getOwnPropertyDescriptor;
+var __decorateClass$7 = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$7(target, key) : target;
+  for (var i = decorators.length - 1, decorator; i >= 0; i--)
+    if (decorator = decorators[i])
+      result = (kind ? decorator(target, key, result) : decorator(result)) || result;
+  if (kind && result)
+    __defProp$7(target, key, result);
+  return result;
+};
+const generateApiUrl$2 = () => {
+  const targetOrigin = apiOrigin();
+  return `${targetOrigin}/v1/rockfax/search/top_ascents`;
+};
+let TopAscentsViewerElement = class extends PartnerAscentsViewerElement$1 {
+  get apiUrl() {
+    return generateApiUrl$2();
+  }
+  connectedCallback() {
+    super.connectedCallback();
+    this.sort_button.style.display = "block";
+    this.sort_order_picker.style.display = "block";
+    this.input.placeholder = `Filter recent top ascents...`;
+    this.routes_viewer_title.innerHTML = `<span style="font-size: 0.8em">Recent top ascents</span>`;
+  }
+  async fetchResults(query, pageNo) {
+    if (!this.isOnline) {
+      this.clearResultsDropdown();
+      appendNoResults(this, "Top ascents are not available offline");
+      return void 0;
+    }
+    const res = await super.fetchResults(query, pageNo);
+    this.input.placeholder = `Filter recent top ascents...`;
+    this.routes_viewer_title.innerHTML = `<span style="font-size: 0.8em">Recent top ascents</span>`;
+    console.log(res);
+    return res;
+  }
+  currentRouteDate = void 0;
+  currentCragName = void 0;
+  willAppendRoute(route) {
+    switch (this.sort_order_picker.value) {
+      case "crag_name":
+        return this.appendInterstitialDateHeaderForRoute(route);
+      case "date":
+        return this.appendInterstitialCragNameHeaderForRoute(route);
+    }
+  }
+  appendInterstitialDateHeaderForRoute(route) {
+    const date = new Date(route.associated_ascent_entry.ascent_date).getTime();
+    if (date !== this.currentRouteDate || route.crag_name !== this.currentCragName) {
+      this.currentRouteDate = date;
+      this.currentCragName = route.crag_name;
+      const headerEl = document.createElement("div");
+      headerEl.classList.add("date");
+      headerEl.innerText = new Date(route.associated_ascent_entry.ascent_date).toLocaleString("default", { weekday: "long", year: "numeric", month: "long", day: "numeric" });
+      headerEl.style.color = "var(--subtitle-color-2)";
+      headerEl.style.padding = "4px 14px";
+      headerEl.style.fontSize = "var(--font-size-3)";
+      headerEl.style.backgroundColor = "var(--background-color-2)";
+      this.queue.push(
+        () => {
+          this.routes_viewer_container.appendChild(headerEl);
+        }
+      );
+    }
+  }
+  appendInterstitialCragNameHeaderForRoute(route) {
+    const date = new Date(route.associated_ascent_entry.ascent_date).getTime();
+    if (route.crag_name !== this.currentCragName || date !== this.currentRouteDate) {
+      this.currentRouteDate = date;
+      this.currentCragName = route.crag_name;
+      const headerEl = document.createElement("div");
+      headerEl.classList.add("date");
+      headerEl.innerHTML = `<a style='color:#bbdcee;opacity: 0.75;' href='/logbook/crags/ -${route.crag_id_ukc}'>${escape(route.crag_name)}</a>`;
+      headerEl.style.color = "var(--subtitle-color-2)";
+      headerEl.style.padding = "4px 14px";
+      headerEl.style.fontSize = "var(--font-size-3)";
+      headerEl.style.backgroundColor = "var(--background-color-2)";
+      this.queue.push(
+        () => {
+          this.routes_viewer_container.appendChild(headerEl);
+        }
+      );
+    }
+  }
+};
+TopAscentsViewerElement = __decorateClass$7([
+  controller
+], TopAscentsViewerElement);
+const TopAscentsViewerElement$1 = TopAscentsViewerElement;
 
 var __defProp$6 = Object.defineProperty;
 var __getOwnPropDesc$6 = Object.getOwnPropertyDescriptor;
@@ -11593,9 +11695,9 @@ var __decorateClass$6 = (decorators, target, key, kind) => {
 };
 const generateApiUrl$1 = () => {
   const targetOrigin = apiOrigin();
-  return `${targetOrigin}/v1/rockfax/search/top_ascents`;
+  return `${targetOrigin}/v1/rockfax/search/winter_ascents`;
 };
-let TopAscentsViewerElement = class extends PartnerAscentsViewerElement$1 {
+let WinterAscentsViewerElement = class extends TopAscentsViewerElement$1 {
   get apiUrl() {
     return generateApiUrl$1();
   }
@@ -11609,7 +11711,7 @@ let TopAscentsViewerElement = class extends PartnerAscentsViewerElement$1 {
   async fetchResults(query, pageNo) {
     if (!this.isOnline) {
       this.clearResultsDropdown();
-      appendNoResults(this, "Top ascents are not available offline");
+      appendNoResults(this, "Winter ascents are not available offline");
       return void 0;
     }
     const res = await super.fetchResults(query, pageNo);
@@ -11618,34 +11720,10 @@ let TopAscentsViewerElement = class extends PartnerAscentsViewerElement$1 {
     console.log(res);
     return res;
   }
-  currentRouteDate = void 0;
-  currentCragName = void 0;
-  willAppendRoute(route) {
-    if (this.sort_order_picker.value !== "crag_name")
-      return;
-    const date = new Date(route.associated_ascent_entry.ascent_date).getTime();
-    if (date !== this.currentRouteDate || route.crag_name !== this.currentCragName) {
-      this.currentRouteDate = date;
-      this.currentCragName = route.crag_name;
-      const dateElement = document.createElement("div");
-      dateElement.classList.add("date");
-      dateElement.innerText = new Date(route.associated_ascent_entry.ascent_date).toLocaleString("default", { weekday: "long", year: "numeric", month: "long", day: "numeric" });
-      dateElement.style.color = "var(--subtitle-color)";
-      dateElement.style.padding = "4px 12px";
-      dateElement.style.fontSize = "10px";
-      dateElement.style.backgroundColor = "var(--background-color-2)";
-      console.log(dateElement);
-      this.queue.push(
-        () => {
-          this.routes_viewer_container.appendChild(dateElement);
-        }
-      );
-    }
-  }
 };
-TopAscentsViewerElement = __decorateClass$6([
+WinterAscentsViewerElement = __decorateClass$6([
   controller
-], TopAscentsViewerElement);
+], WinterAscentsViewerElement);
 
 var __defProp$5 = Object.defineProperty;
 var __getOwnPropDesc$5 = Object.getOwnPropertyDescriptor;
