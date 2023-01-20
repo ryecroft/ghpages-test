@@ -11640,6 +11640,8 @@ let TopAscentsViewerElement = class extends PartnerAscentsViewerElement$1 {
       return void 0;
     }
     const res = await super.fetchResults(query, pageNo);
+    this.currentRouteDate = void 0;
+    this.currentCragName = void 0;
     this.input.placeholder = `Filter recent top ascents...`;
     this.routes_viewer_title.innerHTML = `<span style="font-size: 0.8em">Recent top ascents</span>`;
     console.log(res);
