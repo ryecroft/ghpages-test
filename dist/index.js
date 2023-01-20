@@ -2935,6 +2935,8 @@ let BaseRoutesViewer = class extends BaseCon$1 {
       this.currentHeader = deets.current;
       this.fixed_section_header.left_label.innerHTML = deets.current.left_label.innerHTML;
       this.fixed_section_header.right_label.innerHTML = deets.current.right_label.innerHTML;
+      this.fixed_section_header.flag_element.hidden = deets.current.flag_element.hidden;
+      this.fixed_section_header.flag_element.className = deets.current.flag_element.className;
     }
     if (this.fixedHeaderFillingStrategy === "closestTwo") {
       const deets2 = this.getClosestHeaderToFixedHeader(this.fixed_section_header_2, ".sub-header");
@@ -2943,6 +2945,8 @@ let BaseRoutesViewer = class extends BaseCon$1 {
       console.log("hallo");
       this.fixed_section_header_2.left_label.innerHTML = deets2.current.left_label.innerHTML;
       this.fixed_section_header_2.right_label.innerHTML = deets2.current.right_label.innerHTML;
+      this.fixed_section_header_2.flag_element.hidden = deets2.current.flag_element.hidden;
+      this.fixed_section_header_2.flag_element.className = deets2.current.flag_element.className;
     }
   }
   getClosestHeaderToFixedHeader(fixedHeader, classNames) {
@@ -11661,6 +11665,7 @@ let TopAscentsViewerElement = class extends PartnerAscentsViewerElement$1 {
           const headerEl = document.createElement("section-header");
           headerEl.classList.add("sub-header");
           this.routes_viewer_container.appendChild(headerEl);
+          headerEl.flag_element.hidden = true;
           headerEl.left_label.innerText = new Date(route.associated_ascent_entry.ascent_date).toLocaleString("default", { weekday: "long", year: "numeric", month: "long", day: "numeric" });
           headerEl.style.fontSize = "0.75em";
         }
@@ -11679,6 +11684,18 @@ let TopAscentsViewerElement = class extends PartnerAscentsViewerElement$1 {
           this.routes_viewer_container.appendChild(headerEl);
           headerEl.left_label.innerHTML = this.linkForCragId(route.crag_id_ukc, route.crag_name);
           headerEl.right_label.innerHTML = route.county_name;
+          headerEl.flag_element.hidden = false;
+          switch (route.country_name) {
+            case "England":
+              headerEl.flag_element.className = "ml-1 fi fi-gb-eng";
+              break;
+            case "Scotland":
+              headerEl.flag_element.className = "ml-1 fi fi-gb-sct";
+              break;
+            case "Wales":
+              headerEl.flag_element.className = "ml-1 fi fi-gb-wls";
+              break;
+          }
           headerEl.style.fontSize = "0.75em";
         }
       );
@@ -11926,10 +11943,12 @@ FiltersControllerElement = __decorateClass$4([
   controller
 ], FiltersControllerElement);
 
+const flagIcons_min = '';
+
 const template$1 = (element) => {
   return html$1`
     <span data-target='${element.elementName}.left_label'></span>
-    <span data-target='${element.elementName}.right_label'></span>
+    <span><span data-target='${element.elementName}.right_label'></span><span data-target='${element.elementName}.flag_element' style='opacity:0.9;transform:translateY(1px)' hidden></span></span>
 `;
 };
 
@@ -11947,6 +11966,7 @@ var __decorateClass$3 = (decorators, target2, key, kind) => {
 let SectionHeaderElement = class extends BaseCon$1 {
   left_label;
   right_label;
+  flag_element;
   get template() {
     return template$1;
   }
@@ -11957,6 +11977,9 @@ __decorateClass$3([
 __decorateClass$3([
   target
 ], SectionHeaderElement.prototype, "right_label", 2);
+__decorateClass$3([
+  target
+], SectionHeaderElement.prototype, "flag_element", 2);
 SectionHeaderElement = __decorateClass$3([
   controller
 ], SectionHeaderElement);
