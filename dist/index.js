@@ -2942,7 +2942,6 @@ let BaseRoutesViewer = class extends BaseCon$1 {
       const deets2 = this.getClosestHeaderToFixedHeader(this.fixed_section_header_2, ".sub-header");
       if (!deets2.current)
         return;
-      console.log("hallo");
       this.fixed_section_header_2.left_label.innerHTML = deets2.current.left_label.innerHTML;
       this.fixed_section_header_2.right_label.innerHTML = deets2.current.right_label.innerHTML;
       this.fixed_section_header_2.flag_element.hidden = deets2.current.flag_element.hidden;
@@ -11644,7 +11643,6 @@ let TopAscentsViewerElement = class extends PartnerAscentsViewerElement$1 {
     this.currentCragName = void 0;
     this.input.placeholder = `Filter recent top ascents...`;
     this.routes_viewer_title.innerHTML = `<span style="font-size: 0.8em">Recent top ascents</span>`;
-    console.log(res);
     return res;
   }
   currentRouteDate = void 0;
@@ -11753,7 +11751,6 @@ let WinterAscentsViewerElement = class extends TopAscentsViewerElement$1 {
     const res = await super.fetchResults(query, pageNo);
     this.input.placeholder = `Filter recent winter ascents...`;
     this.routes_viewer_title.innerHTML = `<span style="font-size: 0.8em">Recent winter ascents</span>`;
-    console.log(res);
     return res;
   }
 };
