@@ -11667,7 +11667,6 @@ let TopAscentsViewerElement = class extends PartnerAscentsViewerElement$1 {
     this.sort_order_picker.style.display = "block";
     this.input.placeholder = `Filter recent top ascents...`;
     this.routes_viewer_title.innerHTML = `<span style="font-size: 0.8em">Recent top ascents</span>`;
-    this.showFilters();
   }
   async fetchResults(query, pageNo) {
     if (!this.isOnline) {
