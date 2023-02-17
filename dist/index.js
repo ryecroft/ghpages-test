@@ -1,6 +1,6 @@
 (function () {
 'use strict';
-const style = "*,\n::after,\n::before {\n  box-sizing: border-box;\n}\n\n.icon-nightmode-toggle {\n  position: absolute;\n  right: 5pt;\n  top: 5pt;\n  display: inline-block;\n  background-color: rgba(0, 0, 0, 0.392);\n  cursor: pointer;\n  width: var(--icon-size);\n  height: var(--icon-size);\n  -webkit-mask-size: var(--icon-size) var(--icon-size);\n  -webkit-mask-repeat: no-repeat;\n  -webkit-mask-position: center;\n  mask-size: var(--icon-size) var(--icon-size);\n  mask-repeat: no-repeat;\n  mask-position: center;\n  mask: url(\"/assets/moon.svg\");\n  -webkit-mask: url(\"/assets/moon.svg\");\n}\n\n.icon-nightmode-toggle:focus {\n  background-color: var(--flash-color);\n}\n\ninput[type=search]::-webkit-search-decoration,\ninput[type=search]::-webkit-search-cancel-button,\ninput[type=search]::-webkit-search-results-button,\ninput[type=search]::-webkit-search-results-decoration {\n  display: none;\n}\n\nukc-searchbar {\n  margin-bottom: 12px;\n  transition: all;\n}\n\nfilters-controller {\n  display: block;\n  width: 100vw;\n  height: 600px;\n  position: fixed;\n  bottom: 0;\n  z-index: 100000;\n}\n\nfilters-controller .rfd-search .filters-controller-content {\n  width: 100vw;\n  height: 100vh;\n  padding: var(--padding);\n  background-color: var(--background-color);\n  color: white;\n  z-index: 2000000 !important;\n  position: absolute;\n  top: 100vh;\n  border-top-left-radius: 10pt;\n  border-top-right-radius: 10pt;\n  transition: top 0.3s cubic-bezier(0.22, 1, 0.3, 1);\n}\n\nfilters-controller .rfd-search #gray-view {\n  opacity: 0;\n  width: 100vw;\n  height: 140vh;\n  background-color: rgba(0, 0, 0, 0.7);\n  position: fixed;\n  top: 0vw;\n  left: 0vw;\n  z-index: 1 !important;\n  backdrop-filter: blur(5px);\n  -webkit-backdrop-filter: blur(5px);\n  transition: opacity 0.2s ease-out;\n}\n\n.nightmode .icon-nightmode-toggle {\n  width: var(--icon-size);\n  height: var(--icon-size);\n  -webkit-mask-size: var(--icon-size) var(--icon-size);\n  -webkit-mask-repeat: no-repeat;\n  -webkit-mask-position: center;\n  mask-size: var(--icon-size) var(--icon-size);\n  mask-repeat: no-repeat;\n  mask-position: center;\n  mask: url(\"/assets/sun.svg\");\n  -webkit-mask: url(\"/assets/sun.svg\");\n  background-color: rgba(255, 255, 255, 0.492);\n}\n\n.nightmode .rfd-search {\n  --background-color-page: #19181f;\n  --background-color-page-semi: #1e1d25ff;\n  --brightness-multiplier: 100%;\n  --background-color: #282630;\n  --background-color-2: var(--background-color-page-semi);\n  --title-color: rgb(217, 217, 217);\n  --subtitle-color: rgba(255, 255, 255, 0.62);\n  --subtitle-color-2: rgba(255, 255, 255, 0.492);\n  --subtitle-color-3: rgba(255, 255, 255, 0.39);\n  --subtitle-color-4: rgba(255, 255, 255, 0.28);\n  --flash-color: hotpink;\n  --border-color: #565656;\n}\n\n.nightmode .rfd-search logbook-result .result-entry-container {\n  border-bottom: solid #212029 1px;\n}\n\n.nightmode .rfd-search page-button {\n  background-color: var(--background-color);\n  color: var(--subtitle-color-2);\n}\n\n.nightmode .rfd-search .page-control-current {\n  color: var(--subtitle-color-2);\n  background-color: var(--background-color-2);\n}\n\n.nightmode .rfd-search #page-control-next.disabled,\n.nightmode .rfd-search #page-control-previous.disabled {\n  background-color: var(--background-color);\n}\n\n.nightmode .rfd-search #search-widget {\n  box-shadow: 0px 0px 10px rgba(1, 1, 1, 0.2);\n}\n\n.nightmode .rfd-search .gray-background input {\n  background-color: var(--background-color);\n}\n\n@media (hover: hover) and (pointer: fine) {\n  .nightmode .icon-nightmode-toggle:hover {\n    background-color: var(--flash-color);\n  }\n  .nightmode .result-entry:hover {\n    border-radius: calc(var(--radius) * 0.7);\n  }\n  .nightmode .mouse-over:hover {\n    color: var(--flash-color);\n  }\n  .nightmode .icon:hover {\n    background-color: var(--flash-color);\n  }\n  .nightmode .result-entry-container:hover {\n    background-color: var(--background-color-2);\n  }\n  .nightmode .page-control-page:hover {\n    border-color: var(--flash-color);\n    color: var(--flash-color);\n    z-index: 2;\n  }\n  .nightmode .page-control-current:hover {\n    border-color: var(--background-color-2);\n    color: var(--subtitle-color-2);\n    z-index: 2;\n  }\n  .nightmode #page-control-next.disabled:hover,\n.nightmode #page-control-previous.disabled:hover {\n    color: var(--subtitle-color-2);\n  }\n  .nightmode #page-control-next:hover,\n.nightmode #page-control-previous:hover {\n    border-color: var(--flash-color);\n    color: var(--flash-color);\n    z-index: 2;\n  }\n  .nightmode a:hover {\n    color: var(--flash-color);\n  }\n  .nightmode .page-control-page:hover {\n    color: var(--flash-color);\n  }\n  .nightmode .page-control-current:hover {\n    color: var(--subtitle-color-2);\n  }\n  .nightmode #page-control-next.disabled:hover,\n.nightmode #page-control-previous.disabled:hover {\n    color: var(--subtitle-color-2);\n  }\n}\n\nhtml {\n  --background-color-page: #e8e8e8;\n  --base-mask-size: 2rem;\n  --icon-size: var(--base-mask-size);\n  --big-screen-multiplier: 0.45;\n}\n\n.rfd-search {\n  --background-color-page-semi: #eeeeef;\n  --brightness-multiplier: 100%;\n  --background-color: white;\n  --background-color-2: #dadada;\n  --title-color: rgba(0, 0, 0, 0.75);\n  --subtitle-color: rgba(0, 0, 0, 0.65);\n  --subtitle-color-2: rgba(0, 0, 0, 0.5);\n  --subtitle-color-3: rgba(0, 0, 0, 0.45);\n  --subtitle-color-4: rgba(0, 0, 0, 0.35);\n  --flash-color: var(--flash-color);\n  --border-color: #444444;\n  --base-padding: 10pt;\n  --base-font-size: 1.1rem;\n  --base-font-size-2: calc(var(--base-font-size) * 0.9);\n  --base-font-size-3: calc(var(--base-font-size-2) * 0.9);\n  --base-font-size-4: calc(var(--base-font-size-3) * 1);\n  --base-result-icon-size: 1.7rem;\n  --padding: var(--base-padding);\n  --font-size: var(--base-font-size);\n  --font-size-2: var(--base-font-size-2);\n  --font-size-3: var(--base-font-size-3);\n  --font-size-4: var(--base-font-size-4);\n  --page-control-font-size: 1.3rem;\n  --page-control-size: calc(var(--page-control-font-size) * 1.8);\n  --result-icon-size: var(--base-result-icon-size);\n  --radius: 10pt;\n  --page-control-radius: 5pt;\n  --radius-search-results: 0pt;\n  --border-width: 1pt;\n  --search-container-z-index: 1030;\n  --gray-view-opacity-animation-duration: 0.2s;\n  margin-bottom: 16px;\n}\n\n.rfd-search crag-icon *,\n.rfd-search buttress-icon *,\n.rfd-search topo-dot *,\n.rfd-search external-link-icon * {\n  width: var(--result-icon-size);\n  height: var(--result-icon-size);\n}\n\n.rfd-search select {\n  background-color: var(--background-color);\n  color: var(--subtitle-color);\n  border: none;\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  appearance: none;\n  text-overflow: \"\";\n}\n\n.rfd-search {\n  width: 100%;\n  font-size: var(--font-size);\n  position: relative;\n}\n\n.rfd-search ::-webkit-scrollbar-thumb {\n  filter: brightness(80%);\n}\n\n.rfd-search #searchbar-footer,\n.rfd-search #searchbar-query-suggestion-flex {\n  filter: brightness(90%);\n}\n\n.rfd-search ::-webkit-scrollbar {\n  height: 10pt;\n  width: 5pt;\n}\n\n.rfd-search ::-webkit-scrollbar-thumb {\n  background: var(--background-color-2);\n}\n\n.rfd-search ::-webkit-scrollbar-track {\n  background: rgba(1, 1, 1, 0);\n}\n\n.rfd-search scrollbar-thumb {\n  background: var(--background-color-2);\n}\n\n.rfd-search scrollbar-track {\n  background: rgba(1, 1, 1, 0);\n}\n\n.rfd-search ul {\n  list-style-type: none;\n  margin: 0pt;\n  padding: 0pt;\n  padding-bottom: var(--padding);\n  outline: none;\n}\n\n.rfd-search ul a:link {\n  color: unset;\n}\n\n.rfd-search ul a:visited {\n  color: unset;\n}\n\n.rfd-search ul a:hover {\n  color: unset;\n}\n\n.rfd-search ul a:active {\n  color: unset;\n}\n\n.rfd-search input {\n  outline: none;\n  width: 100%;\n  font-size: var(--font-size);\n  border-radius: var(--radius);\n  color: rgba(0, 0, 0, 0);\n  background-color: var(--background-color);\n  color: var(--title-color);\n  border: none;\n  transition-property: all;\n}\n\n.rfd-search a {\n  text-decoration: none !important;\n}\n\n.rfd-search a:link {\n  color: cadetblue;\n}\n\n.rfd-search a:visited {\n  color: cadetblue;\n}\n\n.rfd-search a:active {\n  color: var(--flash-color);\n}\n\n.rfd-search #name-dash {\n  display: none;\n}\n\n.rfd-search .logged-clean logbook-indicator,\n.rfd-search .logged-followed logbook-indicator,\n.rfd-search .logged-dogged logbook-indicator {\n  display: block;\n}\n\n.rfd-search .on-wishlist wishlist-indicator {\n  display: block;\n}\n\n.rfd-search .logged-clean.on-wishlist wishlist-indicator,\n.rfd-search .logged-followed.on-wishlist wishlist-indicator,\n.rfd-search .logged-dogged.on-wishlist wishlist-indicator {\n  right: 24px;\n}\n\n.rfd-search logbook-indicator {\n  display: none;\n  position: absolute;\n  top: 0px;\n  right: -6px;\n  width: calc(var(--result-icon-size) * 1);\n  height: calc(var(--result-icon-size) * 1);\n}\n\n.rfd-search wishlist-indicator {\n  display: none;\n  position: absolute;\n  top: -1px;\n  right: 4px;\n  width: calc(var(--result-icon-size) * 0.5);\n  height: calc(var(--result-icon-size) * 0.5);\n}\n\n.rfd-search input,\n.rfd-search #search-query-description,\n.rfd-search .search-results-search-query-description {\n  padding: calc(var(--padding) * 0.65);\n  padding-left: var(--padding);\n}\n\n.rfd-search #filter-icon {\n  left: 16px;\n  position: absolute;\n  top: 50%;\n  transform: translateY(-50%);\n  background-color: var(--subtitle-color);\n}\n\n.rfd-search #filter-bar-container input {\n  width: calc(100% - (var(--padding) * 2 - 8px));\n  display: block;\n  padding: var(--padding);\n  padding-top: calc(var(--padding) - 2px);\n  padding-bottom: calc(var(--padding) - 2px);\n  padding-left: 40px;\n  margin: var(--padding);\n  margin-right: calc(var(--padding) - 4px);\n  margin-left: calc(var(--padding) - 4px);\n  border-width: var(--border-width);\n  background-color: var(--background-color-page-semi);\n  transition: all 0.2s;\n}\n\n.rfd-search #name-and-grade {\n  display: flex;\n  justify-content: space-between;\n  font-weight: 500;\n}\n\n.rfd-search #gray-view {\n  width: 100vw;\n  height: 140vh;\n  background-color: rgba(0, 0, 0, 0.7);\n  position: fixed;\n  top: 0vw;\n  left: 0vw;\n  z-index: calc(var(--search-container-z-index) - 1);\n  opacity: 1;\n  backdrop-filter: blur(5px);\n  -webkit-backdrop-filter: blur(5px);\n}\n\n.rfd-search #search-container {\n  position: relative;\n  z-index: var(--search-container-z-index);\n}\n\n.rfd-search #search-container input {\n  padding-right: calc(var(--icon-size) + var(--padding));\n  padding-left: calc(var(--icon-size) + var(--padding) - 4px);\n  transition: all 0.2s;\n}\n\n.rfd-search #searchbar-inner-container {\n  position: relative;\n}\n\n.rfd-search #search-absolute {\n  position: absolute;\n  top: 0;\n  width: 100%;\n  transition: transform 0.3s ease-out;\n}\n\n.rfd-search #search-results-header-container,\n.rfd-search #search-widget,\n.rfd-search #search-results-widget {\n  border-width: var(--border-width);\n  background-color: var(--background-color);\n  transition: all 0.2s;\n}\n\n.rfd-search #search-widget,\n.rfd-search #search-results-widget {\n  overflow: hidden;\n}\n\n.rfd-search #search-widget {\n  box-shadow: 0px 0px 10px rgba(1, 1, 1, 0.1);\n  transition: opacity 0.3s;\n  border-radius: var(--radius);\n}\n\n.rfd-search #search-results-header-container,\n.rfd-search #search-results-widget {\n  margin-left: calc(-50vw + 50%);\n  margin-right: calc(-51vw + 51%);\n}\n\n.rfd-search #searchbar-footer {\n  background-color: var(--background-color);\n  font-size: var(--font-size-4);\n  color: var(--subtitle-color-2);\n  border-bottom-left-radius: var(--radius);\n  border-bottom-right-radius: var(--radius);\n  filter: brightness(90%);\n}\n\n.rfd-search #search-results-container {\n  contain: layout paint;\n  overflow-y: auto;\n  overflow-x: hidden;\n  overscroll-behavior-y: contain;\n  scrollbar-color: var(--background-color-2) rgba(1, 1, 1, 0);\n  transition: opacity 0.3s ease-out;\n}\n\n.rfd-search #search-icon {\n  position: absolute;\n  left: 4pt;\n  top: 50%;\n  transform: translateY(-50%);\n  background-color: var(--subtitle-color);\n}\n\n.rfd-search #filter-bar-container {\n  position: relative;\n}\n\n.rfd-search #input-hidden {\n  background-color: rgba(0, 0, 0, 0) !important;\n}\n\n.rfd-search #delete-search-text-button,\n.rfd-search #filter-delete-text-button {\n  position: absolute;\n  right: 0px;\n  top: 50%;\n  transform: translateY(-50%);\n  cursor: pointer;\n}\n\n.rfd-search #filter-delete-text-button {\n  right: 10px;\n}\n\n.rfd-search #return-key-action {\n  padding: var(--padding);\n  margin-top: calc(var(--padding) * 5);\n}\n\n.rfd-search #search-results-header-container {\n  backface-visibility: hidden;\n  background-color: var(--background-color);\n  position: sticky;\n  z-index: 2;\n  width: 100vw;\n  margin-left: -15px;\n}\n\n.rfd-search .routes-viewer-header {\n  padding-left: var(--padding);\n  width: 100%;\n}\n\n.rfd-search .result-icon {\n  display: inline-block;\n}\n\n.rfd-search .gray-background input {\n  background-color: #e0e0e0;\n  transition: background-color 0.2s ease;\n}\n\n.rfd-search .normal-background input {\n  background-color: var(--background-color);\n  transition: background-color 0.2s ease;\n}\n\n.rfd-search .searchbar-help-text-container {\n  transition: height 0.2s ease;\n  overscroll-behavior-y: contain;\n}\n\n.rfd-search #searchbar-help-text {\n  padding: calc(var(--padding) * 2);\n}\n\n.rfd-search #placeholder-short-display {\n  color: var(--title-color);\n  opacity: 0.5;\n  margin-left: -6px;\n}\n\n.rfd-search #searchbar-short-display-container {\n  position: absolute;\n  left: 4pt;\n  transform: translateY(-8%);\n}\n\n.rfd-search #search-icon-short-display {\n  background-color: var(--subtitle-color-3);\n  display: inline-block;\n  transform: translateY(30%);\n}\n\n.rfd-search #searchbar-query-suggestion-flex {\n  position: relative;\n  padding-right: calc(var(--icon-size) + var(--padding));\n  border-bottom-left-radius: var(--radius);\n  border-bottom-right-radius: var(--radius);\n}\n\n.rfd-search .ascent-notes a,\n.rfd-search .ascent-details a {\n  color: #bbdcee !important;\n  opacity: 0.7;\n  line-height: 1.3em;\n}\n\n.rfd-search #help-button,\n.rfd-search #filter-bar-help-button {\n  position: absolute;\n  right: 0pt;\n  top: 50%;\n  transform: translateY(-50%);\n}\n\n.rfd-search #searchbar-query-suggestion-flex,\n.rfd-search #search-query-description,\n.rfd-search .search-results-search-query-description {\n  font-size: var(--font-size-3);\n  color: var(--subtitle-color-2);\n  background-color: var(--background-color);\n}\n\n.rfd-search #focus-searchbar {\n  display: none;\n}\n\n.rfd-search .important {\n  font-weight: bold;\n  color: #f8ca23;\n}\n\n.rfd-search .pitch-grade {\n  font-weight: bold;\n  color: var(--title-color);\n}\n\n.rfd-search .pitch-number {\n  font-weight: bold;\n  color: var(--title-color);\n}\n\n.rfd-search .pitch-length {\n  font-weight: 500;\n  color: var(--title-color);\n}\n\n.rfd-search .logged {\n  background-color: green;\n}\n\n.rfd-search .page-control {\n  display: flex;\n  justify-content: flex-end;\n  align-content: center;\n  margin-top: var(--padding);\n  margin-bottom: var(--padding);\n  margin-left: calc(-50vw + 50%);\n  margin-right: calc(-50vw + 50% + var(--padding));\n}\n\n.rfd-search .fa-button {\n  border: 0;\n  width: 40px;\n  height: 40px;\n  background-color: var(--background-color);\n  border-radius: var(--radius);\n  color: var(--subtitle-color);\n  transition: background-color 0.2s ease-out;\n}\n\n.rfd-search .fa-button:hover {\n  background-color: var(--background-color-2);\n}\n\n.rfd-search .fa-button i {\n  transition: rotate 0.2s ease-out;\n}\n\n.rfd-search .hidden {\n  display: none;\n}\n\n.rfd-search #page-control-previous,\n.rfd-search #page-control-next,\n.rfd-search page-button {\n  display: flex;\n  align-items: center;\n  text-align: center;\n  aspect-ratio: 1/1;\n  font-family: monospace;\n  background-color: var(--background-color);\n  border: solid;\n  color: var(--subtitle-color-2);\n  margin-left: calc(var(--border-width) * -1);\n  border-width: var(--border-width);\n  border-color: var(--background-color-2);\n  justify-content: center;\n  font-weight: 900;\n  cursor: pointer;\n  font-size: var(--page-control-font-size);\n  height: var(--page-control-size);\n  width: var(--page-control-size);\n}\n\n.rfd-search #page-control-previous {\n  border-top-left-radius: var(--page-control-radius);\n  border-bottom-left-radius: var(--page-control-radius);\n}\n\n.rfd-search #page-control-next {\n  border-top-right-radius: var(--page-control-radius);\n  border-bottom-right-radius: var(--page-control-radius);\n}\n\n.rfd-search page-button {\n  display: flex;\n  justify-content: center;\n  align-content: center;\n}\n\n.rfd-search section-header {\n  display: flex;\n  justify-content: space-between;\n  font-size: var(--font-size-3);\n  color: var(--subtitle-color-2);\n  padding: var(--padding);\n  padding-right: calc(var(--padding) / 2);\n  padding-top: calc(var(--padding) / 2);\n  padding-bottom: calc(var(--padding) / 2 - 2px);\n  background-color: var(--background-color-page-semi);\n}\n\n.rfd-search .page-control-current {\n  border-color: var(--background-color-2);\n  color: var(--subtitle-color-2);\n  background-color: var(--background-color-2);\n  filter: brightness(110%);\n  cursor: default;\n}\n\n.rfd-search #page-control-next.disabled,\n.rfd-search #page-control-previous.disabled {\n  background-color: var(--background-color);\n  border-color: var(--background-color-2);\n  cursor: default;\n  opacity: 0.4;\n}\n\n.rfd-search .routes-viewer-controls {\n  color: var(--subtitle-color-2);\n  font-size: 0.9em;\n  display: flex;\n  justify-content: flex-start;\n  align-items: center;\n  margin-bottom: 0px;\n}\n\n.rfd-search .routes-viewer-sort-order {\n  flex-grow: 0;\n  font-family: monospace;\n  font-weight: 600;\n  margin-bottom: 0px;\n}\n\n.rfd-search .result-entry {\n  display: flex;\n}\n\n.rfd-search .result-icon-area {\n  margin-top: -4pt;\n  width: 30pt;\n}\n\n.rfd-search .ascent-details {\n  display: flex;\n  justify-content: space-between;\n  margin-top: 10px;\n  color: var(--subtitle-color-4);\n  font-size: calc(var(--font-size-4) * 0.9);\n}\n\n.rfd-search .ascent-notes {\n  margin-top: 14px;\n  margin-bottom: 18px;\n  font-style: italic;\n  line-height: calc(var(--font-size-4) * 1.2);\n  color: var(--subtitle-color-2);\n  font-size: calc(var(--font-size-4) * 0.9);\n}\n\n.rfd-search .result-text-area {\n  width: 100%;\n  max-width: calc(100% - 36px);\n  display: flex;\n  flex-direction: column;\n}\n\n.rfd-search .result-title {\n  overflow-x: clip;\n  text-overflow: ellipsis;\n  white-space: pre;\n}\n\n.rfd-search .result-crag-name {\n  overflow-x: clip;\n  text-overflow: ellipsis;\n}\n\n.rfd-search .result-entry-start {\n  margin-bottom: 6pt;\n  display: block;\n}\n\n.rfd-search .result-entry-end {\n  display: flex;\n  align-items: baseline;\n}\n\n.rfd-search .selected .result-entry {\n  background-color: var(--background-color-2);\n}\n\n.rfd-search .selected .result-entry * {\n  background-color: var(--background-color-2);\n}\n\n.rfd-search .footer-content {\n  padding: 10px;\n}\n\n.rfd-search .keycode {\n  display: none;\n  background-color: var(--background-color-2);\n  border-radius: 3pt;\n  padding: 4pt;\n}\n\n.rfd-search .display-if-necessary {\n  display: block;\n}\n\n.rfd-search .result-entry {\n  font-size: var(--font-size-2);\n  color: var(--title-color);\n  padding: var(--padding);\n  padding-top: calc(var(--padding) + 4px);\n  padding-bottom: calc(var(--padding) + 2px);\n  display: flex;\n}\n\n.rfd-search .result-entry-end {\n  white-space: nowrap;\n}\n\n.rfd-search .result-entry-start {\n  white-space: nowrap;\n}\n\n.rfd-search .result-grade {\n  font-size: var(--font-size-3);\n  font-style: italic;\n  color: var(--subtitle-color);\n  white-space: pre;\n}\n\n.rfd-search .result-star-count {\n  font-size: var(--font-size-2);\n  font-style: italic;\n  font-weight: bolder;\n  color: hotpink;\n}\n\n.rfd-search .result-crag-name {\n  font-size: var(--font-size-4);\n  color: var(--subtitle-color-2);\n}\n\n.rfd-search .result-context,\n.rfd-search .result-sub-context {\n  font-style: italic;\n  font-size: var(--font-size-4);\n  color: var(--subtitle-color-4);\n}\n\n.rfd-search .search-container {\n  background-color: none;\n}\n\n.rfd-search .loader-stopped,\n.rfd-search .divider {\n  opacity: 1;\n  height: var(--border-width);\n  background-color: var(--background-color-2);\n}\n\n.rfd-search .divider-no-height-set {\n  opacity: 1;\n  background-color: var(--background-color-2);\n}\n\n.rfd-search .icon {\n  background-color: var(--subtitle-color);\n  margin-right: 4pt;\n  cursor: pointer;\n}\n\n.rfd-search .icon:focus {\n  background-color: var(--flash-color);\n}\n\n.rfd-search .icon-magnifying-glass {\n  width: var(--icon-size);\n  height: var(--icon-size);\n  -webkit-mask-size: var(--icon-size) var(--icon-size);\n  -webkit-mask-repeat: no-repeat;\n  -webkit-mask-position: center;\n  mask-size: var(--icon-size) var(--icon-size);\n  mask-repeat: no-repeat;\n  mask-position: center;\n  mask: url(\"/assets/magnifying-glass.svg\");\n  -webkit-mask: url(\"/assets/magnifying-glass.svg\");\n}\n\n.rfd-search .icon-question-mark {\n  width: var(--icon-size);\n  height: var(--icon-size);\n  -webkit-mask-size: var(--icon-size) var(--icon-size);\n  -webkit-mask-repeat: no-repeat;\n  -webkit-mask-position: center;\n  mask-size: var(--icon-size) var(--icon-size);\n  mask-repeat: no-repeat;\n  mask-position: center;\n  mask: url(\"/assets/question-mark.svg\");\n  -webkit-mask: url(\"/assets/question-mark.svg\");\n}\n\n.rfd-search .icon-external-link {\n  width: var(--icon-size);\n  height: var(--icon-size);\n  -webkit-mask-size: var(--icon-size) var(--icon-size);\n  -webkit-mask-repeat: no-repeat;\n  -webkit-mask-position: center;\n  mask-size: var(--icon-size) var(--icon-size);\n  mask-repeat: no-repeat;\n  mask-position: center;\n  mask: url(\"/assets/external-link.svg\");\n  -webkit-mask: url(\"/assets/external-link.svg\");\n}\n\n.rfd-search .icon-circle-times {\n  width: var(--icon-size);\n  height: var(--icon-size);\n  -webkit-mask-size: var(--icon-size) var(--icon-size);\n  -webkit-mask-repeat: no-repeat;\n  -webkit-mask-position: center;\n  mask-size: var(--icon-size) var(--icon-size);\n  mask-repeat: no-repeat;\n  mask-position: center;\n  mask: url(\"/assets/circle-times.svg\");\n  -webkit-mask: url(\"/assets/circle-times.svg\");\n}\n\n.rfd-search .result-entry-container {\n  line-height: 1;\n}\n\n.rfd-search #search-results-widget .result-entry-container {\n  border-bottom: solid var(--background-color-page-semi) 1px;\n}\n\n.rfd-search route-result .result-text-area,\n.rfd-search logbook-result .result-text-area {\n  max-width: 100%;\n  padding-left: 40px;\n}\n\n.rfd-search .ascent-style-indicator {\n  margin-left: -15px;\n  margin-right: 4px;\n}\n\n.rfd-search .mouse-over {\n  color: cadetblue;\n  cursor: pointer;\n}\n\n.rfd-search .mouse-over:focus {\n  color: var(--flash-color);\n}\n\n.rfd-search .fade-in {\n  -webkit-animation: fadein var(--gray-view-opacity-animation-duration) linear forwards;\n  animation: fadein var(--gray-view-opacity-animation-duration) linear forwards;\n}\n\n@-webkit-keyframes fadein {\n  0% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 1;\n  }\n}\n\n@-moz-keyframes fadein {\n  0% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 1;\n  }\n}\n\n@-o-keyframes fadein {\n  0% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 1;\n  }\n}\n\n@keyframes fadein {\n  0% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 1;\n  }\n}\n\n.rfd-search .fade-out {\n  -webkit-animation: fadeout var(--gray-view-opacity-animation-duration) linear forwards;\n  animation: fadeout var(--gray-view-opacity-animation-duration) linear forwards;\n}\n\n@-webkit-keyframes fadeout {\n  0% {\n    opacity: 1;\n  }\n  100% {\n    opacity: 0;\n  }\n}\n\n@-moz-keyframes fadeout {\n  0% {\n    opacity: 1;\n  }\n  100% {\n    opacity: 0;\n  }\n}\n\n@-o-keyframes fadeout {\n  0% {\n    opacity: 1;\n  }\n  100% {\n    opacity: 0;\n  }\n}\n\n@keyframes fadeout {\n  0% {\n    opacity: 1;\n  }\n  100% {\n    opacity: 0;\n  }\n}\n\n.loader-stopped {\n  position: relative;\n  background: var(--background-color-2);\n  overflow: hidden;\n}\n\n.loader-spinning {\n  position: relative;\n  height: 2px;\n  background: transparent;\n  overflow: hidden;\n  animation: loader-rainbow 1.5s infinite linear;\n}\n\n.loader-spinning:after {\n  display: block;\n  content: \" \";\n  position: absolute;\n  height: 100%;\n  background: hotpink;\n  left: 0;\n  transform: translate3d(-150%, 0, 0);\n  animation: loader-stripe 1.5s infinite linear;\n}\n\n@keyframes loader-stripe {\n  0% {\n    transform: translate3d(-100%, 0, 0);\n  }\n  100% {\n    transform: translate3d(100%, 0, 0);\n  }\n}\n\n@keyframes loader-rainbow {\n  0% {\n    background: var(--background-color-2);\n  }\n  50% {\n    background: hotpink;\n  }\n  100% {\n    background: var(--background-color-2);\n  }\n}\n\n@media only screen and (min-width: 768px) {\n  :root {\n    --icon-size: 2rem;\n  }\n  .big-screen-spacer {\n    display: block;\n    min-height: 1rem;\n  }\n  search-results-viewer {\n    margin-top: 12px;\n  }\n  .rfd-search {\n    --page-control-size: 18pt;\n    --radius: 4pt;\n    --page-control-radius: 4pt;\n    --radius-search-results: 4pt;\n    --border-width: 1pt;\n    --font-size: 0.9rem;\n    --page-control-font-size: var(--font-size-3);\n    --font-size-2: calc(var(--font-size) * 0.9);\n    --font-size-3: calc(var(--font-size-2) * 0.9);\n    --font-size-4: calc(var(--font-size-3) * 0.9);\n    --result-icon-size: 1.5rem;\n  }\n  .rfd-search logbook-indicator {\n    right: -5px;\n  }\n  .rfd-search wishlist-indicator {\n    right: 0px;\n  }\n  .rfd-search #name-dash {\n    display: inline-block;\n  }\n  .rfd-search #star-count-and-route-grade {\n    display: flex;\n    flex-direction: row-reverse;\n    translate: 0 1.5px;\n  }\n  .rfd-search #star-count-and-route-grade * {\n    margin-right: 0.2rem;\n  }\n  .rfd-search #search-icon {\n    background-color: var(--subtitle-color);\n  }\n  .rfd-search input {\n    padding-top: 4pt;\n    padding-bottom: 4pt;\n  }\n  .rfd-search #focus-searchbar,\n.rfd-search .keycode {\n    display: unset;\n  }\n  .rfd-search #search-results-header-container {\n    border-top-left-radius: var(--radius);\n    border-top-right-radius: var(--radius);\n    width: 100%;\n  }\n  .rfd-search #searchbar-help-text {\n    padding: calc(var(--base-padding) * var(--big-screen-multiplier) * 2);\n  }\n  .rfd-search #search-results-header-container,\n.rfd-search #search-results-widget {\n    border: solid var(--background-color-2) var(--border-width);\n    margin-right: 50%;\n    margin-left: 50%;\n    transform: translateX(-50%);\n    min-width: 700px;\n    box-shadow: 0px 0px 10px rgba(1, 1, 1, 0.1);\n  }\n  .rfd-search #search-results-widget {\n    border-top-width: 0;\n  }\n  .rfd-search #search-results-header-container {\n    border-bottom-width: 0;\n  }\n  .rfd-search #placeholder-short-display {\n    margin-left: 0px;\n    position: absolute;\n    white-space: nowrap;\n    transform: translate(4px, 15px);\n  }\n  .rfd-search #searchbar-short-display-container {\n    transform: translateY(-26%);\n  }\n  .rfd-search #search-results-header-container {\n    border-top-left-radius: var(--radius-search-results);\n    border-top-right-radius: var(--radius-search-results);\n  }\n  .rfd-search .page-control {\n    width: 400pt;\n    margin-right: 50%;\n    margin-left: 50%;\n    transform: translateX(-50%);\n    min-width: 700px;\n  }\n  .rfd-search #filter-bar-container input {\n    padding-top: calc(var(--padding) / 2);\n    padding-bottom: calc(var(--padding) / 2);\n  }\n  .rfd-search #search-container {\n    max-width: 500pt;\n    left: 50%;\n    transform: translateX(-50%);\n  }\n  .rfd-search #search-results-header-container {\n    width: unset;\n  }\n  .rfd-search #searchbar-query-suggestion-flex,\n.rfd-search #search-query-description,\n.rfd-search .search-results-search-query-description {\n    font-size: calc(var(--font-size-2) * 0.9);\n  }\n  .rfd-search .result-entry-container {\n    line-height: 1;\n  }\n  .rfd-search .ascent-details {\n    font-size: var(--font-size-3);\n  }\n  .rfd-search .ascent-notes {\n    font-size: var(--font-size-3);\n  }\n  .rfd-search .result-entry {\n    padding-top: calc(var(--padding) / 1);\n    padding-bottom: calc(var(--padding) / 1);\n    align-items: center;\n  }\n  .rfd-search .result-crag-name {\n    padding-bottom: 2pt;\n  }\n  .rfd-search .selected .result-entry {\n    border-radius: calc(var(--radius) * 0.7);\n  }\n  .rfd-search .icon {\n    margin-right: unset;\n  }\n  .rfd-search .divider-no-height-set {\n    margin: 4px;\n  }\n  .rfd-search .result-entry-end {\n    padding-left: var(--padding);\n    flex-direction: column;\n    align-items: baseline;\n    flex-grow: 1;\n  }\n  .rfd-search .footer-content {\n    padding: 4px;\n    padding-right: 10px;\n  }\n  .rfd-search .nightmode #search-results-header-container,\n.rfd-search .nightmode #search-results-widget {\n    box-shadow: 0px 0px 10px rgba(1, 1, 1, 0.2);\n  }\n  .rfd-search .result-icon-area {\n    margin-top: unset;\n  }\n  .rfd-search .result-text-area {\n    flex-direction: row;\n    justify-content: space-between;\n  }\n  .rfd-search .result-entry-start {\n    align-self: center;\n    margin-bottom: unset;\n  }\n  .rfd-search .result-entry-end {\n    flex-direction: column;\n    align-items: flex-end;\n  }\n}";
+const style = "*,\n::after,\n::before {\n  box-sizing: border-box;\n}\n\n.icon-nightmode-toggle {\n  position: absolute;\n  right: 5pt;\n  top: 5pt;\n  display: inline-block;\n  background-color: rgba(0, 0, 0, 0.392);\n  cursor: pointer;\n  width: var(--icon-size);\n  height: var(--icon-size);\n  -webkit-mask-size: var(--icon-size) var(--icon-size);\n  -webkit-mask-repeat: no-repeat;\n  -webkit-mask-position: center;\n  mask-size: var(--icon-size) var(--icon-size);\n  mask-repeat: no-repeat;\n  mask-position: center;\n  mask: url(\"/assets/moon.svg\");\n  -webkit-mask: url(\"/assets/moon.svg\");\n}\n\n.icon-nightmode-toggle:focus {\n  background-color: var(--flash-color);\n}\n\ninput[type=search]::-webkit-search-decoration,\ninput[type=search]::-webkit-search-cancel-button,\ninput[type=search]::-webkit-search-results-button,\ninput[type=search]::-webkit-search-results-decoration {\n  display: none;\n}\n\nukc-searchbar {\n  margin-bottom: 12px;\n  transition: all;\n}\n\nfilters-controller {\n  display: block;\n  width: 100vw;\n  height: 600px;\n  position: fixed;\n  bottom: 0;\n  z-index: 100000;\n}\n\nfilters-controller .rfd-search {\n  color: var(--title-color);\n}\n\nfilters-controller .rfd-search .filters-controller-content {\n  width: 100vw;\n  height: 100vh;\n  padding: var(--padding);\n  background-color: var(--background-color);\n  z-index: 2000000 !important;\n  position: absolute;\n  top: 100vh;\n  border-top-left-radius: 10pt;\n  border-top-right-radius: 10pt;\n  transition: top 0.3s cubic-bezier(0.22, 1, 0.3, 1);\n}\n\nfilters-controller .rfd-search #gray-view {\n  opacity: 0;\n  width: 100vw;\n  height: 140vh;\n  background-color: rgba(0, 0, 0, 0.7);\n  position: fixed;\n  top: 0vw;\n  left: 0vw;\n  z-index: 1 !important;\n  backdrop-filter: blur(5px);\n  -webkit-backdrop-filter: blur(5px);\n  transition: opacity 0.2s ease-out;\n}\n\n.nightmode .icon-nightmode-toggle {\n  width: var(--icon-size);\n  height: var(--icon-size);\n  -webkit-mask-size: var(--icon-size) var(--icon-size);\n  -webkit-mask-repeat: no-repeat;\n  -webkit-mask-position: center;\n  mask-size: var(--icon-size) var(--icon-size);\n  mask-repeat: no-repeat;\n  mask-position: center;\n  mask: url(\"/assets/sun.svg\");\n  -webkit-mask: url(\"/assets/sun.svg\");\n  background-color: rgba(255, 255, 255, 0.492);\n}\n\n.nightmode .rfd-search {\n  --background-color-page: #19181f;\n  --background-color-page-semi: #1e1d25ff;\n  --brightness-multiplier: 100%;\n  --background-color: #282630;\n  --background-color-2: var(--background-color-page-semi);\n  --title-color: rgb(217, 217, 217);\n  --subtitle-color: rgba(255, 255, 255, 0.62);\n  --subtitle-color-2: rgba(255, 255, 255, 0.492);\n  --subtitle-color-3: rgba(255, 255, 255, 0.39);\n  --subtitle-color-4: rgba(255, 255, 255, 0.28);\n  --flash-color: hotpink;\n  --border-color: #565656;\n}\n\n.nightmode .rfd-search logbook-result .result-entry-container {\n  border-bottom: solid #212029 1px;\n}\n\n.nightmode .rfd-search page-button {\n  background-color: var(--background-color);\n  color: var(--subtitle-color-2);\n}\n\n.nightmode .rfd-search .page-control-current {\n  color: var(--subtitle-color-2);\n  background-color: var(--background-color-2);\n}\n\n.nightmode .rfd-search #page-control-next.disabled,\n.nightmode .rfd-search #page-control-previous.disabled {\n  background-color: var(--background-color);\n}\n\n.nightmode .rfd-search #search-widget {\n  box-shadow: 0px 0px 10px rgba(1, 1, 1, 0.2);\n}\n\n.nightmode .rfd-search .gray-background input {\n  background-color: var(--background-color);\n}\n\n@media (hover: hover) and (pointer: fine) {\n  .nightmode .icon-nightmode-toggle:hover {\n    background-color: var(--flash-color);\n  }\n  .nightmode .result-entry:hover {\n    border-radius: calc(var(--radius) * 0.7);\n  }\n  .nightmode .mouse-over:hover {\n    color: var(--flash-color);\n  }\n  .nightmode .icon:hover {\n    background-color: var(--flash-color);\n  }\n  .nightmode .result-entry-container:hover {\n    background-color: var(--background-color-2);\n  }\n  .nightmode .page-control-page:hover {\n    border-color: var(--flash-color);\n    color: var(--flash-color);\n    z-index: 2;\n  }\n  .nightmode .page-control-current:hover {\n    border-color: var(--background-color-2);\n    color: var(--subtitle-color-2);\n    z-index: 2;\n  }\n  .nightmode #page-control-next.disabled:hover,\n.nightmode #page-control-previous.disabled:hover {\n    color: var(--subtitle-color-2);\n  }\n  .nightmode #page-control-next:hover,\n.nightmode #page-control-previous:hover {\n    border-color: var(--flash-color);\n    color: var(--flash-color);\n    z-index: 2;\n  }\n  .nightmode a:hover {\n    color: var(--flash-color);\n  }\n  .nightmode .page-control-page:hover {\n    color: var(--flash-color);\n  }\n  .nightmode .page-control-current:hover {\n    color: var(--subtitle-color-2);\n  }\n  .nightmode #page-control-next.disabled:hover,\n.nightmode #page-control-previous.disabled:hover {\n    color: var(--subtitle-color-2);\n  }\n}\n\nhtml {\n  --background-color-page: #e8e8e8;\n  --base-mask-size: 2rem;\n  --icon-size: var(--base-mask-size);\n  --big-screen-multiplier: 0.45;\n}\n\n.rfd-search {\n  --background-color-page-semi: #eeeeef;\n  --brightness-multiplier: 100%;\n  --background-color: white;\n  --background-color-2: #dadada;\n  --title-color: rgba(0, 0, 0, 0.75);\n  --subtitle-color: rgba(0, 0, 0, 0.65);\n  --subtitle-color-2: rgba(0, 0, 0, 0.5);\n  --subtitle-color-3: rgba(0, 0, 0, 0.45);\n  --subtitle-color-4: rgba(0, 0, 0, 0.35);\n  --flash-color: var(--flash-color);\n  --border-color: #444444;\n  --base-padding: 10pt;\n  --base-font-size: 1.1rem;\n  --base-font-size-2: calc(var(--base-font-size) * 0.9);\n  --base-font-size-3: calc(var(--base-font-size-2) * 0.9);\n  --base-font-size-4: calc(var(--base-font-size-3) * 1);\n  --base-result-icon-size: 1.7rem;\n  --padding: var(--base-padding);\n  --font-size: var(--base-font-size);\n  --font-size-2: var(--base-font-size-2);\n  --font-size-3: var(--base-font-size-3);\n  --font-size-4: var(--base-font-size-4);\n  --page-control-font-size: 1.3rem;\n  --page-control-size: calc(var(--page-control-font-size) * 1.8);\n  --result-icon-size: var(--base-result-icon-size);\n  --radius: 10pt;\n  --page-control-radius: 5pt;\n  --radius-search-results: 0pt;\n  --border-width: 1pt;\n  --search-container-z-index: 1030;\n  --gray-view-opacity-animation-duration: 0.2s;\n  margin-bottom: 16px;\n}\n\n.rfd-search crag-icon *,\n.rfd-search buttress-icon *,\n.rfd-search topo-dot *,\n.rfd-search external-link-icon * {\n  width: var(--result-icon-size);\n  height: var(--result-icon-size);\n}\n\n.rfd-search select {\n  background-color: var(--background-color);\n  color: var(--subtitle-color);\n  border: none;\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  appearance: none;\n  text-overflow: \"\";\n}\n\n.rfd-search {\n  width: 100%;\n  font-size: var(--font-size);\n  position: relative;\n}\n\n.rfd-search ::-webkit-scrollbar-thumb {\n  filter: brightness(80%);\n}\n\n.rfd-search #searchbar-footer,\n.rfd-search #searchbar-query-suggestion-flex {\n  filter: brightness(90%);\n}\n\n.rfd-search ::-webkit-scrollbar {\n  height: 10pt;\n  width: 5pt;\n}\n\n.rfd-search ::-webkit-scrollbar-thumb {\n  background: var(--background-color-2);\n}\n\n.rfd-search ::-webkit-scrollbar-track {\n  background: rgba(1, 1, 1, 0);\n}\n\n.rfd-search scrollbar-thumb {\n  background: var(--background-color-2);\n}\n\n.rfd-search scrollbar-track {\n  background: rgba(1, 1, 1, 0);\n}\n\n.rfd-search ul {\n  list-style-type: none;\n  margin: 0pt;\n  padding: 0pt;\n  padding-bottom: var(--padding);\n  outline: none;\n}\n\n.rfd-search ul a:link {\n  color: unset;\n}\n\n.rfd-search ul a:visited {\n  color: unset;\n}\n\n.rfd-search ul a:hover {\n  color: unset;\n}\n\n.rfd-search ul a:active {\n  color: unset;\n}\n\n.rfd-search input {\n  outline: none;\n  width: 100%;\n  font-size: var(--font-size);\n  border-radius: var(--radius);\n  color: rgba(0, 0, 0, 0);\n  background-color: var(--background-color);\n  color: var(--title-color);\n  border: none;\n  transition-property: all;\n}\n\n.rfd-search a {\n  text-decoration: none !important;\n}\n\n.rfd-search a:link {\n  color: cadetblue;\n}\n\n.rfd-search a:visited {\n  color: cadetblue;\n}\n\n.rfd-search a:active {\n  color: var(--flash-color);\n}\n\n.rfd-search #name-dash {\n  display: none;\n}\n\n.rfd-search .form-switch {\n  position: relative;\n  display: inline-block;\n  cursor: pointer;\n  -webkit-tap-highlight-color: transparent;\n}\n\n.rfd-search .form-switch i {\n  position: relative;\n  display: inline-block;\n  width: 46px;\n  height: 26px;\n  background-color: #e6e6e6;\n  border-radius: 23px;\n  vertical-align: text-bottom;\n  transition: all 0.3s linear;\n}\n\n.rfd-search .form-switch i::before {\n  content: \"\";\n  position: absolute;\n  left: 0;\n  width: 42px;\n  height: 22px;\n  background-color: #fff;\n  border-radius: 11px;\n  transform: translate3d(2px, 2px, 0) scale3d(1, 1, 1);\n  transition: all 0.25s linear;\n}\n\n.rfd-search .form-switch i::after {\n  content: \"\";\n  position: absolute;\n  left: 0;\n  width: 22px;\n  height: 22px;\n  background-color: #fff;\n  border-radius: 11px;\n  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.24);\n  transform: translate3d(2px, 2px, 0);\n  transition: all 0.2s ease-in-out;\n}\n\n.rfd-search .form-switch:active i::after {\n  width: 28px;\n  transform: translate3d(2px, 2px, 0);\n}\n\n.rfd-search .form-switch:active input:checked + i::after {\n  transform: translate3d(16px, 2px, 0);\n}\n\n.rfd-search .form-switch input {\n  position: absolute;\n  opacity: 0;\n  pointer-events: none;\n}\n\n.rfd-search .form-switch input:checked + i {\n  background-color: #4bd763;\n}\n\n.rfd-search .form-switch input:checked + i::before {\n  transform: translate3d(18px, 2px, 0) scale3d(0, 0, 0);\n}\n\n.rfd-search .form-switch input:checked + i::after {\n  transform: translate3d(22px, 2px, 0);\n}\n\n.rfd-search .logged-clean logbook-indicator,\n.rfd-search .logged-followed logbook-indicator,\n.rfd-search .logged-dogged logbook-indicator {\n  display: block;\n}\n\n.rfd-search .on-wishlist wishlist-indicator {\n  display: block;\n}\n\n.rfd-search .logged-clean.on-wishlist wishlist-indicator,\n.rfd-search .logged-followed.on-wishlist wishlist-indicator,\n.rfd-search .logged-dogged.on-wishlist wishlist-indicator {\n  right: 24px;\n}\n\n.rfd-search logbook-indicator {\n  display: none;\n  position: absolute;\n  top: 0px;\n  right: -6px;\n  width: calc(var(--result-icon-size) * 1);\n  height: calc(var(--result-icon-size) * 1);\n}\n\n.rfd-search wishlist-indicator {\n  display: none;\n  position: absolute;\n  top: -1px;\n  right: 4px;\n  width: calc(var(--result-icon-size) * 0.5);\n  height: calc(var(--result-icon-size) * 0.5);\n}\n\n.rfd-search input,\n.rfd-search #search-query-description,\n.rfd-search .search-results-search-query-description {\n  padding: calc(var(--padding) * 0.65);\n  padding-left: var(--padding);\n}\n\n.rfd-search #filter-icon {\n  left: 16px;\n  position: absolute;\n  top: 50%;\n  transform: translateY(-50%);\n  background-color: var(--subtitle-color);\n}\n\n.rfd-search #filter-bar-container input {\n  width: calc(100% - (var(--padding) * 2 - 8px));\n  display: block;\n  padding: var(--padding);\n  padding-top: calc(var(--padding) - 2px);\n  padding-bottom: calc(var(--padding) - 2px);\n  padding-left: 40px;\n  margin: var(--padding);\n  margin-right: calc(var(--padding) - 4px);\n  margin-left: calc(var(--padding) - 4px);\n  border-width: var(--border-width);\n  background-color: var(--background-color-page-semi);\n  transition: all 0.2s;\n}\n\n.rfd-search #name-and-grade {\n  display: flex;\n  justify-content: space-between;\n  font-weight: 500;\n}\n\n.rfd-search #gray-view {\n  width: 100vw;\n  height: 140vh;\n  background-color: rgba(0, 0, 0, 0.7);\n  position: fixed;\n  top: 0vw;\n  left: 0vw;\n  z-index: calc(var(--search-container-z-index) - 1);\n  opacity: 1;\n  backdrop-filter: blur(5px);\n  -webkit-backdrop-filter: blur(5px);\n}\n\n.rfd-search #search-container {\n  position: relative;\n  z-index: var(--search-container-z-index);\n}\n\n.rfd-search #search-container input {\n  padding-right: calc(var(--icon-size) + var(--padding));\n  padding-left: calc(var(--icon-size) + var(--padding) - 4px);\n  transition: all 0.2s;\n}\n\n.rfd-search #searchbar-inner-container {\n  position: relative;\n}\n\n.rfd-search #search-absolute {\n  position: absolute;\n  top: 0;\n  width: 100%;\n  transition: transform 0.3s ease-out;\n}\n\n.rfd-search #search-results-header-container,\n.rfd-search #search-widget,\n.rfd-search #search-results-widget {\n  border-width: var(--border-width);\n  background-color: var(--background-color);\n  transition: all 0.2s;\n}\n\n.rfd-search #search-widget,\n.rfd-search #search-results-widget {\n  overflow: hidden;\n}\n\n.rfd-search #search-widget {\n  box-shadow: 0px 0px 10px rgba(1, 1, 1, 0.1);\n  transition: opacity 0.3s;\n  border-radius: var(--radius);\n}\n\n.rfd-search #search-results-header-container,\n.rfd-search #search-results-widget {\n  margin-left: calc(-50vw + 50%);\n  margin-right: calc(-51vw + 51%);\n}\n\n.rfd-search #searchbar-footer {\n  background-color: var(--background-color);\n  font-size: var(--font-size-4);\n  color: var(--subtitle-color-2);\n  border-bottom-left-radius: var(--radius);\n  border-bottom-right-radius: var(--radius);\n  filter: brightness(90%);\n}\n\n.rfd-search #search-results-container {\n  contain: layout paint;\n  overflow-y: auto;\n  overflow-x: hidden;\n  overscroll-behavior-y: contain;\n  scrollbar-color: var(--background-color-2) rgba(1, 1, 1, 0);\n  transition: opacity 0.3s ease-out;\n}\n\n.rfd-search #search-icon {\n  position: absolute;\n  left: 4pt;\n  top: 50%;\n  transform: translateY(-50%);\n  background-color: var(--subtitle-color);\n}\n\n.rfd-search #filter-bar-container {\n  position: relative;\n}\n\n.rfd-search #input-hidden {\n  background-color: rgba(0, 0, 0, 0) !important;\n}\n\n.rfd-search #delete-search-text-button,\n.rfd-search #filter-delete-text-button {\n  position: absolute;\n  right: 0px;\n  top: 50%;\n  transform: translateY(-50%);\n  cursor: pointer;\n}\n\n.rfd-search #filter-delete-text-button {\n  right: 10px;\n}\n\n.rfd-search #return-key-action {\n  padding: var(--padding);\n  margin-top: calc(var(--padding) * 5);\n}\n\n.rfd-search #search-results-header-container {\n  backface-visibility: hidden;\n  background-color: var(--background-color);\n  position: sticky;\n  z-index: 2;\n  width: 100vw;\n  margin-left: -15px;\n}\n\n.rfd-search .routes-viewer-header {\n  padding-left: var(--padding);\n  width: 100%;\n}\n\n.rfd-search .result-icon {\n  display: inline-block;\n}\n\n.rfd-search .gray-background input {\n  background-color: #e0e0e0;\n  transition: background-color 0.2s ease;\n}\n\n.rfd-search .normal-background input {\n  background-color: var(--background-color);\n  transition: background-color 0.2s ease;\n}\n\n.rfd-search .searchbar-help-text-container {\n  transition: height 0.2s ease;\n  overscroll-behavior-y: contain;\n}\n\n.rfd-search #searchbar-help-text {\n  padding: calc(var(--padding) * 2);\n}\n\n.rfd-search #placeholder-short-display {\n  color: var(--title-color);\n  opacity: 0.5;\n  margin-left: -6px;\n}\n\n.rfd-search #searchbar-short-display-container {\n  position: absolute;\n  left: 4pt;\n  transform: translateY(-8%);\n}\n\n.rfd-search #search-icon-short-display {\n  background-color: var(--subtitle-color-3);\n  display: inline-block;\n  transform: translateY(30%);\n}\n\n.rfd-search #searchbar-query-suggestion-flex {\n  position: relative;\n  padding-right: calc(var(--icon-size) + var(--padding));\n  border-bottom-left-radius: var(--radius);\n  border-bottom-right-radius: var(--radius);\n}\n\n.rfd-search .ascent-notes a,\n.rfd-search .ascent-details a {\n  color: #bbdcee !important;\n  opacity: 0.7;\n  line-height: 1.3em;\n}\n\n.rfd-search #help-button,\n.rfd-search #filter-bar-help-button {\n  position: absolute;\n  right: 0pt;\n  top: 50%;\n  transform: translateY(-50%);\n}\n\n.rfd-search #searchbar-query-suggestion-flex,\n.rfd-search #search-query-description,\n.rfd-search .search-results-search-query-description {\n  font-size: var(--font-size-3);\n  color: var(--subtitle-color-2);\n  background-color: var(--background-color);\n}\n\n.rfd-search #focus-searchbar {\n  display: none;\n}\n\n.rfd-search .important {\n  font-weight: bold;\n  color: #f8ca23;\n}\n\n.rfd-search .pitch-grade {\n  font-weight: bold;\n  color: var(--title-color);\n}\n\n.rfd-search .pitch-number {\n  font-weight: bold;\n  color: var(--title-color);\n}\n\n.rfd-search .pitch-length {\n  font-weight: 500;\n  color: var(--title-color);\n}\n\n.rfd-search .logged {\n  background-color: green;\n}\n\n.rfd-search .page-control {\n  display: flex;\n  justify-content: flex-end;\n  align-content: center;\n  margin-top: var(--padding);\n  margin-bottom: var(--padding);\n  margin-left: calc(-50vw + 50%);\n  margin-right: calc(-50vw + 50% + var(--padding));\n}\n\n.rfd-search .fa-button {\n  border: 0;\n  width: 40px;\n  height: 40px;\n  background-color: var(--background-color);\n  border-radius: var(--radius);\n  color: var(--subtitle-color);\n  transition: background-color 0.2s ease-out;\n}\n\n.rfd-search .fa-button:hover {\n  background-color: var(--background-color-2);\n}\n\n.rfd-search .fa-button i {\n  transition: rotate 0.2s ease-out;\n}\n\n.rfd-search .hidden {\n  display: none;\n}\n\n.rfd-search #page-control-previous,\n.rfd-search #page-control-next,\n.rfd-search page-button {\n  display: flex;\n  align-items: center;\n  text-align: center;\n  aspect-ratio: 1/1;\n  font-family: monospace;\n  background-color: var(--background-color);\n  border: solid;\n  color: var(--subtitle-color-2);\n  margin-left: calc(var(--border-width) * -1);\n  border-width: var(--border-width);\n  border-color: var(--background-color-2);\n  justify-content: center;\n  font-weight: 900;\n  cursor: pointer;\n  font-size: var(--page-control-font-size);\n  height: var(--page-control-size);\n  width: var(--page-control-size);\n}\n\n.rfd-search #page-control-previous {\n  border-top-left-radius: var(--page-control-radius);\n  border-bottom-left-radius: var(--page-control-radius);\n}\n\n.rfd-search #page-control-next {\n  border-top-right-radius: var(--page-control-radius);\n  border-bottom-right-radius: var(--page-control-radius);\n}\n\n.rfd-search page-button {\n  display: flex;\n  justify-content: center;\n  align-content: center;\n}\n\n.rfd-search section-header {\n  display: flex;\n  justify-content: space-between;\n  font-size: var(--font-size-3);\n  color: var(--subtitle-color-2);\n  padding: var(--padding);\n  padding-right: calc(var(--padding) / 2);\n  padding-top: calc(var(--padding) / 2);\n  padding-bottom: calc(var(--padding) / 2 - 2px);\n  background-color: var(--background-color-page-semi);\n}\n\n.rfd-search .page-control-current {\n  border-color: var(--background-color-2);\n  color: var(--subtitle-color-2);\n  background-color: var(--background-color-2);\n  filter: brightness(110%);\n  cursor: default;\n}\n\n.rfd-search #page-control-next.disabled,\n.rfd-search #page-control-previous.disabled {\n  background-color: var(--background-color);\n  border-color: var(--background-color-2);\n  cursor: default;\n  opacity: 0.4;\n}\n\n.rfd-search .routes-viewer-controls {\n  color: var(--subtitle-color-2);\n  font-size: 0.9em;\n  display: flex;\n  justify-content: flex-start;\n  align-items: center;\n  margin-bottom: 0px;\n}\n\n.rfd-search .routes-viewer-sort-order {\n  flex-grow: 0;\n  font-family: monospace;\n  font-weight: 600;\n  margin-bottom: 0px;\n}\n\n.rfd-search .result-entry {\n  display: flex;\n}\n\n.rfd-search .result-icon-area {\n  margin-top: -4pt;\n  width: 30pt;\n}\n\n.rfd-search .ascent-details {\n  display: flex;\n  justify-content: space-between;\n  margin-top: 10px;\n  color: var(--subtitle-color-4);\n  font-size: calc(var(--font-size-4) * 0.9);\n}\n\n.rfd-search .ascent-notes {\n  margin-top: 14px;\n  margin-bottom: 18px;\n  font-style: italic;\n  line-height: calc(var(--font-size-4) * 1.2);\n  color: var(--subtitle-color-2);\n  font-size: calc(var(--font-size-4) * 0.9);\n}\n\n.rfd-search .result-text-area {\n  width: 100%;\n  max-width: calc(100% - 36px);\n  display: flex;\n  flex-direction: column;\n}\n\n.rfd-search .result-title {\n  overflow-x: clip;\n  text-overflow: ellipsis;\n  white-space: pre;\n}\n\n.rfd-search .result-crag-name {\n  overflow-x: clip;\n  text-overflow: ellipsis;\n}\n\n.rfd-search .result-entry-start {\n  margin-bottom: 6pt;\n  display: block;\n}\n\n.rfd-search .result-entry-end {\n  display: flex;\n  align-items: baseline;\n}\n\n.rfd-search .selected .result-entry {\n  background-color: var(--background-color-2);\n}\n\n.rfd-search .selected .result-entry * {\n  background-color: var(--background-color-2);\n}\n\n.rfd-search .footer-content {\n  padding: 10px;\n}\n\n.rfd-search .keycode {\n  display: none;\n  background-color: var(--background-color-2);\n  border-radius: 3pt;\n  padding: 4pt;\n}\n\n.rfd-search .display-if-necessary {\n  display: block;\n}\n\n.rfd-search .result-entry {\n  font-size: var(--font-size-2);\n  color: var(--title-color);\n  padding: var(--padding);\n  padding-top: calc(var(--padding) + 4px);\n  padding-bottom: calc(var(--padding) + 2px);\n  display: flex;\n}\n\n.rfd-search .result-entry-end {\n  white-space: nowrap;\n}\n\n.rfd-search .result-entry-start {\n  white-space: nowrap;\n}\n\n.rfd-search .result-grade {\n  font-size: var(--font-size-3);\n  font-style: italic;\n  color: var(--subtitle-color);\n  white-space: pre;\n}\n\n.rfd-search .result-star-count {\n  font-size: var(--font-size-2);\n  font-style: italic;\n  font-weight: bolder;\n  color: hotpink;\n}\n\n.rfd-search .result-crag-name {\n  font-size: var(--font-size-4);\n  color: var(--subtitle-color-2);\n}\n\n.rfd-search .result-context,\n.rfd-search .result-sub-context {\n  font-style: italic;\n  font-size: var(--font-size-4);\n  color: var(--subtitle-color-4);\n}\n\n.rfd-search .search-container {\n  background-color: none;\n}\n\n.rfd-search .loader-stopped,\n.rfd-search .divider {\n  opacity: 1;\n  height: var(--border-width);\n  background-color: var(--background-color-2);\n}\n\n.rfd-search .divider-no-height-set {\n  opacity: 1;\n  background-color: var(--background-color-2);\n}\n\n.rfd-search .icon {\n  background-color: var(--subtitle-color);\n  margin-right: 4pt;\n  cursor: pointer;\n}\n\n.rfd-search .icon:focus {\n  background-color: var(--flash-color);\n}\n\n.rfd-search .icon-magnifying-glass {\n  width: var(--icon-size);\n  height: var(--icon-size);\n  -webkit-mask-size: var(--icon-size) var(--icon-size);\n  -webkit-mask-repeat: no-repeat;\n  -webkit-mask-position: center;\n  mask-size: var(--icon-size) var(--icon-size);\n  mask-repeat: no-repeat;\n  mask-position: center;\n  mask: url(\"/assets/magnifying-glass.svg\");\n  -webkit-mask: url(\"/assets/magnifying-glass.svg\");\n}\n\n.rfd-search .icon-question-mark {\n  width: var(--icon-size);\n  height: var(--icon-size);\n  -webkit-mask-size: var(--icon-size) var(--icon-size);\n  -webkit-mask-repeat: no-repeat;\n  -webkit-mask-position: center;\n  mask-size: var(--icon-size) var(--icon-size);\n  mask-repeat: no-repeat;\n  mask-position: center;\n  mask: url(\"/assets/question-mark.svg\");\n  -webkit-mask: url(\"/assets/question-mark.svg\");\n}\n\n.rfd-search .icon-external-link {\n  width: var(--icon-size);\n  height: var(--icon-size);\n  -webkit-mask-size: var(--icon-size) var(--icon-size);\n  -webkit-mask-repeat: no-repeat;\n  -webkit-mask-position: center;\n  mask-size: var(--icon-size) var(--icon-size);\n  mask-repeat: no-repeat;\n  mask-position: center;\n  mask: url(\"/assets/external-link.svg\");\n  -webkit-mask: url(\"/assets/external-link.svg\");\n}\n\n.rfd-search .icon-circle-times {\n  width: var(--icon-size);\n  height: var(--icon-size);\n  -webkit-mask-size: var(--icon-size) var(--icon-size);\n  -webkit-mask-repeat: no-repeat;\n  -webkit-mask-position: center;\n  mask-size: var(--icon-size) var(--icon-size);\n  mask-repeat: no-repeat;\n  mask-position: center;\n  mask: url(\"/assets/circle-times.svg\");\n  -webkit-mask: url(\"/assets/circle-times.svg\");\n}\n\n.rfd-search .result-entry-container {\n  line-height: 1;\n}\n\n.rfd-search #search-results-widget .result-entry-container {\n  border-bottom: solid var(--background-color-page-semi) 1px;\n}\n\n.rfd-search route-result .result-text-area,\n.rfd-search logbook-result .result-text-area {\n  max-width: 100%;\n  padding-left: 40px;\n}\n\n.rfd-search .ascent-style-indicator {\n  margin-left: -15px;\n  margin-right: 4px;\n}\n\n.rfd-search .mouse-over {\n  color: cadetblue;\n  cursor: pointer;\n}\n\n.rfd-search .mouse-over:focus {\n  color: var(--flash-color);\n}\n\n.rfd-search .fade-in {\n  -webkit-animation: fadein var(--gray-view-opacity-animation-duration) linear forwards;\n  animation: fadein var(--gray-view-opacity-animation-duration) linear forwards;\n}\n\n@-webkit-keyframes fadein {\n  0% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 1;\n  }\n}\n\n@-moz-keyframes fadein {\n  0% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 1;\n  }\n}\n\n@-o-keyframes fadein {\n  0% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 1;\n  }\n}\n\n@keyframes fadein {\n  0% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 1;\n  }\n}\n\n.rfd-search .fade-out {\n  -webkit-animation: fadeout var(--gray-view-opacity-animation-duration) linear forwards;\n  animation: fadeout var(--gray-view-opacity-animation-duration) linear forwards;\n}\n\n@-webkit-keyframes fadeout {\n  0% {\n    opacity: 1;\n  }\n  100% {\n    opacity: 0;\n  }\n}\n\n@-moz-keyframes fadeout {\n  0% {\n    opacity: 1;\n  }\n  100% {\n    opacity: 0;\n  }\n}\n\n@-o-keyframes fadeout {\n  0% {\n    opacity: 1;\n  }\n  100% {\n    opacity: 0;\n  }\n}\n\n@keyframes fadeout {\n  0% {\n    opacity: 1;\n  }\n  100% {\n    opacity: 0;\n  }\n}\n\n.loader-stopped {\n  position: relative;\n  background: var(--background-color-2);\n  overflow: hidden;\n}\n\n.loader-spinning {\n  position: relative;\n  height: 2px;\n  background: transparent;\n  overflow: hidden;\n  animation: loader-rainbow 1.5s infinite linear;\n}\n\n.loader-spinning:after {\n  display: block;\n  content: \" \";\n  position: absolute;\n  height: 100%;\n  background: hotpink;\n  left: 0;\n  transform: translate3d(-150%, 0, 0);\n  animation: loader-stripe 1.5s infinite linear;\n}\n\n@keyframes loader-stripe {\n  0% {\n    transform: translate3d(-100%, 0, 0);\n  }\n  100% {\n    transform: translate3d(100%, 0, 0);\n  }\n}\n\n@keyframes loader-rainbow {\n  0% {\n    background: var(--background-color-2);\n  }\n  50% {\n    background: hotpink;\n  }\n  100% {\n    background: var(--background-color-2);\n  }\n}\n\n@media only screen and (min-width: 768px) {\n  :root {\n    --icon-size: 2rem;\n  }\n  .big-screen-spacer {\n    display: block;\n    min-height: 1rem;\n  }\n  search-results-viewer {\n    margin-top: 12px;\n  }\n  .rfd-search {\n    --page-control-size: 18pt;\n    --radius: 4pt;\n    --page-control-radius: 4pt;\n    --radius-search-results: 4pt;\n    --border-width: 1pt;\n    --font-size: 0.9rem;\n    --page-control-font-size: var(--font-size-3);\n    --font-size-2: calc(var(--font-size) * 0.9);\n    --font-size-3: calc(var(--font-size-2) * 0.9);\n    --font-size-4: calc(var(--font-size-3) * 0.9);\n    --result-icon-size: 1.5rem;\n  }\n  .rfd-search logbook-indicator {\n    right: -5px;\n  }\n  .rfd-search wishlist-indicator {\n    right: 0px;\n  }\n  .rfd-search #name-dash {\n    display: inline-block;\n  }\n  .rfd-search #star-count-and-route-grade {\n    display: flex;\n    flex-direction: row-reverse;\n    translate: 0 1.5px;\n  }\n  .rfd-search #star-count-and-route-grade * {\n    margin-right: 0.2rem;\n  }\n  .rfd-search #search-icon {\n    background-color: var(--subtitle-color);\n  }\n  .rfd-search input {\n    padding-top: 4pt;\n    padding-bottom: 4pt;\n  }\n  .rfd-search #focus-searchbar,\n.rfd-search .keycode {\n    display: unset;\n  }\n  .rfd-search #search-results-header-container {\n    border-top-left-radius: var(--radius);\n    border-top-right-radius: var(--radius);\n    width: 100%;\n  }\n  .rfd-search #searchbar-help-text {\n    padding: calc(var(--base-padding) * var(--big-screen-multiplier) * 2);\n  }\n  .rfd-search #search-results-header-container,\n.rfd-search #search-results-widget {\n    border: solid var(--background-color-2) var(--border-width);\n    margin-right: 50%;\n    margin-left: 50%;\n    transform: translateX(-50%);\n    min-width: 700px;\n    box-shadow: 0px 0px 10px rgba(1, 1, 1, 0.1);\n  }\n  .rfd-search #search-results-widget {\n    border-top-width: 0;\n  }\n  .rfd-search #search-results-header-container {\n    border-bottom-width: 0;\n  }\n  .rfd-search #placeholder-short-display {\n    margin-left: 0px;\n    position: absolute;\n    white-space: nowrap;\n    transform: translate(4px, 15px);\n  }\n  .rfd-search #searchbar-short-display-container {\n    transform: translateY(-26%);\n  }\n  .rfd-search #search-results-header-container {\n    border-top-left-radius: var(--radius-search-results);\n    border-top-right-radius: var(--radius-search-results);\n  }\n  .rfd-search .page-control {\n    width: 400pt;\n    margin-right: 50%;\n    margin-left: 50%;\n    transform: translateX(-50%);\n    min-width: 700px;\n  }\n  .rfd-search #filter-bar-container input {\n    padding-top: calc(var(--padding) / 2);\n    padding-bottom: calc(var(--padding) / 2);\n  }\n  .rfd-search #search-container {\n    max-width: 500pt;\n    left: 50%;\n    transform: translateX(-50%);\n  }\n  .rfd-search #search-results-header-container {\n    width: unset;\n  }\n  .rfd-search #searchbar-query-suggestion-flex,\n.rfd-search #search-query-description,\n.rfd-search .search-results-search-query-description {\n    font-size: calc(var(--font-size-2) * 0.9);\n  }\n  .rfd-search .result-entry-container {\n    line-height: 1;\n  }\n  .rfd-search .ascent-details {\n    font-size: var(--font-size-3);\n  }\n  .rfd-search .ascent-notes {\n    font-size: var(--font-size-3);\n  }\n  .rfd-search .result-entry {\n    padding-top: calc(var(--padding) / 1);\n    padding-bottom: calc(var(--padding) / 1);\n    align-items: center;\n  }\n  .rfd-search .result-crag-name {\n    padding-bottom: 2pt;\n  }\n  .rfd-search .selected .result-entry {\n    border-radius: calc(var(--radius) * 0.7);\n  }\n  .rfd-search .icon {\n    margin-right: unset;\n  }\n  .rfd-search .divider-no-height-set {\n    margin: 4px;\n  }\n  .rfd-search .result-entry-end {\n    padding-left: var(--padding);\n    flex-direction: column;\n    align-items: baseline;\n    flex-grow: 1;\n  }\n  .rfd-search .footer-content {\n    padding: 4px;\n    padding-right: 10px;\n  }\n  .rfd-search .nightmode #search-results-header-container,\n.rfd-search .nightmode #search-results-widget {\n    box-shadow: 0px 0px 10px rgba(1, 1, 1, 0.2);\n  }\n  .rfd-search .result-icon-area {\n    margin-top: unset;\n  }\n  .rfd-search .result-text-area {\n    flex-direction: row;\n    justify-content: space-between;\n  }\n  .rfd-search .result-entry-start {\n    align-self: center;\n    margin-bottom: unset;\n  }\n  .rfd-search .result-entry-end {\n    flex-direction: column;\n    align-items: flex-end;\n  }\n}\n\nselect {\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  appearance: none;\n  text-overflow: \"\";\n}";
 
 function closestShadowPiercing(el, tagName) {
     const closest = el.closest(tagName);
@@ -2190,15 +2190,15 @@ const noBreaks = (s) => {
   return s?.replace(/\s/g, "&nbsp");
 };
 
-var __defProp$s = Object.defineProperty;
-var __getOwnPropDesc$s = Object.getOwnPropertyDescriptor;
-var __decorateClass$s = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$s(target, key) : target;
+var __defProp$t = Object.defineProperty;
+var __getOwnPropDesc$t = Object.getOwnPropertyDescriptor;
+var __decorateClass$t = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$t(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$s(target, key, result);
+    __defProp$t(target, key, result);
   return result;
 };
 let BaseCon = class extends HTMLElement {
@@ -2239,20 +2239,20 @@ let BaseCon = class extends HTMLElement {
     return "";
   }
 };
-BaseCon = __decorateClass$s([
+BaseCon = __decorateClass$t([
   controller
 ], BaseCon);
 const BaseCon$1 = BaseCon;
 
-var __defProp$r = Object.defineProperty;
-var __getOwnPropDesc$r = Object.getOwnPropertyDescriptor;
-var __decorateClass$r = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$r(target2, key) : target2;
+var __defProp$s = Object.defineProperty;
+var __getOwnPropDesc$s = Object.getOwnPropertyDescriptor;
+var __decorateClass$s = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$s(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$r(target2, key, result);
+    __defProp$s(target2, key, result);
   return result;
 };
 let PageButtonElement = class extends BaseCon$1 {
@@ -2270,13 +2270,13 @@ let PageButtonElement = class extends BaseCon$1 {
     super.connectedCallback();
   }
 };
-__decorateClass$r([
+__decorateClass$s([
   target
 ], PageButtonElement.prototype, "span", 2);
-__decorateClass$r([
+__decorateClass$s([
   attr
 ], PageButtonElement.prototype, "pageNumber", 1);
-PageButtonElement = __decorateClass$r([
+PageButtonElement = __decorateClass$s([
   controller
 ], PageButtonElement);
 
@@ -2290,15 +2290,15 @@ const pageControlTemplate = (element) => {
 `;
 };
 
-var __defProp$q = Object.defineProperty;
-var __getOwnPropDesc$q = Object.getOwnPropertyDescriptor;
-var __decorateClass$q = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$q(target2, key) : target2;
+var __defProp$r = Object.defineProperty;
+var __getOwnPropDesc$r = Object.getOwnPropertyDescriptor;
+var __decorateClass$r = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$r(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$q(target2, key, result);
+    __defProp$r(target2, key, result);
   return result;
 };
 let PageControlElement = class extends BaseCon$1 {
@@ -2409,16 +2409,16 @@ let PageControlElement = class extends BaseCon$1 {
     return arr;
   }
 };
-__decorateClass$q([
+__decorateClass$r([
   target
 ], PageControlElement.prototype, "previous", 2);
-__decorateClass$q([
+__decorateClass$r([
   targets
 ], PageControlElement.prototype, "pages", 2);
-__decorateClass$q([
+__decorateClass$r([
   target
 ], PageControlElement.prototype, "next", 2);
-PageControlElement = __decorateClass$q([
+PageControlElement = __decorateClass$r([
   controller
 ], PageControlElement);
 
@@ -2697,15 +2697,15 @@ class UkcSid {
   ukcId = 0;
 }
 
-var __defProp$p = Object.defineProperty;
-var __getOwnPropDesc$p = Object.getOwnPropertyDescriptor;
-var __decorateClass$p = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$p(target2, key) : target2;
+var __defProp$q = Object.defineProperty;
+var __getOwnPropDesc$q = Object.getOwnPropertyDescriptor;
+var __decorateClass$q = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$q(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$p(target2, key, result);
+    __defProp$q(target2, key, result);
   return result;
 };
 let BaseRoutesViewer = class extends BaseCon$1 {
@@ -3089,7 +3089,7 @@ let BaseRoutesViewer = class extends BaseCon$1 {
     return appendRoute({ target: target2, route, tagName });
   }
   headerDeets = [];
-  appendHeader(leftText, ascentCount, target2, objectDescriptor) {
+  appendHeader(leftText, ascentCount, target2, objectDescriptor, _route) {
     const header = document.createElement("section-header");
     header.classList.add("main-header");
     target2.routes_viewer_container.appendChild(header);
@@ -3157,50 +3157,59 @@ let BaseRoutesViewer = class extends BaseCon$1 {
   }
   willAppendRoute(_route) {
   }
+  linkForCragId(cragId, cragName) {
+    if (window.location.host.match(/localhost/g)) {
+      return `<a style='color:#bbdcee;opacity: 0.75;' href='/pages/crag/?crag_id=${cragId}'>${escape(cragName)}</a>`;
+    }
+    if (window.location.host.match(/dkk8m.ondigitalocean.app/g)) {
+      return `<a style='color:#bbdcee;opacity: 0.75;' href='/crag/?crag_id=${cragId}'>${escape(cragName)}</a>`;
+    }
+    return `<a style='color:#bbdcee;opacity: 0.75;' href='/logbook/crags/ -${cragId}'>${escape(cragName)}</a>`;
+  }
 };
-__decorateClass$p([
+__decorateClass$q([
   target
 ], BaseRoutesViewer.prototype, "routes_viewer_container", 2);
-__decorateClass$p([
+__decorateClass$q([
   target
 ], BaseRoutesViewer.prototype, "input", 2);
-__decorateClass$p([
+__decorateClass$q([
   target
 ], BaseRoutesViewer.prototype, "progress_bar", 2);
-__decorateClass$p([
+__decorateClass$q([
   target
 ], BaseRoutesViewer.prototype, "delete_text_button", 2);
-__decorateClass$p([
+__decorateClass$q([
   target
 ], BaseRoutesViewer.prototype, "filter_query_description", 2);
-__decorateClass$p([
+__decorateClass$q([
   target
 ], BaseRoutesViewer.prototype, "header_container", 2);
-__decorateClass$p([
+__decorateClass$q([
   target
 ], BaseRoutesViewer.prototype, "routes_viewer_title", 2);
-__decorateClass$p([
+__decorateClass$q([
   target
 ], BaseRoutesViewer.prototype, "sort_order_picker", 2);
-__decorateClass$p([
+__decorateClass$q([
   target
 ], BaseRoutesViewer.prototype, "sort_arrow", 2);
-__decorateClass$p([
+__decorateClass$q([
   target
 ], BaseRoutesViewer.prototype, "sort_button", 2);
-__decorateClass$p([
+__decorateClass$q([
   target
 ], BaseRoutesViewer.prototype, "filters_button", 2);
-__decorateClass$p([
+__decorateClass$q([
   target
 ], BaseRoutesViewer.prototype, "filter_icon", 2);
-__decorateClass$p([
+__decorateClass$q([
   target
 ], BaseRoutesViewer.prototype, "fixed_section_header", 2);
-__decorateClass$p([
+__decorateClass$q([
   target
 ], BaseRoutesViewer.prototype, "fixed_section_header_2", 2);
-BaseRoutesViewer = __decorateClass$p([
+BaseRoutesViewer = __decorateClass$q([
   controller
 ], BaseRoutesViewer);
 const BaseRoutesViewer$1 = BaseRoutesViewer;
@@ -3263,15 +3272,15 @@ const searchbarTemplate = (element) => {
     `;
 };
 
-var __defProp$o = Object.defineProperty;
-var __getOwnPropDesc$o = Object.getOwnPropertyDescriptor;
-var __decorateClass$o = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$o(target2, key) : target2;
+var __defProp$p = Object.defineProperty;
+var __getOwnPropDesc$p = Object.getOwnPropertyDescriptor;
+var __decorateClass$p = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$p(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$o(target2, key, result);
+    __defProp$p(target2, key, result);
   return result;
 };
 let BaseSearchbarElement = class extends BaseCon$1 {
@@ -3708,67 +3717,67 @@ let BaseSearchbarElement = class extends BaseCon$1 {
     this.delete_text_button.classList[str ? "remove" : "add"]("hidden");
   }
 };
-__decorateClass$o([
+__decorateClass$p([
   target
 ], BaseSearchbarElement.prototype, "search_container", 2);
-__decorateClass$o([
+__decorateClass$p([
   target
 ], BaseSearchbarElement.prototype, "input", 2);
-__decorateClass$o([
+__decorateClass$p([
   target
 ], BaseSearchbarElement.prototype, "return_key_action", 2);
-__decorateClass$o([
+__decorateClass$p([
   target
 ], BaseSearchbarElement.prototype, "search_absolute", 2);
-__decorateClass$o([
+__decorateClass$p([
   target
 ], BaseSearchbarElement.prototype, "help_button", 2);
-__decorateClass$o([
+__decorateClass$p([
   target
 ], BaseSearchbarElement.prototype, "delete_text_button", 2);
-__decorateClass$o([
+__decorateClass$p([
   target
 ], BaseSearchbarElement.prototype, "search_widget", 2);
-__decorateClass$o([
+__decorateClass$p([
   target
 ], BaseSearchbarElement.prototype, "progress_bar", 2);
-__decorateClass$o([
+__decorateClass$p([
   target
 ], BaseSearchbarElement.prototype, "routes_viewer_container", 2);
-__decorateClass$o([
+__decorateClass$p([
   target
 ], BaseSearchbarElement.prototype, "searchbar_inner_container", 2);
-__decorateClass$o([
+__decorateClass$p([
   target
 ], BaseSearchbarElement.prototype, "searchbar_query_suggestion", 2);
-__decorateClass$o([
+__decorateClass$p([
   target
 ], BaseSearchbarElement.prototype, "searchbar_query_suggestion_href", 2);
-__decorateClass$o([
+__decorateClass$p([
   target
 ], BaseSearchbarElement.prototype, "query_suggestion_container", 2);
-__decorateClass$o([
+__decorateClass$p([
   target
 ], BaseSearchbarElement.prototype, "help_text_container", 2);
-__decorateClass$o([
+__decorateClass$p([
   target
 ], BaseSearchbarElement.prototype, "filter_query_description", 2);
-__decorateClass$o([
+__decorateClass$p([
   target
 ], BaseSearchbarElement.prototype, "searchbar_footer", 2);
-__decorateClass$o([
+__decorateClass$p([
   target
 ], BaseSearchbarElement.prototype, "show_all_results_span", 2);
-__decorateClass$o([
+__decorateClass$p([
   target
 ], BaseSearchbarElement.prototype, "gray_view", 2);
-__decorateClass$o([
+__decorateClass$p([
   target
 ], BaseSearchbarElement.prototype, "searchbar_short_display", 2);
-__decorateClass$o([
+__decorateClass$p([
   attr
 ], BaseSearchbarElement.prototype, "placeholderString", 1);
-BaseSearchbarElement = __decorateClass$o([
+BaseSearchbarElement = __decorateClass$p([
   controller
 ], BaseSearchbarElement);
 const BaseSearchbarElement$1 = BaseSearchbarElement;
@@ -3787,15 +3796,15 @@ const isAppleSafari = () => {
 
 const html = "<h6>🛟 Route &amp; Crag Search Help</h6>\n<p>You should probably try out the suggestions to get an feel of the stuff you can do before you waste time reading all this…</p>\n<p>…but if you really want to know everything about the search, here you go:</p>\n<p>Searches are checked against the following properties of a route (and the equivalents for a crag):</p>\n<ul>\n<li><code>name</code></li>\n<li><code>crag name</code></li>\n<li><code>buttress name</code></li>\n<li><code>area name</code></li>\n<li><code>country name</code></li>\n<li><code>first ascent</code> potentially including dates and names, but could be one or the other or neither</li>\n<li><code>rock type name</code> one of eg [ granite, gritstone, sandstone, limestone, schist, rhylite, ... ] (there are loads)</li>\n<li><code>route type name</code> one of [ sport, trad, winter, bouldering, aid ] (this list is complete)</li>\n<li><code>description</code></li>\n<li><code>route grade</code></li>\n<li><code>tech grade</code></li>\n</ul>\n<p>A match is found if all of the tokens of the search query match one or more of the fields (more on tokens later, but think &quot;words&quot; for now). This means you can very quickly write a query that returns very few results by typing a combination of fragments of the various fields, like <code>mal wom</code> returns <code>Wombat E2</code> at Malham as the first result because token1 (<code>mal</code>) matches the crag name (<code>Malham</code>) and token2 (<code>wom</code>) matches the route's name. You could be even more precise and search <code>mal wom e2</code> but for this instance it's not needed. (Note that this stuff is true at the time of writing but could change if more routes are added).</p>\n<p>The scoring of results is done by applying multipliers depending on where a match is found. The higher the field is on the list above, the more valuble a match against it is considered, so if a query matches against one route's <code>name</code> and another's <code>description</code>, the one against the <code>name</code> will be considered a better match and appear nearer the top. The popularity of the route is taken into account so a route with loads of ascents will be given a higher search score than one with none.</p>\n<p>For the most part this is all anyone really needs, but there are also a few advanced options you can use if you want:</p>\n<ul>\n<li>exact-phrase matches, eg <code>&quot;captain nemo&quot;</code></li>\n<li>route-star ranges, eg <code>*-**</code></li>\n<li>grade ranges, eg <code>vs-e3</code></li>\n<li>date ranges, eg <code>1984-1986</code> (for first ascents - note that not all routes have fa details so these will be excluded from a search with a date range!)</li>\n<li>difficulty for grade / grade quality, eg <code>|soft|</code></li>\n<li>regular expressions, eg <code>/chris (?!craggs)/</code></li>\n<li>negations, eg <code>-crack</code></li>\n</ul>\n<h6>Exact phrase matches</h6>\n<p>Surround multiple words with double quotes to require a match on that phrase, eg <code>&quot;bat route&quot; malham</code> creates the tokens <code>bat route</code> and <code>malham</code>. Another example is <code>roof crack stanage</code> currently returns 45 routes, where as <code>&quot;roof crack&quot; stanage</code> returns only 9.</p>\n<h6>Route-star ranges</h6>\n<p>Asterisks get special treatment in search queries now. A sequence of them is considered to be a star rating for a route, so <code>*</code> is treated as 1-star, <code>**</code> treated as 2-stars and <code>***</code> treated as 3-stars. Typing just one sequence creates a search where the route is required to have at least that many stars, eg <code>bat route **</code> will only return routes with 2 or more stars that also match the other search tokens <code>bat</code> and <code>route</code>.</p>\n<p>Adding a dash and a second star sequence will create a range, eg <code>*-**</code> means &quot;match routes with at least one and at most two stars&quot;.</p>\n<h6>Grade ranges</h6>\n<p>As above with stars, but with grades. Eg <code>vs-e1</code> will match routes with a grade of either <code>VS</code>, <code>HVS</code> or <code>E1</code>.</p>\n<h6>Date ranges (only years)</h6>\n<p>Date ranges will check against the first-ascent date field and require the route to have been put up between the start date and the end date (inclusive). Eg <code>1970-1974</code> will match routes put up between 01-01-1970 and 31-12-1974. You should note that not all routes have had the first ascent date filled in, and these routes will be excluded from any search that includes date ranges, so you might not get the results you expect.</p>\n<h6>Difficulty for grade</h6>\n<p>Not sure what to call this so we'll use &quot;difficulty for grade&quot;. We've calculated a value based on the grade voting system that assigns a route a value from one of:</p>\n<ul>\n<li><code>soft</code></li>\n<li><code>benchmark</code></li>\n<li><code>hard</code></li>\n</ul>\n<p>You can search for routes with these charateristics by using the special pipe-syntax, eg <code>|soft|</code>. If you don't wrap the token in pipes, you'll just be searching the other text fields, so <code>soft</code>, with no pipes, would get you a match if the token appeard in the description for example and <code>|soft|</code> will <em>only</em> match against routes that have been marked as soft, and not check the other fields for the token.</p>\n<p>A continuation of this system which uses the same syntax allows you to search for routes that are voted to be a completely different grade using the following tokens:</p>\n<ul>\n<li><code>undergraded</code></li>\n<li><code>overgraded</code></li>\n</ul>\n<p>eg <code>|overgraded|</code>. Note that this is based on votes, so if there are no votes for a route and you include one of these tokens it won't appear, regardless of whether it is in reality over or undergraded. Note also that whilst you can combine these with soft/benchmark/hard, doing so doesn't really make sense.</p>\n<h6>Shorthands</h6>\n<p>The grade quality stuff all have shorthand variants:</p>\n<ul>\n<li><code>|s</code> = <code>|soft|</code></li>\n<li><code>|b</code> = <code>|benchmark|</code></li>\n<li><code>|h</code> = <code>|hard|</code></li>\n<li><code>|u</code> = <code>|undergraded|</code></li>\n<li><code>|o</code> = <code>|overgraded|</code></li>\n</ul>\n<h6>Regular expressions</h6>\n<p>Finally we reach the most pointless feature, regular expressions - we need only add an email function and this search bar will be complete.</p>\n<p>Regular expressions, for those that don't know, are a way of describing patterns in strings. They are a very powerful tool for searching and manipulating text, and completely unnecessary in this search bar. However, if you do want to use them, they are possible by surrounding the expression with forward slashes, eg <code>/chris (?!craggs)/</code> will match any routes that mention <code>'chris'</code> but not those that mention <code>'chris craggs'</code>. Or <code>e2-e3 /crap|damp|horrible/</code> will return you a list of probably not classic routes.</p>\n<p>Note that pure-regex queries are not allowed due to the cost of the queries against the database. You should always add any of the other query types mentioned above if you're using a regex.</p>\n<h6>Negation</h6>\n<p>Extra finally, if you precede any token with a minus character you will negate it and require that it is not matched, eg <code>-&quot;mark leach&quot; bat malham</code>.</p>\n";
 
-var __defProp$n = Object.defineProperty;
-var __getOwnPropDesc$n = Object.getOwnPropertyDescriptor;
-var __decorateClass$n = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$n(target, key) : target;
+var __defProp$o = Object.defineProperty;
+var __getOwnPropDesc$o = Object.getOwnPropertyDescriptor;
+var __decorateClass$o = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$o(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$n(target, key, result);
+    __defProp$o(target, key, result);
   return result;
 };
 let myQueryExamples = new Set(queryExamples);
@@ -4030,10 +4039,10 @@ let RouteSearchbarElement = class extends BaseSearchbarElement$1 {
     return element;
   }
 };
-__decorateClass$n([
+__decorateClass$o([
   attr
 ], RouteSearchbarElement.prototype, "searchType", 2);
-RouteSearchbarElement = __decorateClass$n([
+RouteSearchbarElement = __decorateClass$o([
   controller
 ], RouteSearchbarElement);
 const RouteSearchbarElement$1 = RouteSearchbarElement;
@@ -4087,10 +4096,24 @@ var UkcLocalStorage;
       let t = new Date(parseInt(localStorage.getItem(this.editDateKey)));
       return t;
     }
+    minimumDelayBetweenFetches = 1e3 * 60 * 5;
+    get lastFetchedKey() {
+      return `${this.identifier}_last_fetched`;
+    }
+    set lastFetched(t) {
+      localStorage.setItem(this.lastFetchedKey, t.getTime().toString());
+    }
+    get lastFetched() {
+      let t = new Date(parseInt(localStorage.getItem(this.lastFetchedKey)));
+      return t;
+    }
     constructor() {
     }
     isFetching = false;
     async fetch() {
+      if (this.lastFetched?.getTime() + this.minimumDelayBetweenFetches > Date.now()) {
+        return { data: {}, status: 304 };
+      }
       this.isFetching = true;
       const cookie = "ukcsid=" + Cookies.default().get("ukcsid");
       const response = await fetch(this.apiUrl, {
@@ -4113,6 +4136,7 @@ var UkcLocalStorage;
         const callback = this.queue.shift();
         callback(res);
       }
+      this.lastFetched = new Date();
       return { data: res, status };
     }
     queue = [];
@@ -4141,7 +4165,9 @@ var UkcLocalStorage;
       return this.lookup;
     }
     loadFromRemoteDetails(remoteDeets) {
-      const date = new Date(remoteDeets.last_updated);
+      if (remoteDeets.status !== 200)
+        return;
+      const date = new Date(remoteDeets.data.last_updated);
       this.editDate = date;
       this.lookup.merge(remoteDeets);
       localStorage.setItem(this.identifier, JSON.stringify(this.lookup));
@@ -4305,15 +4331,15 @@ var UkcLocalStorage;
 })(UkcLocalStorage || (UkcLocalStorage = {}));
 globalThis.logbook = new UkcLocalStorage.LogbookDetails();
 
-var __defProp$m = Object.defineProperty;
-var __getOwnPropDesc$m = Object.getOwnPropertyDescriptor;
-var __decorateClass$m = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$m(target, key) : target;
+var __defProp$n = Object.defineProperty;
+var __getOwnPropDesc$n = Object.getOwnPropertyDescriptor;
+var __decorateClass$n = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$n(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$m(target, key, result);
+    __defProp$n(target, key, result);
   return result;
 };
 const sharedStorage$5 = UkcLocalStorage.sharedLogbook;
@@ -4348,7 +4374,7 @@ let UkcSearchbarElement = class extends RouteSearchbarElement$1 {
     }
   }
 };
-UkcSearchbarElement = __decorateClass$m([
+UkcSearchbarElement = __decorateClass$n([
   controller
 ], UkcSearchbarElement);
 
@@ -4361,15 +4387,15 @@ const topoDotTemplate = (_el) => {
 `;
 };
 
-var __defProp$l = Object.defineProperty;
-var __getOwnPropDesc$l = Object.getOwnPropertyDescriptor;
-var __decorateClass$l = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$l(target2, key) : target2;
+var __defProp$m = Object.defineProperty;
+var __getOwnPropDesc$m = Object.getOwnPropertyDescriptor;
+var __decorateClass$m = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$m(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$l(target2, key, result);
+    __defProp$m(target2, key, result);
   return result;
 };
 let TopoDotElement = class extends BaseCon$1 {
@@ -4394,16 +4420,16 @@ let TopoDotElement = class extends BaseCon$1 {
     return topoDotTemplate;
   }
 };
-__decorateClass$l([
+__decorateClass$m([
   attr
 ], TopoDotElement.prototype, "colorName", 1);
-__decorateClass$l([
+__decorateClass$m([
   target
 ], TopoDotElement.prototype, "stroke", 2);
-__decorateClass$l([
+__decorateClass$m([
   target
 ], TopoDotElement.prototype, "fill", 2);
-TopoDotElement = __decorateClass$l([
+TopoDotElement = __decorateClass$m([
   controller
 ], TopoDotElement);
 const TopoDotElement$1 = TopoDotElement;
@@ -4448,15 +4474,15 @@ const routeTemplate = (element) => {
     `;
 };
 
-var __defProp$k = Object.defineProperty;
-var __getOwnPropDesc$k = Object.getOwnPropertyDescriptor;
-var __decorateClass$k = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$k(target2, key) : target2;
+var __defProp$l = Object.defineProperty;
+var __getOwnPropDesc$l = Object.getOwnPropertyDescriptor;
+var __decorateClass$l = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$l(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$k(target2, key, result);
+    __defProp$l(target2, key, result);
   return result;
 };
 let SearchResultElement = class extends BaseCon$1 {
@@ -4615,79 +4641,79 @@ let SearchResultElement = class extends BaseCon$1 {
     window.open(this.url, "_self");
   }
 };
-__decorateClass$k([
+__decorateClass$l([
   target
 ], SearchResultElement.prototype, "href", 2);
-__decorateClass$k([
+__decorateClass$l([
   target
 ], SearchResultElement.prototype, "topo_dot", 2);
-__decorateClass$k([
+__decorateClass$l([
   target
 ], SearchResultElement.prototype, "item_name", 2);
-__decorateClass$k([
+__decorateClass$l([
   target
 ], SearchResultElement.prototype, "route_grade", 2);
-__decorateClass$k([
+__decorateClass$l([
   target
 ], SearchResultElement.prototype, "star_count", 2);
-__decorateClass$k([
+__decorateClass$l([
   target
 ], SearchResultElement.prototype, "crag_name", 2);
-__decorateClass$k([
+__decorateClass$l([
   target
 ], SearchResultElement.prototype, "county_name", 2);
-__decorateClass$k([
+__decorateClass$l([
   target
 ], SearchResultElement.prototype, "country_name", 2);
-__decorateClass$k([
+__decorateClass$l([
   target
 ], SearchResultElement.prototype, "logbook_indicator", 2);
-__decorateClass$k([
+__decorateClass$l([
   target
 ], SearchResultElement.prototype, "wishlist_indicator", 2);
-__decorateClass$k([
+__decorateClass$l([
   target
 ], SearchResultElement.prototype, "crag_icon", 2);
-__decorateClass$k([
+__decorateClass$l([
   target
 ], SearchResultElement.prototype, "buttress_icon", 2);
-__decorateClass$k([
+__decorateClass$l([
   target
 ], SearchResultElement.prototype, "extras_slot", 2);
-__decorateClass$k([
+__decorateClass$l([
   attr
 ], SearchResultElement.prototype, "slugFull", 1);
-__decorateClass$k([
+__decorateClass$l([
   attr
 ], SearchResultElement.prototype, "itemName", 1);
-__decorateClass$k([
+__decorateClass$l([
   attr
 ], SearchResultElement.prototype, "routeGrade", 1);
-__decorateClass$k([
+__decorateClass$l([
   attr
 ], SearchResultElement.prototype, "starCount", 1);
-__decorateClass$k([
+__decorateClass$l([
   attr
 ], SearchResultElement.prototype, "cragName", 1);
-__decorateClass$k([
+__decorateClass$l([
   attr
 ], SearchResultElement.prototype, "countyName", 1);
-__decorateClass$k([
+__decorateClass$l([
   attr
 ], SearchResultElement.prototype, "countryName", 1);
-__decorateClass$k([
+__decorateClass$l([
   attr
 ], SearchResultElement.prototype, "colorId", 1);
-__decorateClass$k([
+__decorateClass$l([
   attr
 ], SearchResultElement.prototype, "routeIdUkc", 1);
-__decorateClass$k([
+__decorateClass$l([
   attr
 ], SearchResultElement.prototype, "logStatus", 1);
-__decorateClass$k([
+__decorateClass$l([
   attr
 ], SearchResultElement.prototype, "wishlistStatus", 1);
-SearchResultElement = __decorateClass$k([
+SearchResultElement = __decorateClass$l([
   controller
 ], SearchResultElement);
 const SearchResultElement$1 = SearchResultElement;
@@ -4701,15 +4727,15 @@ const logbookIndicatorTemplate = (_el) => {
 `;
 };
 
-var __defProp$j = Object.defineProperty;
-var __getOwnPropDesc$j = Object.getOwnPropertyDescriptor;
-var __decorateClass$j = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$j(target2, key) : target2;
+var __defProp$k = Object.defineProperty;
+var __getOwnPropDesc$k = Object.getOwnPropertyDescriptor;
+var __decorateClass$k = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$k(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$j(target2, key, result);
+    __defProp$k(target2, key, result);
   return result;
 };
 let LogbookIndicatorElement = class extends BaseCon$1 {
@@ -4727,16 +4753,16 @@ let LogbookIndicatorElement = class extends BaseCon$1 {
     return logbookIndicatorTemplate;
   }
 };
-__decorateClass$j([
+__decorateClass$k([
   attr
 ], LogbookIndicatorElement.prototype, "colorName", 1);
-__decorateClass$j([
+__decorateClass$k([
   target
 ], LogbookIndicatorElement.prototype, "stroke", 2);
-__decorateClass$j([
+__decorateClass$k([
   target
 ], LogbookIndicatorElement.prototype, "fill", 2);
-LogbookIndicatorElement = __decorateClass$j([
+LogbookIndicatorElement = __decorateClass$k([
   controller
 ], LogbookIndicatorElement);
 const LogbookIndicatorElement$1 = LogbookIndicatorElement;
@@ -4803,15 +4829,15 @@ const logentryTemplate = (element) => {
     `;
 };
 
-var __defProp$i = Object.defineProperty;
-var __getOwnPropDesc$i = Object.getOwnPropertyDescriptor;
-var __decorateClass$i = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$i(target2, key) : target2;
+var __defProp$j = Object.defineProperty;
+var __getOwnPropDesc$j = Object.getOwnPropertyDescriptor;
+var __decorateClass$j = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$j(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$i(target2, key, result);
+    __defProp$j(target2, key, result);
   return result;
 };
 let LogbookResultElement = class extends SearchResultElement$1 {
@@ -4920,58 +4946,58 @@ let LogbookResultElement = class extends SearchResultElement$1 {
     }
   }
 };
-__decorateClass$i([
+__decorateClass$j([
   target
 ], LogbookResultElement.prototype, "ascensionist", 2);
-__decorateClass$i([
+__decorateClass$j([
   target
 ], LogbookResultElement.prototype, "partner_names", 2);
-__decorateClass$i([
+__decorateClass$j([
   target
 ], LogbookResultElement.prototype, "partner_names_with", 2);
-__decorateClass$i([
+__decorateClass$j([
   target
 ], LogbookResultElement.prototype, "ascent_style_indicator", 2);
-__decorateClass$i([
+__decorateClass$j([
   target
 ], LogbookResultElement.prototype, "ascent_style", 2);
-__decorateClass$i([
+__decorateClass$j([
   target
 ], LogbookResultElement.prototype, "ascent_notes", 2);
-__decorateClass$i([
+__decorateClass$j([
   target
 ], LogbookResultElement.prototype, "ascent_date", 2);
-__decorateClass$i([
+__decorateClass$j([
   targets
 ], LogbookResultElement.prototype, "crag_names", 2);
-__decorateClass$i([
+__decorateClass$j([
   targets
 ], LogbookResultElement.prototype, "county_names", 2);
-__decorateClass$i([
+__decorateClass$j([
   targets
 ], LogbookResultElement.prototype, "country_names", 2);
-__decorateClass$i([
+__decorateClass$j([
   attr
 ], LogbookResultElement.prototype, "cragName", 1);
-__decorateClass$i([
+__decorateClass$j([
   attr
 ], LogbookResultElement.prototype, "countyName", 1);
-__decorateClass$i([
+__decorateClass$j([
   attr
 ], LogbookResultElement.prototype, "countryName", 1);
-__decorateClass$i([
+__decorateClass$j([
   attr
 ], LogbookResultElement.prototype, "showCragName", 2);
-__decorateClass$i([
+__decorateClass$j([
   attr
 ], LogbookResultElement.prototype, "ascentNotes", 1);
-__decorateClass$i([
+__decorateClass$j([
   attr
 ], LogbookResultElement.prototype, "ascentStyle", 1);
-__decorateClass$i([
+__decorateClass$j([
   attr
 ], LogbookResultElement.prototype, "ascentStyleSimple", 1);
-LogbookResultElement = __decorateClass$i([
+LogbookResultElement = __decorateClass$j([
   controller
 ], LogbookResultElement);
 
@@ -5016,15 +5042,15 @@ const routeResultTemplate = (element) => {
     `;
 };
 
-var __defProp$h = Object.defineProperty;
-var __getOwnPropDesc$h = Object.getOwnPropertyDescriptor;
-var __decorateClass$h = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$h(target2, key) : target2;
+var __defProp$i = Object.defineProperty;
+var __getOwnPropDesc$i = Object.getOwnPropertyDescriptor;
+var __decorateClass$i = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$i(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$h(target2, key, result);
+    __defProp$i(target2, key, result);
   return result;
 };
 let RouteResultElement = class extends SearchResultElement$1 {
@@ -5052,28 +5078,28 @@ let RouteResultElement = class extends SearchResultElement$1 {
     return routeResultTemplate;
   }
 };
-__decorateClass$h([
+__decorateClass$i([
   target
 ], RouteResultElement.prototype, "ascensionist", 2);
-__decorateClass$h([
+__decorateClass$i([
   target
 ], RouteResultElement.prototype, "route_description", 2);
-__decorateClass$h([
+__decorateClass$i([
   target
 ], RouteResultElement.prototype, "fa_details", 2);
-RouteResultElement = __decorateClass$h([
+RouteResultElement = __decorateClass$i([
   controller
 ], RouteResultElement);
 
-var __defProp$g = Object.defineProperty;
-var __getOwnPropDesc$g = Object.getOwnPropertyDescriptor;
-var __decorateClass$g = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$g(target2, key) : target2;
+var __defProp$h = Object.defineProperty;
+var __getOwnPropDesc$h = Object.getOwnPropertyDescriptor;
+var __decorateClass$h = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$h(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$g(target2, key, result);
+    __defProp$h(target2, key, result);
   return result;
 };
 let PagedRoutesViewer = class extends BaseRoutesViewer$1 {
@@ -5188,7 +5214,7 @@ let PagedRoutesViewer = class extends BaseRoutesViewer$1 {
     }
     data.objects.forEach((section) => {
       this.queue.push(() => {
-        this.appendHeader(section.title, section.ids.length || section.routes.length, this, data.meta.object_return_type.name);
+        this.appendHeader(section.title, section.ids.length || section.routes.length, this, data.meta.object_return_type.name, section.routes[0]);
       });
       section.routes.forEach((element) => {
         switch (element.type) {
@@ -5279,23 +5305,23 @@ let PagedRoutesViewer = class extends BaseRoutesViewer$1 {
     }, this.searchDelay);
   }
 };
-__decorateClass$g([
+__decorateClass$h([
   target
 ], PagedRoutesViewer.prototype, "page_control", 2);
-PagedRoutesViewer = __decorateClass$g([
+PagedRoutesViewer = __decorateClass$h([
   controller
 ], PagedRoutesViewer);
 const PagedRoutesViewer$1 = PagedRoutesViewer;
 
-var __defProp$f = Object.defineProperty;
-var __getOwnPropDesc$f = Object.getOwnPropertyDescriptor;
-var __decorateClass$f = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$f(target, key) : target;
+var __defProp$g = Object.defineProperty;
+var __getOwnPropDesc$g = Object.getOwnPropertyDescriptor;
+var __decorateClass$g = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$g(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$f(target, key, result);
+    __defProp$g(target, key, result);
   return result;
 };
 const sharedStorage$4 = UkcLocalStorage.sharedLogbook;
@@ -5356,7 +5382,7 @@ let SearchResultsViewerElement = class extends PagedRoutesViewer$1 {
     return body;
   }
 };
-SearchResultsViewerElement = __decorateClass$f([
+SearchResultsViewerElement = __decorateClass$g([
   controller
 ], SearchResultsViewerElement);
 
@@ -7319,15 +7345,15 @@ InvertedIndex.from = function(iterable, descriptor) {
  */
 var invertedIndex = InvertedIndex;
 
-var __defProp$e = Object.defineProperty;
-var __getOwnPropDesc$e = Object.getOwnPropertyDescriptor;
-var __decorateClass$e = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$e(target, key) : target;
+var __defProp$f = Object.defineProperty;
+var __getOwnPropDesc$f = Object.getOwnPropertyDescriptor;
+var __decorateClass$f = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$f(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$e(target, key, result);
+    __defProp$f(target, key, result);
   return result;
 };
 let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
@@ -7611,7 +7637,7 @@ let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
     }, this.searchDelay);
   }
 };
-InfiniteScrollRoutesViewer = __decorateClass$e([
+InfiniteScrollRoutesViewer = __decorateClass$f([
   controller
 ], InfiniteScrollRoutesViewer);
 const InfiniteScrollRoutesViewer$1 = InfiniteScrollRoutesViewer;
@@ -9273,7 +9299,7 @@ var decode_1 = lib.decode = decode;
 /**
  * @name ranges-sort
  * @fileoverview Sort string index ranges
- * @version 6.0.3
+ * @version 6.0.4
  * @author Roy Revelt, Codsen Ltd
  * @license MIT
  * {@link https://codsen.com/os/ranges-sort/}
@@ -9283,7 +9309,7 @@ var d$1={strictlyTwoElementsInRangeArrays:!1,progressFn:null};function g(t,u){if
 /**
  * @name ranges-merge
  * @fileoverview Merge and sort string index ranges
- * @version 9.0.3
+ * @version 9.0.4
  * @author Roy Revelt, Codsen Ltd
  * @license MIT
  * {@link https://codsen.com/os/ranges-merge/}
@@ -9308,12 +9334,12 @@ function invariant(condition, message) {
 /**
  * @name ranges-apply
  * @fileoverview Take an array of string index ranges, delete/replace the string according to them
- * @version 7.0.3
+ * @version 7.0.4
  * @author Roy Revelt, Codsen Ltd
  * @license MIT
  * {@link https://codsen.com/os/ranges-apply/}
  */
-function _$1(s,n,r){let t=0,p=0;if(arguments.length===0)throw new Error("ranges-apply: [THROW_ID_01] inputs missing!");if(typeof s!="string")throw new TypeError(`ranges-apply: [THROW_ID_02] first input argument must be a string! Currently it's: ${typeof s}, equal to: ${JSON.stringify(s,null,4)}`);if(n&&!Array.isArray(n))throw new TypeError(`ranges-apply: [THROW_ID_03] second input argument must be an array (or null)! Currently it's: ${typeof n}, equal to: ${JSON.stringify(n,null,4)}`);if(r&&typeof r!="function")throw new TypeError(`ranges-apply: [THROW_ID_04] the third input argument must be a function (or falsey)! Currently it's: ${typeof r}, equal to: ${JSON.stringify(r,null,4)}`);if(!n||!n.filter(e=>e).length)return s;let i;Array.isArray(n)&&Number.isInteger(n[0])&&Number.isInteger(n[1])?i=[Array.from(n)]:i=Array.from(n);let f=i.length,c=0;i.filter(e=>e).forEach((e,a)=>{if(r&&(t=Math.floor(c/f*10),t!==p&&(p=t,r(t))),!Array.isArray(e))throw new TypeError(`ranges-apply: [THROW_ID_05] ranges array, second input arg., has ${a}th element not an array: ${JSON.stringify(e,null,4)}, which is ${typeof e}`);if(!Number.isInteger(e[0])){if(!Number.isInteger(+e[0])||+e[0]<0)throw new TypeError(`ranges-apply: [THROW_ID_06] ranges array, second input arg. has ${a}th element, array ${JSON.stringify(e,null,0)}. Its first element is not an integer, string index, but ${typeof e[0]}, equal to: ${JSON.stringify(e[0],null,4)}.`);i[a][0]=+i[a][0];}if(!Number.isInteger(e[1])){if(!Number.isInteger(+e[1])||+e[1]<0)throw new TypeError(`ranges-apply: [THROW_ID_07] ranges array, second input arg. has ${a}th element, array ${JSON.stringify(e,null,0)}. Its second element is not an integer, string index, but ${typeof e[1]}, equal to: ${JSON.stringify(e[1],null,4)}.`);i[a][1]=+i[a][1];}c+=1;});let o=b$1(i,{progressFn:e=>{r&&(t=10+Math.floor(e/10),t!==p&&(p=t,r(t)));}});invariant(o);let u=o.length;if(u>0){let e=s.slice(o[u-1][1]);s=o.reduce((a,$,l,y)=>{r&&(t=20+Math.floor(l/u*80),t!==p&&(p=t,r(t)));let g=l===0?0:y[l-1][1],d=y[l][0];return `${a}${s.slice(g,d)}${y[l][2]||""}`},""),s+=e;}return s}
+function _(s,n,r){let t=0,p=0;if(arguments.length===0)throw new Error("ranges-apply: [THROW_ID_01] inputs missing!");if(typeof s!="string")throw new TypeError(`ranges-apply: [THROW_ID_02] first input argument must be a string! Currently it's: ${typeof s}, equal to: ${JSON.stringify(s,null,4)}`);if(n&&!Array.isArray(n))throw new TypeError(`ranges-apply: [THROW_ID_03] second input argument must be an array (or null)! Currently it's: ${typeof n}, equal to: ${JSON.stringify(n,null,4)}`);if(r&&typeof r!="function")throw new TypeError(`ranges-apply: [THROW_ID_04] the third input argument must be a function (or falsey)! Currently it's: ${typeof r}, equal to: ${JSON.stringify(r,null,4)}`);if(!n||!n.filter(e=>e).length)return s;let i;Array.isArray(n)&&Number.isInteger(n[0])&&Number.isInteger(n[1])?i=[Array.from(n)]:i=Array.from(n);let f=i.length,c=0;i.filter(e=>e).forEach((e,a)=>{if(r&&(t=Math.floor(c/f*10),t!==p&&(p=t,r(t))),!Array.isArray(e))throw new TypeError(`ranges-apply: [THROW_ID_05] ranges array, second input arg., has ${a}th element not an array: ${JSON.stringify(e,null,4)}, which is ${typeof e}`);if(!Number.isInteger(e[0])){if(!Number.isInteger(+e[0])||+e[0]<0)throw new TypeError(`ranges-apply: [THROW_ID_06] ranges array, second input arg. has ${a}th element, array ${JSON.stringify(e,null,0)}. Its first element is not an integer, string index, but ${typeof e[0]}, equal to: ${JSON.stringify(e[0],null,4)}.`);i[a][0]=+i[a][0];}if(!Number.isInteger(e[1])){if(!Number.isInteger(+e[1])||+e[1]<0)throw new TypeError(`ranges-apply: [THROW_ID_07] ranges array, second input arg. has ${a}th element, array ${JSON.stringify(e,null,0)}. Its second element is not an integer, string index, but ${typeof e[1]}, equal to: ${JSON.stringify(e[1],null,4)}.`);i[a][1]=+i[a][1];}c+=1;});let o=b$1(i,{progressFn:e=>{r&&(t=10+Math.floor(e/10),t!==p&&(p=t,r(t)));}});invariant(o);let u=o.length;if(u>0){let e=s.slice(o[u-1][1]);s=o.reduce((a,$,l,y)=>{r&&(t=20+Math.floor(l/u*80),t!==p&&(p=t,r(t)));let g=l===0?0:y[l-1][1],d=y[l][0];return `${a}${s.slice(g,d)}${y[l][2]||""}`},""),s+=e;}return s}
 
 /**
  * @name string-collapse-leading-whitespace
@@ -9331,7 +9357,7 @@ function D$1(n,u=1){let $="\xA0";function g(e){return Array.from(e).reverse().jo
 /**
  * @name ranges-push
  * @fileoverview Gather string index ranges
- * @version 7.0.3
+ * @version 7.0.4
  * @author Roy Revelt, Codsen Ltd
  * @license MIT
  * {@link https://codsen.com/os/ranges-push/}
@@ -9341,7 +9367,7 @@ ${JSON.stringify(r,null,4)} (type ${typeof r})`);else e={...f};let a=i.filter(s=
 ${JSON.stringify(e,null,4)}`);if(u(this.ranges)&&Array.isArray(this.last())&&a===this.last()[1]){if(this.last()[1]=n,this.last()[2],this.last()[2]!==null&&u(e)){let l=this.last()[2]&&this.last()[2].length&&(!this.opts?.mergeType||this.opts.mergeType===1)?`${this.last()[2]}${e}`:e;this.opts.limitToBeAddedWhitespace&&(l=D$1(l,this.opts.limitLinebreaksCount)),m(l)&&!l.length||(this.last()[2]=l);}}else {this.ranges||(this.ranges=[]);let l=e!==void 0&&!(m(e)&&!e.length)?[a,n,e&&this.opts.limitToBeAddedWhitespace?D$1(e,this.opts.limitLinebreaksCount):e]:[a,n];this.ranges.push(l);}}else throw p(a)&&a>=0?new TypeError(`ranges-push/Ranges/add(): [THROW_ID_10] "to" value, the second input argument, must be a natural number or zero! Currently it's of a type "${typeof n}" equal to: ${JSON.stringify(n,null,4)}`):new TypeError(`ranges-push/Ranges/add(): [THROW_ID_09] "from" value, the first input argument, must be a natural number or zero! Currently it's of a type "${typeof a}" equal to: ${JSON.stringify(a,null,4)}`)}push(r,t,e){this.add(r,t,e);}current(){return Array.isArray(this.ranges)&&this.ranges.length?(this.ranges=y(this.ranges,{mergeType:this.opts.mergeType}),this.ranges&&this.opts.limitToBeAddedWhitespace?this.ranges.map(r=>u(r[2])?[r[0],r[1],D$1(r[2],this.opts.limitLinebreaksCount)]:r):this.ranges):null}wipe(){this.ranges=[];}replace(r){if(Array.isArray(r)&&r.length)if(Array.isArray(r[0])&&p(r[0][0]))this.ranges=Array.from(r);else throw new Error(`ranges-push/Ranges/replace(): [THROW_ID_11] Single range was given but we expected array of arrays! The first element, ${JSON.stringify(r[0],null,4)} should be an array and its first element should be an integer, a string index.`);else this.ranges=[];}last(){return Array.isArray(this.ranges)&&this.ranges.length?this.ranges[this.ranges.length-1]:null}};/**
  * @name ranges-sort
  * @fileoverview Sort string index ranges
- * @version 6.0.3
+ * @version 6.0.4
  * @author Roy Revelt, Codsen Ltd
  * @license MIT
  * {@link https://codsen.com/os/ranges-sort/}
@@ -11103,7 +11129,7 @@ var lodash_clonedeep = {exports: {}};
 /**
  * @name string-left-right
  * @fileoverview Looks up the first non-whitespace character to the left/right of a given index
- * @version 6.0.6
+ * @version 6.0.7
  * @author Roy Revelt, Codsen Ltd
  * @license MIT
  * {@link https://codsen.com/os/string-left-right/}
@@ -11116,38 +11142,38 @@ var c="\xA0";function D({str:n,idx:e=0,stopAtNewlines:l=!1,stopAtRawNbsp:u=!1}){
 /**
  * @name string-strip-html
  * @fileoverview Strip HTML tags from strings. No parser, accepts mixed sources.
- * @version 13.0.6
+ * @version 13.1.0
  * @author Roy Revelt, Codsen Ltd
  * @license MIT
  * {@link https://codsen.com/os/string-strip-html/}
  */
-function X(t){return /[-_A-Za-z0-9]/.test(t)}function _(t,m){if(!t)return [];if(Array.isArray(t))return t.filter(D=>typeof D=="string"&&D.trim());if(typeof t=="string")return t.trim()?[t]:[];throw new TypeError(`string-strip-html/stripHtml(): [THROW_ID_05] ${m} must be array containing zero or more strings or something falsey. Currently it's equal to: ${t}, that a type of ${typeof t}.`)}function ue(t,m,D,c){for(let f=m,b=t.length;f<b;f++){if(t.startsWith(D,f))return !0;if(t.startsWith(c,f))return !1}return !1}function G(t,m,D){return !t||!t.quotes||!ue(m,D+1,t.quotes.value,">")}var W=new Set(["!doctype","abbr","address","area","article","aside","audio","base","bdi","bdo","blockquote","body","br","button","canvas","caption","cite","code","col","colgroup","data","datalist","dd","del","details","dfn","dialog","div","dl","doctype","dt","em","embed","fieldset","figcaption","figure","footer","form","h1","h2","h3","h4","h5","h6","head","header","hgroup","hr","html","iframe","img","input","ins","kbd","keygen","label","legend","li","link","main","map","mark","math","menu","menuitem","meta","meter","nav","noscript","object","ol","optgroup","option","output","param","picture","pre","progress","rb","rp","rt","rtc","ruby","samp","script","section","select","slot","small","source","span","strong","style","sub","summary","sup","svg","table","tbody","td","template","textarea","tfoot","th","thead","time","title","tr","track","ul","var","video","wbr","xml"]),j=new Set(["a","b","i","p","q","s","u"]),x=new Set([".",",",";","!","?"]),Y=new Set([".",",","?",";",")","\u2026",'"',"\xBB"]),ee=new Set(["a","abbr","acronym","audio","b","bdi","bdo","big","button","canvas","cite","code","data","datalist","del","dfn","em","embed","i","iframe","input","ins","kbd","label","map","mark","meter","noscript","object","output","picture","progress","q","ruby","s","samp","select","slot","small","span","strong","sub","sup","svg","template","textarea","time","u","tt","var","video","wbr"]);var oe={ignoreTags:[],ignoreTagsWithTheirContents:[],onlyStripTags:[],stripTogetherWithTheirContents:["script","style","xml"],skipHtmlDecoding:!1,trimOnlySpaces:!1,stripRecognisedHTMLOnly:!1,dumpLinkHrefsNearby:{enabled:!1,putOnNewLine:!1,wrapHeads:"",wrapTails:""},cb:null,reportProgressFunc:null,reportProgressFuncFrom:0,reportProgressFuncTo:100};function be(t,m){let D=Date.now(),c=[],f=[],b=[],$$1=[],n={};function ie(){n={attributes:[]};}ie();let V=null,w=null,N=null,J=!1,o={},d={tagName:"",hrefValue:"",openingTagEnds:void 0},E$1="",R=!1,B=null,F=!0;function H(e,s,i){if(Array.isArray(s.stripTogetherWithTheirContents)&&(s.stripTogetherWithTheirContents.includes(n.name)||s.stripTogetherWithTheirContents.includes("*")))if(n.slashPresent&&Array.isArray(c)&&c.some(a=>a.name===n.name)){for(let a=c.length;a--;)if(c[a].name===n.name){$$1=$$1.filter(([u,p])=>(u<c[a].lastOpeningBracketAt||u>=e+1)&&(p<=c[a].lastOpeningBracketAt||p>e+1));let g=e+1;n.lastClosingBracketAt&&(g=n.lastClosingBracketAt+1),$$1.push([c[a].lastOpeningBracketAt,g]),Y.has(t[e])&&s.cb?s.cb({tag:n,deleteFrom:c[a].lastOpeningBracketAt,deleteTo:e+1,insert:null,rangesArr:i,proposedReturn:[c[a].lastOpeningBracketAt,e,null]}):s.cb&&s.cb({tag:n,deleteFrom:c[a].lastOpeningBracketAt,deleteTo:e,insert:"",rangesArr:i,proposedReturn:[c[a].lastOpeningBracketAt,e,""]}),c.splice(a,1);break}}else n.slashPresent||c.push(n);else Array.isArray(s.ignoreTagsWithTheirContents)&&U$1(e,s,n)&&(F=!1);}function L(e,s,i,a,g,u){if(Array.isArray(r.current())&&typeof i=="number"&&r.current()[0][0]===0&&r.current()[0][1]>=i)return "";if(t.length===a&&u&&(!l.dumpLinkHrefsNearby||!l.dumpLinkHrefsNearby?.enabled))return null;let p="";if(Number.isInteger(i)&&i<g&&(p+=e.slice(i,g)),Number.isInteger(a)&&a>u+1){let S=e.slice(u+1,a);a&&!E(t,a-1)&&(S=S.trimEnd()),S.includes(`
-`)&&y(a,e)?p+=" ":p+=S;}let P=!Y.has(e[s]),Q=e[a-1]!==">"||!e[i].trim(),Z=!['"',"("].includes(e[g-1]),re=![";",".",":","!"].includes(e[s]);if((P||Q&&Z&&re)&&(Q||Z)&&e[s]!=="!"&&(!ee.has(n.name)||typeof i=="number"&&i<g||typeof a=="number"&&a>u+1)){let S=p.match(/\n/g);return Array.isArray(S)&&S.length?S.length===1?`
-`:S.length===2?`
+function ee(t){return /[-_A-Za-z0-9]/.test(t)}function G(t,m){if(!t)return [];if(Array.isArray(t))return t.filter(y=>typeof y=="string"&&y.trim());if(typeof t=="string")return t.trim()?[t]:[];throw new TypeError(`string-strip-html/stripHtml(): [THROW_ID_05] ${m} must be array containing zero or more strings or something falsey. Currently it's equal to: ${t}, that a type of ${typeof t}.`)}function j(t,m,y,c){for(let f=m,b=t.length;f<b;f++){if(t.startsWith(y,f))return !0;if(t.startsWith(c,f))return !1}return !1}function Y(t,m,y){!t?.quotes;!!t?.quotes?.value&&!j(m,y+1,t.quotes.value,">");t?.quotes?.next!==-1;!j(m,t?.quotes?.next-1,t?.quotes?.value,">");return !t?.quotes||!j(m,y+1,t.quotes.value,">")&&t?.quotes?.next!==-1&&j(m,t?.quotes?.next-1,t?.quotes?.value,">")}function ne(t,m){return (m.match(new RegExp(t,"g"))||[]).length}var W=new Set(["!doctype","abbr","address","area","article","aside","audio","base","bdi","bdo","blockquote","body","br","button","canvas","caption","cite","code","col","colgroup","data","datalist","dd","del","details","dfn","dialog","div","dl","doctype","dt","em","embed","fieldset","figcaption","figure","footer","form","h1","h2","h3","h4","h5","h6","head","header","hgroup","hr","html","iframe","img","input","ins","kbd","keygen","label","legend","li","link","main","map","mark","math","menu","menuitem","meta","meter","nav","noscript","object","ol","optgroup","option","output","param","picture","pre","progress","rb","rp","rt","rtc","ruby","samp","script","section","select","slot","small","source","span","strong","style","sub","summary","sup","svg","table","tbody","td","template","textarea","tfoot","th","thead","time","title","tr","track","ul","var","video","wbr","xml"]),x=new Set(["a","b","i","p","q","s","u"]),q=new Set([".",",",";","!","?"]),Q=new Set([".",",","?",";",")","\u2026",'"',"\xBB"]),te=new Set(["a","abbr","acronym","audio","b","bdi","bdo","big","button","canvas","cite","code","data","datalist","del","dfn","em","embed","i","iframe","input","ins","kbd","label","map","mark","meter","noscript","object","output","picture","progress","q","ruby","s","samp","select","slot","small","span","strong","sub","sup","svg","template","textarea","time","u","tt","var","video","wbr"]);var ae={ignoreTags:[],ignoreTagsWithTheirContents:[],onlyStripTags:[],stripTogetherWithTheirContents:["script","style","xml"],skipHtmlDecoding:!1,trimOnlySpaces:!1,stripRecognisedHTMLOnly:!1,dumpLinkHrefsNearby:{enabled:!1,putOnNewLine:!1,wrapHeads:"",wrapTails:""},cb:null,reportProgressFunc:null,reportProgressFuncFrom:0,reportProgressFuncTo:100};function pe(t,m){let y=Date.now(),c=[],f=[],b=[],$$1=[],n={};function re(){n={attributes:[]};}re();let V=null,w=null,N=null,I=!1,o={},d={tagName:"",hrefValue:"",openingTagEnds:void 0},E$1="",C=!1,B=null,F=!0;function H(e,s,i){if(Array.isArray(s.stripTogetherWithTheirContents)&&(s.stripTogetherWithTheirContents.includes(n.name)||s.stripTogetherWithTheirContents.includes("*")))if(n.slashPresent&&Array.isArray(c)&&c.some(a=>a.name===n.name)){for(let a=c.length;a--;)if(c[a].name===n.name){$$1=$$1.filter(([u,p])=>(u<c[a].lastOpeningBracketAt||u>=e+1)&&(p<=c[a].lastOpeningBracketAt||p>e+1));let g=e+1;n.lastClosingBracketAt&&(g=n.lastClosingBracketAt+1),$$1.push([c[a].lastOpeningBracketAt,g]),Q.has(t[e])&&s.cb?s.cb({tag:n,deleteFrom:c[a].lastOpeningBracketAt,deleteTo:e+1,insert:null,rangesArr:i,proposedReturn:[c[a].lastOpeningBracketAt,e,null]}):s.cb&&s.cb({tag:n,deleteFrom:c[a].lastOpeningBracketAt,deleteTo:e,insert:"",rangesArr:i,proposedReturn:[c[a].lastOpeningBracketAt,e,""]}),c.splice(a,1);break}}else n.slashPresent||c.push(n);else Array.isArray(s.ignoreTagsWithTheirContents)&&M(e,s,n)&&(F=!1);}function L(e,s,i,a,g,u){if(Array.isArray(r.current())&&typeof i=="number"&&r.current()[0][0]===0&&r.current()[0][1]>=i)return "";if(t.length===a&&u&&(!l.dumpLinkHrefsNearby||!l.dumpLinkHrefsNearby?.enabled))return null;let p="";if(Number.isInteger(i)&&i<g&&(p+=e.slice(i,g)),Number.isInteger(a)&&a>u+1){let D=e.slice(u+1,a);a&&!E(t,a-1)&&(D=D.trimEnd()),D.includes(`
+`)&&S(a,e)?p+=" ":p+=D;}let P=!Q.has(e[s]),Z=e[a-1]!==">"||!e[i].trim(),X=!['"',"("].includes(e[g-1]),ge=![";",".",":","!"].includes(e[s]);if((P||Z&&X&&ge)&&(Z||X)&&e[s]!=="!"&&(!te.has(n.name)||typeof i=="number"&&i<g||typeof a=="number"&&a>u+1)){let D=p.match(/\n/g);return Array.isArray(D)&&D.length?D.length===1?`
+`:D.length===2?`
 
 `:`
 
 
-`:" "}return ""}function q(e,s){if(e.dumpLinkHrefsNearby?.enabled&&d.tagName&&d.tagName===n.name&&n.lastOpeningBracketAt&&(d.openingTagEnds&&n.lastOpeningBracketAt>d.openingTagEnds||!d.openingTagEnds)&&(R=!0),R){let i=e.dumpLinkHrefsNearby?.putOnNewLine?`
+`:" "}return ""}function U$1(e,s){if(e.dumpLinkHrefsNearby?.enabled&&d.tagName&&d.tagName===n.name&&n.lastOpeningBracketAt&&(d.openingTagEnds&&n.lastOpeningBracketAt>d.openingTagEnds||!d.openingTagEnds)&&(C=!0),C){let i=e.dumpLinkHrefsNearby?.putOnNewLine?`
 
-`:"";E$1=`${i}${d.hrefValue}`,(typeof s!="number"||E(t,s-1))&&(E$1+=i);}}function y(e,s){return s?s[e]==="<"&&s[e+1]!=="%":t[e]==="<"&&t[e+1]!=="%"}function A(e){return t[e]===">"&&t[e-1]!=="%"}function U$1(e,s,i){if(s.ignoreTagsWithTheirContents.includes("*"))return !0;let a=t.indexOf(`<${i.name}`,e),g=t.indexOf(`</${i.name}`,e);return !i.slashPresent&&g===-1||i.slashPresent&&!f.some(u=>u.name===i.name)||g>-1&&a>-1&&a<g?!1:s.ignoreTagsWithTheirContents.includes(i.name)}if(typeof t!="string")throw new TypeError(`string-strip-html/stripHtml(): [THROW_ID_01] Input must be string! Currently it's: ${(typeof t).toLowerCase()}, equal to:
+`:"";E$1=`${i}${d.hrefValue}`,(typeof s!="number"||E(t,s-1))&&(E$1+=i);}}function S(e,s){return s?s[e]==="<"&&s[e+1]!=="%":t[e]==="<"&&t[e+1]!=="%"}function A(e){return t[e]===">"&&t[e-1]!=="%"}function M(e,s,i){if(s.ignoreTagsWithTheirContents.includes("*"))return !0;let a=t.indexOf(`<${i.name}`,e),g=t.indexOf(`</${i.name}`,e);return !i.slashPresent&&g===-1||i.slashPresent&&!f.some(u=>u.name===i.name)||g>-1&&a>-1&&a<g?!1:s.ignoreTagsWithTheirContents.includes(i.name)}if(typeof t!="string")throw new TypeError(`string-strip-html/stripHtml(): [THROW_ID_01] Input must be string! Currently it's: ${(typeof t).toLowerCase()}, equal to:
 ${JSON.stringify(t,null,4)}`);if(m)if(U(m)){if(m.reportProgressFunc&&typeof m.reportProgressFunc!="function")throw new Error(`string-strip-html/stripHtml(): [THROW_ID_03] The Optional Options Object's key reportProgressFunc, callback function, should be a function but it was given as type ${typeof m.reportProgressFunc}, equal to ${JSON.stringify(m.reportProgressFunc,null,4)}`);if(typeof m.dumpLinkHrefsNearby=="boolean"&&m.dumpLinkHrefsNearby!=null)throw new Error(`string-strip-html/stripHtml(): [THROW_ID_04] The Optional Options Object's key should be a plain object but it was given as type ${typeof m.dumpLinkHrefsNearby}, equal to ${JSON.stringify(m.dumpLinkHrefsNearby,null,4)}`)}else throw new TypeError(`string-strip-html/stripHtml(): [THROW_ID_02] Optional Options Object must be a plain object! Currently it's: ${(typeof m).toLowerCase()}, equal to:
-${JSON.stringify(m,null,4)}`);function M(){R&&(d={tagName:"",hrefValue:"",openingTagEnds:void 0},R=!1);}let l={...oe,...m,dumpLinkHrefsNearby:{...oe.dumpLinkHrefsNearby,...m?.dumpLinkHrefsNearby}};if(Object.prototype.hasOwnProperty.call(l,"returnRangesOnly"))throw new TypeError("string-strip-html/stripHtml(): [THROW_ID_05] The Optional Options Object's key returnRangesOnly has been removed from the API since v.5 release.");if(l.reportProgressFunc){if(typeof l.reportProgressFuncFrom!="number")throw new Error(`string-strip-html/stripHtml(): [THROW_ID_06] The Optional Options Object's key reportProgressFuncFrom, callback function's "from" range, should be a number but it was given as type ${typeof l.reportProgressFuncFrom}, equal to ${JSON.stringify(l.reportProgressFuncFrom,null,4)}`);if(typeof l.reportProgressFuncTo!="number")throw new Error(`string-strip-html/stripHtml(): [THROW_ID_07] The Optional Options Object's key reportProgressFuncTo, callback function's "to" range, should be a number but it was given as type ${typeof l.reportProgressFuncTo}, equal to ${JSON.stringify(l.reportProgressFuncTo,null,4)}`)}l.ignoreTags=_(l.ignoreTags,"resolvedOpts.ignoreTags"),l.onlyStripTags=_(l.onlyStripTags,"resolvedOpts.onlyStripTags");let z=!!l.onlyStripTags.length;l.onlyStripTags.length&&l.ignoreTags.length&&(l.onlyStripTags=lodash_without(l.onlyStripTags,...l.ignoreTags)),l.stripTogetherWithTheirContents?typeof l.stripTogetherWithTheirContents=="string"&&l.stripTogetherWithTheirContents.length&&(l.stripTogetherWithTheirContents=[l.stripTogetherWithTheirContents]):l.stripTogetherWithTheirContents=[];let I={};if(l.stripTogetherWithTheirContents&&Array.isArray(l.stripTogetherWithTheirContents)&&l.stripTogetherWithTheirContents.length&&!l.stripTogetherWithTheirContents.every((e,s)=>typeof e!="string"?(I.el=e,I.i=s,!1):!0))throw new TypeError(`string-strip-html/stripHtml(): [THROW_ID_08] Optional Options Object's key stripTogetherWithTheirContents was set to contain not just string elements! For example, element at index ${I.i} has a value ${I.el} which is not string but ${(typeof I.el).toLowerCase()}.`);l.cb||(l.cb=({rangesArr:e,proposedReturn:s})=>{s&&e.push(...s);});let r=new $({limitToBeAddedWhitespace:!0,limitLinebreaksCount:2});if(!l.skipHtmlDecoding)for(;t!==decode_1(t,{scope:"strict"});)t=decode_1(t,{scope:"strict"});let C=!1,k=!1,v=0,K=0,h=t.length,ae=Math.floor(h/2);for(let e=0;e<h;e++){if(l.reportProgressFunc&&(h>1e3&&h<2e3?e===ae&&l.reportProgressFunc(Math.floor((l.reportProgressFuncTo-l.reportProgressFuncFrom)/2)):h>=2e3&&(v=l.reportProgressFuncFrom+Math.floor(e/h*(l.reportProgressFuncTo-l.reportProgressFuncFrom)),v!==K&&(K=v,l.reportProgressFunc(v)))),Object.keys(n).length>1&&n.lastClosingBracketAt&&n.lastClosingBracketAt<e&&t[e]!==" "&&B===null&&(B=e),!C&&t[e]==="%"&&t[e-1]==="{"&&t.includes("%}",e+1)){N=null;let s=t.indexOf("%}",e)-1;if(s>e){e=s;continue}}if(!C&&A(e)&&(!n||Object.keys(n).length<2)&&e>1){for(let s=e;s--;)if(t[s-1]===void 0||A(s)){let i=t[s-1]===void 0?s:s+1,a=t.slice(i,e+1);if(t!==`<${lodash_trim(a.trim(),"/>")}>`&&[...W].some(g=>lodash_trim(a.trim().split(/\s+/).filter(u=>u.trim()).filter((u,p)=>p===0),"/>").toLowerCase()===g)&&be(`<${a.trim()}>`,l).result===""){(!b.length||b[b.length-1][0]!==n.lastOpeningBracketAt)&&b.push([i,e+1]),(!$$1.length||$$1[$$1.length-1][0]!==n.lastOpeningBracketAt)&&$$1.push([i,e+1]);let g=L(t,e,i,e+1,i,e+1),u=e+1;if(t[u]&&!t[u].trim()){for(let p=u;p<h;p++)if(t[p].trim()){u=p;break}}l.cb({tag:n,deleteFrom:i,deleteTo:u,insert:g,rangesArr:r,proposedReturn:[i,u,g]});}break}}if(!k&&t[e]==="/"&&!n.quotes?.value&&Number.isInteger(n.lastOpeningBracketAt)&&!Number.isInteger(n.lastClosingBracketAt)&&(n.slashPresent=e),t[e]==='"'||t[e]==="'")if(!k&&n.nameStarts&&n.quotes&&n.quotes.value&&n.quotes.value===t[e]){o.valueEnds=e,o.value=t.slice(o.valueStarts,e),n.attributes.push(o),o={},delete n.quotes;let s;l.dumpLinkHrefsNearby?.enabled&&!c.length&&n.attributes.some(i=>{if(typeof i.name=="string"&&i.name.toLowerCase()==="href")return s=`${l.dumpLinkHrefsNearby?.wrapHeads||""}${i.value}${l.dumpLinkHrefsNearby?.wrapTails||""}`,!0})&&(d={tagName:n.name,hrefValue:s,openingTagEnds:void 0});}else !k&&!n.quotes&&n.nameStarts&&(n.quotes={},n.quotes.value=t[e],n.quotes.start=e,o.nameStarts&&o.nameEnds&&o.nameEnds<e&&o.nameStarts<e&&!o.valueStarts&&(o.name=t.slice(o.nameStarts,o.nameEnds)));if(n.nameStarts!==void 0&&n.nameEnds===void 0&&(!t[e].trim()||!X(t[e]))){if(n.nameEnds=e,n.name=t.slice(n.nameStarts,n.nameEnds+(!A(e)&&t[e]!=="/"&&t[e+1]===void 0?1:0)),t[n.nameStarts-1]!=="!"&&!n.name.replace(/-/g,"").length||/^\d+$/.test(n.name[0])){n={};continue}if(typeof n.name=="string"&&n.name.toLowerCase()==="doctype"&&(k=!0),y(e)){q(l);let s=L(t,e,n.leftOuterWhitespace,e,n.lastOpeningBracketAt,e);(l.stripTogetherWithTheirContents.includes(n.name)||l.stripTogetherWithTheirContents.includes("*"))&&($$1=$$1.filter(([i,a])=>!(i===n.leftOuterWhitespace&&a===e))),l.cb({tag:n,deleteFrom:n.leftOuterWhitespace,deleteTo:e,insert:`${s}${E$1}${s}`,rangesArr:r,proposedReturn:[n.leftOuterWhitespace,e,`${s}${E$1}${s}`]}),M(),H(e,l,r);}}if(n.quotes?.start&&n.quotes.start<e&&!n.quotes.end&&o.nameEnds&&o.equalsAt&&!o.valueStarts&&(o.valueStarts=e),!n.quotes&&o.nameEnds&&t[e]==="="&&!o.valueStarts&&!o.equalsAt&&(o.equalsAt=e),!n.quotes&&o.nameStarts&&o.nameEnds&&!o.valueStarts&&t[e].trim()&&t[e]!=="="&&(n.attributes.push(o),o={}),!n.quotes&&o.nameStarts&&!o.nameEnds&&(k&&`'"`.includes(t[o.nameStarts])?o.nameStarts<e&&t[e]===t[o.nameStarts]&&(o.nameEnds=e+1,o.name=t.slice(o.nameStarts,o.nameEnds)):t[e].trim()?t[e]==="="?o.equalsAt||(o.nameEnds=e,o.equalsAt=e,o.name=t.slice(o.nameStarts,o.nameEnds)):t[e]==="/"||A(e)?(o.nameEnds=e,o.name=t.slice(o.nameStarts,o.nameEnds),n.attributes.push(o),o={}):y(e)&&(o.nameEnds=e,o.name=t.slice(o.nameStarts,o.nameEnds),n.attributes.push(o),o={}):(o.nameEnds=e,o.name=t.slice(o.nameStarts,o.nameEnds))),!n.quotes&&n.nameEnds<e&&!t[e-1].trim()&&t[e].trim()&&!"<>/!".includes(t[e])&&!o.nameStarts&&!n.lastClosingBracketAt&&(o.nameStarts=e),n.lastOpeningBracketAt!==null&&n.lastOpeningBracketAt<e&&t[e]==="/"&&n.onlyPlausible&&(n.onlyPlausible=!1),n.lastOpeningBracketAt!==null&&n.lastOpeningBracketAt<e&&t[e]!=="/"&&(n.onlyPlausible===void 0&&((!t[e].trim()||y(e))&&!n.slashPresent?n.onlyPlausible=!0:n.onlyPlausible=!1),t[e].trim()&&n.nameStarts===void 0&&!y(e)&&t[e]!=="/"&&!A(e)&&t[e]!=="!"&&(n.nameStarts=e,n.nameContainsLetters=!1)),n.nameStarts&&!n.quotes&&typeof t[e]=="string"&&t[e].toLowerCase()!==t[e].toUpperCase()&&(n.nameContainsLetters=!0),A(e)&&G(n,t,e)&&n.lastOpeningBracketAt!==void 0&&(n.lastClosingBracketAt=e,B=null,Object.keys(o).length&&(n.attributes.push(o),o={}),l.dumpLinkHrefsNearby?.enabled&&d.tagName&&!d.openingTagEnds&&(d.openingTagEnds=e)),(!k||t[e]===">")&&n.lastOpeningBracketAt!==void 0){if(n.lastClosingBracketAt===void 0){if(n.lastOpeningBracketAt<e&&!y(e)&&(t[e+1]===void 0||y(e+1))&&n.nameContainsLetters&&typeof n.nameStarts=="number"){if(n.name=t.slice(n.nameStarts,n.nameEnds||e+1).toLowerCase(),(!b.length||b[b.length-1][0]!==n.lastOpeningBracketAt)&&b.push([n.lastOpeningBracketAt,e+1]),l.ignoreTags.includes(n.name)||U$1(e,l,n)||!W.has(n.name)&&(n.onlyPlausible||l.stripRecognisedHTMLOnly)){n={},o={};continue}if((W.has(n.name)||j.has(n.name))&&(n.onlyPlausible===!1||n.onlyPlausible===!0&&n.attributes.length)||t[e+1]===void 0){q(l);let s=L(t,e,n.leftOuterWhitespace,e+1,n.lastOpeningBracketAt,n.lastClosingBracketAt);C&&n.name==="script"&&n.slashPresent&&(C=!1);let i;s===null||E$1===null?i=null:i=`${s}${E$1}${s}`,l.cb({tag:n,deleteFrom:n.leftOuterWhitespace,deleteTo:e+1,insert:i,rangesArr:r,proposedReturn:[n.leftOuterWhitespace,e+1,i]}),M(),H(e,l,r);}if(!$$1.length||$$1[$$1.length-1][0]!==n.lastOpeningBracketAt&&$$1[$$1.length-1][1]!==e+1)if(l.stripTogetherWithTheirContents.includes(n.name)||l.stripTogetherWithTheirContents.includes("*")){let s;for(let i=c.length;i--;)c[i].name===n.name&&(s=c[i]);s?($$1=$$1.filter(([i])=>i!==s.lastOpeningBracketAt),$$1.push([s.lastOpeningBracketAt,e+1])):$$1.push([n.lastOpeningBracketAt,e+1]);}else $$1.push([n.lastOpeningBracketAt,e+1]);}}else if(e>n.lastClosingBracketAt&&t[e].trim()||t[e+1]===void 0){let s=n.lastClosingBracketAt===e?e+1:e;l.trimOnlySpaces&&s===h-1&&B!==null&&B<e&&(s=B),(!b.length||b[b.length-1][0]!==n.lastOpeningBracketAt)&&b.push([n.lastOpeningBracketAt,n.lastClosingBracketAt+1]);let i=l.ignoreTags.includes(n.name),a=U$1(e,l,n);if(!F||l.stripRecognisedHTMLOnly&&typeof n.name=="string"&&!W.has(n.name.toLowerCase())&&!j.has(n.name.toLowerCase())||!z&&(i||a)||z&&!l.onlyStripTags.includes(n.name)){if(a)if(n.slashPresent){for(let g=f.length;g--;)if(f[g].name===n.name){f.splice(g,1);break}f.length||(F=!0);}else F&&(F=!1),f.push(n);l.cb({tag:n,deleteFrom:null,deleteTo:null,insert:null,rangesArr:r,proposedReturn:null}),n={},o={};}else if(!n.onlyPlausible||n.attributes.length===0&&n.name&&(W.has(n.name.toLowerCase())||j.has(n.name.toLowerCase()))||n.attributes?.some(g=>g.equalsAt)){(!$$1.length||$$1[$$1.length-1][0]!==n.lastOpeningBracketAt)&&$$1.push([n.lastOpeningBracketAt,n.lastClosingBracketAt+1]);let g=L(t,e,n.leftOuterWhitespace,s,n.lastOpeningBracketAt,n.lastClosingBracketAt);E$1="",R=!1,q(l,s);let u;typeof E$1=="string"&&E$1.length?(u=`${g}${E$1}${g===`
+${JSON.stringify(m,null,4)}`);function _$1(){C&&(d={tagName:"",hrefValue:"",openingTagEnds:void 0},C=!1);}let l={...ae,...m,dumpLinkHrefsNearby:{...ae.dumpLinkHrefsNearby,...m?.dumpLinkHrefsNearby}};if(Object.prototype.hasOwnProperty.call(l,"returnRangesOnly"))throw new TypeError("string-strip-html/stripHtml(): [THROW_ID_05] The Optional Options Object's key returnRangesOnly has been removed from the API since v.5 release.");if(l.reportProgressFunc){if(typeof l.reportProgressFuncFrom!="number")throw new Error(`string-strip-html/stripHtml(): [THROW_ID_06] The Optional Options Object's key reportProgressFuncFrom, callback function's "from" range, should be a number but it was given as type ${typeof l.reportProgressFuncFrom}, equal to ${JSON.stringify(l.reportProgressFuncFrom,null,4)}`);if(typeof l.reportProgressFuncTo!="number")throw new Error(`string-strip-html/stripHtml(): [THROW_ID_07] The Optional Options Object's key reportProgressFuncTo, callback function's "to" range, should be a number but it was given as type ${typeof l.reportProgressFuncTo}, equal to ${JSON.stringify(l.reportProgressFuncTo,null,4)}`)}l.ignoreTags=G(l.ignoreTags,"resolvedOpts.ignoreTags"),l.onlyStripTags=G(l.onlyStripTags,"resolvedOpts.onlyStripTags");let z=!!l.onlyStripTags.length;l.onlyStripTags.length&&l.ignoreTags.length&&(l.onlyStripTags=lodash_without(l.onlyStripTags,...l.ignoreTags)),l.stripTogetherWithTheirContents?typeof l.stripTogetherWithTheirContents=="string"&&l.stripTogetherWithTheirContents.length&&(l.stripTogetherWithTheirContents=[l.stripTogetherWithTheirContents]):l.stripTogetherWithTheirContents=[];let J={};if(l.stripTogetherWithTheirContents&&Array.isArray(l.stripTogetherWithTheirContents)&&l.stripTogetherWithTheirContents.length&&!l.stripTogetherWithTheirContents.every((e,s)=>typeof e!="string"?(J.el=e,J.i=s,!1):!0))throw new TypeError(`string-strip-html/stripHtml(): [THROW_ID_08] Optional Options Object's key stripTogetherWithTheirContents was set to contain not just string elements! For example, element at index ${J.i} has a value ${J.el} which is not string but ${(typeof J.el).toLowerCase()}.`);l.cb||(l.cb=({rangesArr:e,proposedReturn:s})=>{s&&e.push(...s);});let r=new $({limitToBeAddedWhitespace:!0,limitLinebreaksCount:2});if(!l.skipHtmlDecoding)for(;t!==decode_1(t,{scope:"strict"});)t=decode_1(t,{scope:"strict"});let R=!1,k=!1,v=0,K=0,h=t.length,ue=Math.floor(h/2);for(let e=0;e<h;e++){if(l.reportProgressFunc&&(h>1e3&&h<2e3?e===ue&&l.reportProgressFunc(Math.floor((l.reportProgressFuncTo-l.reportProgressFuncFrom)/2)):h>=2e3&&(v=l.reportProgressFuncFrom+Math.floor(e/h*(l.reportProgressFuncTo-l.reportProgressFuncFrom)),v!==K&&(K=v,l.reportProgressFunc(v)))),Object.keys(n).length>1&&n.lastClosingBracketAt&&n.lastClosingBracketAt<e&&t[e]!==" "&&B===null&&(B=e),!R&&t[e]==="%"&&t[e-1]==="{"&&t.includes("%}",e+1)){N=null;let s=t.indexOf("%}",e)-1;if(s>e){e=s;continue}}if(!R&&A(e)&&(!n||Object.keys(n).length<2)&&e>1){for(let s=e;s--;)if(t[s-1]===void 0||A(s)){let i=t[s-1]===void 0?s:s+1,a=t.slice(i,e+1);if(t!==`<${lodash_trim(a.trim(),"/>")}>`&&[...W].some(g=>lodash_trim(a.trim().split(/\s+/).filter(u=>u.trim()).filter((u,p)=>p===0),"/>").toLowerCase()===g)&&pe(`<${a.trim()}>`,l).result===""){(!b.length||b[b.length-1][0]!==n.lastOpeningBracketAt)&&b.push([i,e+1]),(!$$1.length||$$1[$$1.length-1][0]!==n.lastOpeningBracketAt)&&$$1.push([i,e+1]);let g=L(t,e,i,e+1,i,e+1),u=e+1;if(t[u]&&!t[u].trim()){for(let p=u;p<h;p++)if(t[p].trim()){u=p;break}}l.cb({tag:n,deleteFrom:i,deleteTo:u,insert:g,rangesArr:r,proposedReturn:[i,u,g]});}break}}if(!k&&t[e]==="/"&&!n.quotes?.value&&Number.isInteger(n.lastOpeningBracketAt)&&!Number.isInteger(n.lastClosingBracketAt)&&(n.slashPresent=e),t[e]==='"'||t[e]==="'")if(!k&&n.nameStarts&&n?.quotes?.value===t[e]){o.valueEnds=e,o.value=t.slice(o.valueStarts,e),n.attributes.push(o),o={},delete n.quotes;let s;l.dumpLinkHrefsNearby?.enabled&&!c.length&&n.attributes.some(i=>{if(typeof i.name=="string"&&i.name.toLowerCase()==="href")return s=`${l.dumpLinkHrefsNearby?.wrapHeads||""}${i.value}${l.dumpLinkHrefsNearby?.wrapTails||""}`,!0})&&(d={tagName:n.name,hrefValue:s,openingTagEnds:void 0});}else !k&&!n.quotes&&n.nameStarts&&(n.quotes={},n.quotes.value=t[e],n.quotes.start=e,n.quotes.next=t.indexOf(t[e],e+1),o.nameStarts&&o.nameEnds&&o.nameEnds<e&&o.nameStarts<e&&!o.valueStarts&&(o.name=t.slice(o.nameStarts,o.nameEnds)));if(n.nameStarts!==void 0&&n.nameEnds===void 0&&(!t[e].trim()||!ee(t[e]))){if(n.nameEnds=e,n.name=t.slice(n.nameStarts,n.nameEnds+(!A(e)&&t[e]!=="/"&&t[e+1]===void 0?1:0)),t[n.nameStarts-1]!=="!"&&!n.name.replace(/-/g,"").length||/^\d+$/.test(n.name[0])){n={};continue}if(typeof n.name=="string"&&n.name.toLowerCase()==="doctype"&&(k=!0),S(e)){U$1(l);let s=L(t,e,n.leftOuterWhitespace,e,n.lastOpeningBracketAt,e);(l.stripTogetherWithTheirContents.includes(n.name)||l.stripTogetherWithTheirContents.includes("*"))&&($$1=$$1.filter(([i,a])=>!(i===n.leftOuterWhitespace&&a===e))),l.cb({tag:n,deleteFrom:n.leftOuterWhitespace,deleteTo:e,insert:`${s}${E$1}${s}`,rangesArr:r,proposedReturn:[n.leftOuterWhitespace,e,`${s}${E$1}${s}`]}),_$1(),H(e,l,r);}}if(n.quotes?.start&&n.quotes.start<e&&!n.quotes.end&&o.nameEnds&&o.equalsAt&&!o.valueStarts&&(o.valueStarts=e),!n.quotes&&o.nameEnds&&t[e]==="="&&!o.valueStarts&&!o.equalsAt&&(o.equalsAt=e),!n.quotes&&o.nameStarts&&o.nameEnds&&!o.valueStarts&&t[e].trim()&&t[e]!=="="&&(n.attributes.push(o),o={}),!n.quotes&&o.nameStarts&&!o.nameEnds&&(k&&`'"`.includes(t[o.nameStarts])?o.nameStarts<e&&t[e]===t[o.nameStarts]&&(o.nameEnds=e+1,o.name=t.slice(o.nameStarts,o.nameEnds)):t[e].trim()?t[e]==="="?o.equalsAt||(o.nameEnds=e,o.equalsAt=e,o.name=t.slice(o.nameStarts,o.nameEnds)):t[e]==="/"||A(e)?(o.nameEnds=e,o.name=t.slice(o.nameStarts,o.nameEnds),n.attributes.push(o),o={}):S(e)&&(o.nameEnds=e,o.name=t.slice(o.nameStarts,o.nameEnds),n.attributes.push(o),o={}):(o.nameEnds=e,o.name=t.slice(o.nameStarts,o.nameEnds))),!n.quotes&&n.nameEnds<e&&!t[e-1].trim()&&t[e].trim()&&!"<>/!".includes(t[e])&&!o.nameStarts&&!n.lastClosingBracketAt&&(o.nameStarts=e),n.lastOpeningBracketAt!==null&&n.lastOpeningBracketAt<e&&t[e]==="/"&&n.onlyPlausible&&(n.onlyPlausible=!1),n.lastOpeningBracketAt!==null&&n.lastOpeningBracketAt<e&&t[e]!=="/"&&(n.onlyPlausible===void 0&&((!t[e].trim()||S(e))&&!n.slashPresent?n.onlyPlausible=!0:n.onlyPlausible=!1),t[e].trim()&&n.nameStarts===void 0&&!S(e)&&t[e]!=="/"&&!A(e)&&t[e]!=="!"&&(n.nameStarts=e,n.nameContainsLetters=!1)),n.nameStarts&&!n.quotes&&typeof t[e]=="string"&&t[e].toLowerCase()!==t[e].toUpperCase()&&(n.nameContainsLetters=!0),A(e)&&(Y(n,t,e)||n.quotes.value&&typeof n.lastOpeningBracketAt=="number"&&ne(n.quotes.value,t.slice(n.lastOpeningBracketAt,e))%2===1&&!t.slice(n.lastOpeningBracketAt+1,e).includes("<")&&!t.slice(n.lastOpeningBracketAt+1,e).includes(">"))&&n.lastOpeningBracketAt!==void 0&&(n.lastClosingBracketAt=e,B=null,Object.keys(o).length&&(n.attributes.push(o),o={}),l.dumpLinkHrefsNearby?.enabled&&d.tagName&&!d.openingTagEnds&&(d.openingTagEnds=e)),(!k||t[e]===">")&&n.lastOpeningBracketAt!==void 0){if(n.lastClosingBracketAt===void 0){if(n.lastOpeningBracketAt<e&&!S(e)&&(t[e+1]===void 0||S(e+1)&&!n?.quotes?.value)&&n.nameContainsLetters&&typeof n.nameStarts=="number"){if(n.name=t.slice(n.nameStarts,n.nameEnds||e+1).toLowerCase(),(!b.length||b[b.length-1][0]!==n.lastOpeningBracketAt)&&b.push([n.lastOpeningBracketAt,e+1]),l.ignoreTags.includes(n.name)||M(e,l,n)||!W.has(n.name)&&(n.onlyPlausible||l.stripRecognisedHTMLOnly)){n={},o={};continue}if((W.has(n.name)||x.has(n.name))&&(n.onlyPlausible===!1||n.onlyPlausible===!0&&n.attributes.length)||t[e+1]===void 0){U$1(l);let s=L(t,e,n.leftOuterWhitespace,e+1,n.lastOpeningBracketAt,n.lastClosingBracketAt);R&&n.name==="script"&&n.slashPresent&&(R=!1);let i;s===null||E$1===null?i=null:i=`${s}${E$1}${s}`,l.cb({tag:n,deleteFrom:n.leftOuterWhitespace,deleteTo:e+1,insert:i,rangesArr:r,proposedReturn:[n.leftOuterWhitespace,e+1,i]}),_$1(),H(e,l,r);}if(!$$1.length||$$1[$$1.length-1][0]!==n.lastOpeningBracketAt&&$$1[$$1.length-1][1]!==e+1)if(l.stripTogetherWithTheirContents.includes(n.name)||l.stripTogetherWithTheirContents.includes("*")){let s;for(let i=c.length;i--;)c[i].name===n.name&&(s=c[i]);s?($$1=$$1.filter(([i])=>i!==s.lastOpeningBracketAt),$$1.push([s.lastOpeningBracketAt,e+1])):$$1.push([n.lastOpeningBracketAt,e+1]);}else $$1.push([n.lastOpeningBracketAt,e+1]);}}else if(e>n.lastClosingBracketAt&&t[e].trim()||t[e+1]===void 0){let s=n.lastClosingBracketAt===e?e+1:e;l.trimOnlySpaces&&s===h-1&&B!==null&&B<e&&(s=B),(!b.length||b[b.length-1][0]!==n.lastOpeningBracketAt)&&b.push([n.lastOpeningBracketAt,n.lastClosingBracketAt+1]);let i=l.ignoreTags.includes(n.name),a=M(e,l,n);if(!F||l.stripRecognisedHTMLOnly&&typeof n.name=="string"&&!W.has(n.name.toLowerCase())&&!x.has(n.name.toLowerCase())||!z&&(i||a)||z&&!l.onlyStripTags.includes(n.name)){if(a)if(n.slashPresent){for(let g=f.length;g--;)if(f[g].name===n.name){f.splice(g,1);break}f.length||(F=!0);}else F&&(F=!1),f.push(n);l.cb({tag:n,deleteFrom:null,deleteTo:null,insert:null,rangesArr:r,proposedReturn:null}),n={},o={};}else if(!n.onlyPlausible||n.attributes.length===0&&n.name&&(W.has(n.name.toLowerCase())||x.has(n.name.toLowerCase()))||n.attributes?.some(g=>g.equalsAt)){(!$$1.length||$$1[$$1.length-1][0]!==n.lastOpeningBracketAt)&&$$1.push([n.lastOpeningBracketAt,n.lastClosingBracketAt+1]);let g=L(t,e,n.leftOuterWhitespace,s,n.lastOpeningBracketAt,n.lastClosingBracketAt);E$1="",C=!1,U$1(l,s);let u;typeof E$1=="string"&&E$1.length?(u=`${g}${E$1}${g===`
 
 `?`
-`:g}`,s===n.lastClosingBracketAt+1&&(!t[s]||!x.has(t[s]))&&(u+=" "),n.leftOuterWhitespace===n.lastOpeningBracketAt&&r.last()&&r.last()[1]<n.lastOpeningBracketAt&&(!l.dumpLinkHrefsNearby||!l.dumpLinkHrefsNearby?.putOnNewLine||!x.has(t[s]))&&(u=" "+u)):u=g,u!==null&&(n.leftOuterWhitespace===0||!E(t,s-1))&&(!l.dumpLinkHrefsNearby?.enabled||n.name!=="a")&&(u=void 0);let p=0;if(R&&x.has(t[s])){l.dumpLinkHrefsNearby?.putOnNewLine&&(u=`${t[s]}${u||""}`);let P=E(t,s);P&&u?.endsWith(`
-`)?p+=P-e:(!P||P>e)&&p++;}l.cb({tag:n,deleteFrom:n.leftOuterWhitespace,deleteTo:s+p,insert:u,rangesArr:r,proposedReturn:[n.leftOuterWhitespace,s+p,u]}),M(),H(e,l,r);}else n={};A(e)||(n={});}k&&(k=!1);}if((!C||t[e]==="<"&&E(t,E(t,e))&&t[E(t,e)]==="/"&&t.startsWith("script",E(t,E(t,e))))&&y(e)&&!y(e-1)&&!`'"`.includes(t[e+1])&&(!`'"`.includes(t[e+2])||/\w/.test(t[e+1]))&&!(t[e+1]==="c"&&t[e+2]===":")&&!(t[e+1]==="f"&&t[e+2]==="m"&&t[e+3]==="t"&&t[e+4]===":")&&!(t[e+1]==="s"&&t[e+2]==="q"&&t[e+3]==="l"&&t[e+4]===":")&&!(t[e+1]==="x"&&t[e+2]===":")&&!(t[e+1]==="f"&&t[e+2]==="n"&&t[e+3]===":")&&G(n,t,e)){if(A(E(t,e)))continue;if(n.nameEnds&&n.nameEnds<e&&!n.lastClosingBracketAt&&(n.onlyPlausible===!0&&n.attributes&&n.attributes.length||n.onlyPlausible===!1)){let s=L(t,e,n.leftOuterWhitespace,e,n.lastOpeningBracketAt,e);l.cb({tag:n,deleteFrom:n.leftOuterWhitespace,deleteTo:e,insert:s,rangesArr:r,proposedReturn:[n.leftOuterWhitespace,e,s]}),H(e,l,r),n={},o={};}if(n.lastOpeningBracketAt!==void 0&&n.onlyPlausible&&n.name&&!n.quotes&&(n.lastOpeningBracketAt=void 0,n.name=void 0,n.onlyPlausible=!1),(n.lastOpeningBracketAt===void 0||!n.onlyPlausible)&&!n.quotes&&(n.lastOpeningBracketAt=e,n.slashPresent=!1,n.attributes=[],V===null?n.leftOuterWhitespace=e:l.trimOnlySpaces&&V===0?n.leftOuterWhitespace=w||e:n.leftOuterWhitespace=V,`${t[e+1]}${t[e+2]}${t[e+3]}`=="!--"||`${t[e+1]}${t[e+2]}${t[e+3]}${t[e+4]}${t[e+5]}${t[e+6]}${t[e+7]}${t[e+8]}`=="![CDATA[")){let s=!0;t[e+2]==="-"&&(s=!1);let i;for(let a=e;a<h;a++)if((!i&&s&&`${t[a-2]}${t[a-1]}${t[a]}`=="]]>"||!s&&`${t[a-2]}${t[a-1]}${t[a]}`=="-->")&&(i=a),i&&(i<a&&t[a].trim()||t[a+1]===void 0)){let g=a;(t[a+1]===void 0&&!t[a].trim()||t[a]===">")&&(g+=1),(!b.length||b[b.length-1][0]!==n.lastOpeningBracketAt)&&b.push([n.lastOpeningBracketAt,i+1]),(!$$1.length||$$1[$$1.length-1][0]!==n.lastOpeningBracketAt)&&$$1.push([n.lastOpeningBracketAt,i+1]);let u=L(t,a,n.leftOuterWhitespace,g,n.lastOpeningBracketAt,i);l.cb({tag:n,deleteFrom:n.leftOuterWhitespace,deleteTo:g,insert:u,rangesArr:r,proposedReturn:[n.leftOuterWhitespace,g,u]}),e=a-1,t[a]===">"&&(e=a),n={},o={};break}}}!t[e].trim()||t[e].charCodeAt(0)===847?(V===null&&(V=e,n.lastOpeningBracketAt!==void 0&&n.lastOpeningBracketAt<e&&n.nameStarts&&n.nameStarts<n.lastOpeningBracketAt&&e===n.lastOpeningBracketAt+1&&!c.some(s=>s.name===n.name)&&(n.onlyPlausible=!0,n.name=void 0,n.nameStarts=void 0)),(t[e]===`
-`||t[e]==="\r")&&(N=e,J&&(J=!1))):(V!==null&&(!n.quotes&&o.equalsAt>V-1&&o.nameEnds&&o.equalsAt>o.nameEnds&&t[e]!=='"'&&t[e]!=="'"&&(U(o)&&n.attributes.push(o),o={},n.equalsSpottedAt=void 0),V=null),J||(J=!0,F&&!C&&typeof N=="number"&&e&&N<e-1&&(t.slice(N+1,e).trim()?N=null:r.push([N+1,e])))),t[e]===" "?w===null&&(w=e):w!==null&&(w=null),n.name==="script"&&(C=!n.slashPresent);}if(t&&(l.trimOnlySpaces&&t[0]===" "||!l.trimOnlySpaces&&!t[0].trim()))for(let e=0;e<h;e++)if(l.trimOnlySpaces&&t[e]!==" "||!l.trimOnlySpaces&&t[e].trim()){r.push([0,e]);break}else t[e+1]||r.push([0,e+1]);if(t&&(l.trimOnlySpaces&&t[~-t.length]===" "||!l.trimOnlySpaces&&!t[~-t.length].trim())){for(let e=t.length;e--;)if(l.trimOnlySpaces&&t[e]!==" "||!l.trimOnlySpaces&&t[e].trim()){r.push([e+1,h]);break}}let O=r.current();if((!m||!m.cb)&&O){if(O[0]&&!O[0][0]){O[0][1];r.ranges[0]=[r.ranges[0][0],r.ranges[0][1]];}if(O[O.length-1]&&O[O.length-1][1]===t.length){O[O.length-1][0];if(r.ranges){let s=r.ranges[r.ranges.length-1][0];t[s-1]&&(l.trimOnlySpaces&&t[s-1]===" "||!l.trimOnlySpaces&&!t[s-1].trim())&&(s-=1);let i=r.ranges[r.ranges.length-1][2];r.ranges[r.ranges.length-1]=[s,r.ranges[r.ranges.length-1][1]],i?.trim()&&r.ranges[r.ranges.length-1].push(i.trimEnd());}}}return {log:{timeTakenInMilliseconds:Date.now()-D},result:_$1(t,r.current()),ranges:r.current(),allTagLocations:b,filteredTagLocations:$$1}}
+`:g}`,s===n.lastClosingBracketAt+1&&(!t[s]||!q.has(t[s]))&&(u+=" "),n.leftOuterWhitespace===n.lastOpeningBracketAt&&r.last()&&r.last()[1]<n.lastOpeningBracketAt&&(!l.dumpLinkHrefsNearby||!l.dumpLinkHrefsNearby?.putOnNewLine||!q.has(t[s]))&&(u=" "+u)):u=g,u!==null&&(n.leftOuterWhitespace===0||!E(t,s-1))&&(!l.dumpLinkHrefsNearby?.enabled||n.name!=="a")&&(u=void 0);let p=0;if(C&&q.has(t[s])){l.dumpLinkHrefsNearby?.putOnNewLine&&(u=`${t[s]}${u||""}`);let P=E(t,s);P&&u?.endsWith(`
+`)?p+=P-e:(!P||P>e)&&p++;}l.cb({tag:n,deleteFrom:n.leftOuterWhitespace,deleteTo:s+p,insert:u,rangesArr:r,proposedReturn:[n.leftOuterWhitespace,s+p,u]}),_$1(),H(e,l,r);}else n={};A(e)||(n={});}k&&(k=!1);}if((!R||t[e]==="<"&&E(t,E(t,e))&&t[E(t,e)]==="/"&&t.startsWith("script",E(t,E(t,e))))&&S(e)&&!S(e-1)&&!`'"`.includes(t[e+1])&&(!`'"`.includes(t[e+2])||/\w/.test(t[e+1]))&&!(t[e+1]==="c"&&t[e+2]===":")&&!(t[e+1]==="f"&&t[e+2]==="m"&&t[e+3]==="t"&&t[e+4]===":")&&!(t[e+1]==="s"&&t[e+2]==="q"&&t[e+3]==="l"&&t[e+4]===":")&&!(t[e+1]==="x"&&t[e+2]===":")&&!(t[e+1]==="f"&&t[e+2]==="n"&&t[e+3]===":")&&Y(n,t,e)){if(A(E(t,e)))continue;if(n.nameEnds&&n.nameEnds<e&&!n.lastClosingBracketAt&&(n.onlyPlausible===!0&&n.attributes&&n.attributes.length||n.onlyPlausible===!1)){let s=L(t,e,n.leftOuterWhitespace,e,n.lastOpeningBracketAt,e);l.cb({tag:n,deleteFrom:n.leftOuterWhitespace,deleteTo:e,insert:s,rangesArr:r,proposedReturn:[n.leftOuterWhitespace,e,s]}),H(e,l,r),n={},o={};}if(n.lastOpeningBracketAt!==void 0&&n.onlyPlausible&&n.name&&!n.quotes&&(n.lastOpeningBracketAt=void 0,n.name=void 0,n.onlyPlausible=!1),(n.lastOpeningBracketAt===void 0||!n.onlyPlausible)&&!n.quotes&&(n.lastOpeningBracketAt=e,n.slashPresent=!1,n.attributes=[],V===null?n.leftOuterWhitespace=e:l.trimOnlySpaces&&V===0?n.leftOuterWhitespace=w||e:n.leftOuterWhitespace=V,`${t[e+1]}${t[e+2]}${t[e+3]}`=="!--"||`${t[e+1]}${t[e+2]}${t[e+3]}${t[e+4]}${t[e+5]}${t[e+6]}${t[e+7]}${t[e+8]}`=="![CDATA[")){let s=!0;t[e+2]==="-"&&(s=!1);let i;for(let a=e;a<h;a++)if((!i&&s&&`${t[a-2]}${t[a-1]}${t[a]}`=="]]>"||!s&&`${t[a-2]}${t[a-1]}${t[a]}`=="-->")&&(i=a),i&&(i<a&&t[a].trim()||t[a+1]===void 0)){let g=a;(t[a+1]===void 0&&!t[a].trim()||t[a]===">")&&(g+=1),(!b.length||b[b.length-1][0]!==n.lastOpeningBracketAt)&&b.push([n.lastOpeningBracketAt,i+1]),(!$$1.length||$$1[$$1.length-1][0]!==n.lastOpeningBracketAt)&&$$1.push([n.lastOpeningBracketAt,i+1]);let u=L(t,a,n.leftOuterWhitespace,g,n.lastOpeningBracketAt,i);l.cb({tag:n,deleteFrom:n.leftOuterWhitespace,deleteTo:g,insert:u,rangesArr:r,proposedReturn:[n.leftOuterWhitespace,g,u]}),e=a-1,t[a]===">"&&(e=a),n={},o={};break}}}!t[e].trim()||t[e].charCodeAt(0)===847?(V===null&&(V=e,n.lastOpeningBracketAt!==void 0&&n.lastOpeningBracketAt<e&&n.nameStarts&&n.nameStarts<n.lastOpeningBracketAt&&e===n.lastOpeningBracketAt+1&&!c.some(s=>s.name===n.name)&&(n.onlyPlausible=!0,n.name=void 0,n.nameStarts=void 0)),(t[e]===`
+`||t[e]==="\r")&&(N=e,I&&(I=!1))):(V!==null&&(!n.quotes&&o.equalsAt>V-1&&o.nameEnds&&o.equalsAt>o.nameEnds&&t[e]!=='"'&&t[e]!=="'"&&(U(o)&&n.attributes.push(o),o={},n.equalsSpottedAt=void 0),V=null),I||(I=!0,F&&!R&&typeof N=="number"&&e&&N<e-1&&(t.slice(N+1,e).trim()?N=null:r.push([N+1,e])))),t[e]===" "?w===null&&(w=e):w!==null&&(w=null),n.name==="script"&&(R=!n.slashPresent);}if(t&&(l.trimOnlySpaces&&t[0]===" "||!l.trimOnlySpaces&&!t[0].trim()))for(let e=0;e<h;e++)if(l.trimOnlySpaces&&t[e]!==" "||!l.trimOnlySpaces&&t[e].trim()){r.push([0,e]);break}else t[e+1]||r.push([0,e+1]);if(t&&(l.trimOnlySpaces&&t[~-t.length]===" "||!l.trimOnlySpaces&&!t[~-t.length].trim())){for(let e=t.length;e--;)if(l.trimOnlySpaces&&t[e]!==" "||!l.trimOnlySpaces&&t[e].trim()){r.push([e+1,h]);break}}let O=r.current();if((!m||!m.cb)&&O){if(O[0]&&!O[0][0]){O[0][1];r.ranges[0]=[r.ranges[0][0],r.ranges[0][1]];}if(O[O.length-1]&&O[O.length-1][1]===t.length){O[O.length-1][0];if(r.ranges){let s=r.ranges[r.ranges.length-1][0];t[s-1]&&(l.trimOnlySpaces&&t[s-1]===" "||!l.trimOnlySpaces&&!t[s-1].trim())&&(s-=1);let i=r.ranges[r.ranges.length-1][2];r.ranges[r.ranges.length-1]=[s,r.ranges[r.ranges.length-1][1]],i?.trim()&&r.ranges[r.ranges.length-1].push(i.trimEnd());}}}return {log:{timeTakenInMilliseconds:Date.now()-y},result:_(t,r.current()),ranges:r.current(),allTagLocations:b,filteredTagLocations:$$1}}
 
-var __defProp$d = Object.defineProperty;
-var __getOwnPropDesc$d = Object.getOwnPropertyDescriptor;
-var __decorateClass$d = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$d(target, key) : target;
+var __defProp$e = Object.defineProperty;
+var __getOwnPropDesc$e = Object.getOwnPropertyDescriptor;
+var __decorateClass$e = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$e(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$d(target, key, result);
+    __defProp$e(target, key, result);
   return result;
 };
 let OfflineInfiniteScrollRoutesViewer = class extends InfiniteScrollRoutesViewer$1 {
@@ -11250,7 +11276,7 @@ let OfflineInfiniteScrollRoutesViewer = class extends InfiniteScrollRoutesViewer
   async _buildInvertedIndex(lookup) {
     const addFun = (route) => {
       const words = Array.from(new Set(
-        be(
+        pe(
           [
             route.item_name,
             route.buttress_name,
@@ -11325,20 +11351,20 @@ let OfflineInfiniteScrollRoutesViewer = class extends InfiniteScrollRoutesViewer
     };
   }
 };
-OfflineInfiniteScrollRoutesViewer = __decorateClass$d([
+OfflineInfiniteScrollRoutesViewer = __decorateClass$e([
   controller
 ], OfflineInfiniteScrollRoutesViewer);
 const OfflineInfiniteScrollRoutesViewer$1 = OfflineInfiniteScrollRoutesViewer;
 
-var __defProp$c = Object.defineProperty;
-var __getOwnPropDesc$c = Object.getOwnPropertyDescriptor;
-var __decorateClass$c = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$c(target, key) : target;
+var __defProp$d = Object.defineProperty;
+var __getOwnPropDesc$d = Object.getOwnPropertyDescriptor;
+var __decorateClass$d = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$d(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$c(target, key, result);
+    __defProp$d(target, key, result);
   return result;
 };
 const sharedStorage$3 = UkcLocalStorage.sharedLogbook;
@@ -11427,20 +11453,20 @@ let LogbookViewerElement = class extends OfflineInfiniteScrollRoutesViewer$1 {
     return (rte) => rte.associated_ascent_entry.id;
   }
 };
-LogbookViewerElement = __decorateClass$c([
+LogbookViewerElement = __decorateClass$d([
   controller
 ], LogbookViewerElement);
 const LogbookViewerElement$1 = LogbookViewerElement;
 
-var __defProp$b = Object.defineProperty;
-var __getOwnPropDesc$b = Object.getOwnPropertyDescriptor;
-var __decorateClass$b = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$b(target, key) : target;
+var __defProp$c = Object.defineProperty;
+var __getOwnPropDesc$c = Object.getOwnPropertyDescriptor;
+var __decorateClass$c = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$c(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$b(target, key, result);
+    __defProp$c(target, key, result);
   return result;
 };
 const sharedStorage$2 = UkcLocalStorage.sharedLogbook;
@@ -11504,19 +11530,19 @@ let WishlistViewerElement = class extends LogbookViewerElement$1 {
     return "";
   }
 };
-WishlistViewerElement = __decorateClass$b([
+WishlistViewerElement = __decorateClass$c([
   controller
 ], WishlistViewerElement);
 
-var __defProp$a = Object.defineProperty;
-var __getOwnPropDesc$a = Object.getOwnPropertyDescriptor;
-var __decorateClass$a = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$a(target, key) : target;
+var __defProp$b = Object.defineProperty;
+var __getOwnPropDesc$b = Object.getOwnPropertyDescriptor;
+var __decorateClass$b = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$b(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$a(target, key, result);
+    __defProp$b(target, key, result);
   return result;
 };
 const sharedStorage$1 = UkcLocalStorage.sharedLogbook;
@@ -11609,20 +11635,20 @@ let PartnerAscentsViewerElement = class extends PagedRoutesViewer$1 {
     return "";
   }
 };
-PartnerAscentsViewerElement = __decorateClass$a([
+PartnerAscentsViewerElement = __decorateClass$b([
   controller
 ], PartnerAscentsViewerElement);
 const PartnerAscentsViewerElement$1 = PartnerAscentsViewerElement;
 
-var __defProp$9 = Object.defineProperty;
-var __getOwnPropDesc$9 = Object.getOwnPropertyDescriptor;
-var __decorateClass$9 = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$9(target, key) : target;
+var __defProp$a = Object.defineProperty;
+var __getOwnPropDesc$a = Object.getOwnPropertyDescriptor;
+var __decorateClass$a = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$a(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$9(target, key, result);
+    __defProp$a(target, key, result);
   return result;
 };
 const generateApiUrl$4 = () => {
@@ -11641,6 +11667,7 @@ let TopAscentsViewerElement = class extends PartnerAscentsViewerElement$1 {
     this.sort_order_picker.style.display = "block";
     this.input.placeholder = `Filter recent top ascents...`;
     this.routes_viewer_title.innerHTML = `<span style="font-size: 0.8em">Recent top ascents</span>`;
+    this.showFilters();
   }
   async fetchResults(query, pageNo) {
     if (!this.isOnline) {
@@ -11654,6 +11681,10 @@ let TopAscentsViewerElement = class extends PartnerAscentsViewerElement$1 {
     this.input.placeholder = `Filter recent top ascents...`;
     this.routes_viewer_title.innerHTML = `<span style="font-size: 0.8em">Recent top ascents</span>`;
     return res;
+  }
+  buildResults(_data) {
+    super.buildResults(_data);
+    this.setTextOfFixedHeaderBasedOnScroll(null);
   }
   currentRouteDate = void 0;
   currentCragName = void 0;
@@ -11701,30 +11732,29 @@ let TopAscentsViewerElement = class extends PartnerAscentsViewerElement$1 {
       );
     }
   }
-  linkForCragId(cragId, cragName) {
-    if (window.location.host.match(/localhost/g)) {
-      return `<a style='color:#bbdcee;opacity: 0.75;' href='/pages/crag/?crag_id=${cragId}'>${escape(cragName)}</a>`;
+  appendHeader(leftText, ascentCount, target, objectDescriptor, route) {
+    const header = super.appendHeader(leftText, ascentCount, target, objectDescriptor);
+    if (this.urlSortOrder === "crag_name" && route.hasOwnProperty("crag_id_ukc")) {
+      header.left_label.innerHTML = this.linkForCragId(route["crag_id_ukc"], route["crag_name"]);
+      console.log(header);
     }
-    if (window.location.host.match(/dkk8m.ondigitalocean.app/g)) {
-      return `<a style='color:#bbdcee;opacity: 0.75;' href='/crag/?crag_id=${cragId}'>${escape(cragName)}</a>`;
-    }
-    return `<a style='color:#bbdcee;opacity: 0.75;' href='/logbook/crags/ -${cragId}'>${escape(cragName)}</a>`;
+    return header;
   }
 };
-TopAscentsViewerElement = __decorateClass$9([
+TopAscentsViewerElement = __decorateClass$a([
   controller
 ], TopAscentsViewerElement);
 const TopAscentsViewerElement$1 = TopAscentsViewerElement;
 
-var __defProp$8 = Object.defineProperty;
-var __getOwnPropDesc$8 = Object.getOwnPropertyDescriptor;
-var __decorateClass$8 = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$8(target, key) : target;
+var __defProp$9 = Object.defineProperty;
+var __getOwnPropDesc$9 = Object.getOwnPropertyDescriptor;
+var __decorateClass$9 = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$9(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$8(target, key, result);
+    __defProp$9(target, key, result);
   return result;
 };
 const generateApiUrl$3 = () => {
@@ -11754,20 +11784,20 @@ let WinterAscentsViewerElement = class extends TopAscentsViewerElement$1 {
     return res;
   }
 };
-WinterAscentsViewerElement = __decorateClass$8([
+WinterAscentsViewerElement = __decorateClass$9([
   controller
 ], WinterAscentsViewerElement);
 const WinterAscentsViewerElement$1 = WinterAscentsViewerElement;
 
-var __defProp$7 = Object.defineProperty;
-var __getOwnPropDesc$7 = Object.getOwnPropertyDescriptor;
-var __decorateClass$7 = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$7(target, key) : target;
+var __defProp$8 = Object.defineProperty;
+var __getOwnPropDesc$8 = Object.getOwnPropertyDescriptor;
+var __decorateClass$8 = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$8(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$7(target, key, result);
+    __defProp$8(target, key, result);
   return result;
 };
 const generateApiUrl$2 = () => {
@@ -11797,19 +11827,19 @@ let AlpineAscentsViewerElement = class extends WinterAscentsViewerElement$1 {
     return res;
   }
 };
-AlpineAscentsViewerElement = __decorateClass$7([
+AlpineAscentsViewerElement = __decorateClass$8([
   controller
 ], AlpineAscentsViewerElement);
 
-var __defProp$6 = Object.defineProperty;
-var __getOwnPropDesc$6 = Object.getOwnPropertyDescriptor;
-var __decorateClass$6 = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$6(target, key) : target;
+var __defProp$7 = Object.defineProperty;
+var __getOwnPropDesc$7 = Object.getOwnPropertyDescriptor;
+var __decorateClass$7 = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$7(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$6(target, key, result);
+    __defProp$7(target, key, result);
   return result;
 };
 const generateApiUrl$1 = () => {
@@ -11839,19 +11869,19 @@ let MountainAscentsViewerElement = class extends WinterAscentsViewerElement$1 {
     return res;
   }
 };
-MountainAscentsViewerElement = __decorateClass$6([
+MountainAscentsViewerElement = __decorateClass$7([
   controller
 ], MountainAscentsViewerElement);
 
-var __defProp$5 = Object.defineProperty;
-var __getOwnPropDesc$5 = Object.getOwnPropertyDescriptor;
-var __decorateClass$5 = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$5(target, key) : target;
+var __defProp$6 = Object.defineProperty;
+var __getOwnPropDesc$6 = Object.getOwnPropertyDescriptor;
+var __decorateClass$6 = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$6(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$5(target, key, result);
+    __defProp$6(target, key, result);
   return result;
 };
 const generateApiUrl = () => {
@@ -11965,24 +11995,120 @@ let CragRoutesViewerElement = class extends OfflineInfiniteScrollRoutesViewer$1 
       `;
   }
 };
-__decorateClass$5([
+__decorateClass$6([
   attr
 ], CragRoutesViewerElement.prototype, "cragId", 2);
-CragRoutesViewerElement = __decorateClass$5([
+CragRoutesViewerElement = __decorateClass$6([
   controller
 ], CragRoutesViewerElement);
 
-const template$2 = (element) => {
+const template$3 = (element) => {
   const elementName = element.elementName;
   return html$1`
   <div class='rfd-search'>
     <div data-target='${elementName}.gray_view' data-action='click:${elementName}#hide' id='gray-view'></div>
-    <div data-target='${elementName}.container' class='filters-controller-content' >
-      <span>Hello</span>
+    <div data-target='${elementName}.container' class='filters-controller-content p-3' >
+      <filter-row icon-type='filter' title-string='Filters disabled' data-target='${elementName}.main_filter'></filter-row>
+      <hr/>
     </div>
     
   </div>`;
 };
+
+const template$2 = (element) => {
+  const elementName = element.elementName;
+  return html$1`
+  <label class='d-flex flex-row justify-content-between align-items-center mt-3'>
+    <div class='d-flex flex-row align-items-center'>
+      <img data-target='${elementName}.icon_img' class='filter-row-icon pr-2' style='width:2rem;'/>
+      <div data-target='${elementName}.title_div' class='filter-row-title'></div>
+    </div>
+    <div data-target='${elementName}.switch_div' class='form-switch'><input type="checkbox" data-target='${elementName}.input'><i></i></div>
+  </label>`;
+};
+
+const _filter = "/assets/filter.svg";
+
+const _dws = "/assets/dws.svg";
+
+const _winter = "/assets/winter.svg";
+
+const _via_ferrata = "/assets/via_ferrata.svg";
+
+const _trad = "/assets/trad.svg";
+
+const _sport = "/assets/sport.svg";
+
+const _scramble = "/assets/scramble.svg";
+
+const _bouldering = "/assets/bouldering.svg";
+
+var __defProp$5 = Object.defineProperty;
+var __getOwnPropDesc$5 = Object.getOwnPropertyDescriptor;
+var __decorateClass$5 = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$5(target2, key) : target2;
+  for (var i = decorators.length - 1, decorator; i >= 0; i--)
+    if (decorator = decorators[i])
+      result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
+  if (kind && result)
+    __defProp$5(target2, key, result);
+  return result;
+};
+let FilterRowElement = class extends BaseCon$1 {
+  static icons = {
+    filter: _filter,
+    dws: _dws,
+    winter: _winter,
+    via_ferrata: _via_ferrata,
+    trad: _trad,
+    sport: _sport,
+    scramble: _scramble,
+    bouldering: _bouldering
+  };
+  icon_img;
+  title_div;
+  switch_div;
+  input;
+  set iconType(newVal) {
+    this.icon_img.src = FilterRowElement.icons[newVal];
+  }
+  set titleString(newVal) {
+    this.title_div.innerHTML = escape(newVal);
+  }
+  get template() {
+    return template$2;
+  }
+  connectedCallback() {
+    super.connectedCallback();
+    this.icon_img.src = FilterRowElement.icons[this.iconType];
+    this.titleString = this.titleString;
+    this.input.addEventListener("change", (_evt) => {
+      console.log(_evt.target["checked"]);
+    });
+  }
+};
+__decorateClass$5([
+  target
+], FilterRowElement.prototype, "icon_img", 2);
+__decorateClass$5([
+  target
+], FilterRowElement.prototype, "title_div", 2);
+__decorateClass$5([
+  target
+], FilterRowElement.prototype, "switch_div", 2);
+__decorateClass$5([
+  target
+], FilterRowElement.prototype, "input", 2);
+__decorateClass$5([
+  attr
+], FilterRowElement.prototype, "iconType", 1);
+__decorateClass$5([
+  attr
+], FilterRowElement.prototype, "titleString", 1);
+FilterRowElement = __decorateClass$5([
+  controller
+], FilterRowElement);
+const FilterRowElement$1 = FilterRowElement;
 
 var __defProp$4 = Object.defineProperty;
 var __getOwnPropDesc$4 = Object.getOwnPropertyDescriptor;
@@ -11998,8 +12124,17 @@ var __decorateClass$4 = (decorators, target2, key, kind) => {
 let FiltersControllerElement = class extends BaseCon$1 {
   gray_view;
   container;
+  data = [
+    { iconType: "trad", title: "Trad routes", checked: true },
+    { iconType: "sport", title: "Sport routes", checked: true },
+    { iconType: "bouldering", title: "Boulder problems", checked: true },
+    { iconType: "dws", title: "DWS routes", checked: true },
+    { iconType: "winter", title: "Winter routes", checked: true },
+    { iconType: "via_ferrata", title: "Via ferrata", checked: true },
+    { iconType: "scramble", title: "Scrambles", checked: true }
+  ];
   get template() {
-    return template$2;
+    return template$3;
   }
   die() {
     console.log("hello");
@@ -12008,6 +12143,12 @@ let FiltersControllerElement = class extends BaseCon$1 {
   show() {
     this.gray_view.style.opacity = "1";
     this.container.style.top = "0";
+    for (const data of this.data) {
+      let row = this.container.appendChild(new FilterRowElement$1());
+      row.iconType = data.iconType;
+      row.title_div.innerText = data.title;
+      row.input.checked = data.checked;
+    }
   }
   hide() {
     this.gray_view.style.opacity = "0";
