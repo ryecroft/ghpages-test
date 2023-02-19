@@ -12305,9 +12305,6 @@ let FiltersControllerElement = class extends BaseCon$1 {
     this.parentElement?.removeChild(this);
   }
   onScroll(_evt) {
-    if (this.scroll_container.scrollTop > this.maxScrollTop) {
-      this.scroll_container.scrollTop = this.maxScrollTop;
-    }
   }
   onTouchEnd(_evt) {
     if (this.scroll_container.scrollTop < this.minScrollTop) {
@@ -12362,7 +12359,7 @@ let FiltersControllerElement = class extends BaseCon$1 {
     setTimeout(() => {
       const top = this.filters_container.getBoundingClientRect().top;
       this.filters_container.style.height = `calc(var(--real-vh) - ${top}px)`;
-    }, 800);
+    }, 402);
   }
   loadFilters() {
     for (const data of this.data.route_types) {
@@ -12388,6 +12385,9 @@ let FiltersControllerElement = class extends BaseCon$1 {
     row.icon_img.style.backgroundColor = "#F8CA23FF";
     row.title_div.innerText = "Route stars";
     row.starCount = 1;
+    div = document.createElement("div");
+    this.scroll_container.appendChild(div);
+    div.classList.add("bottom-spacer");
   }
   hide() {
     document.body.style.overflow = "auto";
