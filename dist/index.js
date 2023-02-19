@@ -12066,26 +12066,28 @@ let FilterRowElement = class extends BaseCon$1 {
     this.icon_img.classList.add(`icon-${newVal}`);
   }
   filterCategory;
+  #titleString;
   set titleString(newVal) {
-    this.title_div.innerHTML = escape(newVal);
+    this.#titleString = escape(newVal);
+    this.title_div.innerHTML = this.#titleString;
   }
   get value() {
     return this.input.checked;
   }
   setValueInJson(obj) {
-    obj[this.filterCategory][this.iconType] = this.value;
+    obj[this.filterCategory].push(this.toJson());
   }
   get template() {
     return template$4;
   }
   connectedCallback() {
     super.connectedCallback();
+    this.filterCategory = "route_types";
     this.iconType = this.iconType;
-    this.titleString = this.titleString;
     this.input?.addEventListener("change", this.setDimming.bind(this));
   }
   setDimming(_evt) {
-    if (this.input.checked) {
+    if (this.input?.checked) {
       this.title_div.style.opacity = "1";
       this.icon_img.style.opacity = "1";
     } else {
@@ -12097,8 +12099,7 @@ let FilterRowElement = class extends BaseCon$1 {
     return {
       iconType: this.iconType,
       title: this.titleString,
-      checked: this.input.checked,
-      filterCategory: this.filterCategory
+      checked: this.input.checked
     };
   }
 };
@@ -12163,6 +12164,7 @@ let ColorFilterRowElement = class extends FilterRowElement$1 {
   }
   connectedCallback() {
     super.connectedCallback();
+    this.filterCategory = "route_colors";
   }
   setDimming(_evt) {
     if (this.input.checked) {
@@ -12172,6 +12174,9 @@ let ColorFilterRowElement = class extends FilterRowElement$1 {
       this.title_div.style.opacity = "0.4";
       this.topo_dot.style.opacity = "0.4";
     }
+  }
+  setValueInJson(obj) {
+    obj[this.filterCategory].push(this.toJson());
   }
 };
 __decorateClass$6([
@@ -12221,11 +12226,17 @@ let SliderFilterRowElement = class extends FilterRowElement$1 {
   get template() {
     return template$2;
   }
+  get value() {
+    return Number(this.range.value);
+  }
   connectedCallback() {
     super.connectedCallback();
     this.range.addEventListener("input", (_evt) => {
       this.range_counter.innerText = _evt.target["value"];
     });
+  }
+  setValueInJson(obj) {
+    obj["minimum_star_count"] = this.value;
   }
 };
 __decorateClass$5([
@@ -12267,30 +12278,40 @@ let FiltersControllerElement = class extends BaseCon$1 {
   get minScrollTop() {
     return 250;
   }
-  data = {
+  baseData = {
+    filters_enabled: false,
     route_types: [
-      { iconType: "trad", title: "Trad routes", checked: true, filterCategory: "route_types" },
-      { iconType: "sport", title: "Sport routes", checked: true, filterCategory: "route_types" },
-      { iconType: "dws", title: "Deep water solos", checked: true, filterCategory: "route_types" },
-      { iconType: "bouldering", title: "Boulder problems", checked: true, filterCategory: "route_types" },
-      { iconType: "winter", title: "Winter routes", checked: true, filterCategory: "route_types" },
-      { iconType: "ice", title: "Ice routes", checked: true, filterCategory: "route_types" },
-      { iconType: "alpine", title: "Alpine routes", checked: true, filterCategory: "route_types" },
-      { iconType: "mixed", title: "Mixed routes", checked: true, filterCategory: "route_types" },
-      { iconType: "aid", title: "Aid routes", checked: true, filterCategory: "route_types" },
-      { iconType: "via_ferrata", title: "Via ferrata", checked: true, filterCategory: "route_types" },
-      { iconType: "scramble", title: "Scrambles", checked: true, filterCategory: "route_types" }
+      { iconType: "trad", title: "Trad routes", checked: false },
+      { iconType: "sport", title: "Sport routes", checked: false },
+      { iconType: "dws", title: "Deep water solos", checked: false },
+      { iconType: "bouldering", title: "Boulder problems", checked: false },
+      { iconType: "winter", title: "Winter routes", checked: false },
+      { iconType: "ice", title: "Ice routes", checked: false },
+      { iconType: "alpine", title: "Alpine routes", checked: false },
+      { iconType: "mixed", title: "Mixed routes", checked: false },
+      { iconType: "aid", title: "Aid routes", checked: false },
+      { iconType: "via_ferrata", title: "Via ferrata", checked: false },
+      { iconType: "scramble", title: "Scrambles", checked: false }
     ],
     route_colors: [
-      { iconType: "green", title: "Green routes", checked: true, filterCategory: "route_colors" },
-      { iconType: "orange", title: "Orange routes", checked: true, filterCategory: "route_colors" },
-      { iconType: "red", title: "Red routes", checked: true, filterCategory: "route_colors" },
-      { iconType: "black", title: "Black routes", checked: true, filterCategory: "route_colors" },
-      { iconType: "white", title: "White routes", checked: true, filterCategory: "route_colors" }
-    ]
+      { iconType: "green", title: "Green routes", checked: false },
+      { iconType: "orange", title: "Orange routes", checked: false },
+      { iconType: "red", title: "Red routes", checked: false },
+      { iconType: "black", title: "Black routes", checked: false },
+      { iconType: "white", title: "White routes", checked: false }
+    ],
+    minimum_star_count: 0
   };
+  storageKey = "route-filters";
+  get data() {
+    let data = localStorage.getItem(this.storageKey);
+    if (data) {
+      return JSON.parse(data);
+    }
+    return this.baseData;
+  }
   get filters() {
-    return Array.from(this.filters_container.querySelectorAll("filter-row"));
+    return Array.from(this.filters_container.querySelectorAll("filter-row, color-filter-row"));
   }
   get template() {
     return template$5;
@@ -12310,8 +12331,6 @@ let FiltersControllerElement = class extends BaseCon$1 {
       }
       this.setTitleOfMainFilter();
     };
-    this.main_filter.input.checked = true;
-    this.main_filter.input.onchange({ target: this.main_filter.input });
     this.scroll_container.addEventListener("scroll", this.onScroll.bind(this));
     this.scroll_container.addEventListener("touchend", this.onTouchEnd.bind(this));
   }
@@ -12323,6 +12342,8 @@ let FiltersControllerElement = class extends BaseCon$1 {
     }
   }
   die() {
+    const data = this.toJson();
+    localStorage.setItem(this.storageKey, JSON.stringify(data));
     this.parentElement?.removeChild(this);
   }
   onScroll(_evt) {
@@ -12385,20 +12406,25 @@ let FiltersControllerElement = class extends BaseCon$1 {
     }, 402);
   }
   loadFilters() {
-    for (const data of this.data.route_types) {
+    const data = this.data;
+    this.main_filter.input.checked = data.filters_enabled;
+    this.main_filter.input.onchange({ target: this.main_filter.input });
+    for (const filter of data.route_types) {
       let row2 = this.filters_container.appendChild(new FilterRowElement$1());
-      row2.iconType = data.iconType;
-      row2.title_div.innerText = data.title;
-      row2.input.checked = data.checked;
+      row2.iconType = filter.iconType;
+      row2.titleString = filter.title;
+      row2.input.checked = filter.checked;
+      row2.setDimming(null);
     }
     let div = document.createElement("div");
     this.filters_container.appendChild(div);
     div.classList.add("divider");
-    for (const data of this.data.route_colors) {
+    for (const filter of data.route_colors) {
       let row2 = this.filters_container.appendChild(new ColorFilterRowElement$1());
-      row2.iconType = data.iconType;
-      row2.title_div.innerText = data.title;
-      row2.input.checked = data.checked;
+      row2.iconType = filter.iconType;
+      row2.titleString = filter.title;
+      row2.input.checked = filter.checked;
+      row2.setDimming(null);
     }
     div = document.createElement("div");
     this.filters_container.appendChild(div);
@@ -12406,15 +12432,13 @@ let FiltersControllerElement = class extends BaseCon$1 {
     let row = this.filters_container.appendChild(new SliderFilterRowElement$1());
     row.iconType = "star";
     row.icon_img.style.backgroundColor = "#F8CA23FF";
-    row.title_div.innerText = "Route stars";
-    row.starCount = 1;
-    div = document.createElement("div");
-    this.scroll_container.appendChild(div);
-    div.classList.add("bottom-spacer");
+    row.titleString = "Route stars";
+    row.starCount = data.minimum_star_count;
   }
   hide() {
     document.body.style.overflow = "auto";
     this.gray_view.style.opacity = "0";
+    this.backing_view.style.opacity = "0";
     this.container.style.top = "100vh";
     setTimeout(() => {
       this.die();
@@ -12422,18 +12446,13 @@ let FiltersControllerElement = class extends BaseCon$1 {
   }
   toJson() {
     const res = {
-      route_types: {},
-      grade_colors: {},
-      minimum_star_count: 0,
-      route_lengths: {}
+      filters_enabled: this.main_filter.input.checked,
+      route_types: [],
+      route_colors: [],
+      minimum_star_count: 0
     };
     for (const filter of this.filters) {
       filter.setValueInJson(res);
-    }
-    for (const key in Object.keys(res)) {
-      if (typeof res[key] === "object" && Object.keys(res[key]).length === 0) {
-        delete res[key];
-      }
     }
     return res;
   }
