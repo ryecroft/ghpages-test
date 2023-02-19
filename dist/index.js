@@ -12206,9 +12206,15 @@ let FiltersControllerElement = class extends BaseCon$1 {
   }
   setupBullshitForSafari() {
     let root = document.documentElement;
+    let isSafari = /constructor/i.test(window.HTMLElement) || function(p) {
+      return p.toString() === "[object SafariRemoteNotification]";
+    }(!window["safari"]) || typeof window["safari"] !== "undefined" && window["safari"].pushNotification;
+    if (!isSafari) {
+      root.style.setProperty("--real-vh", "100vh");
+      return;
+    }
     function updateRealViewportDimensions() {
-      console.log(`1vh = ${window.innerHeight / 100}px`);
-      root.style.setProperty("--real-vh", window.innerHeight / 100 + "px");
+      root.style.setProperty("--real-vh", window.innerHeight + "px");
     }
     updateRealViewportDimensions();
     const vhChangeEventTypes = [
@@ -12247,7 +12253,7 @@ let FiltersControllerElement = class extends BaseCon$1 {
     setTimeout(() => {
       const top = this.filters_container.getBoundingClientRect().top;
       console.log(top);
-      this.filters_container.style.height = `calc((var(--real-vh) * 100) - ${top}px)`;
+      this.filters_container.style.height = `calc(var(--real-vh) - ${top}px)`;
     }, 400);
   }
   hide() {
