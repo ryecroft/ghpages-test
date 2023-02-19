@@ -12024,6 +12024,7 @@ const template$5 = (element) => {
               </div>
           </div>
       </div>
+      <div data-target='${elementName}.backing_view' class='backing-view'></div>
   </div>`;
 };
 
@@ -12258,6 +12259,7 @@ let FiltersControllerElement = class extends BaseCon$1 {
   scroll_container;
   filters_container;
   dimming_view;
+  backing_view;
   main_filter;
   get maxScrollTop() {
     return 425;
@@ -12324,6 +12326,8 @@ let FiltersControllerElement = class extends BaseCon$1 {
     this.parentElement?.removeChild(this);
   }
   onScroll(_evt) {
+    const show = this.scroll_container.scrollTop > this.maxScrollTop;
+    this.backing_view.style.opacity = show ? "1" : "0";
   }
   onTouchEnd(_evt) {
     if (this.scroll_container.scrollTop < this.minScrollTop) {
@@ -12449,6 +12453,9 @@ __decorateClass$4([
 __decorateClass$4([
   target
 ], FiltersControllerElement.prototype, "dimming_view", 2);
+__decorateClass$4([
+  target
+], FiltersControllerElement.prototype, "backing_view", 2);
 __decorateClass$4([
   target
 ], FiltersControllerElement.prototype, "main_filter", 2);
