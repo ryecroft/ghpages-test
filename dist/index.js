@@ -12326,7 +12326,7 @@ let FiltersControllerElement = class extends BaseCon$1 {
     this.parentElement?.removeChild(this);
   }
   onScroll(_evt) {
-    const show = this.scroll_container.scrollTop > this.maxScrollTop;
+    const show = this.scroll_container.scrollTop > this.maxScrollTop - 30;
     this.backing_view.style.opacity = show ? "1" : "0";
   }
   onTouchEnd(_evt) {
