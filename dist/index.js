@@ -12206,9 +12206,7 @@ let FiltersControllerElement = class extends BaseCon$1 {
   }
   setupBullshitForSafari() {
     let root = document.documentElement;
-    let isSafari = /constructor/i.test(window.HTMLElement) || function(p) {
-      return p.toString() === "[object SafariRemoteNotification]";
-    }(!window["safari"]) || typeof window["safari"] !== "undefined" && window["safari"].pushNotification;
+    let isSafari = navigator.userAgent.includes("Safari");
     if (!isSafari) {
       root.style.setProperty("--real-vh", "100vh");
       return;
