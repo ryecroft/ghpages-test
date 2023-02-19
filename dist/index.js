@@ -2476,7 +2476,7 @@ const searchResultsTemplate = (element) => {
                             ${element.htmlForSlot("routes-viewer-sort-order-options")}
                         </select>
                         <button class='fa-button' data-target='${element.elementName}.sort_button' data-action='click:${element.elementName}#toggleSortDirection'><i class='fas fa-arrow-down' data-target='${element.elementName}.sort_arrow'></i></button>
-                        <button class='fa-button ml-auto mr-2' data-target='${element.elementName}.filters_button' data-action='click:${element.elementName}#showFilters'><i class='fas fa-filter' data-target='${element.elementName}.filter_icon'></i></button>
+                        <button id='show-filters-button' class='fa-button ml-auto mr-2' data-target='${element.elementName}.filters_button' data-action='click:${element.elementName}#showFilters'><i class='fas fa-filter' data-target='${element.elementName}.filter_icon'></i></button>
                     </div>
                 </div>
                 <div id='filter-bar-container'>
@@ -12013,15 +12013,17 @@ const template$3 = (element) => {
   const elementName = element.elementName;
   return html$1`
   <div class='rfd-search'>
-    <div data-target='${elementName}.gray_view' data-action='click:${elementName}#hide' id='gray-view'></div>
-    <div data-target='${elementName}.container' class='filters-controller-content pr-3 pl-3 pt-1'>
-      <filter-row icon-type='filter' title-string='Filters disabled' data-target='${elementName}.main_filter'></filter-row>
-      <div class='divider'></div>
-      <div data-target='${elementName}.filters_container' >
-        <div data-target='${elementName}.dimming_view' class='filters-dimming-view'></div>
+      <div data-target='${elementName}.gray_view' data-action='click:${elementName}#hide' id='gray-view'></div>
+      <div data-target='${elementName}.scroll_container' id='filters-controller-scrollable-area'>
+          <div style='height:80vh'></div>
+          <div data-target='${elementName}.container' class='filters-controller-content pr-3 pl-3 pt-1'>
+              <filter-row icon-type='filter' title-string='Filters disabled' data-target='${elementName}.main_filter'></filter-row>
+              <div class='divider'></div>
+              <div data-target='${elementName}.filters_container' id='filters-controller-filters-container'>
+                  <div data-target='${elementName}.dimming_view' class='filters-dimming-view'></div>
+              </div>
+          </div>
       </div>
-    </div>
-    
   </div>`;
 };
 
@@ -12062,8 +12064,15 @@ let FilterRowElement = class extends BaseCon$1 {
     }
     this.icon_img.classList.add(`icon-${newVal}`);
   }
+  filterCategory;
   set titleString(newVal) {
     this.title_div.innerHTML = escape(newVal);
+  }
+  get value() {
+    return this.input.checked;
+  }
+  setValueInJson(obj) {
+    obj[this.filterCategory][this.iconType] = this.value;
   }
   get template() {
     return template$2;
@@ -12077,7 +12086,8 @@ let FilterRowElement = class extends BaseCon$1 {
     return {
       iconType: this.iconType,
       title: this.titleString,
-      checked: this.input.checked
+      checked: this.input.checked,
+      filterCategory: this.filterCategory
     };
   }
 };
@@ -12096,6 +12106,9 @@ __decorateClass$5([
 __decorateClass$5([
   attr
 ], FilterRowElement.prototype, "iconType", 1);
+__decorateClass$5([
+  attr
+], FilterRowElement.prototype, "filterCategory", 2);
 __decorateClass$5([
   attr
 ], FilterRowElement.prototype, "titleString", 1);
@@ -12120,18 +12133,32 @@ var __decorateClass$4 = (decorators, target2, key, kind) => {
 let FiltersControllerElement = class extends BaseCon$1 {
   gray_view;
   container;
+  scroll_container;
   filters_container;
   dimming_view;
   main_filter;
+  get maxScrollTop() {
+    return 500;
+  }
+  get minScrollTop() {
+    return 250;
+  }
   data = [
-    { iconType: "trad", title: "Trad routes", checked: true },
-    { iconType: "sport", title: "Sport routes", checked: true },
-    { iconType: "bouldering", title: "Boulder problems", checked: true },
-    { iconType: "dws", title: "DWS routes", checked: true },
-    { iconType: "winter", title: "Winter routes", checked: true },
-    { iconType: "via_ferrata", title: "Via ferrata", checked: true },
-    { iconType: "scramble", title: "Scrambles", checked: true }
+    { iconType: "trad", title: "Trad routes", checked: true, filterCategory: "route_types" },
+    { iconType: "sport", title: "Sport routes", checked: true, filterCategory: "route_types" },
+    { iconType: "dws", title: "Deep water solos", checked: true, filterCategory: "route_types" },
+    { iconType: "bouldering", title: "Boulder problems", checked: true, filterCategory: "route_types" },
+    { iconType: "winter", title: "Winter routes", checked: true, filterCategory: "route_types" },
+    { iconType: "ice", title: "Ice routes", checked: true, filterCategory: "route_types" },
+    { iconType: "alpine", title: "Alpine routes", checked: true, filterCategory: "route_types" },
+    { iconType: "mixed", title: "Mixed routes", checked: true, filterCategory: "route_types" },
+    { iconType: "aid", title: "Aid routes", checked: true, filterCategory: "route_types" },
+    { iconType: "via_ferrata", title: "Via ferrata", checked: true, filterCategory: "route_types" },
+    { iconType: "scramble", title: "Scrambles", checked: true, filterCategory: "route_types" }
   ];
+  get filters() {
+    return Array.from(this.filters_container.querySelectorAll("filter-row"));
+  }
   get template() {
     return template$3;
   }
@@ -12151,6 +12178,8 @@ let FiltersControllerElement = class extends BaseCon$1 {
       this.setTitleOfMainFilter();
     };
     this.setTitleOfMainFilter();
+    this.scroll_container.addEventListener("scroll", this.onScroll.bind(this));
+    this.scroll_container.addEventListener("touchend", this.onTouchEnd.bind(this));
   }
   setTitleOfMainFilter() {
     if (this.main_filter.input.checked) {
@@ -12160,9 +12189,22 @@ let FiltersControllerElement = class extends BaseCon$1 {
     }
   }
   die() {
-    this.parentElement.removeChild(this);
+    this.parentElement?.removeChild(this);
+  }
+  onScroll(_evt) {
+    if (this.scroll_container.scrollTop > this.maxScrollTop) {
+      this.scroll_container.scrollTop = this.maxScrollTop;
+    }
+  }
+  onTouchEnd(_evt) {
+    if (this.scroll_container.scrollTop < this.minScrollTop) {
+      this.hide();
+    } else {
+      this.scroll_container.scrollTop = this.maxScrollTop;
+    }
   }
   show() {
+    document.body.style.overflow = "hidden";
     this.gray_view.style.opacity = "1";
     this.container.style.top = "0";
     for (const data of this.data) {
@@ -12171,13 +12213,32 @@ let FiltersControllerElement = class extends BaseCon$1 {
       row.title_div.innerText = data.title;
       row.input.checked = data.checked;
     }
+    this.scroll_container.scrollTo({ top: this.maxScrollTop, behavior: "smooth" });
   }
   hide() {
+    document.body.style.overflow = "auto";
     this.gray_view.style.opacity = "0";
     this.container.style.top = "100vh";
     setTimeout(() => {
       this.die();
     }, 500);
+  }
+  toJson() {
+    const res = {
+      route_types: {},
+      grade_colors: {},
+      minimum_star_count: 0,
+      route_lengths: {}
+    };
+    for (const filter of this.filters) {
+      filter.setValueInJson(res);
+    }
+    for (const key in Object.keys(res)) {
+      if (typeof res[key] === "object" && Object.keys(res[key]).length === 0) {
+        delete res[key];
+      }
+    }
+    return res;
   }
 };
 __decorateClass$4([
@@ -12186,6 +12247,9 @@ __decorateClass$4([
 __decorateClass$4([
   target
 ], FiltersControllerElement.prototype, "container", 2);
+__decorateClass$4([
+  target
+], FiltersControllerElement.prototype, "scroll_container", 2);
 __decorateClass$4([
   target
 ], FiltersControllerElement.prototype, "filters_container", 2);
