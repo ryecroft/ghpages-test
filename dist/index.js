@@ -12359,6 +12359,10 @@ let FiltersControllerElement = class extends BaseCon$1 {
       const top = this.filters_container.getBoundingClientRect().top;
       this.filters_container.style.height = `calc(var(--real-vh) - ${top}px)`;
     }, 400);
+    setTimeout(() => {
+      const top = this.filters_container.getBoundingClientRect().top;
+      this.filters_container.style.height = `calc(var(--real-vh) - ${top}px)`;
+    }, 1200);
   }
   loadFilters() {
     for (const data of this.data.route_types) {
