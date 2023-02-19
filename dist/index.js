@@ -2190,15 +2190,15 @@ const noBreaks = (s) => {
   return s?.replace(/\s/g, "&nbsp");
 };
 
-var __defProp$t = Object.defineProperty;
-var __getOwnPropDesc$t = Object.getOwnPropertyDescriptor;
-var __decorateClass$t = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$t(target, key) : target;
+var __defProp$u = Object.defineProperty;
+var __getOwnPropDesc$u = Object.getOwnPropertyDescriptor;
+var __decorateClass$u = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$u(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$t(target, key, result);
+    __defProp$u(target, key, result);
   return result;
 };
 let BaseCon = class extends HTMLElement {
@@ -2239,20 +2239,20 @@ let BaseCon = class extends HTMLElement {
     return "";
   }
 };
-BaseCon = __decorateClass$t([
+BaseCon = __decorateClass$u([
   controller
 ], BaseCon);
 const BaseCon$1 = BaseCon;
 
-var __defProp$s = Object.defineProperty;
-var __getOwnPropDesc$s = Object.getOwnPropertyDescriptor;
-var __decorateClass$s = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$s(target2, key) : target2;
+var __defProp$t = Object.defineProperty;
+var __getOwnPropDesc$t = Object.getOwnPropertyDescriptor;
+var __decorateClass$t = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$t(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$s(target2, key, result);
+    __defProp$t(target2, key, result);
   return result;
 };
 let PageButtonElement = class extends BaseCon$1 {
@@ -2270,13 +2270,13 @@ let PageButtonElement = class extends BaseCon$1 {
     super.connectedCallback();
   }
 };
-__decorateClass$s([
+__decorateClass$t([
   target
 ], PageButtonElement.prototype, "span", 2);
-__decorateClass$s([
+__decorateClass$t([
   attr
 ], PageButtonElement.prototype, "pageNumber", 1);
-PageButtonElement = __decorateClass$s([
+PageButtonElement = __decorateClass$t([
   controller
 ], PageButtonElement);
 
@@ -2290,15 +2290,15 @@ const pageControlTemplate = (element) => {
 `;
 };
 
-var __defProp$r = Object.defineProperty;
-var __getOwnPropDesc$r = Object.getOwnPropertyDescriptor;
-var __decorateClass$r = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$r(target2, key) : target2;
+var __defProp$s = Object.defineProperty;
+var __getOwnPropDesc$s = Object.getOwnPropertyDescriptor;
+var __decorateClass$s = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$s(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$r(target2, key, result);
+    __defProp$s(target2, key, result);
   return result;
 };
 let PageControlElement = class extends BaseCon$1 {
@@ -2409,16 +2409,16 @@ let PageControlElement = class extends BaseCon$1 {
     return arr;
   }
 };
-__decorateClass$r([
+__decorateClass$s([
   target
 ], PageControlElement.prototype, "previous", 2);
-__decorateClass$r([
+__decorateClass$s([
   targets
 ], PageControlElement.prototype, "pages", 2);
-__decorateClass$r([
+__decorateClass$s([
   target
 ], PageControlElement.prototype, "next", 2);
-PageControlElement = __decorateClass$r([
+PageControlElement = __decorateClass$s([
   controller
 ], PageControlElement);
 
@@ -2697,15 +2697,15 @@ class UkcSid {
   ukcId = 0;
 }
 
-var __defProp$q = Object.defineProperty;
-var __getOwnPropDesc$q = Object.getOwnPropertyDescriptor;
-var __decorateClass$q = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$q(target2, key) : target2;
+var __defProp$r = Object.defineProperty;
+var __getOwnPropDesc$r = Object.getOwnPropertyDescriptor;
+var __decorateClass$r = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$r(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$q(target2, key, result);
+    __defProp$r(target2, key, result);
   return result;
 };
 let BaseRoutesViewer = class extends BaseCon$1 {
@@ -3170,49 +3170,49 @@ let BaseRoutesViewer = class extends BaseCon$1 {
     return `<a style='color:#bbdcee;opacity: 0.75;' href='/logbook/crags/ -${cragId}'>${escape(cragName)}</a>`;
   }
 };
-__decorateClass$q([
+__decorateClass$r([
   target
 ], BaseRoutesViewer.prototype, "routes_viewer_container", 2);
-__decorateClass$q([
+__decorateClass$r([
   target
 ], BaseRoutesViewer.prototype, "input", 2);
-__decorateClass$q([
+__decorateClass$r([
   target
 ], BaseRoutesViewer.prototype, "progress_bar", 2);
-__decorateClass$q([
+__decorateClass$r([
   target
 ], BaseRoutesViewer.prototype, "delete_text_button", 2);
-__decorateClass$q([
+__decorateClass$r([
   target
 ], BaseRoutesViewer.prototype, "filter_query_description", 2);
-__decorateClass$q([
+__decorateClass$r([
   target
 ], BaseRoutesViewer.prototype, "header_container", 2);
-__decorateClass$q([
+__decorateClass$r([
   target
 ], BaseRoutesViewer.prototype, "routes_viewer_title", 2);
-__decorateClass$q([
+__decorateClass$r([
   target
 ], BaseRoutesViewer.prototype, "sort_order_picker", 2);
-__decorateClass$q([
+__decorateClass$r([
   target
 ], BaseRoutesViewer.prototype, "sort_arrow", 2);
-__decorateClass$q([
+__decorateClass$r([
   target
 ], BaseRoutesViewer.prototype, "sort_button", 2);
-__decorateClass$q([
+__decorateClass$r([
   target
 ], BaseRoutesViewer.prototype, "filters_button", 2);
-__decorateClass$q([
+__decorateClass$r([
   target
 ], BaseRoutesViewer.prototype, "filter_icon", 2);
-__decorateClass$q([
+__decorateClass$r([
   target
 ], BaseRoutesViewer.prototype, "fixed_section_header", 2);
-__decorateClass$q([
+__decorateClass$r([
   target
 ], BaseRoutesViewer.prototype, "fixed_section_header_2", 2);
-BaseRoutesViewer = __decorateClass$q([
+BaseRoutesViewer = __decorateClass$r([
   controller
 ], BaseRoutesViewer);
 const BaseRoutesViewer$1 = BaseRoutesViewer;
@@ -3275,15 +3275,15 @@ const searchbarTemplate = (element) => {
     `;
 };
 
-var __defProp$p = Object.defineProperty;
-var __getOwnPropDesc$p = Object.getOwnPropertyDescriptor;
-var __decorateClass$p = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$p(target2, key) : target2;
+var __defProp$q = Object.defineProperty;
+var __getOwnPropDesc$q = Object.getOwnPropertyDescriptor;
+var __decorateClass$q = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$q(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$p(target2, key, result);
+    __defProp$q(target2, key, result);
   return result;
 };
 let BaseSearchbarElement = class extends BaseCon$1 {
@@ -3720,67 +3720,67 @@ let BaseSearchbarElement = class extends BaseCon$1 {
     this.delete_text_button.classList[str ? "remove" : "add"]("hidden");
   }
 };
-__decorateClass$p([
+__decorateClass$q([
   target
 ], BaseSearchbarElement.prototype, "search_container", 2);
-__decorateClass$p([
+__decorateClass$q([
   target
 ], BaseSearchbarElement.prototype, "input", 2);
-__decorateClass$p([
+__decorateClass$q([
   target
 ], BaseSearchbarElement.prototype, "return_key_action", 2);
-__decorateClass$p([
+__decorateClass$q([
   target
 ], BaseSearchbarElement.prototype, "search_absolute", 2);
-__decorateClass$p([
+__decorateClass$q([
   target
 ], BaseSearchbarElement.prototype, "help_button", 2);
-__decorateClass$p([
+__decorateClass$q([
   target
 ], BaseSearchbarElement.prototype, "delete_text_button", 2);
-__decorateClass$p([
+__decorateClass$q([
   target
 ], BaseSearchbarElement.prototype, "search_widget", 2);
-__decorateClass$p([
+__decorateClass$q([
   target
 ], BaseSearchbarElement.prototype, "progress_bar", 2);
-__decorateClass$p([
+__decorateClass$q([
   target
 ], BaseSearchbarElement.prototype, "routes_viewer_container", 2);
-__decorateClass$p([
+__decorateClass$q([
   target
 ], BaseSearchbarElement.prototype, "searchbar_inner_container", 2);
-__decorateClass$p([
+__decorateClass$q([
   target
 ], BaseSearchbarElement.prototype, "searchbar_query_suggestion", 2);
-__decorateClass$p([
+__decorateClass$q([
   target
 ], BaseSearchbarElement.prototype, "searchbar_query_suggestion_href", 2);
-__decorateClass$p([
+__decorateClass$q([
   target
 ], BaseSearchbarElement.prototype, "query_suggestion_container", 2);
-__decorateClass$p([
+__decorateClass$q([
   target
 ], BaseSearchbarElement.prototype, "help_text_container", 2);
-__decorateClass$p([
+__decorateClass$q([
   target
 ], BaseSearchbarElement.prototype, "filter_query_description", 2);
-__decorateClass$p([
+__decorateClass$q([
   target
 ], BaseSearchbarElement.prototype, "searchbar_footer", 2);
-__decorateClass$p([
+__decorateClass$q([
   target
 ], BaseSearchbarElement.prototype, "show_all_results_span", 2);
-__decorateClass$p([
+__decorateClass$q([
   target
 ], BaseSearchbarElement.prototype, "gray_view", 2);
-__decorateClass$p([
+__decorateClass$q([
   target
 ], BaseSearchbarElement.prototype, "searchbar_short_display", 2);
-__decorateClass$p([
+__decorateClass$q([
   attr
 ], BaseSearchbarElement.prototype, "placeholderString", 1);
-BaseSearchbarElement = __decorateClass$p([
+BaseSearchbarElement = __decorateClass$q([
   controller
 ], BaseSearchbarElement);
 const BaseSearchbarElement$1 = BaseSearchbarElement;
@@ -3799,15 +3799,15 @@ const isAppleSafari = () => {
 
 const html = "<h6>🛟 Route &amp; Crag Search Help</h6>\n<p>You should probably try out the suggestions to get an feel of the stuff you can do before you waste time reading all this…</p>\n<p>…but if you really want to know everything about the search, here you go:</p>\n<p>Searches are checked against the following properties of a route (and the equivalents for a crag):</p>\n<ul>\n<li><code>name</code></li>\n<li><code>crag name</code></li>\n<li><code>buttress name</code></li>\n<li><code>area name</code></li>\n<li><code>country name</code></li>\n<li><code>first ascent</code> potentially including dates and names, but could be one or the other or neither</li>\n<li><code>rock type name</code> one of eg [ granite, gritstone, sandstone, limestone, schist, rhylite, ... ] (there are loads)</li>\n<li><code>route type name</code> one of [ sport, trad, winter, bouldering, aid ] (this list is complete)</li>\n<li><code>description</code></li>\n<li><code>route grade</code></li>\n<li><code>tech grade</code></li>\n</ul>\n<p>A match is found if all of the tokens of the search query match one or more of the fields (more on tokens later, but think &quot;words&quot; for now). This means you can very quickly write a query that returns very few results by typing a combination of fragments of the various fields, like <code>mal wom</code> returns <code>Wombat E2</code> at Malham as the first result because token1 (<code>mal</code>) matches the crag name (<code>Malham</code>) and token2 (<code>wom</code>) matches the route's name. You could be even more precise and search <code>mal wom e2</code> but for this instance it's not needed. (Note that this stuff is true at the time of writing but could change if more routes are added).</p>\n<p>The scoring of results is done by applying multipliers depending on where a match is found. The higher the field is on the list above, the more valuble a match against it is considered, so if a query matches against one route's <code>name</code> and another's <code>description</code>, the one against the <code>name</code> will be considered a better match and appear nearer the top. The popularity of the route is taken into account so a route with loads of ascents will be given a higher search score than one with none.</p>\n<p>For the most part this is all anyone really needs, but there are also a few advanced options you can use if you want:</p>\n<ul>\n<li>exact-phrase matches, eg <code>&quot;captain nemo&quot;</code></li>\n<li>route-star ranges, eg <code>*-**</code></li>\n<li>grade ranges, eg <code>vs-e3</code></li>\n<li>date ranges, eg <code>1984-1986</code> (for first ascents - note that not all routes have fa details so these will be excluded from a search with a date range!)</li>\n<li>difficulty for grade / grade quality, eg <code>|soft|</code></li>\n<li>regular expressions, eg <code>/chris (?!craggs)/</code></li>\n<li>negations, eg <code>-crack</code></li>\n</ul>\n<h6>Exact phrase matches</h6>\n<p>Surround multiple words with double quotes to require a match on that phrase, eg <code>&quot;bat route&quot; malham</code> creates the tokens <code>bat route</code> and <code>malham</code>. Another example is <code>roof crack stanage</code> currently returns 45 routes, where as <code>&quot;roof crack&quot; stanage</code> returns only 9.</p>\n<h6>Route-star ranges</h6>\n<p>Asterisks get special treatment in search queries now. A sequence of them is considered to be a star rating for a route, so <code>*</code> is treated as 1-star, <code>**</code> treated as 2-stars and <code>***</code> treated as 3-stars. Typing just one sequence creates a search where the route is required to have at least that many stars, eg <code>bat route **</code> will only return routes with 2 or more stars that also match the other search tokens <code>bat</code> and <code>route</code>.</p>\n<p>Adding a dash and a second star sequence will create a range, eg <code>*-**</code> means &quot;match routes with at least one and at most two stars&quot;.</p>\n<h6>Grade ranges</h6>\n<p>As above with stars, but with grades. Eg <code>vs-e1</code> will match routes with a grade of either <code>VS</code>, <code>HVS</code> or <code>E1</code>.</p>\n<h6>Date ranges (only years)</h6>\n<p>Date ranges will check against the first-ascent date field and require the route to have been put up between the start date and the end date (inclusive). Eg <code>1970-1974</code> will match routes put up between 01-01-1970 and 31-12-1974. You should note that not all routes have had the first ascent date filled in, and these routes will be excluded from any search that includes date ranges, so you might not get the results you expect.</p>\n<h6>Difficulty for grade</h6>\n<p>Not sure what to call this so we'll use &quot;difficulty for grade&quot;. We've calculated a value based on the grade voting system that assigns a route a value from one of:</p>\n<ul>\n<li><code>soft</code></li>\n<li><code>benchmark</code></li>\n<li><code>hard</code></li>\n</ul>\n<p>You can search for routes with these charateristics by using the special pipe-syntax, eg <code>|soft|</code>. If you don't wrap the token in pipes, you'll just be searching the other text fields, so <code>soft</code>, with no pipes, would get you a match if the token appeard in the description for example and <code>|soft|</code> will <em>only</em> match against routes that have been marked as soft, and not check the other fields for the token.</p>\n<p>A continuation of this system which uses the same syntax allows you to search for routes that are voted to be a completely different grade using the following tokens:</p>\n<ul>\n<li><code>undergraded</code></li>\n<li><code>overgraded</code></li>\n</ul>\n<p>eg <code>|overgraded|</code>. Note that this is based on votes, so if there are no votes for a route and you include one of these tokens it won't appear, regardless of whether it is in reality over or undergraded. Note also that whilst you can combine these with soft/benchmark/hard, doing so doesn't really make sense.</p>\n<h6>Shorthands</h6>\n<p>The grade quality stuff all have shorthand variants:</p>\n<ul>\n<li><code>|s</code> = <code>|soft|</code></li>\n<li><code>|b</code> = <code>|benchmark|</code></li>\n<li><code>|h</code> = <code>|hard|</code></li>\n<li><code>|u</code> = <code>|undergraded|</code></li>\n<li><code>|o</code> = <code>|overgraded|</code></li>\n</ul>\n<h6>Regular expressions</h6>\n<p>Finally we reach the most pointless feature, regular expressions - we need only add an email function and this search bar will be complete.</p>\n<p>Regular expressions, for those that don't know, are a way of describing patterns in strings. They are a very powerful tool for searching and manipulating text, and completely unnecessary in this search bar. However, if you do want to use them, they are possible by surrounding the expression with forward slashes, eg <code>/chris (?!craggs)/</code> will match any routes that mention <code>'chris'</code> but not those that mention <code>'chris craggs'</code>. Or <code>e2-e3 /crap|damp|horrible/</code> will return you a list of probably not classic routes.</p>\n<p>Note that pure-regex queries are not allowed due to the cost of the queries against the database. You should always add any of the other query types mentioned above if you're using a regex.</p>\n<h6>Negation</h6>\n<p>Extra finally, if you precede any token with a minus character you will negate it and require that it is not matched, eg <code>-&quot;mark leach&quot; bat malham</code>.</p>\n";
 
-var __defProp$o = Object.defineProperty;
-var __getOwnPropDesc$o = Object.getOwnPropertyDescriptor;
-var __decorateClass$o = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$o(target, key) : target;
+var __defProp$p = Object.defineProperty;
+var __getOwnPropDesc$p = Object.getOwnPropertyDescriptor;
+var __decorateClass$p = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$p(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$o(target, key, result);
+    __defProp$p(target, key, result);
   return result;
 };
 let myQueryExamples = new Set(queryExamples);
@@ -4042,10 +4042,10 @@ let RouteSearchbarElement = class extends BaseSearchbarElement$1 {
     return element;
   }
 };
-__decorateClass$o([
+__decorateClass$p([
   attr
 ], RouteSearchbarElement.prototype, "searchType", 2);
-RouteSearchbarElement = __decorateClass$o([
+RouteSearchbarElement = __decorateClass$p([
   controller
 ], RouteSearchbarElement);
 const RouteSearchbarElement$1 = RouteSearchbarElement;
@@ -4334,15 +4334,15 @@ var UkcLocalStorage;
 })(UkcLocalStorage || (UkcLocalStorage = {}));
 globalThis.logbook = new UkcLocalStorage.LogbookDetails();
 
-var __defProp$n = Object.defineProperty;
-var __getOwnPropDesc$n = Object.getOwnPropertyDescriptor;
-var __decorateClass$n = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$n(target, key) : target;
+var __defProp$o = Object.defineProperty;
+var __getOwnPropDesc$o = Object.getOwnPropertyDescriptor;
+var __decorateClass$o = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$o(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$n(target, key, result);
+    __defProp$o(target, key, result);
   return result;
 };
 const sharedStorage$5 = UkcLocalStorage.sharedLogbook;
@@ -4377,7 +4377,7 @@ let UkcSearchbarElement = class extends RouteSearchbarElement$1 {
     }
   }
 };
-UkcSearchbarElement = __decorateClass$n([
+UkcSearchbarElement = __decorateClass$o([
   controller
 ], UkcSearchbarElement);
 
@@ -4390,15 +4390,15 @@ const topoDotTemplate = (_el) => {
 `;
 };
 
-var __defProp$m = Object.defineProperty;
-var __getOwnPropDesc$m = Object.getOwnPropertyDescriptor;
-var __decorateClass$m = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$m(target2, key) : target2;
+var __defProp$n = Object.defineProperty;
+var __getOwnPropDesc$n = Object.getOwnPropertyDescriptor;
+var __decorateClass$n = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$n(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$m(target2, key, result);
+    __defProp$n(target2, key, result);
   return result;
 };
 let TopoDotElement = class extends BaseCon$1 {
@@ -4423,16 +4423,16 @@ let TopoDotElement = class extends BaseCon$1 {
     return topoDotTemplate;
   }
 };
-__decorateClass$m([
+__decorateClass$n([
   attr
 ], TopoDotElement.prototype, "colorName", 1);
-__decorateClass$m([
+__decorateClass$n([
   target
 ], TopoDotElement.prototype, "stroke", 2);
-__decorateClass$m([
+__decorateClass$n([
   target
 ], TopoDotElement.prototype, "fill", 2);
-TopoDotElement = __decorateClass$m([
+TopoDotElement = __decorateClass$n([
   controller
 ], TopoDotElement);
 const TopoDotElement$1 = TopoDotElement;
@@ -4477,15 +4477,15 @@ const routeTemplate = (element) => {
     `;
 };
 
-var __defProp$l = Object.defineProperty;
-var __getOwnPropDesc$l = Object.getOwnPropertyDescriptor;
-var __decorateClass$l = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$l(target2, key) : target2;
+var __defProp$m = Object.defineProperty;
+var __getOwnPropDesc$m = Object.getOwnPropertyDescriptor;
+var __decorateClass$m = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$m(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$l(target2, key, result);
+    __defProp$m(target2, key, result);
   return result;
 };
 let SearchResultElement = class extends BaseCon$1 {
@@ -4644,79 +4644,79 @@ let SearchResultElement = class extends BaseCon$1 {
     window.open(this.url, "_self");
   }
 };
-__decorateClass$l([
+__decorateClass$m([
   target
 ], SearchResultElement.prototype, "href", 2);
-__decorateClass$l([
+__decorateClass$m([
   target
 ], SearchResultElement.prototype, "topo_dot", 2);
-__decorateClass$l([
+__decorateClass$m([
   target
 ], SearchResultElement.prototype, "item_name", 2);
-__decorateClass$l([
+__decorateClass$m([
   target
 ], SearchResultElement.prototype, "route_grade", 2);
-__decorateClass$l([
+__decorateClass$m([
   target
 ], SearchResultElement.prototype, "star_count", 2);
-__decorateClass$l([
+__decorateClass$m([
   target
 ], SearchResultElement.prototype, "crag_name", 2);
-__decorateClass$l([
+__decorateClass$m([
   target
 ], SearchResultElement.prototype, "county_name", 2);
-__decorateClass$l([
+__decorateClass$m([
   target
 ], SearchResultElement.prototype, "country_name", 2);
-__decorateClass$l([
+__decorateClass$m([
   target
 ], SearchResultElement.prototype, "logbook_indicator", 2);
-__decorateClass$l([
+__decorateClass$m([
   target
 ], SearchResultElement.prototype, "wishlist_indicator", 2);
-__decorateClass$l([
+__decorateClass$m([
   target
 ], SearchResultElement.prototype, "crag_icon", 2);
-__decorateClass$l([
+__decorateClass$m([
   target
 ], SearchResultElement.prototype, "buttress_icon", 2);
-__decorateClass$l([
+__decorateClass$m([
   target
 ], SearchResultElement.prototype, "extras_slot", 2);
-__decorateClass$l([
+__decorateClass$m([
   attr
 ], SearchResultElement.prototype, "slugFull", 1);
-__decorateClass$l([
+__decorateClass$m([
   attr
 ], SearchResultElement.prototype, "itemName", 1);
-__decorateClass$l([
+__decorateClass$m([
   attr
 ], SearchResultElement.prototype, "routeGrade", 1);
-__decorateClass$l([
+__decorateClass$m([
   attr
 ], SearchResultElement.prototype, "starCount", 1);
-__decorateClass$l([
+__decorateClass$m([
   attr
 ], SearchResultElement.prototype, "cragName", 1);
-__decorateClass$l([
+__decorateClass$m([
   attr
 ], SearchResultElement.prototype, "countyName", 1);
-__decorateClass$l([
+__decorateClass$m([
   attr
 ], SearchResultElement.prototype, "countryName", 1);
-__decorateClass$l([
+__decorateClass$m([
   attr
 ], SearchResultElement.prototype, "colorId", 1);
-__decorateClass$l([
+__decorateClass$m([
   attr
 ], SearchResultElement.prototype, "routeIdUkc", 1);
-__decorateClass$l([
+__decorateClass$m([
   attr
 ], SearchResultElement.prototype, "logStatus", 1);
-__decorateClass$l([
+__decorateClass$m([
   attr
 ], SearchResultElement.prototype, "wishlistStatus", 1);
-SearchResultElement = __decorateClass$l([
+SearchResultElement = __decorateClass$m([
   controller
 ], SearchResultElement);
 const SearchResultElement$1 = SearchResultElement;
@@ -4730,15 +4730,15 @@ const logbookIndicatorTemplate = (_el) => {
 `;
 };
 
-var __defProp$k = Object.defineProperty;
-var __getOwnPropDesc$k = Object.getOwnPropertyDescriptor;
-var __decorateClass$k = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$k(target2, key) : target2;
+var __defProp$l = Object.defineProperty;
+var __getOwnPropDesc$l = Object.getOwnPropertyDescriptor;
+var __decorateClass$l = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$l(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$k(target2, key, result);
+    __defProp$l(target2, key, result);
   return result;
 };
 let LogbookIndicatorElement = class extends BaseCon$1 {
@@ -4756,16 +4756,16 @@ let LogbookIndicatorElement = class extends BaseCon$1 {
     return logbookIndicatorTemplate;
   }
 };
-__decorateClass$k([
+__decorateClass$l([
   attr
 ], LogbookIndicatorElement.prototype, "colorName", 1);
-__decorateClass$k([
+__decorateClass$l([
   target
 ], LogbookIndicatorElement.prototype, "stroke", 2);
-__decorateClass$k([
+__decorateClass$l([
   target
 ], LogbookIndicatorElement.prototype, "fill", 2);
-LogbookIndicatorElement = __decorateClass$k([
+LogbookIndicatorElement = __decorateClass$l([
   controller
 ], LogbookIndicatorElement);
 const LogbookIndicatorElement$1 = LogbookIndicatorElement;
@@ -4832,15 +4832,15 @@ const logentryTemplate = (element) => {
     `;
 };
 
-var __defProp$j = Object.defineProperty;
-var __getOwnPropDesc$j = Object.getOwnPropertyDescriptor;
-var __decorateClass$j = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$j(target2, key) : target2;
+var __defProp$k = Object.defineProperty;
+var __getOwnPropDesc$k = Object.getOwnPropertyDescriptor;
+var __decorateClass$k = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$k(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$j(target2, key, result);
+    __defProp$k(target2, key, result);
   return result;
 };
 let LogbookResultElement = class extends SearchResultElement$1 {
@@ -4949,58 +4949,58 @@ let LogbookResultElement = class extends SearchResultElement$1 {
     }
   }
 };
-__decorateClass$j([
+__decorateClass$k([
   target
 ], LogbookResultElement.prototype, "ascensionist", 2);
-__decorateClass$j([
+__decorateClass$k([
   target
 ], LogbookResultElement.prototype, "partner_names", 2);
-__decorateClass$j([
+__decorateClass$k([
   target
 ], LogbookResultElement.prototype, "partner_names_with", 2);
-__decorateClass$j([
+__decorateClass$k([
   target
 ], LogbookResultElement.prototype, "ascent_style_indicator", 2);
-__decorateClass$j([
+__decorateClass$k([
   target
 ], LogbookResultElement.prototype, "ascent_style", 2);
-__decorateClass$j([
+__decorateClass$k([
   target
 ], LogbookResultElement.prototype, "ascent_notes", 2);
-__decorateClass$j([
+__decorateClass$k([
   target
 ], LogbookResultElement.prototype, "ascent_date", 2);
-__decorateClass$j([
+__decorateClass$k([
   targets
 ], LogbookResultElement.prototype, "crag_names", 2);
-__decorateClass$j([
+__decorateClass$k([
   targets
 ], LogbookResultElement.prototype, "county_names", 2);
-__decorateClass$j([
+__decorateClass$k([
   targets
 ], LogbookResultElement.prototype, "country_names", 2);
-__decorateClass$j([
+__decorateClass$k([
   attr
 ], LogbookResultElement.prototype, "cragName", 1);
-__decorateClass$j([
+__decorateClass$k([
   attr
 ], LogbookResultElement.prototype, "countyName", 1);
-__decorateClass$j([
+__decorateClass$k([
   attr
 ], LogbookResultElement.prototype, "countryName", 1);
-__decorateClass$j([
+__decorateClass$k([
   attr
 ], LogbookResultElement.prototype, "showCragName", 2);
-__decorateClass$j([
+__decorateClass$k([
   attr
 ], LogbookResultElement.prototype, "ascentNotes", 1);
-__decorateClass$j([
+__decorateClass$k([
   attr
 ], LogbookResultElement.prototype, "ascentStyle", 1);
-__decorateClass$j([
+__decorateClass$k([
   attr
 ], LogbookResultElement.prototype, "ascentStyleSimple", 1);
-LogbookResultElement = __decorateClass$j([
+LogbookResultElement = __decorateClass$k([
   controller
 ], LogbookResultElement);
 
@@ -5045,15 +5045,15 @@ const routeResultTemplate = (element) => {
     `;
 };
 
-var __defProp$i = Object.defineProperty;
-var __getOwnPropDesc$i = Object.getOwnPropertyDescriptor;
-var __decorateClass$i = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$i(target2, key) : target2;
+var __defProp$j = Object.defineProperty;
+var __getOwnPropDesc$j = Object.getOwnPropertyDescriptor;
+var __decorateClass$j = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$j(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$i(target2, key, result);
+    __defProp$j(target2, key, result);
   return result;
 };
 let RouteResultElement = class extends SearchResultElement$1 {
@@ -5081,28 +5081,28 @@ let RouteResultElement = class extends SearchResultElement$1 {
     return routeResultTemplate;
   }
 };
-__decorateClass$i([
+__decorateClass$j([
   target
 ], RouteResultElement.prototype, "ascensionist", 2);
-__decorateClass$i([
+__decorateClass$j([
   target
 ], RouteResultElement.prototype, "route_description", 2);
-__decorateClass$i([
+__decorateClass$j([
   target
 ], RouteResultElement.prototype, "fa_details", 2);
-RouteResultElement = __decorateClass$i([
+RouteResultElement = __decorateClass$j([
   controller
 ], RouteResultElement);
 
-var __defProp$h = Object.defineProperty;
-var __getOwnPropDesc$h = Object.getOwnPropertyDescriptor;
-var __decorateClass$h = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$h(target2, key) : target2;
+var __defProp$i = Object.defineProperty;
+var __getOwnPropDesc$i = Object.getOwnPropertyDescriptor;
+var __decorateClass$i = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$i(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$h(target2, key, result);
+    __defProp$i(target2, key, result);
   return result;
 };
 let PagedRoutesViewer = class extends BaseRoutesViewer$1 {
@@ -5308,23 +5308,23 @@ let PagedRoutesViewer = class extends BaseRoutesViewer$1 {
     }, this.searchDelay);
   }
 };
-__decorateClass$h([
+__decorateClass$i([
   target
 ], PagedRoutesViewer.prototype, "page_control", 2);
-PagedRoutesViewer = __decorateClass$h([
+PagedRoutesViewer = __decorateClass$i([
   controller
 ], PagedRoutesViewer);
 const PagedRoutesViewer$1 = PagedRoutesViewer;
 
-var __defProp$g = Object.defineProperty;
-var __getOwnPropDesc$g = Object.getOwnPropertyDescriptor;
-var __decorateClass$g = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$g(target, key) : target;
+var __defProp$h = Object.defineProperty;
+var __getOwnPropDesc$h = Object.getOwnPropertyDescriptor;
+var __decorateClass$h = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$h(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$g(target, key, result);
+    __defProp$h(target, key, result);
   return result;
 };
 const sharedStorage$4 = UkcLocalStorage.sharedLogbook;
@@ -5385,7 +5385,7 @@ let SearchResultsViewerElement = class extends PagedRoutesViewer$1 {
     return body;
   }
 };
-SearchResultsViewerElement = __decorateClass$g([
+SearchResultsViewerElement = __decorateClass$h([
   controller
 ], SearchResultsViewerElement);
 
@@ -7348,15 +7348,15 @@ InvertedIndex.from = function(iterable, descriptor) {
  */
 var invertedIndex = InvertedIndex;
 
-var __defProp$f = Object.defineProperty;
-var __getOwnPropDesc$f = Object.getOwnPropertyDescriptor;
-var __decorateClass$f = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$f(target, key) : target;
+var __defProp$g = Object.defineProperty;
+var __getOwnPropDesc$g = Object.getOwnPropertyDescriptor;
+var __decorateClass$g = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$g(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$f(target, key, result);
+    __defProp$g(target, key, result);
   return result;
 };
 let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
@@ -7640,7 +7640,7 @@ let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
     }, this.searchDelay);
   }
 };
-InfiniteScrollRoutesViewer = __decorateClass$f([
+InfiniteScrollRoutesViewer = __decorateClass$g([
   controller
 ], InfiniteScrollRoutesViewer);
 const InfiniteScrollRoutesViewer$1 = InfiniteScrollRoutesViewer;
@@ -11168,15 +11168,15 @@ ${JSON.stringify(m,null,4)}`);function _$1(){C&&(d={tagName:"",hrefValue:"",open
 `)?p+=P-e:(!P||P>e)&&p++;}l.cb({tag:n,deleteFrom:n.leftOuterWhitespace,deleteTo:s+p,insert:u,rangesArr:r,proposedReturn:[n.leftOuterWhitespace,s+p,u]}),_$1(),H(e,l,r);}else n={};A(e)||(n={});}k&&(k=!1);}if((!R||t[e]==="<"&&E(t,E(t,e))&&t[E(t,e)]==="/"&&t.startsWith("script",E(t,E(t,e))))&&S(e)&&!S(e-1)&&!`'"`.includes(t[e+1])&&(!`'"`.includes(t[e+2])||/\w/.test(t[e+1]))&&!(t[e+1]==="c"&&t[e+2]===":")&&!(t[e+1]==="f"&&t[e+2]==="m"&&t[e+3]==="t"&&t[e+4]===":")&&!(t[e+1]==="s"&&t[e+2]==="q"&&t[e+3]==="l"&&t[e+4]===":")&&!(t[e+1]==="x"&&t[e+2]===":")&&!(t[e+1]==="f"&&t[e+2]==="n"&&t[e+3]===":")&&Y(n,t,e)){if(A(E(t,e)))continue;if(n.nameEnds&&n.nameEnds<e&&!n.lastClosingBracketAt&&(n.onlyPlausible===!0&&n.attributes&&n.attributes.length||n.onlyPlausible===!1)){let s=L(t,e,n.leftOuterWhitespace,e,n.lastOpeningBracketAt,e);l.cb({tag:n,deleteFrom:n.leftOuterWhitespace,deleteTo:e,insert:s,rangesArr:r,proposedReturn:[n.leftOuterWhitespace,e,s]}),H(e,l,r),n={},o={};}if(n.lastOpeningBracketAt!==void 0&&n.onlyPlausible&&n.name&&!n.quotes&&(n.lastOpeningBracketAt=void 0,n.name=void 0,n.onlyPlausible=!1),(n.lastOpeningBracketAt===void 0||!n.onlyPlausible)&&!n.quotes&&(n.lastOpeningBracketAt=e,n.slashPresent=!1,n.attributes=[],V===null?n.leftOuterWhitespace=e:l.trimOnlySpaces&&V===0?n.leftOuterWhitespace=w||e:n.leftOuterWhitespace=V,`${t[e+1]}${t[e+2]}${t[e+3]}`=="!--"||`${t[e+1]}${t[e+2]}${t[e+3]}${t[e+4]}${t[e+5]}${t[e+6]}${t[e+7]}${t[e+8]}`=="![CDATA[")){let s=!0;t[e+2]==="-"&&(s=!1);let i;for(let a=e;a<h;a++)if((!i&&s&&`${t[a-2]}${t[a-1]}${t[a]}`=="]]>"||!s&&`${t[a-2]}${t[a-1]}${t[a]}`=="-->")&&(i=a),i&&(i<a&&t[a].trim()||t[a+1]===void 0)){let g=a;(t[a+1]===void 0&&!t[a].trim()||t[a]===">")&&(g+=1),(!b.length||b[b.length-1][0]!==n.lastOpeningBracketAt)&&b.push([n.lastOpeningBracketAt,i+1]),(!$$1.length||$$1[$$1.length-1][0]!==n.lastOpeningBracketAt)&&$$1.push([n.lastOpeningBracketAt,i+1]);let u=L(t,a,n.leftOuterWhitespace,g,n.lastOpeningBracketAt,i);l.cb({tag:n,deleteFrom:n.leftOuterWhitespace,deleteTo:g,insert:u,rangesArr:r,proposedReturn:[n.leftOuterWhitespace,g,u]}),e=a-1,t[a]===">"&&(e=a),n={},o={};break}}}!t[e].trim()||t[e].charCodeAt(0)===847?(V===null&&(V=e,n.lastOpeningBracketAt!==void 0&&n.lastOpeningBracketAt<e&&n.nameStarts&&n.nameStarts<n.lastOpeningBracketAt&&e===n.lastOpeningBracketAt+1&&!c.some(s=>s.name===n.name)&&(n.onlyPlausible=!0,n.name=void 0,n.nameStarts=void 0)),(t[e]===`
 `||t[e]==="\r")&&(N=e,I&&(I=!1))):(V!==null&&(!n.quotes&&o.equalsAt>V-1&&o.nameEnds&&o.equalsAt>o.nameEnds&&t[e]!=='"'&&t[e]!=="'"&&(U(o)&&n.attributes.push(o),o={},n.equalsSpottedAt=void 0),V=null),I||(I=!0,F&&!R&&typeof N=="number"&&e&&N<e-1&&(t.slice(N+1,e).trim()?N=null:r.push([N+1,e])))),t[e]===" "?w===null&&(w=e):w!==null&&(w=null),n.name==="script"&&(R=!n.slashPresent);}if(t&&(l.trimOnlySpaces&&t[0]===" "||!l.trimOnlySpaces&&!t[0].trim()))for(let e=0;e<h;e++)if(l.trimOnlySpaces&&t[e]!==" "||!l.trimOnlySpaces&&t[e].trim()){r.push([0,e]);break}else t[e+1]||r.push([0,e+1]);if(t&&(l.trimOnlySpaces&&t[~-t.length]===" "||!l.trimOnlySpaces&&!t[~-t.length].trim())){for(let e=t.length;e--;)if(l.trimOnlySpaces&&t[e]!==" "||!l.trimOnlySpaces&&t[e].trim()){r.push([e+1,h]);break}}let O=r.current();if((!m||!m.cb)&&O){if(O[0]&&!O[0][0]){O[0][1];r.ranges[0]=[r.ranges[0][0],r.ranges[0][1]];}if(O[O.length-1]&&O[O.length-1][1]===t.length){O[O.length-1][0];if(r.ranges){let s=r.ranges[r.ranges.length-1][0];t[s-1]&&(l.trimOnlySpaces&&t[s-1]===" "||!l.trimOnlySpaces&&!t[s-1].trim())&&(s-=1);let i=r.ranges[r.ranges.length-1][2];r.ranges[r.ranges.length-1]=[s,r.ranges[r.ranges.length-1][1]],i?.trim()&&r.ranges[r.ranges.length-1].push(i.trimEnd());}}}return {log:{timeTakenInMilliseconds:Date.now()-y},result:_(t,r.current()),ranges:r.current(),allTagLocations:b,filteredTagLocations:$$1}}
 
-var __defProp$e = Object.defineProperty;
-var __getOwnPropDesc$e = Object.getOwnPropertyDescriptor;
-var __decorateClass$e = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$e(target, key) : target;
+var __defProp$f = Object.defineProperty;
+var __getOwnPropDesc$f = Object.getOwnPropertyDescriptor;
+var __decorateClass$f = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$f(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$e(target, key, result);
+    __defProp$f(target, key, result);
   return result;
 };
 let OfflineInfiniteScrollRoutesViewer = class extends InfiniteScrollRoutesViewer$1 {
@@ -11354,20 +11354,20 @@ let OfflineInfiniteScrollRoutesViewer = class extends InfiniteScrollRoutesViewer
     };
   }
 };
-OfflineInfiniteScrollRoutesViewer = __decorateClass$e([
+OfflineInfiniteScrollRoutesViewer = __decorateClass$f([
   controller
 ], OfflineInfiniteScrollRoutesViewer);
 const OfflineInfiniteScrollRoutesViewer$1 = OfflineInfiniteScrollRoutesViewer;
 
-var __defProp$d = Object.defineProperty;
-var __getOwnPropDesc$d = Object.getOwnPropertyDescriptor;
-var __decorateClass$d = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$d(target, key) : target;
+var __defProp$e = Object.defineProperty;
+var __getOwnPropDesc$e = Object.getOwnPropertyDescriptor;
+var __decorateClass$e = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$e(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$d(target, key, result);
+    __defProp$e(target, key, result);
   return result;
 };
 const sharedStorage$3 = UkcLocalStorage.sharedLogbook;
@@ -11456,20 +11456,20 @@ let LogbookViewerElement = class extends OfflineInfiniteScrollRoutesViewer$1 {
     return (rte) => rte.associated_ascent_entry.id;
   }
 };
-LogbookViewerElement = __decorateClass$d([
+LogbookViewerElement = __decorateClass$e([
   controller
 ], LogbookViewerElement);
 const LogbookViewerElement$1 = LogbookViewerElement;
 
-var __defProp$c = Object.defineProperty;
-var __getOwnPropDesc$c = Object.getOwnPropertyDescriptor;
-var __decorateClass$c = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$c(target, key) : target;
+var __defProp$d = Object.defineProperty;
+var __getOwnPropDesc$d = Object.getOwnPropertyDescriptor;
+var __decorateClass$d = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$d(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$c(target, key, result);
+    __defProp$d(target, key, result);
   return result;
 };
 const sharedStorage$2 = UkcLocalStorage.sharedLogbook;
@@ -11533,19 +11533,19 @@ let WishlistViewerElement = class extends LogbookViewerElement$1 {
     return "";
   }
 };
-WishlistViewerElement = __decorateClass$c([
+WishlistViewerElement = __decorateClass$d([
   controller
 ], WishlistViewerElement);
 
-var __defProp$b = Object.defineProperty;
-var __getOwnPropDesc$b = Object.getOwnPropertyDescriptor;
-var __decorateClass$b = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$b(target, key) : target;
+var __defProp$c = Object.defineProperty;
+var __getOwnPropDesc$c = Object.getOwnPropertyDescriptor;
+var __decorateClass$c = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$c(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$b(target, key, result);
+    __defProp$c(target, key, result);
   return result;
 };
 const sharedStorage$1 = UkcLocalStorage.sharedLogbook;
@@ -11639,20 +11639,20 @@ let PartnerAscentsViewerElement = class extends PagedRoutesViewer$1 {
     return "";
   }
 };
-PartnerAscentsViewerElement = __decorateClass$b([
+PartnerAscentsViewerElement = __decorateClass$c([
   controller
 ], PartnerAscentsViewerElement);
 const PartnerAscentsViewerElement$1 = PartnerAscentsViewerElement;
 
-var __defProp$a = Object.defineProperty;
-var __getOwnPropDesc$a = Object.getOwnPropertyDescriptor;
-var __decorateClass$a = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$a(target, key) : target;
+var __defProp$b = Object.defineProperty;
+var __getOwnPropDesc$b = Object.getOwnPropertyDescriptor;
+var __decorateClass$b = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$b(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$a(target, key, result);
+    __defProp$b(target, key, result);
   return result;
 };
 const generateApiUrl$4 = () => {
@@ -11748,20 +11748,20 @@ let TopAscentsViewerElement = class extends PartnerAscentsViewerElement$1 {
     return header;
   }
 };
-TopAscentsViewerElement = __decorateClass$a([
+TopAscentsViewerElement = __decorateClass$b([
   controller
 ], TopAscentsViewerElement);
 const TopAscentsViewerElement$1 = TopAscentsViewerElement;
 
-var __defProp$9 = Object.defineProperty;
-var __getOwnPropDesc$9 = Object.getOwnPropertyDescriptor;
-var __decorateClass$9 = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$9(target, key) : target;
+var __defProp$a = Object.defineProperty;
+var __getOwnPropDesc$a = Object.getOwnPropertyDescriptor;
+var __decorateClass$a = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$a(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$9(target, key, result);
+    __defProp$a(target, key, result);
   return result;
 };
 const generateApiUrl$3 = () => {
@@ -11791,20 +11791,20 @@ let WinterAscentsViewerElement = class extends TopAscentsViewerElement$1 {
     return res;
   }
 };
-WinterAscentsViewerElement = __decorateClass$9([
+WinterAscentsViewerElement = __decorateClass$a([
   controller
 ], WinterAscentsViewerElement);
 const WinterAscentsViewerElement$1 = WinterAscentsViewerElement;
 
-var __defProp$8 = Object.defineProperty;
-var __getOwnPropDesc$8 = Object.getOwnPropertyDescriptor;
-var __decorateClass$8 = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$8(target, key) : target;
+var __defProp$9 = Object.defineProperty;
+var __getOwnPropDesc$9 = Object.getOwnPropertyDescriptor;
+var __decorateClass$9 = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$9(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$8(target, key, result);
+    __defProp$9(target, key, result);
   return result;
 };
 const generateApiUrl$2 = () => {
@@ -11834,19 +11834,19 @@ let AlpineAscentsViewerElement = class extends WinterAscentsViewerElement$1 {
     return res;
   }
 };
-AlpineAscentsViewerElement = __decorateClass$8([
+AlpineAscentsViewerElement = __decorateClass$9([
   controller
 ], AlpineAscentsViewerElement);
 
-var __defProp$7 = Object.defineProperty;
-var __getOwnPropDesc$7 = Object.getOwnPropertyDescriptor;
-var __decorateClass$7 = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$7(target, key) : target;
+var __defProp$8 = Object.defineProperty;
+var __getOwnPropDesc$8 = Object.getOwnPropertyDescriptor;
+var __decorateClass$8 = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$8(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$7(target, key, result);
+    __defProp$8(target, key, result);
   return result;
 };
 const generateApiUrl$1 = () => {
@@ -11876,19 +11876,19 @@ let MountainAscentsViewerElement = class extends WinterAscentsViewerElement$1 {
     return res;
   }
 };
-MountainAscentsViewerElement = __decorateClass$7([
+MountainAscentsViewerElement = __decorateClass$8([
   controller
 ], MountainAscentsViewerElement);
 
-var __defProp$6 = Object.defineProperty;
-var __getOwnPropDesc$6 = Object.getOwnPropertyDescriptor;
-var __decorateClass$6 = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$6(target, key) : target;
+var __defProp$7 = Object.defineProperty;
+var __getOwnPropDesc$7 = Object.getOwnPropertyDescriptor;
+var __decorateClass$7 = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$7(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$6(target, key, result);
+    __defProp$7(target, key, result);
   return result;
 };
 const generateApiUrl = () => {
@@ -12002,14 +12002,14 @@ let CragRoutesViewerElement = class extends OfflineInfiniteScrollRoutesViewer$1 
       `;
   }
 };
-__decorateClass$6([
+__decorateClass$7([
   attr
 ], CragRoutesViewerElement.prototype, "cragId", 2);
-CragRoutesViewerElement = __decorateClass$6([
+CragRoutesViewerElement = __decorateClass$7([
   controller
 ], CragRoutesViewerElement);
 
-const template$3 = (element) => {
+const template$4 = (element) => {
   const elementName = element.elementName;
   return html$1`
   <div class='rfd-search'>
@@ -12027,27 +12027,27 @@ const template$3 = (element) => {
   </div>`;
 };
 
-const template$2 = (element) => {
+const template$3 = (element) => {
   const elementName = element.elementName;
   return html$1`
   <label class='d-flex flex-row justify-content-between align-items-center mt-3'>
     <div class='d-flex flex-row align-items-center'>
-      <span data-target='${elementName}.icon_img' class='filter-row-icon pr-2'></span>
+      <img data-target='${elementName}.icon_img' class='filter-row-icon pr-2'></img>
       <div data-target='${elementName}.title_div' class='filter-row-title'></div>
     </div>
     <div data-target='${elementName}.switch_div' class='form-switch'><input type="checkbox" data-target='${elementName}.input'><i></i></div>
   </label>`;
 };
 
-var __defProp$5 = Object.defineProperty;
-var __getOwnPropDesc$5 = Object.getOwnPropertyDescriptor;
-var __decorateClass$5 = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$5(target2, key) : target2;
+var __defProp$6 = Object.defineProperty;
+var __getOwnPropDesc$6 = Object.getOwnPropertyDescriptor;
+var __decorateClass$6 = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$6(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$5(target2, key, result);
+    __defProp$6(target2, key, result);
   return result;
 };
 let FilterRowElement = class extends BaseCon$1 {
@@ -12075,7 +12075,7 @@ let FilterRowElement = class extends BaseCon$1 {
     obj[this.filterCategory][this.iconType] = this.value;
   }
   get template() {
-    return template$2;
+    return template$3;
   }
   connectedCallback() {
     super.connectedCallback();
@@ -12091,33 +12091,80 @@ let FilterRowElement = class extends BaseCon$1 {
     };
   }
 };
-__decorateClass$5([
+__decorateClass$6([
   target
 ], FilterRowElement.prototype, "icon_img", 2);
-__decorateClass$5([
+__decorateClass$6([
   target
 ], FilterRowElement.prototype, "title_div", 2);
-__decorateClass$5([
+__decorateClass$6([
   target
 ], FilterRowElement.prototype, "switch_div", 2);
-__decorateClass$5([
+__decorateClass$6([
   target
 ], FilterRowElement.prototype, "input", 2);
-__decorateClass$5([
+__decorateClass$6([
   attr
 ], FilterRowElement.prototype, "iconType", 1);
-__decorateClass$5([
+__decorateClass$6([
   attr
 ], FilterRowElement.prototype, "filterCategory", 2);
-__decorateClass$5([
+__decorateClass$6([
   attr
 ], FilterRowElement.prototype, "titleString", 1);
-FilterRowElement = __decorateClass$5([
+FilterRowElement = __decorateClass$6([
   controller
 ], FilterRowElement);
 const FilterRowElement$1 = FilterRowElement;
 
 const filter_controller_style = '';
+
+const template$2 = (element) => {
+  const elementName = element.elementName;
+  return html$1`
+  <label class='d-flex flex-row justify-content-between align-items-center mt-3'>
+    <div class='d-flex flex-row align-items-center'>
+      <topo-dot data-target='${elementName}.topo_dot' class='mr-3'></topo-dot>
+      <div data-target='${elementName}.title_div' class='filter-row-title'></div>
+    </div>
+    <div data-target='${elementName}.switch_div' class='form-switch'><input type="checkbox" data-target='${elementName}.input'><i></i></div>
+  </label>`;
+};
+
+var __defProp$5 = Object.defineProperty;
+var __getOwnPropDesc$5 = Object.getOwnPropertyDescriptor;
+var __decorateClass$5 = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$5(target2, key) : target2;
+  for (var i = decorators.length - 1, decorator; i >= 0; i--)
+    if (decorator = decorators[i])
+      result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
+  if (kind && result)
+    __defProp$5(target2, key, result);
+  return result;
+};
+let ColorFilterRowElement = class extends FilterRowElement$1 {
+  topo_dot;
+  set iconType(newVal) {
+    this.topo_dot.colorName = newVal;
+  }
+  get template() {
+    return template$2;
+  }
+  connectedCallback() {
+    super.connectedCallback();
+    this.topo_dot.colorName = "red";
+  }
+};
+__decorateClass$5([
+  target
+], ColorFilterRowElement.prototype, "topo_dot", 2);
+__decorateClass$5([
+  attr
+], ColorFilterRowElement.prototype, "iconType", 1);
+ColorFilterRowElement = __decorateClass$5([
+  controller
+], ColorFilterRowElement);
+const ColorFilterRowElement$1 = ColorFilterRowElement;
 
 var __defProp$4 = Object.defineProperty;
 var __getOwnPropDesc$4 = Object.getOwnPropertyDescriptor;
@@ -12143,24 +12190,33 @@ let FiltersControllerElement = class extends BaseCon$1 {
   get minScrollTop() {
     return 250;
   }
-  data = [
-    { iconType: "trad", title: "Trad routes", checked: true, filterCategory: "route_types" },
-    { iconType: "sport", title: "Sport routes", checked: true, filterCategory: "route_types" },
-    { iconType: "dws", title: "Deep water solos", checked: true, filterCategory: "route_types" },
-    { iconType: "bouldering", title: "Boulder problems", checked: true, filterCategory: "route_types" },
-    { iconType: "winter", title: "Winter routes", checked: true, filterCategory: "route_types" },
-    { iconType: "ice", title: "Ice routes", checked: true, filterCategory: "route_types" },
-    { iconType: "alpine", title: "Alpine routes", checked: true, filterCategory: "route_types" },
-    { iconType: "mixed", title: "Mixed routes", checked: true, filterCategory: "route_types" },
-    { iconType: "aid", title: "Aid routes", checked: true, filterCategory: "route_types" },
-    { iconType: "via_ferrata", title: "Via ferrata", checked: true, filterCategory: "route_types" },
-    { iconType: "scramble", title: "Scrambles", checked: true, filterCategory: "route_types" }
-  ];
+  data = {
+    route_types: [
+      { iconType: "trad", title: "Trad routes", checked: true, filterCategory: "route_types" },
+      { iconType: "sport", title: "Sport routes", checked: true, filterCategory: "route_types" },
+      { iconType: "dws", title: "Deep water solos", checked: true, filterCategory: "route_types" },
+      { iconType: "bouldering", title: "Boulder problems", checked: true, filterCategory: "route_types" },
+      { iconType: "winter", title: "Winter routes", checked: true, filterCategory: "route_types" },
+      { iconType: "ice", title: "Ice routes", checked: true, filterCategory: "route_types" },
+      { iconType: "alpine", title: "Alpine routes", checked: true, filterCategory: "route_types" },
+      { iconType: "mixed", title: "Mixed routes", checked: true, filterCategory: "route_types" },
+      { iconType: "aid", title: "Aid routes", checked: true, filterCategory: "route_types" },
+      { iconType: "via_ferrata", title: "Via ferrata", checked: true, filterCategory: "route_types" },
+      { iconType: "scramble", title: "Scrambles", checked: true, filterCategory: "route_types" }
+    ],
+    route_colors: [
+      { iconType: "green", title: "Green routes", checked: true, filterCategory: "route_colors" },
+      { iconType: "orange", title: "Orange routes", checked: true, filterCategory: "route_colors" },
+      { iconType: "red", title: "Red routes", checked: true, filterCategory: "route_colors" },
+      { iconType: "black", title: "Black routes", checked: true, filterCategory: "route_colors" },
+      { iconType: "white", title: "White routes", checked: true, filterCategory: "route_colors" }
+    ]
+  };
   get filters() {
     return Array.from(this.filters_container.querySelectorAll("filter-row"));
   }
   get template() {
-    return template$3;
+    return template$4;
   }
   connectedCallback() {
     super.connectedCallback();
@@ -12196,9 +12252,6 @@ let FiltersControllerElement = class extends BaseCon$1 {
     if (this.scroll_container.scrollTop > this.maxScrollTop) {
       this.scroll_container.scrollTop = this.maxScrollTop;
     }
-    const fraction = this.scroll_container.scrollTop / this.maxScrollTop;
-    console.log(fraction);
-    this.gray_view.style.opacity = `${fraction + 0.3}`;
   }
   onTouchEnd(_evt) {
     if (this.scroll_container.scrollTop < this.minScrollTop) {
@@ -12244,8 +12297,17 @@ let FiltersControllerElement = class extends BaseCon$1 {
     document.body.style.overflow = "hidden";
     this.gray_view.style.opacity = "1";
     this.container.style.top = "0";
-    for (const data of this.data) {
+    for (const data of this.data.route_types) {
       let row = this.filters_container.appendChild(new FilterRowElement$1());
+      row.iconType = data.iconType;
+      row.title_div.innerText = data.title;
+      row.input.checked = data.checked;
+    }
+    const div = document.createElement("div");
+    this.filters_container.appendChild(div);
+    div.classList.add("divider");
+    for (const data of this.data.route_colors) {
+      let row = this.filters_container.appendChild(new ColorFilterRowElement$1());
       row.iconType = data.iconType;
       row.title_div.innerText = data.title;
       row.input.checked = data.checked;
@@ -12253,7 +12315,6 @@ let FiltersControllerElement = class extends BaseCon$1 {
     this.scroll_container.scrollTop = this.maxScrollTop;
     setTimeout(() => {
       const top = this.filters_container.getBoundingClientRect().top;
-      console.log(top);
       this.filters_container.style.height = `calc(var(--real-vh) - ${top}px)`;
     }, 400);
   }
