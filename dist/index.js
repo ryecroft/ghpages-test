@@ -12196,6 +12196,9 @@ let FiltersControllerElement = class extends BaseCon$1 {
     if (this.scroll_container.scrollTop > this.maxScrollTop) {
       this.scroll_container.scrollTop = this.maxScrollTop;
     }
+    const fraction = this.scroll_container.scrollTop / this.maxScrollTop;
+    console.log(fraction);
+    this.gray_view.style.opacity = `${fraction + 0.3}`;
   }
   onTouchEnd(_evt) {
     if (this.scroll_container.scrollTop < this.minScrollTop) {
