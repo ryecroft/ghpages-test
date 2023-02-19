@@ -12241,7 +12241,7 @@ let FiltersControllerElement = class extends BaseCon$1 {
   dimming_view;
   main_filter;
   get maxScrollTop() {
-    return 550;
+    return 425;
   }
   get minScrollTop() {
     return 250;
