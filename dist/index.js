@@ -12248,7 +12248,7 @@ let FiltersControllerElement = class extends BaseCon$1 {
       const top = this.filters_container.getBoundingClientRect().top;
       console.log(top);
       this.filters_container.style.height = `calc((var(--real-vh) * 100) - ${top}px)`;
-    }, 1e3);
+    }, 400);
   }
   hide() {
     document.body.style.overflow = "auto";
