@@ -12166,7 +12166,7 @@ let FiltersControllerElement = class extends BaseCon$1 {
     super.connectedCallback();
     this.dimming_view.style.backgroundColor = "var(--background-color)";
     this.dimming_view.style.zIndex = "100000000";
-    this.main_filter.onchange = (_evt) => {
+    this.main_filter.input.onchange = (_evt) => {
       const enabled = _evt.target["checked"];
       if (enabled) {
         this.dimming_view.style.opacity = "0";
@@ -12177,7 +12177,8 @@ let FiltersControllerElement = class extends BaseCon$1 {
       }
       this.setTitleOfMainFilter();
     };
-    this.setTitleOfMainFilter();
+    this.main_filter.input.checked = true;
+    this.main_filter.input.onchange({ target: this.main_filter.input });
     this.scroll_container.addEventListener("scroll", this.onScroll.bind(this));
     this.scroll_container.addEventListener("touchend", this.onTouchEnd.bind(this));
   }
@@ -12218,7 +12219,7 @@ let FiltersControllerElement = class extends BaseCon$1 {
       const top = this.filters_container.getBoundingClientRect().top;
       console.log(top);
       this.filters_container.style.height = `calc(100vh - ${top}px)`;
-    }, 500);
+    }, 1e3);
   }
   hide() {
     document.body.style.overflow = "auto";
