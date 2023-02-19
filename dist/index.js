@@ -12081,6 +12081,16 @@ let FilterRowElement = class extends BaseCon$1 {
     super.connectedCallback();
     this.iconType = this.iconType;
     this.titleString = this.titleString;
+    this.input?.addEventListener("change", this.setDimming.bind(this));
+  }
+  setDimming(_evt) {
+    if (this.input.checked) {
+      this.title_div.style.opacity = "1";
+      this.icon_img.style.opacity = "1";
+    } else {
+      this.title_div.style.opacity = "0.4";
+      this.icon_img.style.opacity = "0.4";
+    }
   }
   toJson() {
     return {
@@ -12152,6 +12162,15 @@ let ColorFilterRowElement = class extends FilterRowElement$1 {
   }
   connectedCallback() {
     super.connectedCallback();
+  }
+  setDimming(_evt) {
+    if (this.input.checked) {
+      this.title_div.style.opacity = "1";
+      this.topo_dot.style.opacity = "1";
+    } else {
+      this.title_div.style.opacity = "0.4";
+      this.topo_dot.style.opacity = "0.4";
+    }
   }
 };
 __decorateClass$6([
