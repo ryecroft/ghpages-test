@@ -12138,7 +12138,7 @@ let FiltersControllerElement = class extends BaseCon$1 {
   dimming_view;
   main_filter;
   get maxScrollTop() {
-    return 500;
+    return 350;
   }
   get minScrollTop() {
     return 250;
@@ -12213,7 +12213,12 @@ let FiltersControllerElement = class extends BaseCon$1 {
       row.title_div.innerText = data.title;
       row.input.checked = data.checked;
     }
-    this.scroll_container.scrollTo({ top: this.maxScrollTop, behavior: "smooth" });
+    this.scroll_container.scrollTop = this.maxScrollTop;
+    setTimeout(() => {
+      const top = this.filters_container.getBoundingClientRect().top;
+      console.log(top);
+      this.filters_container.style.height = `calc(100vh - ${top}px)`;
+    }, 500);
   }
   hide() {
     document.body.style.overflow = "auto";
