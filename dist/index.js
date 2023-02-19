@@ -12204,7 +12204,36 @@ let FiltersControllerElement = class extends BaseCon$1 {
       this.scroll_container.scrollTop = this.maxScrollTop;
     }
   }
+  setupBullshitForSafari() {
+    let root = document.documentElement;
+    function updateRealViewportDimensions() {
+      console.log(`1vh = ${window.innerHeight / 100}px`);
+      root.style.setProperty("--real-vh", window.innerHeight / 100 + "px");
+    }
+    updateRealViewportDimensions();
+    const vhChangeEventTypes = [
+      "scroll",
+      "resize",
+      "fullscreenchange",
+      "fullscreenerror",
+      "touchcancel",
+      "touchend",
+      "touchmove",
+      "touchstart",
+      "mozbrowserscroll",
+      "mozbrowserscrollareachanged",
+      "mozbrowserscrollviewchange",
+      "mozbrowserresize",
+      "MozScrolledAreaChanged",
+      "mozbrowserresize",
+      "orientationchange"
+    ];
+    vhChangeEventTypes.forEach(function(type) {
+      window.addEventListener(type, (_evt) => updateRealViewportDimensions());
+    });
+  }
   show() {
+    this.setupBullshitForSafari();
     document.body.style.overflow = "hidden";
     this.gray_view.style.opacity = "1";
     this.container.style.top = "0";
@@ -12218,7 +12247,7 @@ let FiltersControllerElement = class extends BaseCon$1 {
     setTimeout(() => {
       const top = this.filters_container.getBoundingClientRect().top;
       console.log(top);
-      this.filters_container.style.height = `calc(100vh - ${top}px)`;
+      this.filters_container.style.height = `calc((var(--real-vh) * 100) - ${top}px)`;
     }, 1e3);
   }
   hide() {
