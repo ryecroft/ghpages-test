@@ -12368,6 +12368,8 @@ let FiltersControllerElement = class extends BaseCon$1 {
     const fc = this.filters_container;
     function updateRealViewportDimensions() {
       root.style.setProperty("--real-vh", window.innerHeight + "px");
+    }
+    function setFilterContainerHeight() {
       fc.style.height = `calc(var(--real-vh) - ${top}px)`;
     }
     updateRealViewportDimensions();
@@ -12376,10 +12378,6 @@ let FiltersControllerElement = class extends BaseCon$1 {
       "resize",
       "fullscreenchange",
       "fullscreenerror",
-      "touchcancel",
-      "touchend",
-      "touchmove",
-      "touchstart",
       "mozbrowserscroll",
       "mozbrowserscrollareachanged",
       "mozbrowserscrollviewchange",
@@ -12388,7 +12386,17 @@ let FiltersControllerElement = class extends BaseCon$1 {
       "mozbrowserresize",
       "orientationchange"
     ];
+    const touchEventTypes = [
+      "touchcancel",
+      "touchend",
+      "touchmove",
+      "touchstart"
+    ];
     vhChangeEventTypes.forEach(function(type) {
+      window.addEventListener(type, (_evt) => updateRealViewportDimensions());
+      window.addEventListener(type, (_evt) => setFilterContainerHeight());
+    });
+    touchEventTypes.forEach(function(type) {
       window.addEventListener(type, (_evt) => updateRealViewportDimensions());
     });
   }
