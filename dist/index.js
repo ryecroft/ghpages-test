@@ -12406,7 +12406,7 @@ let FiltersControllerElement = class extends BaseCon$1 {
       const top = this.filters_container.getBoundingClientRect().top;
       this.filters_container.style.height = `calc(var(--real-vh) - ${top}px)`;
       this.filters_container.style.overflowY = "scroll";
-    }, 602);
+    }, 450);
   }
   loadFilters() {
     const data = this.data;
