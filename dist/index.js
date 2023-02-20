@@ -12366,14 +12366,14 @@ let FiltersControllerElement = class extends BaseCon$1 {
       this.scroll_container.addEventListener("scroll", this.onScroll.bind(this));
       this.scroll_container.addEventListener("touchend", this.onTouchEnd.bind(this));
     }, 450);
+    this.loadFilters();
     setTimeout(() => {
       this.dimming_view.style.backgroundColor = "var(--background-color)";
       this.dimming_view.style.zIndex = "100000000";
       document.body.style.overflow = "hidden";
       this.gray_view.style.opacity = "1";
       this.main_container.style.top = "0";
-      this.loadFilters();
-    }, 1e3);
+    }, 10);
   }
   loadFilters() {
     const data = this.data;
