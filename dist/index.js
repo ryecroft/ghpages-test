@@ -12366,39 +12366,7 @@ let FiltersControllerElement = class extends BaseCon$1 {
       return;
     }
     const fc = this.filters_container;
-    function updateRealViewportDimensions() {
-      root.style.setProperty("--real-vh", window.innerHeight + "px");
-    }
-    function setFilterContainerHeight() {
-      fc.style.height = `calc(var(--real-vh) - ${top}px)`;
-    }
-    updateRealViewportDimensions();
-    const vhChangeEventTypes = [
-      "scroll",
-      "resize",
-      "fullscreenchange",
-      "fullscreenerror",
-      "mozbrowserscroll",
-      "mozbrowserscrollareachanged",
-      "mozbrowserscrollviewchange",
-      "mozbrowserresize",
-      "MozScrolledAreaChanged",
-      "mozbrowserresize",
-      "orientationchange"
-    ];
-    const touchEventTypes = [
-      "touchcancel",
-      "touchend",
-      "touchmove",
-      "touchstart"
-    ];
-    vhChangeEventTypes.forEach(function(type) {
-      window.addEventListener(type, (_evt) => updateRealViewportDimensions());
-      window.addEventListener(type, (_evt) => setFilterContainerHeight());
-    });
-    touchEventTypes.forEach(function(type) {
-      window.addEventListener(type, (_evt) => updateRealViewportDimensions());
-    });
+    fc.style.height = `100%`;
   }
   show() {
     this.setupBullshitForSafari();
@@ -12406,21 +12374,8 @@ let FiltersControllerElement = class extends BaseCon$1 {
     this.gray_view.style.opacity = "1";
     this.container.style.top = "0";
     this.loadFilters();
-    this.filters_container.style.overflowY = "visible";
     this.scroll_container.scrollTop = this.maxScrollTop;
-    setTimeout(() => {
-      const top2 = this.filters_container.getBoundingClientRect().top;
-      this.filters_container.style.height = `calc(var(--real-vh) - ${top2}px)`;
-    }, 400);
-    setTimeout(() => {
-      const top2 = this.filters_container.getBoundingClientRect().top;
-      this.filters_container.style.height = `calc(var(--real-vh) - ${top2}px)`;
-    }, 450);
-    setTimeout(() => {
-      const top2 = this.filters_container.getBoundingClientRect().top;
-      this.filters_container.style.height = `calc(var(--real-vh) - ${top2}px)`;
-      this.filters_container.style.overflowY = "scroll";
-    }, 550);
+    this.filters_container.style.height = `100%`;
   }
   loadFilters() {
     const data = this.data;
