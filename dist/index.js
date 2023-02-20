@@ -12277,7 +12277,7 @@ let FiltersControllerElement = class extends BaseCon$1 {
   spacer;
   main_filter;
   get maxScrollTop() {
-    return this.scroll_container["scrollTopMax"];
+    return this.scroll_container.scrollHeight - this.scroll_container.clientHeight;
   }
   get minScrollTop() {
     return 250;
