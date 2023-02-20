@@ -12323,7 +12323,7 @@ let FiltersControllerElement = class extends BaseCon$1 {
   connectedCallback() {
     super.connectedCallback();
     this.scroll_container.scrollTop = this.maxScrollTop;
-    this.main_container.style.transform = "translate3d(0px, 500vh, 0px)";
+    this.main_container.style.transform = "translate(0px, 500vh)";
   }
   setTitleOfMainFilter() {
     if (this.main_filter.input.checked) {
@@ -12372,7 +12372,7 @@ let FiltersControllerElement = class extends BaseCon$1 {
       this.dimming_view.style.zIndex = "100000000";
       document.body.style.overflow = "hidden";
       this.gray_view.style.opacity = "1";
-      this.main_container.style.transform = "translate3d(0px, 0px, 0px)";
+      this.main_container.style.transform = "translate(0px, 0px)";
     }, 10);
   }
   loadFilters() {
@@ -12409,7 +12409,7 @@ let FiltersControllerElement = class extends BaseCon$1 {
     document.body.style.overflow = "auto";
     this.gray_view.style.opacity = "0";
     this.backing_view.style.opacity = "0";
-    this.main_container.style.transform = "translate3d(0px, 70vh, 0px)";
+    this.main_container.style.transform = "translate(0px, 70vh)";
     setTimeout(() => {
       this.die();
     }, 500);
