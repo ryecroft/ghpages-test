@@ -12396,6 +12396,7 @@ let FiltersControllerElement = class extends BaseCon$1 {
     this.gray_view.style.opacity = "1";
     this.container.style.top = "0";
     this.loadFilters();
+    this.filters_container.style.overflowY = "visible";
     this.scroll_container.scrollTop = this.maxScrollTop;
     setTimeout(() => {
       const top = this.filters_container.getBoundingClientRect().top;
@@ -12404,7 +12405,8 @@ let FiltersControllerElement = class extends BaseCon$1 {
     setTimeout(() => {
       const top = this.filters_container.getBoundingClientRect().top;
       this.filters_container.style.height = `calc(var(--real-vh) - ${top}px)`;
-    }, 402);
+      this.filters_container.style.overflowY = "scroll";
+    }, 602);
   }
   loadFilters() {
     const data = this.data;
