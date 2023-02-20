@@ -12373,7 +12373,7 @@ let FiltersControllerElement = class extends BaseCon$1 {
       this.gray_view.style.opacity = "1";
       this.main_container.style.top = "0";
       this.loadFilters();
-    }, 10);
+    }, 1e3);
   }
   loadFilters() {
     const data = this.data;
