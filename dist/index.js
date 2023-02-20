@@ -12015,7 +12015,7 @@ const template$5 = (element) => {
       <div data-target='${elementName}.gray_view' data-action='click:${elementName}#hide' id='gray-view'></div>
       <div data-target='${elementName}.scroll_container' id='filters-controller-scrollable-area'>
           <div style='height:80vh'></div>
-          <div data-target='${elementName}.container' class='filters-controller-content pr-3 pl-3 pt-1'>
+          <div data-target='${elementName}.container' class='filters-controller-main-container pr-3 pl-3 pt-1'>
               <filter-row icon-type='filter' title-string='Filters disabled' data-target='${elementName}.main_filter'></filter-row>
               <div class='divider'></div>
               <div data-target='${elementName}.filters_container' id='filters-controller-filters-container'>
@@ -12321,6 +12321,8 @@ let FiltersControllerElement = class extends BaseCon$1 {
   }
   connectedCallback() {
     super.connectedCallback();
+    this.scroll_container.scrollTop = this.maxScrollTop;
+    this.container.style.top = "100vh";
     this.dimming_view.style.backgroundColor = "var(--background-color)";
     this.dimming_view.style.zIndex = "100000000";
     this.main_filter.input.onchange = (_evt) => {
@@ -12334,8 +12336,6 @@ let FiltersControllerElement = class extends BaseCon$1 {
       }
       this.setTitleOfMainFilter();
     };
-    this.scroll_container.addEventListener("scroll", this.onScroll.bind(this));
-    this.scroll_container.addEventListener("touchend", this.onTouchEnd.bind(this));
   }
   setTitleOfMainFilter() {
     if (this.main_filter.input.checked) {
@@ -12354,6 +12354,7 @@ let FiltersControllerElement = class extends BaseCon$1 {
     this.backing_view.style.opacity = show ? "1" : "0";
   }
   onTouchEnd(_evt) {
+    console.log("wtf");
     if (this.scroll_container.scrollTop < this.maxScrollTop) {
       if (this.scroll_container.scrollTop < this.minScrollTop) {
         this.hide();
@@ -12362,24 +12363,15 @@ let FiltersControllerElement = class extends BaseCon$1 {
       }
     }
   }
-  setupBullshitForSafari() {
-    let root = document.documentElement;
-    let isSafari = navigator.userAgent.includes("Safari");
-    if (!isSafari) {
-      root.style.setProperty("--real-vh", "100vh");
-      return;
-    }
-    const fc = this.filters_container;
-    fc.style.height = `100%`;
-  }
   show() {
-    this.setupBullshitForSafari();
     document.body.style.overflow = "hidden";
     this.gray_view.style.opacity = "1";
     this.container.style.top = "0";
+    setTimeout(() => {
+      this.scroll_container.addEventListener("scroll", this.onScroll.bind(this));
+      this.scroll_container.addEventListener("touchend", this.onTouchEnd.bind(this));
+    }, 450);
     this.loadFilters();
-    this.scroll_container.scrollTop = this.maxScrollTop;
-    this.filters_container.style.height = `100%`;
   }
   loadFilters() {
     const data = this.data;
