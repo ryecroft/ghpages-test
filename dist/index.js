@@ -12351,8 +12351,6 @@ let FiltersControllerElement = class extends BaseCon$1 {
   onTouchEnd(_evt) {
     if (this.scroll_container.scrollTop < this.minScrollTop) {
       this.hide();
-    } else {
-      this.scroll_container.scrollTop = this.maxScrollTop;
     }
   }
   setupBullshitForSafari() {
