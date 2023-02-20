@@ -12365,9 +12365,10 @@ let FiltersControllerElement = class extends BaseCon$1 {
       root.style.setProperty("--real-vh", "100vh");
       return;
     }
+    const fc = this.filters_container;
     function updateRealViewportDimensions() {
       root.style.setProperty("--real-vh", window.innerHeight + "px");
-      this.filters_container.style.height = `calc(var(--real-vh) - ${top}px)`;
+      fc.style.height = `calc(var(--real-vh) - ${top}px)`;
     }
     updateRealViewportDimensions();
     const vhChangeEventTypes = [
