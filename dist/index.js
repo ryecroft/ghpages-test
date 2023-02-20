@@ -12199,7 +12199,11 @@ const template$2 = (element) => {
     </div>
     <div class='d-flex flex-row align-items-center'>
       <div data-target='${elementName}.range_counter' class='mr-3 range-counter'>0</div>
-      <input type='range' data-target='${elementName}.range' class='mr-3 input-range' min='0' max='3'></input>
+      <div class="range-slider" style='--min:0; --max:3; --step:1; --value:0; --text-value:"0";'>
+        <input data-target='${elementName}.range' type="range" min="0" max="3" step="1" value="0" oninput="this.parentNode.style.setProperty('--value',this.value); this.parentNode.style.setProperty('--text-value', JSON.stringify(this.value))">
+        <output></output>
+        <div class='range-slider__progress'></div>
+      </div>
     </div>
   </label>`;
 };
