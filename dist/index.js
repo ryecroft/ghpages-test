@@ -12354,8 +12354,12 @@ let FiltersControllerElement = class extends BaseCon$1 {
     this.backing_view.style.opacity = show ? "1" : "0";
   }
   onTouchEnd(_evt) {
-    if (this.scroll_container.scrollTop < this.minScrollTop) {
-      this.hide();
+    if (this.scroll_container.scrollTop < this.maxScrollTop) {
+      if (this.scroll_container.scrollTop < this.minScrollTop) {
+        this.hide();
+      } else {
+        this.scroll_container.scrollTo({ top: this.maxScrollTop, behavior: "smooth" });
+      }
     }
   }
   setupBullshitForSafari() {
