@@ -12351,27 +12351,27 @@ let FiltersControllerElement = class extends BaseCon$1 {
     }
   }
   show() {
+    this.main_filter.input.onchange = (_evt) => {
+      const enabled = _evt.target["checked"];
+      if (enabled) {
+        this.dimming_view.style.opacity = "0";
+        this.dimming_view.style.pointerEvents = "none";
+      } else {
+        this.dimming_view.style.pointerEvents = "auto";
+        this.dimming_view.style.opacity = "0.7";
+      }
+      this.setTitleOfMainFilter();
+    };
+    setTimeout(() => {
+      this.scroll_container.addEventListener("scroll", this.onScroll.bind(this));
+      this.scroll_container.addEventListener("touchend", this.onTouchEnd.bind(this));
+    }, 450);
     setTimeout(() => {
       this.dimming_view.style.backgroundColor = "var(--background-color)";
       this.dimming_view.style.zIndex = "100000000";
-      this.main_filter.input.onchange = (_evt) => {
-        const enabled = _evt.target["checked"];
-        if (enabled) {
-          this.dimming_view.style.opacity = "0";
-          this.dimming_view.style.pointerEvents = "none";
-        } else {
-          this.dimming_view.style.pointerEvents = "auto";
-          this.dimming_view.style.opacity = "0.7";
-        }
-        this.setTitleOfMainFilter();
-      };
       document.body.style.overflow = "hidden";
       this.gray_view.style.opacity = "1";
       this.main_container.style.top = "0";
-      setTimeout(() => {
-        this.scroll_container.addEventListener("scroll", this.onScroll.bind(this));
-        this.scroll_container.addEventListener("touchend", this.onTouchEnd.bind(this));
-      }, 450);
       this.loadFilters();
     }, 10);
   }
