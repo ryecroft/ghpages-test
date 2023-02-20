@@ -12388,6 +12388,7 @@ let FiltersControllerElement = class extends BaseCon$1 {
     ];
     vhChangeEventTypes.forEach(function(type) {
       window.addEventListener(type, (_evt) => updateRealViewportDimensions());
+      this.filters_container.style.height = `calc(var(--real-vh) - ${top}px)`;
     });
   }
   show() {
@@ -12399,16 +12400,16 @@ let FiltersControllerElement = class extends BaseCon$1 {
     this.filters_container.style.overflowY = "visible";
     this.scroll_container.scrollTop = this.maxScrollTop;
     setTimeout(() => {
-      const top = this.filters_container.getBoundingClientRect().top;
-      this.filters_container.style.height = `calc(var(--real-vh) - ${top}px)`;
+      const top2 = this.filters_container.getBoundingClientRect().top;
+      this.filters_container.style.height = `calc(var(--real-vh) - ${top2}px)`;
     }, 400);
     setTimeout(() => {
-      const top = this.filters_container.getBoundingClientRect().top;
-      this.filters_container.style.height = `calc(var(--real-vh) - ${top}px)`;
+      const top2 = this.filters_container.getBoundingClientRect().top;
+      this.filters_container.style.height = `calc(var(--real-vh) - ${top2}px)`;
     }, 450);
     setTimeout(() => {
-      const top = this.filters_container.getBoundingClientRect().top;
-      this.filters_container.style.height = `calc(var(--real-vh) - ${top}px)`;
+      const top2 = this.filters_container.getBoundingClientRect().top;
+      this.filters_container.style.height = `calc(var(--real-vh) - ${top2}px)`;
       this.filters_container.style.overflowY = "scroll";
     }, 550);
   }
