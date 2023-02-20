@@ -12273,7 +12273,7 @@ let FiltersControllerElement = class extends BaseCon$1 {
   backing_view;
   main_filter;
   get maxScrollTop() {
-    return 425;
+    return 350;
   }
   get minScrollTop() {
     return 250;
