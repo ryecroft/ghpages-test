@@ -12014,8 +12014,8 @@ const template$5 = (element) => {
   <div class='rfd-search'>
       <div data-target='${elementName}.gray_view' data-action='click:${elementName}#hide' id='gray-view'></div>
       <div data-target='${elementName}.scroll_container' id='filters-controller-scrollable-area'>
-          <div style='height:80vh'></div>
-          <div data-target='${elementName}.container' class='filters-controller-main-container pr-3 pl-3 pt-1'>
+          <div data-target='${elementName}.spacer' style='height:80vh'></div>
+          <div data-target='${elementName}.main_container' class='filters-controller-main-container pr-3 pl-3 pt-1'>
               <filter-row icon-type='filter' title-string='Filters disabled' data-target='${elementName}.main_filter'></filter-row>
               <div class='divider'></div>
               <div data-target='${elementName}.filters_container' id='filters-controller-filters-container'>
@@ -12269,14 +12269,15 @@ var __decorateClass$4 = (decorators, target2, key, kind) => {
 };
 let FiltersControllerElement = class extends BaseCon$1 {
   gray_view;
-  container;
+  main_container;
   scroll_container;
   filters_container;
   dimming_view;
   backing_view;
+  spacer;
   main_filter;
   get maxScrollTop() {
-    return 425;
+    return this.scroll_container["scrollTopMax"];
   }
   get minScrollTop() {
     return 250;
@@ -12322,7 +12323,7 @@ let FiltersControllerElement = class extends BaseCon$1 {
   connectedCallback() {
     super.connectedCallback();
     this.scroll_container.scrollTop = this.maxScrollTop;
-    this.container.style.top = "100vh";
+    this.main_container.style.top = "100vh";
     this.dimming_view.style.backgroundColor = "var(--background-color)";
     this.dimming_view.style.zIndex = "100000000";
     this.main_filter.input.onchange = (_evt) => {
@@ -12354,7 +12355,6 @@ let FiltersControllerElement = class extends BaseCon$1 {
     this.backing_view.style.opacity = show ? "1" : "0";
   }
   onTouchEnd(_evt) {
-    console.log("wtf");
     if (this.scroll_container.scrollTop < this.maxScrollTop) {
       if (this.scroll_container.scrollTop < this.minScrollTop) {
         this.hide();
@@ -12366,7 +12366,7 @@ let FiltersControllerElement = class extends BaseCon$1 {
   show() {
     document.body.style.overflow = "hidden";
     this.gray_view.style.opacity = "1";
-    this.container.style.top = "0";
+    this.main_container.style.top = "0";
     setTimeout(() => {
       this.scroll_container.addEventListener("scroll", this.onScroll.bind(this));
       this.scroll_container.addEventListener("touchend", this.onTouchEnd.bind(this));
@@ -12407,7 +12407,7 @@ let FiltersControllerElement = class extends BaseCon$1 {
     document.body.style.overflow = "auto";
     this.gray_view.style.opacity = "0";
     this.backing_view.style.opacity = "0";
-    this.container.style.top = "100vh";
+    this.main_container.style.top = "100vh";
     setTimeout(() => {
       this.die();
     }, 500);
@@ -12430,7 +12430,7 @@ __decorateClass$4([
 ], FiltersControllerElement.prototype, "gray_view", 2);
 __decorateClass$4([
   target
-], FiltersControllerElement.prototype, "container", 2);
+], FiltersControllerElement.prototype, "main_container", 2);
 __decorateClass$4([
   target
 ], FiltersControllerElement.prototype, "scroll_container", 2);
@@ -12443,6 +12443,9 @@ __decorateClass$4([
 __decorateClass$4([
   target
 ], FiltersControllerElement.prototype, "backing_view", 2);
+__decorateClass$4([
+  target
+], FiltersControllerElement.prototype, "spacer", 2);
 __decorateClass$4([
   target
 ], FiltersControllerElement.prototype, "main_filter", 2);
