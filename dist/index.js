@@ -12401,10 +12401,12 @@ let FiltersControllerElement = class extends BaseCon$1 {
       this.gray_view.style.opacity = "1";
       this.main_container.style.transform = "translate(0px, 0px)";
       this.backing_view.style.height = `${this.main_container.clientHeight - 30}px`;
-      this.scroll_container.style.overflowY = "hidden";
     }, 10);
     setTimeout(() => {
-      this.scroll_container.style.overflowY = "scroll";
+      this.scroll_container.style.overflowY = "hidden";
+      setTimeout(() => {
+        this.scroll_container.style.overflowY = "scroll";
+      }, 100);
     }, 100);
   }
   loadFilters() {
