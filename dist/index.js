@@ -3041,8 +3041,12 @@ let BaseRoutesViewer = class extends BaseCon$1 {
   }
   showFilters() {
     const el = document.createElement("filters-controller");
-    el.afterDismiss = () => {
-      this.filter_icon.parentElement.classList.add("glow");
+    el.afterDismiss = (data) => {
+      if (data.filters_enabled) {
+        this.filter_icon.classList.add("glow");
+      } else {
+        this.filter_icon.classList.remove("glow");
+      }
     };
     el.allowedFilterTypes = this.allowedFilterTypes;
     document.body.appendChild(el);
@@ -12303,7 +12307,7 @@ let FiltersControllerElement = class extends BaseCon$1 {
   get minScrollTop() {
     return this.main_container.clientHeight * 0.66;
   }
-  afterDismiss = () => {
+  afterDismiss = (_) => {
   };
   baseData = {
     filters_enabled: false,
@@ -12336,10 +12340,14 @@ let FiltersControllerElement = class extends BaseCon$1 {
   };
   storageKey = "route-filters";
   get data() {
+    let data = localStorage.getItem(this.storageKey);
+    if (data) {
+      return JSON.parse(data);
+    }
     return this.baseData;
   }
   get filters() {
-    return Array.from(this.filters_container.querySelectorAll("filter-row, color-filter-row"));
+    return Array.from(this.filters_container.querySelectorAll("filter-row, color-filter-row, slider-filter-row"));
   }
   get template() {
     return template$5;
@@ -12358,10 +12366,21 @@ let FiltersControllerElement = class extends BaseCon$1 {
     }
   }
   die() {
-    const data = this.toJson();
-    localStorage.setItem(this.storageKey, JSON.stringify(data));
+    const newData = this.toJson();
+    const oldData = this.data;
+    newData.route_types.forEach((filter) => {
+      const target2 = oldData.route_types.find(({ iconType }) => iconType === filter.iconType);
+      target2.checked = filter.checked;
+    });
+    newData.route_colors.forEach((filter) => {
+      const target2 = oldData.route_colors.find(({ iconType }) => iconType === filter.iconType);
+      target2.checked = filter.checked;
+    });
+    oldData.filters_enabled = this.main_filter.input.checked;
+    oldData.minimum_star_count = newData.minimum_star_count;
+    localStorage.setItem(this.storageKey, JSON.stringify(oldData));
     this.parentElement?.removeChild(this);
-    this.afterDismiss();
+    this.afterDismiss(newData);
   }
   onScroll(_evt) {
     const show = this.scroll_container.scrollTop > this.maxScrollTop - 30;
