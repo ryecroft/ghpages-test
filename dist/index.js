@@ -12394,8 +12394,6 @@ let FiltersControllerElement = class extends BaseCon$1 {
     }, 450);
     this.loadFilters();
     this.scroll_container.scrollTo({ top: this.maxScrollTop, behavior: "smooth" });
-    this.scroll_container.style.overflowY = "hidden";
-    this.scroll_container.style.overflowY = "scroll";
     setTimeout(() => {
       this.dimming_view.style.backgroundColor = "var(--background-color)";
       this.dimming_view.style.zIndex = "100000000";
@@ -12404,6 +12402,10 @@ let FiltersControllerElement = class extends BaseCon$1 {
       this.main_container.style.transform = "translate(0px, 0px)";
       this.backing_view.style.height = `${this.main_container.clientHeight - 30}px`;
     }, 10);
+    setTimeout(() => {
+      this.scroll_container.style.overflowY = "hidden";
+      this.scroll_container.style.overflowY = "scroll";
+    }, 100);
   }
   loadFilters() {
     const data = this.data;
