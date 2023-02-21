@@ -2852,7 +2852,7 @@ let ColorFilterRowElement = class extends FilterRowElement$1 {
   }
   connectedCallback() {
     super.connectedCallback();
-    this.filterCategory = "route_colors";
+    this.filterCategory = "grade_colors";
   }
   setDimming(_evt) {
     if (this.input.checked) {
@@ -2975,7 +2975,7 @@ let FiltersControllerElement = class extends BaseCon$1 {
   };
   allowedFilterTypes = {
     route_types: true,
-    route_colors: true,
+    grade_colors: true,
     minimum_star_count: true
   };
   storageKey = "route-filters";
@@ -3058,7 +3058,6 @@ let FiltersControllerElement = class extends BaseCon$1 {
     const defaultFilters = new Filters();
     this.main_filter.input.checked = data.filters_enabled;
     this.main_filter.input.onchange({ target: this.main_filter.input });
-    console.log(data);
     if (this.allowedFilterTypes?.route_types) {
       Object.keys(data.route_types).forEach((key) => {
         let row2 = this.filters_container.appendChild(new FilterRowElement$1());
@@ -3071,12 +3070,12 @@ let FiltersControllerElement = class extends BaseCon$1 {
       this.filters_container.appendChild(div);
       div.classList.add("divider");
     }
-    if (this.allowedFilterTypes?.route_colors) {
-      Object.keys(data.route_colors).forEach((key) => {
+    if (this.allowedFilterTypes?.grade_colors) {
+      Object.keys(data.grade_colors).forEach((key) => {
         let row2 = this.filters_container.appendChild(new ColorFilterRowElement$1());
         row2.iconType = key;
-        row2.titleString = defaultFilters.route_colors[key].title;
-        row2.input.checked = data.route_colors[key].checked;
+        row2.titleString = defaultFilters.grade_colors[key].title;
+        row2.input.checked = data.grade_colors[key].checked;
         row2.setDimming(null);
       });
       const div = document.createElement("div");
@@ -3139,7 +3138,6 @@ class Filters {
   static fromDisk() {
     const data = localStorage.getItem(Filters.storageKey);
     if (data) {
-      console.log(JSON.parse(data));
       return new Filters(JSON.parse(data));
     }
     return new Filters();
@@ -3158,7 +3156,7 @@ class Filters {
     via_ferrata: { title: "Via ferrata", checked: false },
     scramble: { title: "Scrambles", checked: false }
   };
-  route_colors = {
+  grade_colors = {
     green: { title: "Green routes", checked: false },
     orange: { title: "Orange routes", checked: false },
     red: { title: "Red routes", checked: false },
@@ -3173,8 +3171,8 @@ class Filters {
     Object.keys(data.route_types).forEach((key) => {
       this.route_types[key].checked = data.route_types[key];
     });
-    Object.keys(data.route_colors).forEach((key) => {
-      this.route_colors[key].checked = data.route_colors[key];
+    Object.keys(data.grade_colors).forEach((key) => {
+      this.grade_colors[key].checked = data.grade_colors[key];
     });
     this.minimum_star_count = data.minimum_star_count;
   }
@@ -3185,10 +3183,24 @@ class Filters {
     Object.keys(this.route_types).forEach((key) => {
       newFilters.route_types[key] = this.route_types[key].checked;
     });
-    Object.keys(this.route_colors).forEach((key) => {
-      newFilters.route_colors[key] = this.route_colors[key].checked;
+    Object.keys(this.grade_colors).forEach((key) => {
+      newFilters.grade_colors[key] = this.grade_colors[key].checked;
     });
     return newFilters;
+  }
+  toApiFormat() {
+    const result = {
+      route_types: {},
+      grade_colors: {},
+      minimum_star_count: this.minimum_star_count
+    };
+    Object.keys(this.route_types).forEach((key) => {
+      result.route_types[key] = this.route_types[key].checked;
+    });
+    Object.keys(this.grade_colors).forEach((key) => {
+      result.grade_colors[key] = this.grade_colors[key].checked;
+    });
+    return result;
   }
 }
 
@@ -3505,13 +3517,18 @@ let BaseRoutesViewer = class extends BaseCon$1 {
   }
   bodyForRequest(query, _pageNo) {
     const cookie = Cookies.default().cookie;
-    return {
+    const result = {
       cookie,
       search_query: query,
       sort_by: this.sort_order_picker.value,
       direction: this.sortDirectionFromButton,
       return_type: "full"
     };
+    const filters = Filters.fromDisk();
+    if (filters.filters_enabled) {
+      result.search_filters = filters.toApiFormat();
+    }
+    return result;
   }
   get sortDirectionFromButton() {
     const c = this.sort_arrow;
@@ -3532,7 +3549,7 @@ let BaseRoutesViewer = class extends BaseCon$1 {
   get allowedFilterTypes() {
     return {
       route_types: true,
-      route_colors: true,
+      grade_colors: true,
       minimum_star_count: true
     };
   }
@@ -3543,6 +3560,7 @@ let BaseRoutesViewer = class extends BaseCon$1 {
       const data = fc2.toJson();
       this.setFilterGlow(data.filters_enabled);
       this.filtersData = fc2.toJson();
+      this.onInputUpdated();
     };
     fc.allowedFilterTypes = this.allowedFilterTypes;
     return fc;
@@ -8020,6 +8038,9 @@ let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
   }
   async fetchDataParams(returnType, query) {
     const body = this.bodyForRequestAndPage(query);
+    if (returnType === "full") {
+      delete body.search_filters;
+    }
     body.return_type = returnType;
     const response = await fetch(
       this.apiUrl,
@@ -12314,7 +12335,7 @@ let WinterAscentsViewerElement = class extends TopAscentsViewerElement$1 {
   get allowedFilterTypes() {
     return {
       route_types: false,
-      route_colors: true,
+      grade_colors: true,
       minimum_star_count: true
     };
   }
@@ -12467,16 +12488,13 @@ let CragRoutesViewerElement = class extends OfflineInfiniteScrollRoutesViewer$1 
     return (rte) => rte.id_ukc;
   }
   bodyForRequest(query, _pageNo) {
+    const result = super.bodyForRequest(query, _pageNo);
     const type = Object.keys(this.routeLookup || {}).length ? "ids" : "full";
-    const cookie = Cookies.default().cookie;
-    return {
-      cookie,
-      search_query: query,
-      sort_by: this.sort_order_picker.value,
-      direction: this.sortDirectionFromButton,
-      return_type: type,
-      crag_id: Number(this.cragId)
-    };
+    result.return_type = type;
+    result.sort_by = this.sort_order_picker.value;
+    result.direction = this.sortDirectionFromButton;
+    result.crag_id = Number(this.cragId);
+    return result;
   }
   buildResults(_data) {
     super.buildResults(_data);
