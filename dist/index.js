@@ -12402,6 +12402,12 @@ let FiltersControllerElement = class extends BaseCon$1 {
       this.main_container.style.transform = "translate(0px, 0px)";
       this.backing_view.style.height = `${this.main_container.clientHeight - 30}px`;
     }, 10);
+    setTimeout(() => {
+      this.scroll_container.style.overflowY = "hidden";
+      setTimeout(() => {
+        this.scroll_container.style.overflowY = "scroll";
+      }, 25);
+    }, 350);
   }
   loadFilters() {
     const data = this.data;
