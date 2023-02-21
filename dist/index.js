@@ -3032,8 +3032,12 @@ let BaseRoutesViewer = class extends BaseCon$1 {
     this.onInputUpdated();
     localStorage.setItem(this.sortDirectionKey, this.sortDirectionFromButton);
   }
+  get allowedFilterTypes() {
+    return void 0;
+  }
   showFilters() {
     const el = document.createElement("filters-controller");
+    el.allowedFilterTypes = this.allowedFilterTypes;
     document.body.appendChild(el);
     setTimeout(() => {
       el.show();
@@ -11789,6 +11793,13 @@ let WinterAscentsViewerElement = class extends TopAscentsViewerElement$1 {
     this.routes_viewer_title.innerHTML = `<span style="font-size: 0.8em">Recent winter ascents</span>`;
     return res;
   }
+  get allowedFilterTypes() {
+    return {
+      route_types: false,
+      route_colors: true,
+      minimum_star_count: true
+    };
+  }
 };
 WinterAscentsViewerElement = __decorateClass$b([
   controller
@@ -12076,6 +12087,9 @@ let FilterRowElement = class extends BaseCon$1 {
   setValueInJson(obj) {
     obj[this.filterCategory].push(this.toJson());
   }
+  setValueInJsonForApi(obj) {
+    obj[this.filterCategory][this.iconType] = this.value;
+  }
   get template() {
     return template$4;
   }
@@ -12280,7 +12294,7 @@ let FiltersControllerElement = class extends BaseCon$1 {
     return this.scroll_container.scrollHeight - this.scroll_container.clientHeight;
   }
   get minScrollTop() {
-    return 250;
+    return this.main_container.clientHeight * 0.66;
   }
   baseData = {
     filters_enabled: false,
@@ -12306,6 +12320,11 @@ let FiltersControllerElement = class extends BaseCon$1 {
     ],
     minimum_star_count: 0
   };
+  allowedFilterTypes = {
+    route_types: true,
+    route_colors: true,
+    minimum_star_count: true
+  };
   storageKey = "route-filters";
   get data() {
     let data = localStorage.getItem(this.storageKey);
@@ -12324,6 +12343,7 @@ let FiltersControllerElement = class extends BaseCon$1 {
     super.connectedCallback();
     this.scroll_container.scrollTop = this.maxScrollTop;
     this.main_container.style.transform = "translate(0px, 500vh)";
+    this.scroll_container.scrollTop = this.maxScrollTop;
   }
   setTitleOfMainFilter() {
     if (this.main_filter.input.checked) {
@@ -12368,37 +12388,43 @@ let FiltersControllerElement = class extends BaseCon$1 {
     }, 450);
     this.loadFilters();
     setTimeout(() => {
+      this.scroll_container.scrollTo({ top: this.maxScrollTop, behavior: "smooth" });
       this.dimming_view.style.backgroundColor = "var(--background-color)";
       this.dimming_view.style.zIndex = "100000000";
       document.body.style.overflow = "hidden";
       this.gray_view.style.opacity = "1";
       this.main_container.style.transform = "translate(0px, 0px)";
+      this.backing_view.style.height = `${this.main_container.clientHeight - 30}px`;
     }, 10);
   }
   loadFilters() {
     const data = this.data;
     this.main_filter.input.checked = data.filters_enabled;
     this.main_filter.input.onchange({ target: this.main_filter.input });
-    for (const filter of data.route_types) {
-      let row2 = this.filters_container.appendChild(new FilterRowElement$1());
-      row2.iconType = filter.iconType;
-      row2.titleString = filter.title;
-      row2.input.checked = filter.checked;
-      row2.setDimming(null);
+    if (this.allowedFilterTypes.route_types) {
+      for (const filter of data.route_types) {
+        let row2 = this.filters_container.appendChild(new FilterRowElement$1());
+        row2.iconType = filter.iconType;
+        row2.titleString = filter.title;
+        row2.input.checked = filter.checked;
+        row2.setDimming(null);
+      }
+      const div = document.createElement("div");
+      this.filters_container.appendChild(div);
+      div.classList.add("divider");
     }
-    let div = document.createElement("div");
-    this.filters_container.appendChild(div);
-    div.classList.add("divider");
-    for (const filter of data.route_colors) {
-      let row2 = this.filters_container.appendChild(new ColorFilterRowElement$1());
-      row2.iconType = filter.iconType;
-      row2.titleString = filter.title;
-      row2.input.checked = filter.checked;
-      row2.setDimming(null);
+    if (this.allowedFilterTypes.route_colors) {
+      for (const filter of data.route_colors) {
+        let row2 = this.filters_container.appendChild(new ColorFilterRowElement$1());
+        row2.iconType = filter.iconType;
+        row2.titleString = filter.title;
+        row2.input.checked = filter.checked;
+        row2.setDimming(null);
+      }
+      const div = document.createElement("div");
+      this.filters_container.appendChild(div);
+      div.classList.add("divider");
     }
-    div = document.createElement("div");
-    this.filters_container.appendChild(div);
-    div.classList.add("divider");
     let row = this.filters_container.appendChild(new SliderFilterRowElement$1());
     row.iconType = "star";
     row.icon_img.style.backgroundColor = "#F8CA23FF";
@@ -12409,7 +12435,7 @@ let FiltersControllerElement = class extends BaseCon$1 {
     document.body.style.overflow = "auto";
     this.gray_view.style.opacity = "0";
     this.backing_view.style.opacity = "0";
-    this.main_container.style.transform = "translate(0px, 70vh)";
+    this.main_container.style.transform = `translate(0px, ${this.main_container.clientHeight}px)`;
     setTimeout(() => {
       this.die();
     }, 500);
@@ -12423,6 +12449,26 @@ let FiltersControllerElement = class extends BaseCon$1 {
     };
     for (const filter of this.filters) {
       filter.setValueInJson(res);
+    }
+    return res;
+  }
+  toJsonForApi() {
+    if (this.main_filter.input.checked === false) {
+      return void 0;
+    }
+    const res = {
+      route_types: {},
+      route_colors: {},
+      minimum_star_count: 0
+    };
+    for (const filter of this.filters) {
+      filter.setValueInJsonForApi(res);
+    }
+    if (Object.keys(res.route_types).length === 0) {
+      delete res["route_types"];
+    }
+    if (Object.keys(res.route_colors).length === 0) {
+      delete res["route_colors"];
     }
     return res;
   }
