@@ -2697,6 +2697,37 @@ class UkcSid {
   ukcId = 0;
 }
 
+const template$5 = (element) => {
+  const elementName = element.elementName;
+  return html$1`
+  <div class='rfd-search'>
+      <div data-target='${elementName}.gray_view' data-action='click:${elementName}#hide' id='gray-view'></div>
+      <div data-target='${elementName}.scroll_container' id='filters-controller-scrollable-area'>
+          <div data-target='${elementName}.spacer' style='height:100vh'></div>
+          <div data-target='${elementName}.main_container' class='filters-controller-main-container pr-3 pl-3 pt-1'>
+              <filter-row icon-type='filter' title-string='Filters disabled' data-target='${elementName}.main_filter'></filter-row>
+              <div class='divider'></div>
+              <div data-target='${elementName}.filters_container' id='filters-controller-filters-container'>
+                  <div data-target='${elementName}.dimming_view' class='filters-dimming-view'></div>
+              </div>
+          </div>
+      </div>
+      <div data-target='${elementName}.backing_view' class='backing-view'></div>
+  </div>`;
+};
+
+const template$4 = (element) => {
+  const elementName = element.elementName;
+  return html$1`
+  <label class='d-flex flex-row justify-content-between align-items-center mt-3'>
+    <div class='d-flex flex-row align-items-center'>
+      <img data-target='${elementName}.icon_img' class='filter-row-icon pr-2'></img>
+      <div data-target='${elementName}.title_div' class='filter-row-title'></div>
+    </div>
+    <div data-target='${elementName}.switch_div' class='form-switch'><input type="checkbox" data-target='${elementName}.input'><i></i></div>
+  </label>`;
+};
+
 var __defProp$s = Object.defineProperty;
 var __getOwnPropDesc$s = Object.getOwnPropertyDescriptor;
 var __decorateClass$s = (decorators, target2, key, kind) => {
@@ -2706,6 +2737,470 @@ var __decorateClass$s = (decorators, target2, key, kind) => {
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
     __defProp$s(target2, key, result);
+  return result;
+};
+let FilterRowElement = class extends BaseCon$1 {
+  icon_img;
+  title_div;
+  switch_div;
+  input;
+  set iconType(newVal) {
+    for (let index = 0; index < this.icon_img.classList.length; index++) {
+      const klass = this.icon_img.classList[index];
+      if (/icon-/.test(klass)) {
+        this.icon_img.classList.remove(klass);
+      }
+    }
+    this.icon_img.classList.add(`icon-${newVal}`);
+  }
+  filterCategory;
+  #titleString;
+  set titleString(newVal) {
+    this.#titleString = escape(newVal);
+    this.title_div.innerHTML = this.#titleString;
+  }
+  get value() {
+    return this.input.checked;
+  }
+  setValueInJson(obj) {
+    obj[this.filterCategory][this.iconType] = this.value;
+  }
+  get template() {
+    return template$4;
+  }
+  connectedCallback() {
+    super.connectedCallback();
+    this.filterCategory = "route_types";
+    this.iconType = this.iconType;
+    this.input?.addEventListener("change", this.setDimming.bind(this));
+  }
+  setDimming(_evt) {
+    if (this.input?.checked) {
+      this.title_div.style.opacity = "1";
+      this.icon_img.style.opacity = "1";
+    } else {
+      this.title_div.style.opacity = "0.4";
+      this.icon_img.style.opacity = "0.4";
+    }
+  }
+  toJson() {
+    return {
+      iconType: this.iconType,
+      title: this.titleString,
+      checked: this.input.checked
+    };
+  }
+};
+__decorateClass$s([
+  target
+], FilterRowElement.prototype, "icon_img", 2);
+__decorateClass$s([
+  target
+], FilterRowElement.prototype, "title_div", 2);
+__decorateClass$s([
+  target
+], FilterRowElement.prototype, "switch_div", 2);
+__decorateClass$s([
+  target
+], FilterRowElement.prototype, "input", 2);
+__decorateClass$s([
+  attr
+], FilterRowElement.prototype, "iconType", 1);
+__decorateClass$s([
+  attr
+], FilterRowElement.prototype, "filterCategory", 2);
+__decorateClass$s([
+  attr
+], FilterRowElement.prototype, "titleString", 1);
+FilterRowElement = __decorateClass$s([
+  controller
+], FilterRowElement);
+const FilterRowElement$1 = FilterRowElement;
+
+const filter_controller_style = '';
+
+const template$3 = (element) => {
+  const elementName = element.elementName;
+  return html$1`
+  <label class='d-flex flex-row justify-content-between align-items-center mt-3'>
+    <div class='d-flex flex-row align-items-center'>
+      <topo-dot data-target='${elementName}.topo_dot' class='mr-3'></topo-dot>
+      <div data-target='${elementName}.title_div' class='filter-row-title'></div>
+    </div>
+    <div data-target='${elementName}.switch_div' class='form-switch'><input type="checkbox" data-target='${elementName}.input'><i></i></div>
+  </label>`;
+};
+
+var __defProp$r = Object.defineProperty;
+var __getOwnPropDesc$r = Object.getOwnPropertyDescriptor;
+var __decorateClass$r = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$r(target2, key) : target2;
+  for (var i = decorators.length - 1, decorator; i >= 0; i--)
+    if (decorator = decorators[i])
+      result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
+  if (kind && result)
+    __defProp$r(target2, key, result);
+  return result;
+};
+let ColorFilterRowElement = class extends FilterRowElement$1 {
+  topo_dot;
+  set iconType(newVal) {
+    this.topo_dot.colorName = newVal;
+  }
+  get template() {
+    return template$3;
+  }
+  connectedCallback() {
+    super.connectedCallback();
+    this.filterCategory = "route_colors";
+  }
+  setDimming(_evt) {
+    if (this.input.checked) {
+      this.title_div.style.opacity = "1";
+      this.topo_dot.style.opacity = "1";
+    } else {
+      this.title_div.style.opacity = "0.4";
+      this.topo_dot.style.opacity = "0.4";
+    }
+  }
+  setValueInJson(obj) {
+    obj[this.filterCategory][this.iconType] = this.value;
+  }
+};
+__decorateClass$r([
+  target
+], ColorFilterRowElement.prototype, "topo_dot", 2);
+__decorateClass$r([
+  attr
+], ColorFilterRowElement.prototype, "iconType", 1);
+ColorFilterRowElement = __decorateClass$r([
+  controller
+], ColorFilterRowElement);
+const ColorFilterRowElement$1 = ColorFilterRowElement;
+
+const template$2 = (element) => {
+  const elementName = element.elementName;
+  return html$1`
+  <label class='d-flex flex-row justify-content-between align-items-center mt-3'>
+    <div class='d-flex flex-row align-items-center'>
+      <img data-target='${elementName}.icon_img' class='filter-row-icon pr-2'></img>
+      <div data-target='${elementName}.title_div' class='filter-row-title'></div>
+    </div>
+    <div class='d-flex flex-row align-items-center'>
+      <div data-target='${elementName}.range_counter' class='mr-3 range-counter'>0</div>
+      <div class="range-slider" style='--min:0; --max:3; --step:1; --value:0; --text-value:"0";'>
+        <input data-target='${elementName}.range' type="range" min="0" max="3" step="1" value="0" oninput="this.parentNode.style.setProperty('--value',this.value); this.parentNode.style.setProperty('--text-value', JSON.stringify(this.value))">
+        <output></output>
+        <div class='range-slider__progress'></div>
+      </div>
+    </div>
+  </label>`;
+};
+
+var __defProp$q = Object.defineProperty;
+var __getOwnPropDesc$q = Object.getOwnPropertyDescriptor;
+var __decorateClass$q = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$q(target2, key) : target2;
+  for (var i = decorators.length - 1, decorator; i >= 0; i--)
+    if (decorator = decorators[i])
+      result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
+  if (kind && result)
+    __defProp$q(target2, key, result);
+  return result;
+};
+let SliderFilterRowElement = class extends FilterRowElement$1 {
+  range;
+  range_counter;
+  set starCount(newVal) {
+    this.range.value = newVal.toString();
+    this.range_counter.innerText = newVal.toString();
+  }
+  get template() {
+    return template$2;
+  }
+  get value() {
+    return Number(this.range.value);
+  }
+  connectedCallback() {
+    super.connectedCallback();
+    this.range.addEventListener("input", (_evt) => {
+      this.range_counter.innerText = _evt.target["value"];
+    });
+  }
+  setValueInJson(obj) {
+    obj["minimum_star_count"] = this.value;
+  }
+};
+__decorateClass$q([
+  target
+], SliderFilterRowElement.prototype, "range", 2);
+__decorateClass$q([
+  target
+], SliderFilterRowElement.prototype, "range_counter", 2);
+__decorateClass$q([
+  attr
+], SliderFilterRowElement.prototype, "starCount", 1);
+SliderFilterRowElement = __decorateClass$q([
+  controller
+], SliderFilterRowElement);
+const SliderFilterRowElement$1 = SliderFilterRowElement;
+
+var __defProp$p = Object.defineProperty;
+var __getOwnPropDesc$p = Object.getOwnPropertyDescriptor;
+var __decorateClass$p = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$p(target2, key) : target2;
+  for (var i = decorators.length - 1, decorator; i >= 0; i--)
+    if (decorator = decorators[i])
+      result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
+  if (kind && result)
+    __defProp$p(target2, key, result);
+  return result;
+};
+let FiltersControllerElement = class extends BaseCon$1 {
+  gray_view;
+  main_container;
+  scroll_container;
+  filters_container;
+  dimming_view;
+  backing_view;
+  spacer;
+  main_filter;
+  get maxScrollTop() {
+    return this.scroll_container.scrollHeight - this.scroll_container.clientHeight;
+  }
+  get minScrollTop() {
+    return this.main_container.clientHeight * 0.66;
+  }
+  afterDismiss = (_) => {
+  };
+  allowedFilterTypes = {
+    route_types: true,
+    route_colors: true,
+    minimum_star_count: true
+  };
+  storageKey = "route-filters";
+  get data() {
+    return Filters.fromDisk();
+  }
+  get filters() {
+    return Array.from(this.filters_container.querySelectorAll("filter-row, color-filter-row, slider-filter-row"));
+  }
+  get template() {
+    return template$5;
+  }
+  connectedCallback() {
+    super.connectedCallback();
+    this.scroll_container.scrollTop = this.maxScrollTop;
+    this.main_container.style.transform = "translate(0px, 500vh)";
+    this.scroll_container.scrollTop = this.maxScrollTop;
+  }
+  setTitleOfMainFilter() {
+    if (this.main_filter.input.checked) {
+      this.main_filter.titleString = "Filters enabled";
+    } else {
+      this.main_filter.titleString = "Filters disabled";
+    }
+  }
+  die() {
+    const newData = this.toJson();
+    localStorage.setItem(this.storageKey, JSON.stringify(newData));
+    this.parentElement?.removeChild(this);
+    this.afterDismiss(this);
+  }
+  onScroll(_evt) {
+    const show = this.scroll_container.scrollTop > this.maxScrollTop - 30;
+    this.backing_view.style.opacity = show ? "1" : "0";
+  }
+  onTouchEnd(_evt) {
+    if (this.scroll_container.scrollTop < this.maxScrollTop) {
+      if (this.scroll_container.scrollTop < this.minScrollTop) {
+        this.hide();
+      } else {
+        this.scroll_container.scrollTo({ top: this.maxScrollTop, behavior: "smooth" });
+      }
+    }
+  }
+  show() {
+    this.main_filter.input.onchange = (_evt) => {
+      const enabled = _evt.target["checked"];
+      if (enabled) {
+        this.dimming_view.style.opacity = "0";
+        this.dimming_view.style.pointerEvents = "none";
+      } else {
+        this.dimming_view.style.pointerEvents = "auto";
+        this.dimming_view.style.opacity = "0.7";
+      }
+      this.setTitleOfMainFilter();
+    };
+    setTimeout(() => {
+      this.scroll_container.addEventListener("scroll", this.onScroll.bind(this));
+      this.scroll_container.addEventListener("touchend", this.onTouchEnd.bind(this));
+    }, 450);
+    this.loadFilters();
+    this.scroll_container.scrollTo({ top: this.maxScrollTop, behavior: "smooth" });
+    setTimeout(() => {
+      this.dimming_view.style.backgroundColor = "var(--background-color)";
+      this.dimming_view.style.zIndex = "100000000";
+      document.body.style.overflow = "hidden";
+      this.gray_view.style.opacity = "1";
+      this.main_container.style.transform = "translate(0px, 0px)";
+      this.backing_view.style.height = `${this.main_container.clientHeight - 30}px`;
+    }, 10);
+    setTimeout(() => {
+      this.scroll_container.style.overflowY = "hidden";
+      setTimeout(() => {
+        this.scroll_container.style.overflowY = "scroll";
+      }, 25);
+    }, 350);
+  }
+  loadFilters() {
+    const data = this.data;
+    const defaultFilters = new Filters();
+    this.main_filter.input.checked = data.filters_enabled;
+    this.main_filter.input.onchange({ target: this.main_filter.input });
+    console.log(data);
+    if (this.allowedFilterTypes?.route_types) {
+      Object.keys(data.route_types).forEach((key) => {
+        let row2 = this.filters_container.appendChild(new FilterRowElement$1());
+        row2.iconType = key;
+        row2.titleString = defaultFilters.route_types[key].title;
+        row2.input.checked = data.route_types[key].checked;
+        row2.setDimming(null);
+      });
+      const div = document.createElement("div");
+      this.filters_container.appendChild(div);
+      div.classList.add("divider");
+    }
+    if (this.allowedFilterTypes?.route_colors) {
+      Object.keys(data.route_colors).forEach((key) => {
+        let row2 = this.filters_container.appendChild(new ColorFilterRowElement$1());
+        row2.iconType = key;
+        row2.titleString = defaultFilters.route_colors[key].title;
+        row2.input.checked = data.route_colors[key].checked;
+        row2.setDimming(null);
+      });
+      const div = document.createElement("div");
+      this.filters_container.appendChild(div);
+      div.classList.add("divider");
+    }
+    let row = this.filters_container.appendChild(new SliderFilterRowElement$1());
+    row.iconType = "star";
+    row.icon_img.style.backgroundColor = "#F8CA23FF";
+    row.titleString = "Route stars";
+    row.starCount = data.minimum_star_count;
+  }
+  hide() {
+    document.body.style.overflow = "auto";
+    this.gray_view.style.opacity = "0";
+    this.backing_view.style.opacity = "0";
+    this.main_container.style.transform = `translate(0px, ${this.main_container.clientHeight}px)`;
+    setTimeout(() => {
+      this.die();
+    }, 500);
+  }
+  toJson() {
+    const res = new Filters();
+    res.filters_enabled = this.main_filter.input.checked;
+    for (const filter of this.filters) {
+      filter.setValueInJson(res);
+    }
+    return res;
+  }
+};
+__decorateClass$p([
+  target
+], FiltersControllerElement.prototype, "gray_view", 2);
+__decorateClass$p([
+  target
+], FiltersControllerElement.prototype, "main_container", 2);
+__decorateClass$p([
+  target
+], FiltersControllerElement.prototype, "scroll_container", 2);
+__decorateClass$p([
+  target
+], FiltersControllerElement.prototype, "filters_container", 2);
+__decorateClass$p([
+  target
+], FiltersControllerElement.prototype, "dimming_view", 2);
+__decorateClass$p([
+  target
+], FiltersControllerElement.prototype, "backing_view", 2);
+__decorateClass$p([
+  target
+], FiltersControllerElement.prototype, "spacer", 2);
+__decorateClass$p([
+  target
+], FiltersControllerElement.prototype, "main_filter", 2);
+FiltersControllerElement = __decorateClass$p([
+  controller
+], FiltersControllerElement);
+class Filters {
+  static storageKey = "route-filters";
+  static fromDisk() {
+    const data = localStorage.getItem(Filters.storageKey);
+    if (data) {
+      console.log(JSON.parse(data));
+      return new Filters(JSON.parse(data));
+    }
+    return new Filters();
+  }
+  filters_enabled = false;
+  route_types = {
+    trad: { title: "Trad routes", checked: false },
+    sport: { title: "Sport routes", checked: false },
+    dws: { title: "Deep water solos", checked: false },
+    bouldering: { title: "Boulder problems", checked: false },
+    winter: { title: "Winter routes", checked: false },
+    ice: { title: "Ice routes", checked: false },
+    alpine: { title: "Alpine routes", checked: false },
+    mixed: { title: "Mixed routes", checked: false },
+    aid: { title: "Aid routes", checked: false },
+    via_ferrata: { title: "Via ferrata", checked: false },
+    scramble: { title: "Scrambles", checked: false }
+  };
+  route_colors = {
+    green: { title: "Green routes", checked: false },
+    orange: { title: "Orange routes", checked: false },
+    red: { title: "Red routes", checked: false },
+    black: { title: "Black routes", checked: false },
+    white: { title: "White routes", checked: false }
+  };
+  minimum_star_count = 0;
+  constructor(data) {
+    if (!data)
+      return;
+    this.filters_enabled = data.filters_enabled;
+    Object.keys(data.route_types).forEach((key) => {
+      this.route_types[key].checked = data.route_types[key];
+    });
+    Object.keys(data.route_colors).forEach((key) => {
+      this.route_colors[key].checked = data.route_colors[key];
+    });
+    this.minimum_star_count = data.minimum_star_count;
+  }
+  toJson() {
+    const newFilters = new Filters();
+    newFilters.filters_enabled = this.filters_enabled;
+    newFilters.minimum_star_count = this.minimum_star_count;
+    Object.keys(this.route_types).forEach((key) => {
+      newFilters.route_types[key] = this.route_types[key].checked;
+    });
+    Object.keys(this.route_colors).forEach((key) => {
+      newFilters.route_colors[key] = this.route_colors[key].checked;
+    });
+    return newFilters;
+  }
+}
+
+var __defProp$o = Object.defineProperty;
+var __getOwnPropDesc$o = Object.getOwnPropertyDescriptor;
+var __decorateClass$o = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$o(target2, key) : target2;
+  for (var i = decorators.length - 1, decorator; i >= 0; i--)
+    if (decorator = decorators[i])
+      result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
+  if (kind && result)
+    __defProp$o(target2, key, result);
   return result;
 };
 let BaseRoutesViewer = class extends BaseCon$1 {
@@ -2835,6 +3330,8 @@ let BaseRoutesViewer = class extends BaseCon$1 {
   responseMessage = "";
   connectedCallback() {
     super.connectedCallback();
+    this.filtersData = Filters.fromDisk();
+    this.setFilterGlow(this.filtersData.filters_enabled);
     this.maybeSetCookieFromUrl();
     this.sort_button.style.display = "none";
     this.sort_order_picker.style.display = "none";
@@ -3039,19 +3536,29 @@ let BaseRoutesViewer = class extends BaseCon$1 {
       minimum_star_count: true
     };
   }
-  showFilters() {
-    const el = document.createElement("filters-controller");
-    el.afterDismiss = (data) => {
-      if (data.filters_enabled) {
-        this.filter_icon.classList.add("glow");
-      } else {
-        this.filter_icon.classList.remove("glow");
-      }
+  filtersData;
+  createFiltersController() {
+    const fc = document.createElement("filters-controller");
+    fc.afterDismiss = (fc2) => {
+      const data = fc2.toJson();
+      this.setFilterGlow(data.filters_enabled);
+      this.filtersData = fc2.toJson();
     };
-    el.allowedFilterTypes = this.allowedFilterTypes;
-    document.body.appendChild(el);
+    fc.allowedFilterTypes = this.allowedFilterTypes;
+    return fc;
+  }
+  setFilterGlow(enabled) {
+    if (enabled) {
+      this.filter_icon.classList.add("glow");
+    } else {
+      this.filter_icon.classList.remove("glow");
+    }
+  }
+  showFilters() {
+    const fc = this.createFiltersController();
+    document.body.appendChild(fc);
     setTimeout(() => {
-      el.show();
+      fc.show();
     });
   }
   toggleArrowInSortButton() {
@@ -3185,49 +3692,49 @@ let BaseRoutesViewer = class extends BaseCon$1 {
     return `<a style='color:#bbdcee;opacity: 0.75;' href='/logbook/crags/ -${cragId}'>${escape(cragName)}</a>`;
   }
 };
-__decorateClass$s([
+__decorateClass$o([
   target
 ], BaseRoutesViewer.prototype, "routes_viewer_container", 2);
-__decorateClass$s([
+__decorateClass$o([
   target
 ], BaseRoutesViewer.prototype, "input", 2);
-__decorateClass$s([
+__decorateClass$o([
   target
 ], BaseRoutesViewer.prototype, "progress_bar", 2);
-__decorateClass$s([
+__decorateClass$o([
   target
 ], BaseRoutesViewer.prototype, "delete_text_button", 2);
-__decorateClass$s([
+__decorateClass$o([
   target
 ], BaseRoutesViewer.prototype, "filter_query_description", 2);
-__decorateClass$s([
+__decorateClass$o([
   target
 ], BaseRoutesViewer.prototype, "header_container", 2);
-__decorateClass$s([
+__decorateClass$o([
   target
 ], BaseRoutesViewer.prototype, "routes_viewer_title", 2);
-__decorateClass$s([
+__decorateClass$o([
   target
 ], BaseRoutesViewer.prototype, "sort_order_picker", 2);
-__decorateClass$s([
+__decorateClass$o([
   target
 ], BaseRoutesViewer.prototype, "sort_arrow", 2);
-__decorateClass$s([
+__decorateClass$o([
   target
 ], BaseRoutesViewer.prototype, "sort_button", 2);
-__decorateClass$s([
+__decorateClass$o([
   target
 ], BaseRoutesViewer.prototype, "filters_button", 2);
-__decorateClass$s([
+__decorateClass$o([
   target
 ], BaseRoutesViewer.prototype, "filter_icon", 2);
-__decorateClass$s([
+__decorateClass$o([
   target
 ], BaseRoutesViewer.prototype, "fixed_section_header", 2);
-__decorateClass$s([
+__decorateClass$o([
   target
 ], BaseRoutesViewer.prototype, "fixed_section_header_2", 2);
-BaseRoutesViewer = __decorateClass$s([
+BaseRoutesViewer = __decorateClass$o([
   controller
 ], BaseRoutesViewer);
 const BaseRoutesViewer$1 = BaseRoutesViewer;
@@ -3290,15 +3797,15 @@ const searchbarTemplate = (element) => {
     `;
 };
 
-var __defProp$r = Object.defineProperty;
-var __getOwnPropDesc$r = Object.getOwnPropertyDescriptor;
-var __decorateClass$r = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$r(target2, key) : target2;
+var __defProp$n = Object.defineProperty;
+var __getOwnPropDesc$n = Object.getOwnPropertyDescriptor;
+var __decorateClass$n = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$n(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$r(target2, key, result);
+    __defProp$n(target2, key, result);
   return result;
 };
 let BaseSearchbarElement = class extends BaseCon$1 {
@@ -3735,67 +4242,67 @@ let BaseSearchbarElement = class extends BaseCon$1 {
     this.delete_text_button.classList[str ? "remove" : "add"]("hidden");
   }
 };
-__decorateClass$r([
+__decorateClass$n([
   target
 ], BaseSearchbarElement.prototype, "search_container", 2);
-__decorateClass$r([
+__decorateClass$n([
   target
 ], BaseSearchbarElement.prototype, "input", 2);
-__decorateClass$r([
+__decorateClass$n([
   target
 ], BaseSearchbarElement.prototype, "return_key_action", 2);
-__decorateClass$r([
+__decorateClass$n([
   target
 ], BaseSearchbarElement.prototype, "search_absolute", 2);
-__decorateClass$r([
+__decorateClass$n([
   target
 ], BaseSearchbarElement.prototype, "help_button", 2);
-__decorateClass$r([
+__decorateClass$n([
   target
 ], BaseSearchbarElement.prototype, "delete_text_button", 2);
-__decorateClass$r([
+__decorateClass$n([
   target
 ], BaseSearchbarElement.prototype, "search_widget", 2);
-__decorateClass$r([
+__decorateClass$n([
   target
 ], BaseSearchbarElement.prototype, "progress_bar", 2);
-__decorateClass$r([
+__decorateClass$n([
   target
 ], BaseSearchbarElement.prototype, "routes_viewer_container", 2);
-__decorateClass$r([
+__decorateClass$n([
   target
 ], BaseSearchbarElement.prototype, "searchbar_inner_container", 2);
-__decorateClass$r([
+__decorateClass$n([
   target
 ], BaseSearchbarElement.prototype, "searchbar_query_suggestion", 2);
-__decorateClass$r([
+__decorateClass$n([
   target
 ], BaseSearchbarElement.prototype, "searchbar_query_suggestion_href", 2);
-__decorateClass$r([
+__decorateClass$n([
   target
 ], BaseSearchbarElement.prototype, "query_suggestion_container", 2);
-__decorateClass$r([
+__decorateClass$n([
   target
 ], BaseSearchbarElement.prototype, "help_text_container", 2);
-__decorateClass$r([
+__decorateClass$n([
   target
 ], BaseSearchbarElement.prototype, "filter_query_description", 2);
-__decorateClass$r([
+__decorateClass$n([
   target
 ], BaseSearchbarElement.prototype, "searchbar_footer", 2);
-__decorateClass$r([
+__decorateClass$n([
   target
 ], BaseSearchbarElement.prototype, "show_all_results_span", 2);
-__decorateClass$r([
+__decorateClass$n([
   target
 ], BaseSearchbarElement.prototype, "gray_view", 2);
-__decorateClass$r([
+__decorateClass$n([
   target
 ], BaseSearchbarElement.prototype, "searchbar_short_display", 2);
-__decorateClass$r([
+__decorateClass$n([
   attr
 ], BaseSearchbarElement.prototype, "placeholderString", 1);
-BaseSearchbarElement = __decorateClass$r([
+BaseSearchbarElement = __decorateClass$n([
   controller
 ], BaseSearchbarElement);
 const BaseSearchbarElement$1 = BaseSearchbarElement;
@@ -3814,15 +4321,15 @@ const isAppleSafari = () => {
 
 const html = "<h6>🛟 Route &amp; Crag Search Help</h6>\n<p>You should probably try out the suggestions to get an feel of the stuff you can do before you waste time reading all this…</p>\n<p>…but if you really want to know everything about the search, here you go:</p>\n<p>Searches are checked against the following properties of a route (and the equivalents for a crag):</p>\n<ul>\n<li><code>name</code></li>\n<li><code>crag name</code></li>\n<li><code>buttress name</code></li>\n<li><code>area name</code></li>\n<li><code>country name</code></li>\n<li><code>first ascent</code> potentially including dates and names, but could be one or the other or neither</li>\n<li><code>rock type name</code> one of eg [ granite, gritstone, sandstone, limestone, schist, rhylite, ... ] (there are loads)</li>\n<li><code>route type name</code> one of [ sport, trad, winter, bouldering, aid ] (this list is complete)</li>\n<li><code>description</code></li>\n<li><code>route grade</code></li>\n<li><code>tech grade</code></li>\n</ul>\n<p>A match is found if all of the tokens of the search query match one or more of the fields (more on tokens later, but think &quot;words&quot; for now). This means you can very quickly write a query that returns very few results by typing a combination of fragments of the various fields, like <code>mal wom</code> returns <code>Wombat E2</code> at Malham as the first result because token1 (<code>mal</code>) matches the crag name (<code>Malham</code>) and token2 (<code>wom</code>) matches the route's name. You could be even more precise and search <code>mal wom e2</code> but for this instance it's not needed. (Note that this stuff is true at the time of writing but could change if more routes are added).</p>\n<p>The scoring of results is done by applying multipliers depending on where a match is found. The higher the field is on the list above, the more valuble a match against it is considered, so if a query matches against one route's <code>name</code> and another's <code>description</code>, the one against the <code>name</code> will be considered a better match and appear nearer the top. The popularity of the route is taken into account so a route with loads of ascents will be given a higher search score than one with none.</p>\n<p>For the most part this is all anyone really needs, but there are also a few advanced options you can use if you want:</p>\n<ul>\n<li>exact-phrase matches, eg <code>&quot;captain nemo&quot;</code></li>\n<li>route-star ranges, eg <code>*-**</code></li>\n<li>grade ranges, eg <code>vs-e3</code></li>\n<li>date ranges, eg <code>1984-1986</code> (for first ascents - note that not all routes have fa details so these will be excluded from a search with a date range!)</li>\n<li>difficulty for grade / grade quality, eg <code>|soft|</code></li>\n<li>regular expressions, eg <code>/chris (?!craggs)/</code></li>\n<li>negations, eg <code>-crack</code></li>\n</ul>\n<h6>Exact phrase matches</h6>\n<p>Surround multiple words with double quotes to require a match on that phrase, eg <code>&quot;bat route&quot; malham</code> creates the tokens <code>bat route</code> and <code>malham</code>. Another example is <code>roof crack stanage</code> currently returns 45 routes, where as <code>&quot;roof crack&quot; stanage</code> returns only 9.</p>\n<h6>Route-star ranges</h6>\n<p>Asterisks get special treatment in search queries now. A sequence of them is considered to be a star rating for a route, so <code>*</code> is treated as 1-star, <code>**</code> treated as 2-stars and <code>***</code> treated as 3-stars. Typing just one sequence creates a search where the route is required to have at least that many stars, eg <code>bat route **</code> will only return routes with 2 or more stars that also match the other search tokens <code>bat</code> and <code>route</code>.</p>\n<p>Adding a dash and a second star sequence will create a range, eg <code>*-**</code> means &quot;match routes with at least one and at most two stars&quot;.</p>\n<h6>Grade ranges</h6>\n<p>As above with stars, but with grades. Eg <code>vs-e1</code> will match routes with a grade of either <code>VS</code>, <code>HVS</code> or <code>E1</code>.</p>\n<h6>Date ranges (only years)</h6>\n<p>Date ranges will check against the first-ascent date field and require the route to have been put up between the start date and the end date (inclusive). Eg <code>1970-1974</code> will match routes put up between 01-01-1970 and 31-12-1974. You should note that not all routes have had the first ascent date filled in, and these routes will be excluded from any search that includes date ranges, so you might not get the results you expect.</p>\n<h6>Difficulty for grade</h6>\n<p>Not sure what to call this so we'll use &quot;difficulty for grade&quot;. We've calculated a value based on the grade voting system that assigns a route a value from one of:</p>\n<ul>\n<li><code>soft</code></li>\n<li><code>benchmark</code></li>\n<li><code>hard</code></li>\n</ul>\n<p>You can search for routes with these charateristics by using the special pipe-syntax, eg <code>|soft|</code>. If you don't wrap the token in pipes, you'll just be searching the other text fields, so <code>soft</code>, with no pipes, would get you a match if the token appeard in the description for example and <code>|soft|</code> will <em>only</em> match against routes that have been marked as soft, and not check the other fields for the token.</p>\n<p>A continuation of this system which uses the same syntax allows you to search for routes that are voted to be a completely different grade using the following tokens:</p>\n<ul>\n<li><code>undergraded</code></li>\n<li><code>overgraded</code></li>\n</ul>\n<p>eg <code>|overgraded|</code>. Note that this is based on votes, so if there are no votes for a route and you include one of these tokens it won't appear, regardless of whether it is in reality over or undergraded. Note also that whilst you can combine these with soft/benchmark/hard, doing so doesn't really make sense.</p>\n<h6>Shorthands</h6>\n<p>The grade quality stuff all have shorthand variants:</p>\n<ul>\n<li><code>|s</code> = <code>|soft|</code></li>\n<li><code>|b</code> = <code>|benchmark|</code></li>\n<li><code>|h</code> = <code>|hard|</code></li>\n<li><code>|u</code> = <code>|undergraded|</code></li>\n<li><code>|o</code> = <code>|overgraded|</code></li>\n</ul>\n<h6>Regular expressions</h6>\n<p>Finally we reach the most pointless feature, regular expressions - we need only add an email function and this search bar will be complete.</p>\n<p>Regular expressions, for those that don't know, are a way of describing patterns in strings. They are a very powerful tool for searching and manipulating text, and completely unnecessary in this search bar. However, if you do want to use them, they are possible by surrounding the expression with forward slashes, eg <code>/chris (?!craggs)/</code> will match any routes that mention <code>'chris'</code> but not those that mention <code>'chris craggs'</code>. Or <code>e2-e3 /crap|damp|horrible/</code> will return you a list of probably not classic routes.</p>\n<p>Note that pure-regex queries are not allowed due to the cost of the queries against the database. You should always add any of the other query types mentioned above if you're using a regex.</p>\n<h6>Negation</h6>\n<p>Extra finally, if you precede any token with a minus character you will negate it and require that it is not matched, eg <code>-&quot;mark leach&quot; bat malham</code>.</p>\n";
 
-var __defProp$q = Object.defineProperty;
-var __getOwnPropDesc$q = Object.getOwnPropertyDescriptor;
-var __decorateClass$q = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$q(target, key) : target;
+var __defProp$m = Object.defineProperty;
+var __getOwnPropDesc$m = Object.getOwnPropertyDescriptor;
+var __decorateClass$m = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$m(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$q(target, key, result);
+    __defProp$m(target, key, result);
   return result;
 };
 let myQueryExamples = new Set(queryExamples);
@@ -4057,10 +4564,10 @@ let RouteSearchbarElement = class extends BaseSearchbarElement$1 {
     return element;
   }
 };
-__decorateClass$q([
+__decorateClass$m([
   attr
 ], RouteSearchbarElement.prototype, "searchType", 2);
-RouteSearchbarElement = __decorateClass$q([
+RouteSearchbarElement = __decorateClass$m([
   controller
 ], RouteSearchbarElement);
 const RouteSearchbarElement$1 = RouteSearchbarElement;
@@ -4349,15 +4856,15 @@ var UkcLocalStorage;
 })(UkcLocalStorage || (UkcLocalStorage = {}));
 globalThis.logbook = new UkcLocalStorage.LogbookDetails();
 
-var __defProp$p = Object.defineProperty;
-var __getOwnPropDesc$p = Object.getOwnPropertyDescriptor;
-var __decorateClass$p = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$p(target, key) : target;
+var __defProp$l = Object.defineProperty;
+var __getOwnPropDesc$l = Object.getOwnPropertyDescriptor;
+var __decorateClass$l = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$l(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$p(target, key, result);
+    __defProp$l(target, key, result);
   return result;
 };
 const sharedStorage$5 = UkcLocalStorage.sharedLogbook;
@@ -4392,7 +4899,7 @@ let UkcSearchbarElement = class extends RouteSearchbarElement$1 {
     }
   }
 };
-UkcSearchbarElement = __decorateClass$p([
+UkcSearchbarElement = __decorateClass$l([
   controller
 ], UkcSearchbarElement);
 
@@ -4405,15 +4912,15 @@ const topoDotTemplate = (_el) => {
 `;
 };
 
-var __defProp$o = Object.defineProperty;
-var __getOwnPropDesc$o = Object.getOwnPropertyDescriptor;
-var __decorateClass$o = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$o(target2, key) : target2;
+var __defProp$k = Object.defineProperty;
+var __getOwnPropDesc$k = Object.getOwnPropertyDescriptor;
+var __decorateClass$k = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$k(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$o(target2, key, result);
+    __defProp$k(target2, key, result);
   return result;
 };
 let TopoDotElement = class extends BaseCon$1 {
@@ -4438,16 +4945,16 @@ let TopoDotElement = class extends BaseCon$1 {
     return topoDotTemplate;
   }
 };
-__decorateClass$o([
+__decorateClass$k([
   attr
 ], TopoDotElement.prototype, "colorName", 1);
-__decorateClass$o([
+__decorateClass$k([
   target
 ], TopoDotElement.prototype, "stroke", 2);
-__decorateClass$o([
+__decorateClass$k([
   target
 ], TopoDotElement.prototype, "fill", 2);
-TopoDotElement = __decorateClass$o([
+TopoDotElement = __decorateClass$k([
   controller
 ], TopoDotElement);
 const TopoDotElement$1 = TopoDotElement;
@@ -4492,15 +4999,15 @@ const routeTemplate = (element) => {
     `;
 };
 
-var __defProp$n = Object.defineProperty;
-var __getOwnPropDesc$n = Object.getOwnPropertyDescriptor;
-var __decorateClass$n = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$n(target2, key) : target2;
+var __defProp$j = Object.defineProperty;
+var __getOwnPropDesc$j = Object.getOwnPropertyDescriptor;
+var __decorateClass$j = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$j(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$n(target2, key, result);
+    __defProp$j(target2, key, result);
   return result;
 };
 let SearchResultElement = class extends BaseCon$1 {
@@ -4659,79 +5166,79 @@ let SearchResultElement = class extends BaseCon$1 {
     window.open(this.url, "_self");
   }
 };
-__decorateClass$n([
+__decorateClass$j([
   target
 ], SearchResultElement.prototype, "href", 2);
-__decorateClass$n([
+__decorateClass$j([
   target
 ], SearchResultElement.prototype, "topo_dot", 2);
-__decorateClass$n([
+__decorateClass$j([
   target
 ], SearchResultElement.prototype, "item_name", 2);
-__decorateClass$n([
+__decorateClass$j([
   target
 ], SearchResultElement.prototype, "route_grade", 2);
-__decorateClass$n([
+__decorateClass$j([
   target
 ], SearchResultElement.prototype, "star_count", 2);
-__decorateClass$n([
+__decorateClass$j([
   target
 ], SearchResultElement.prototype, "crag_name", 2);
-__decorateClass$n([
+__decorateClass$j([
   target
 ], SearchResultElement.prototype, "county_name", 2);
-__decorateClass$n([
+__decorateClass$j([
   target
 ], SearchResultElement.prototype, "country_name", 2);
-__decorateClass$n([
+__decorateClass$j([
   target
 ], SearchResultElement.prototype, "logbook_indicator", 2);
-__decorateClass$n([
+__decorateClass$j([
   target
 ], SearchResultElement.prototype, "wishlist_indicator", 2);
-__decorateClass$n([
+__decorateClass$j([
   target
 ], SearchResultElement.prototype, "crag_icon", 2);
-__decorateClass$n([
+__decorateClass$j([
   target
 ], SearchResultElement.prototype, "buttress_icon", 2);
-__decorateClass$n([
+__decorateClass$j([
   target
 ], SearchResultElement.prototype, "extras_slot", 2);
-__decorateClass$n([
+__decorateClass$j([
   attr
 ], SearchResultElement.prototype, "slugFull", 1);
-__decorateClass$n([
+__decorateClass$j([
   attr
 ], SearchResultElement.prototype, "itemName", 1);
-__decorateClass$n([
+__decorateClass$j([
   attr
 ], SearchResultElement.prototype, "routeGrade", 1);
-__decorateClass$n([
+__decorateClass$j([
   attr
 ], SearchResultElement.prototype, "starCount", 1);
-__decorateClass$n([
+__decorateClass$j([
   attr
 ], SearchResultElement.prototype, "cragName", 1);
-__decorateClass$n([
+__decorateClass$j([
   attr
 ], SearchResultElement.prototype, "countyName", 1);
-__decorateClass$n([
+__decorateClass$j([
   attr
 ], SearchResultElement.prototype, "countryName", 1);
-__decorateClass$n([
+__decorateClass$j([
   attr
 ], SearchResultElement.prototype, "colorId", 1);
-__decorateClass$n([
+__decorateClass$j([
   attr
 ], SearchResultElement.prototype, "routeIdUkc", 1);
-__decorateClass$n([
+__decorateClass$j([
   attr
 ], SearchResultElement.prototype, "logStatus", 1);
-__decorateClass$n([
+__decorateClass$j([
   attr
 ], SearchResultElement.prototype, "wishlistStatus", 1);
-SearchResultElement = __decorateClass$n([
+SearchResultElement = __decorateClass$j([
   controller
 ], SearchResultElement);
 const SearchResultElement$1 = SearchResultElement;
@@ -4745,15 +5252,15 @@ const logbookIndicatorTemplate = (_el) => {
 `;
 };
 
-var __defProp$m = Object.defineProperty;
-var __getOwnPropDesc$m = Object.getOwnPropertyDescriptor;
-var __decorateClass$m = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$m(target2, key) : target2;
+var __defProp$i = Object.defineProperty;
+var __getOwnPropDesc$i = Object.getOwnPropertyDescriptor;
+var __decorateClass$i = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$i(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$m(target2, key, result);
+    __defProp$i(target2, key, result);
   return result;
 };
 let LogbookIndicatorElement = class extends BaseCon$1 {
@@ -4771,16 +5278,16 @@ let LogbookIndicatorElement = class extends BaseCon$1 {
     return logbookIndicatorTemplate;
   }
 };
-__decorateClass$m([
+__decorateClass$i([
   attr
 ], LogbookIndicatorElement.prototype, "colorName", 1);
-__decorateClass$m([
+__decorateClass$i([
   target
 ], LogbookIndicatorElement.prototype, "stroke", 2);
-__decorateClass$m([
+__decorateClass$i([
   target
 ], LogbookIndicatorElement.prototype, "fill", 2);
-LogbookIndicatorElement = __decorateClass$m([
+LogbookIndicatorElement = __decorateClass$i([
   controller
 ], LogbookIndicatorElement);
 const LogbookIndicatorElement$1 = LogbookIndicatorElement;
@@ -4847,15 +5354,15 @@ const logentryTemplate = (element) => {
     `;
 };
 
-var __defProp$l = Object.defineProperty;
-var __getOwnPropDesc$l = Object.getOwnPropertyDescriptor;
-var __decorateClass$l = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$l(target2, key) : target2;
+var __defProp$h = Object.defineProperty;
+var __getOwnPropDesc$h = Object.getOwnPropertyDescriptor;
+var __decorateClass$h = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$h(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$l(target2, key, result);
+    __defProp$h(target2, key, result);
   return result;
 };
 let LogbookResultElement = class extends SearchResultElement$1 {
@@ -4964,58 +5471,58 @@ let LogbookResultElement = class extends SearchResultElement$1 {
     }
   }
 };
-__decorateClass$l([
+__decorateClass$h([
   target
 ], LogbookResultElement.prototype, "ascensionist", 2);
-__decorateClass$l([
+__decorateClass$h([
   target
 ], LogbookResultElement.prototype, "partner_names", 2);
-__decorateClass$l([
+__decorateClass$h([
   target
 ], LogbookResultElement.prototype, "partner_names_with", 2);
-__decorateClass$l([
+__decorateClass$h([
   target
 ], LogbookResultElement.prototype, "ascent_style_indicator", 2);
-__decorateClass$l([
+__decorateClass$h([
   target
 ], LogbookResultElement.prototype, "ascent_style", 2);
-__decorateClass$l([
+__decorateClass$h([
   target
 ], LogbookResultElement.prototype, "ascent_notes", 2);
-__decorateClass$l([
+__decorateClass$h([
   target
 ], LogbookResultElement.prototype, "ascent_date", 2);
-__decorateClass$l([
+__decorateClass$h([
   targets
 ], LogbookResultElement.prototype, "crag_names", 2);
-__decorateClass$l([
+__decorateClass$h([
   targets
 ], LogbookResultElement.prototype, "county_names", 2);
-__decorateClass$l([
+__decorateClass$h([
   targets
 ], LogbookResultElement.prototype, "country_names", 2);
-__decorateClass$l([
+__decorateClass$h([
   attr
 ], LogbookResultElement.prototype, "cragName", 1);
-__decorateClass$l([
+__decorateClass$h([
   attr
 ], LogbookResultElement.prototype, "countyName", 1);
-__decorateClass$l([
+__decorateClass$h([
   attr
 ], LogbookResultElement.prototype, "countryName", 1);
-__decorateClass$l([
+__decorateClass$h([
   attr
 ], LogbookResultElement.prototype, "showCragName", 2);
-__decorateClass$l([
+__decorateClass$h([
   attr
 ], LogbookResultElement.prototype, "ascentNotes", 1);
-__decorateClass$l([
+__decorateClass$h([
   attr
 ], LogbookResultElement.prototype, "ascentStyle", 1);
-__decorateClass$l([
+__decorateClass$h([
   attr
 ], LogbookResultElement.prototype, "ascentStyleSimple", 1);
-LogbookResultElement = __decorateClass$l([
+LogbookResultElement = __decorateClass$h([
   controller
 ], LogbookResultElement);
 
@@ -5060,15 +5567,15 @@ const routeResultTemplate = (element) => {
     `;
 };
 
-var __defProp$k = Object.defineProperty;
-var __getOwnPropDesc$k = Object.getOwnPropertyDescriptor;
-var __decorateClass$k = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$k(target2, key) : target2;
+var __defProp$g = Object.defineProperty;
+var __getOwnPropDesc$g = Object.getOwnPropertyDescriptor;
+var __decorateClass$g = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$g(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$k(target2, key, result);
+    __defProp$g(target2, key, result);
   return result;
 };
 let RouteResultElement = class extends SearchResultElement$1 {
@@ -5096,28 +5603,28 @@ let RouteResultElement = class extends SearchResultElement$1 {
     return routeResultTemplate;
   }
 };
-__decorateClass$k([
+__decorateClass$g([
   target
 ], RouteResultElement.prototype, "ascensionist", 2);
-__decorateClass$k([
+__decorateClass$g([
   target
 ], RouteResultElement.prototype, "route_description", 2);
-__decorateClass$k([
+__decorateClass$g([
   target
 ], RouteResultElement.prototype, "fa_details", 2);
-RouteResultElement = __decorateClass$k([
+RouteResultElement = __decorateClass$g([
   controller
 ], RouteResultElement);
 
-var __defProp$j = Object.defineProperty;
-var __getOwnPropDesc$j = Object.getOwnPropertyDescriptor;
-var __decorateClass$j = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$j(target2, key) : target2;
+var __defProp$f = Object.defineProperty;
+var __getOwnPropDesc$f = Object.getOwnPropertyDescriptor;
+var __decorateClass$f = (decorators, target2, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$f(target2, key) : target2;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$j(target2, key, result);
+    __defProp$f(target2, key, result);
   return result;
 };
 let PagedRoutesViewer = class extends BaseRoutesViewer$1 {
@@ -5323,23 +5830,23 @@ let PagedRoutesViewer = class extends BaseRoutesViewer$1 {
     }, this.searchDelay);
   }
 };
-__decorateClass$j([
+__decorateClass$f([
   target
 ], PagedRoutesViewer.prototype, "page_control", 2);
-PagedRoutesViewer = __decorateClass$j([
+PagedRoutesViewer = __decorateClass$f([
   controller
 ], PagedRoutesViewer);
 const PagedRoutesViewer$1 = PagedRoutesViewer;
 
-var __defProp$i = Object.defineProperty;
-var __getOwnPropDesc$i = Object.getOwnPropertyDescriptor;
-var __decorateClass$i = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$i(target, key) : target;
+var __defProp$e = Object.defineProperty;
+var __getOwnPropDesc$e = Object.getOwnPropertyDescriptor;
+var __decorateClass$e = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$e(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$i(target, key, result);
+    __defProp$e(target, key, result);
   return result;
 };
 const sharedStorage$4 = UkcLocalStorage.sharedLogbook;
@@ -5400,7 +5907,7 @@ let SearchResultsViewerElement = class extends PagedRoutesViewer$1 {
     return body;
   }
 };
-SearchResultsViewerElement = __decorateClass$i([
+SearchResultsViewerElement = __decorateClass$e([
   controller
 ], SearchResultsViewerElement);
 
@@ -7363,15 +7870,15 @@ InvertedIndex.from = function(iterable, descriptor) {
  */
 var invertedIndex = InvertedIndex;
 
-var __defProp$h = Object.defineProperty;
-var __getOwnPropDesc$h = Object.getOwnPropertyDescriptor;
-var __decorateClass$h = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$h(target, key) : target;
+var __defProp$d = Object.defineProperty;
+var __getOwnPropDesc$d = Object.getOwnPropertyDescriptor;
+var __decorateClass$d = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$d(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$h(target, key, result);
+    __defProp$d(target, key, result);
   return result;
 };
 let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
@@ -7655,7 +8162,7 @@ let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
     }, this.searchDelay);
   }
 };
-InfiniteScrollRoutesViewer = __decorateClass$h([
+InfiniteScrollRoutesViewer = __decorateClass$d([
   controller
 ], InfiniteScrollRoutesViewer);
 const InfiniteScrollRoutesViewer$1 = InfiniteScrollRoutesViewer;
@@ -11183,15 +11690,15 @@ ${JSON.stringify(m,null,4)}`);function _$1(){C&&(d={tagName:"",hrefValue:"",open
 `)?p+=P-e:(!P||P>e)&&p++;}l.cb({tag:n,deleteFrom:n.leftOuterWhitespace,deleteTo:s+p,insert:u,rangesArr:r,proposedReturn:[n.leftOuterWhitespace,s+p,u]}),_$1(),H(e,l,r);}else n={};A(e)||(n={});}k&&(k=!1);}if((!R||t[e]==="<"&&E(t,E(t,e))&&t[E(t,e)]==="/"&&t.startsWith("script",E(t,E(t,e))))&&S(e)&&!S(e-1)&&!`'"`.includes(t[e+1])&&(!`'"`.includes(t[e+2])||/\w/.test(t[e+1]))&&!(t[e+1]==="c"&&t[e+2]===":")&&!(t[e+1]==="f"&&t[e+2]==="m"&&t[e+3]==="t"&&t[e+4]===":")&&!(t[e+1]==="s"&&t[e+2]==="q"&&t[e+3]==="l"&&t[e+4]===":")&&!(t[e+1]==="x"&&t[e+2]===":")&&!(t[e+1]==="f"&&t[e+2]==="n"&&t[e+3]===":")&&Y(n,t,e)){if(A(E(t,e)))continue;if(n.nameEnds&&n.nameEnds<e&&!n.lastClosingBracketAt&&(n.onlyPlausible===!0&&n.attributes&&n.attributes.length||n.onlyPlausible===!1)){let s=L(t,e,n.leftOuterWhitespace,e,n.lastOpeningBracketAt,e);l.cb({tag:n,deleteFrom:n.leftOuterWhitespace,deleteTo:e,insert:s,rangesArr:r,proposedReturn:[n.leftOuterWhitespace,e,s]}),H(e,l,r),n={},o={};}if(n.lastOpeningBracketAt!==void 0&&n.onlyPlausible&&n.name&&!n.quotes&&(n.lastOpeningBracketAt=void 0,n.name=void 0,n.onlyPlausible=!1),(n.lastOpeningBracketAt===void 0||!n.onlyPlausible)&&!n.quotes&&(n.lastOpeningBracketAt=e,n.slashPresent=!1,n.attributes=[],V===null?n.leftOuterWhitespace=e:l.trimOnlySpaces&&V===0?n.leftOuterWhitespace=w||e:n.leftOuterWhitespace=V,`${t[e+1]}${t[e+2]}${t[e+3]}`=="!--"||`${t[e+1]}${t[e+2]}${t[e+3]}${t[e+4]}${t[e+5]}${t[e+6]}${t[e+7]}${t[e+8]}`=="![CDATA[")){let s=!0;t[e+2]==="-"&&(s=!1);let i;for(let a=e;a<h;a++)if((!i&&s&&`${t[a-2]}${t[a-1]}${t[a]}`=="]]>"||!s&&`${t[a-2]}${t[a-1]}${t[a]}`=="-->")&&(i=a),i&&(i<a&&t[a].trim()||t[a+1]===void 0)){let g=a;(t[a+1]===void 0&&!t[a].trim()||t[a]===">")&&(g+=1),(!b.length||b[b.length-1][0]!==n.lastOpeningBracketAt)&&b.push([n.lastOpeningBracketAt,i+1]),(!$$1.length||$$1[$$1.length-1][0]!==n.lastOpeningBracketAt)&&$$1.push([n.lastOpeningBracketAt,i+1]);let u=L(t,a,n.leftOuterWhitespace,g,n.lastOpeningBracketAt,i);l.cb({tag:n,deleteFrom:n.leftOuterWhitespace,deleteTo:g,insert:u,rangesArr:r,proposedReturn:[n.leftOuterWhitespace,g,u]}),e=a-1,t[a]===">"&&(e=a),n={},o={};break}}}!t[e].trim()||t[e].charCodeAt(0)===847?(V===null&&(V=e,n.lastOpeningBracketAt!==void 0&&n.lastOpeningBracketAt<e&&n.nameStarts&&n.nameStarts<n.lastOpeningBracketAt&&e===n.lastOpeningBracketAt+1&&!c.some(s=>s.name===n.name)&&(n.onlyPlausible=!0,n.name=void 0,n.nameStarts=void 0)),(t[e]===`
 `||t[e]==="\r")&&(N=e,I&&(I=!1))):(V!==null&&(!n.quotes&&o.equalsAt>V-1&&o.nameEnds&&o.equalsAt>o.nameEnds&&t[e]!=='"'&&t[e]!=="'"&&(U(o)&&n.attributes.push(o),o={},n.equalsSpottedAt=void 0),V=null),I||(I=!0,F&&!R&&typeof N=="number"&&e&&N<e-1&&(t.slice(N+1,e).trim()?N=null:r.push([N+1,e])))),t[e]===" "?w===null&&(w=e):w!==null&&(w=null),n.name==="script"&&(R=!n.slashPresent);}if(t&&(l.trimOnlySpaces&&t[0]===" "||!l.trimOnlySpaces&&!t[0].trim()))for(let e=0;e<h;e++)if(l.trimOnlySpaces&&t[e]!==" "||!l.trimOnlySpaces&&t[e].trim()){r.push([0,e]);break}else t[e+1]||r.push([0,e+1]);if(t&&(l.trimOnlySpaces&&t[~-t.length]===" "||!l.trimOnlySpaces&&!t[~-t.length].trim())){for(let e=t.length;e--;)if(l.trimOnlySpaces&&t[e]!==" "||!l.trimOnlySpaces&&t[e].trim()){r.push([e+1,h]);break}}let O=r.current();if((!m||!m.cb)&&O){if(O[0]&&!O[0][0]){O[0][1];r.ranges[0]=[r.ranges[0][0],r.ranges[0][1]];}if(O[O.length-1]&&O[O.length-1][1]===t.length){O[O.length-1][0];if(r.ranges){let s=r.ranges[r.ranges.length-1][0];t[s-1]&&(l.trimOnlySpaces&&t[s-1]===" "||!l.trimOnlySpaces&&!t[s-1].trim())&&(s-=1);let i=r.ranges[r.ranges.length-1][2];r.ranges[r.ranges.length-1]=[s,r.ranges[r.ranges.length-1][1]],i?.trim()&&r.ranges[r.ranges.length-1].push(i.trimEnd());}}}return {log:{timeTakenInMilliseconds:Date.now()-y},result:_(t,r.current()),ranges:r.current(),allTagLocations:b,filteredTagLocations:$$1}}
 
-var __defProp$g = Object.defineProperty;
-var __getOwnPropDesc$g = Object.getOwnPropertyDescriptor;
-var __decorateClass$g = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$g(target, key) : target;
+var __defProp$c = Object.defineProperty;
+var __getOwnPropDesc$c = Object.getOwnPropertyDescriptor;
+var __decorateClass$c = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$c(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$g(target, key, result);
+    __defProp$c(target, key, result);
   return result;
 };
 let OfflineInfiniteScrollRoutesViewer = class extends InfiniteScrollRoutesViewer$1 {
@@ -11369,20 +11876,20 @@ let OfflineInfiniteScrollRoutesViewer = class extends InfiniteScrollRoutesViewer
     };
   }
 };
-OfflineInfiniteScrollRoutesViewer = __decorateClass$g([
+OfflineInfiniteScrollRoutesViewer = __decorateClass$c([
   controller
 ], OfflineInfiniteScrollRoutesViewer);
 const OfflineInfiniteScrollRoutesViewer$1 = OfflineInfiniteScrollRoutesViewer;
 
-var __defProp$f = Object.defineProperty;
-var __getOwnPropDesc$f = Object.getOwnPropertyDescriptor;
-var __decorateClass$f = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$f(target, key) : target;
+var __defProp$b = Object.defineProperty;
+var __getOwnPropDesc$b = Object.getOwnPropertyDescriptor;
+var __decorateClass$b = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$b(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$f(target, key, result);
+    __defProp$b(target, key, result);
   return result;
 };
 const sharedStorage$3 = UkcLocalStorage.sharedLogbook;
@@ -11471,20 +11978,20 @@ let LogbookViewerElement = class extends OfflineInfiniteScrollRoutesViewer$1 {
     return (rte) => rte.associated_ascent_entry.id;
   }
 };
-LogbookViewerElement = __decorateClass$f([
+LogbookViewerElement = __decorateClass$b([
   controller
 ], LogbookViewerElement);
 const LogbookViewerElement$1 = LogbookViewerElement;
 
-var __defProp$e = Object.defineProperty;
-var __getOwnPropDesc$e = Object.getOwnPropertyDescriptor;
-var __decorateClass$e = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$e(target, key) : target;
+var __defProp$a = Object.defineProperty;
+var __getOwnPropDesc$a = Object.getOwnPropertyDescriptor;
+var __decorateClass$a = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$a(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$e(target, key, result);
+    __defProp$a(target, key, result);
   return result;
 };
 const sharedStorage$2 = UkcLocalStorage.sharedLogbook;
@@ -11548,19 +12055,19 @@ let WishlistViewerElement = class extends LogbookViewerElement$1 {
     return "";
   }
 };
-WishlistViewerElement = __decorateClass$e([
+WishlistViewerElement = __decorateClass$a([
   controller
 ], WishlistViewerElement);
 
-var __defProp$d = Object.defineProperty;
-var __getOwnPropDesc$d = Object.getOwnPropertyDescriptor;
-var __decorateClass$d = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$d(target, key) : target;
+var __defProp$9 = Object.defineProperty;
+var __getOwnPropDesc$9 = Object.getOwnPropertyDescriptor;
+var __decorateClass$9 = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$9(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$d(target, key, result);
+    __defProp$9(target, key, result);
   return result;
 };
 const sharedStorage$1 = UkcLocalStorage.sharedLogbook;
@@ -11654,20 +12161,20 @@ let PartnerAscentsViewerElement = class extends PagedRoutesViewer$1 {
     return "";
   }
 };
-PartnerAscentsViewerElement = __decorateClass$d([
+PartnerAscentsViewerElement = __decorateClass$9([
   controller
 ], PartnerAscentsViewerElement);
 const PartnerAscentsViewerElement$1 = PartnerAscentsViewerElement;
 
-var __defProp$c = Object.defineProperty;
-var __getOwnPropDesc$c = Object.getOwnPropertyDescriptor;
-var __decorateClass$c = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$c(target, key) : target;
+var __defProp$8 = Object.defineProperty;
+var __getOwnPropDesc$8 = Object.getOwnPropertyDescriptor;
+var __decorateClass$8 = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$8(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$c(target, key, result);
+    __defProp$8(target, key, result);
   return result;
 };
 const generateApiUrl$4 = () => {
@@ -11762,20 +12269,20 @@ let TopAscentsViewerElement = class extends PartnerAscentsViewerElement$1 {
     return header;
   }
 };
-TopAscentsViewerElement = __decorateClass$c([
+TopAscentsViewerElement = __decorateClass$8([
   controller
 ], TopAscentsViewerElement);
 const TopAscentsViewerElement$1 = TopAscentsViewerElement;
 
-var __defProp$b = Object.defineProperty;
-var __getOwnPropDesc$b = Object.getOwnPropertyDescriptor;
-var __decorateClass$b = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$b(target, key) : target;
+var __defProp$7 = Object.defineProperty;
+var __getOwnPropDesc$7 = Object.getOwnPropertyDescriptor;
+var __decorateClass$7 = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$7(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$b(target, key, result);
+    __defProp$7(target, key, result);
   return result;
 };
 const generateApiUrl$3 = () => {
@@ -11812,20 +12319,20 @@ let WinterAscentsViewerElement = class extends TopAscentsViewerElement$1 {
     };
   }
 };
-WinterAscentsViewerElement = __decorateClass$b([
+WinterAscentsViewerElement = __decorateClass$7([
   controller
 ], WinterAscentsViewerElement);
 const WinterAscentsViewerElement$1 = WinterAscentsViewerElement;
 
-var __defProp$a = Object.defineProperty;
-var __getOwnPropDesc$a = Object.getOwnPropertyDescriptor;
-var __decorateClass$a = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$a(target, key) : target;
+var __defProp$6 = Object.defineProperty;
+var __getOwnPropDesc$6 = Object.getOwnPropertyDescriptor;
+var __decorateClass$6 = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$6(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$a(target, key, result);
+    __defProp$6(target, key, result);
   return result;
 };
 const generateApiUrl$2 = () => {
@@ -11855,19 +12362,19 @@ let AlpineAscentsViewerElement = class extends WinterAscentsViewerElement$1 {
     return res;
   }
 };
-AlpineAscentsViewerElement = __decorateClass$a([
+AlpineAscentsViewerElement = __decorateClass$6([
   controller
 ], AlpineAscentsViewerElement);
 
-var __defProp$9 = Object.defineProperty;
-var __getOwnPropDesc$9 = Object.getOwnPropertyDescriptor;
-var __decorateClass$9 = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$9(target, key) : target;
+var __defProp$5 = Object.defineProperty;
+var __getOwnPropDesc$5 = Object.getOwnPropertyDescriptor;
+var __decorateClass$5 = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$5(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$9(target, key, result);
+    __defProp$5(target, key, result);
   return result;
 };
 const generateApiUrl$1 = () => {
@@ -11897,19 +12404,19 @@ let MountainAscentsViewerElement = class extends WinterAscentsViewerElement$1 {
     return res;
   }
 };
-MountainAscentsViewerElement = __decorateClass$9([
+MountainAscentsViewerElement = __decorateClass$5([
   controller
 ], MountainAscentsViewerElement);
 
-var __defProp$8 = Object.defineProperty;
-var __getOwnPropDesc$8 = Object.getOwnPropertyDescriptor;
-var __decorateClass$8 = (decorators, target, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$8(target, key) : target;
+var __defProp$4 = Object.defineProperty;
+var __getOwnPropDesc$4 = Object.getOwnPropertyDescriptor;
+var __decorateClass$4 = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$4(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
     if (decorator = decorators[i])
       result = (kind ? decorator(target, key, result) : decorator(result)) || result;
   if (kind && result)
-    __defProp$8(target, key, result);
+    __defProp$4(target, key, result);
   return result;
 };
 const generateApiUrl = () => {
@@ -12023,514 +12530,12 @@ let CragRoutesViewerElement = class extends OfflineInfiniteScrollRoutesViewer$1 
       `;
   }
 };
-__decorateClass$8([
+__decorateClass$4([
   attr
 ], CragRoutesViewerElement.prototype, "cragId", 2);
-CragRoutesViewerElement = __decorateClass$8([
+CragRoutesViewerElement = __decorateClass$4([
   controller
 ], CragRoutesViewerElement);
-
-const template$5 = (element) => {
-  const elementName = element.elementName;
-  return html$1`
-  <div class='rfd-search'>
-      <div data-target='${elementName}.gray_view' data-action='click:${elementName}#hide' id='gray-view'></div>
-      <div data-target='${elementName}.scroll_container' id='filters-controller-scrollable-area'>
-          <div data-target='${elementName}.spacer' style='height:100vh'></div>
-          <div data-target='${elementName}.main_container' class='filters-controller-main-container pr-3 pl-3 pt-1'>
-              <filter-row icon-type='filter' title-string='Filters disabled' data-target='${elementName}.main_filter'></filter-row>
-              <div class='divider'></div>
-              <div data-target='${elementName}.filters_container' id='filters-controller-filters-container'>
-                  <div data-target='${elementName}.dimming_view' class='filters-dimming-view'></div>
-              </div>
-          </div>
-      </div>
-      <div data-target='${elementName}.backing_view' class='backing-view'></div>
-  </div>`;
-};
-
-const template$4 = (element) => {
-  const elementName = element.elementName;
-  return html$1`
-  <label class='d-flex flex-row justify-content-between align-items-center mt-3'>
-    <div class='d-flex flex-row align-items-center'>
-      <img data-target='${elementName}.icon_img' class='filter-row-icon pr-2'></img>
-      <div data-target='${elementName}.title_div' class='filter-row-title'></div>
-    </div>
-    <div data-target='${elementName}.switch_div' class='form-switch'><input type="checkbox" data-target='${elementName}.input'><i></i></div>
-  </label>`;
-};
-
-var __defProp$7 = Object.defineProperty;
-var __getOwnPropDesc$7 = Object.getOwnPropertyDescriptor;
-var __decorateClass$7 = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$7(target2, key) : target2;
-  for (var i = decorators.length - 1, decorator; i >= 0; i--)
-    if (decorator = decorators[i])
-      result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
-  if (kind && result)
-    __defProp$7(target2, key, result);
-  return result;
-};
-let FilterRowElement = class extends BaseCon$1 {
-  icon_img;
-  title_div;
-  switch_div;
-  input;
-  set iconType(newVal) {
-    for (let index = 0; index < this.icon_img.classList.length; index++) {
-      const klass = this.icon_img.classList[index];
-      if (/icon-/.test(klass)) {
-        this.icon_img.classList.remove(klass);
-      }
-    }
-    this.icon_img.classList.add(`icon-${newVal}`);
-  }
-  filterCategory;
-  #titleString;
-  set titleString(newVal) {
-    this.#titleString = escape(newVal);
-    this.title_div.innerHTML = this.#titleString;
-  }
-  get value() {
-    return this.input.checked;
-  }
-  setValueInJson(obj) {
-    obj[this.filterCategory].push(this.toJson());
-  }
-  setValueInJsonForApi(obj) {
-    obj[this.filterCategory][this.iconType] = this.value;
-  }
-  get template() {
-    return template$4;
-  }
-  connectedCallback() {
-    super.connectedCallback();
-    this.filterCategory = "route_types";
-    this.iconType = this.iconType;
-    this.input?.addEventListener("change", this.setDimming.bind(this));
-  }
-  setDimming(_evt) {
-    if (this.input?.checked) {
-      this.title_div.style.opacity = "1";
-      this.icon_img.style.opacity = "1";
-    } else {
-      this.title_div.style.opacity = "0.4";
-      this.icon_img.style.opacity = "0.4";
-    }
-  }
-  toJson() {
-    return {
-      iconType: this.iconType,
-      title: this.titleString,
-      checked: this.input.checked
-    };
-  }
-};
-__decorateClass$7([
-  target
-], FilterRowElement.prototype, "icon_img", 2);
-__decorateClass$7([
-  target
-], FilterRowElement.prototype, "title_div", 2);
-__decorateClass$7([
-  target
-], FilterRowElement.prototype, "switch_div", 2);
-__decorateClass$7([
-  target
-], FilterRowElement.prototype, "input", 2);
-__decorateClass$7([
-  attr
-], FilterRowElement.prototype, "iconType", 1);
-__decorateClass$7([
-  attr
-], FilterRowElement.prototype, "filterCategory", 2);
-__decorateClass$7([
-  attr
-], FilterRowElement.prototype, "titleString", 1);
-FilterRowElement = __decorateClass$7([
-  controller
-], FilterRowElement);
-const FilterRowElement$1 = FilterRowElement;
-
-const filter_controller_style = '';
-
-const template$3 = (element) => {
-  const elementName = element.elementName;
-  return html$1`
-  <label class='d-flex flex-row justify-content-between align-items-center mt-3'>
-    <div class='d-flex flex-row align-items-center'>
-      <topo-dot data-target='${elementName}.topo_dot' class='mr-3'></topo-dot>
-      <div data-target='${elementName}.title_div' class='filter-row-title'></div>
-    </div>
-    <div data-target='${elementName}.switch_div' class='form-switch'><input type="checkbox" data-target='${elementName}.input'><i></i></div>
-  </label>`;
-};
-
-var __defProp$6 = Object.defineProperty;
-var __getOwnPropDesc$6 = Object.getOwnPropertyDescriptor;
-var __decorateClass$6 = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$6(target2, key) : target2;
-  for (var i = decorators.length - 1, decorator; i >= 0; i--)
-    if (decorator = decorators[i])
-      result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
-  if (kind && result)
-    __defProp$6(target2, key, result);
-  return result;
-};
-let ColorFilterRowElement = class extends FilterRowElement$1 {
-  topo_dot;
-  set iconType(newVal) {
-    this.topo_dot.colorName = newVal;
-  }
-  get template() {
-    return template$3;
-  }
-  connectedCallback() {
-    super.connectedCallback();
-    this.filterCategory = "route_colors";
-  }
-  setDimming(_evt) {
-    if (this.input.checked) {
-      this.title_div.style.opacity = "1";
-      this.topo_dot.style.opacity = "1";
-    } else {
-      this.title_div.style.opacity = "0.4";
-      this.topo_dot.style.opacity = "0.4";
-    }
-  }
-  setValueInJson(obj) {
-    obj[this.filterCategory].push(this.toJson());
-  }
-};
-__decorateClass$6([
-  target
-], ColorFilterRowElement.prototype, "topo_dot", 2);
-__decorateClass$6([
-  attr
-], ColorFilterRowElement.prototype, "iconType", 1);
-ColorFilterRowElement = __decorateClass$6([
-  controller
-], ColorFilterRowElement);
-const ColorFilterRowElement$1 = ColorFilterRowElement;
-
-const template$2 = (element) => {
-  const elementName = element.elementName;
-  return html$1`
-  <label class='d-flex flex-row justify-content-between align-items-center mt-3'>
-    <div class='d-flex flex-row align-items-center'>
-      <img data-target='${elementName}.icon_img' class='filter-row-icon pr-2'></img>
-      <div data-target='${elementName}.title_div' class='filter-row-title'></div>
-    </div>
-    <div class='d-flex flex-row align-items-center'>
-      <div data-target='${elementName}.range_counter' class='mr-3 range-counter'>0</div>
-      <div class="range-slider" style='--min:0; --max:3; --step:1; --value:0; --text-value:"0";'>
-        <input data-target='${elementName}.range' type="range" min="0" max="3" step="1" value="0" oninput="this.parentNode.style.setProperty('--value',this.value); this.parentNode.style.setProperty('--text-value', JSON.stringify(this.value))">
-        <output></output>
-        <div class='range-slider__progress'></div>
-      </div>
-    </div>
-  </label>`;
-};
-
-var __defProp$5 = Object.defineProperty;
-var __getOwnPropDesc$5 = Object.getOwnPropertyDescriptor;
-var __decorateClass$5 = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$5(target2, key) : target2;
-  for (var i = decorators.length - 1, decorator; i >= 0; i--)
-    if (decorator = decorators[i])
-      result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
-  if (kind && result)
-    __defProp$5(target2, key, result);
-  return result;
-};
-let SliderFilterRowElement = class extends FilterRowElement$1 {
-  range;
-  range_counter;
-  set starCount(newVal) {
-    this.range.value = newVal.toString();
-    this.range_counter.innerText = newVal.toString();
-  }
-  get template() {
-    return template$2;
-  }
-  get value() {
-    return Number(this.range.value);
-  }
-  connectedCallback() {
-    super.connectedCallback();
-    this.range.addEventListener("input", (_evt) => {
-      this.range_counter.innerText = _evt.target["value"];
-    });
-  }
-  setValueInJson(obj) {
-    obj["minimum_star_count"] = this.value;
-  }
-};
-__decorateClass$5([
-  target
-], SliderFilterRowElement.prototype, "range", 2);
-__decorateClass$5([
-  target
-], SliderFilterRowElement.prototype, "range_counter", 2);
-__decorateClass$5([
-  attr
-], SliderFilterRowElement.prototype, "starCount", 1);
-SliderFilterRowElement = __decorateClass$5([
-  controller
-], SliderFilterRowElement);
-const SliderFilterRowElement$1 = SliderFilterRowElement;
-
-var __defProp$4 = Object.defineProperty;
-var __getOwnPropDesc$4 = Object.getOwnPropertyDescriptor;
-var __decorateClass$4 = (decorators, target2, key, kind) => {
-  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc$4(target2, key) : target2;
-  for (var i = decorators.length - 1, decorator; i >= 0; i--)
-    if (decorator = decorators[i])
-      result = (kind ? decorator(target2, key, result) : decorator(result)) || result;
-  if (kind && result)
-    __defProp$4(target2, key, result);
-  return result;
-};
-let FiltersControllerElement = class extends BaseCon$1 {
-  gray_view;
-  main_container;
-  scroll_container;
-  filters_container;
-  dimming_view;
-  backing_view;
-  spacer;
-  main_filter;
-  get maxScrollTop() {
-    return this.scroll_container.scrollHeight - this.scroll_container.clientHeight;
-  }
-  get minScrollTop() {
-    return this.main_container.clientHeight * 0.66;
-  }
-  afterDismiss = (_) => {
-  };
-  baseData = {
-    filters_enabled: false,
-    route_types: [
-      { iconType: "trad", title: "Trad routes", checked: false },
-      { iconType: "sport", title: "Sport routes", checked: false },
-      { iconType: "dws", title: "Deep water solos", checked: false },
-      { iconType: "bouldering", title: "Boulder problems", checked: false },
-      { iconType: "winter", title: "Winter routes", checked: false },
-      { iconType: "ice", title: "Ice routes", checked: false },
-      { iconType: "alpine", title: "Alpine routes", checked: false },
-      { iconType: "mixed", title: "Mixed routes", checked: false },
-      { iconType: "aid", title: "Aid routes", checked: false },
-      { iconType: "via_ferrata", title: "Via ferrata", checked: false },
-      { iconType: "scramble", title: "Scrambles", checked: false }
-    ],
-    route_colors: [
-      { iconType: "green", title: "Green routes", checked: false },
-      { iconType: "orange", title: "Orange routes", checked: false },
-      { iconType: "red", title: "Red routes", checked: false },
-      { iconType: "black", title: "Black routes", checked: false },
-      { iconType: "white", title: "White routes", checked: false }
-    ],
-    minimum_star_count: 0
-  };
-  allowedFilterTypes = {
-    route_types: true,
-    route_colors: true,
-    minimum_star_count: true
-  };
-  storageKey = "route-filters";
-  get data() {
-    let data = localStorage.getItem(this.storageKey);
-    if (data) {
-      return JSON.parse(data);
-    }
-    return this.baseData;
-  }
-  get filters() {
-    return Array.from(this.filters_container.querySelectorAll("filter-row, color-filter-row, slider-filter-row"));
-  }
-  get template() {
-    return template$5;
-  }
-  connectedCallback() {
-    super.connectedCallback();
-    this.scroll_container.scrollTop = this.maxScrollTop;
-    this.main_container.style.transform = "translate(0px, 500vh)";
-    this.scroll_container.scrollTop = this.maxScrollTop;
-  }
-  setTitleOfMainFilter() {
-    if (this.main_filter.input.checked) {
-      this.main_filter.titleString = "Filters enabled";
-    } else {
-      this.main_filter.titleString = "Filters disabled";
-    }
-  }
-  die() {
-    const newData = this.toJson();
-    const oldData = this.data;
-    newData.route_types.forEach((filter) => {
-      const target2 = oldData.route_types.find(({ iconType }) => iconType === filter.iconType);
-      target2.checked = filter.checked;
-    });
-    newData.route_colors.forEach((filter) => {
-      const target2 = oldData.route_colors.find(({ iconType }) => iconType === filter.iconType);
-      target2.checked = filter.checked;
-    });
-    oldData.filters_enabled = this.main_filter.input.checked;
-    oldData.minimum_star_count = newData.minimum_star_count;
-    localStorage.setItem(this.storageKey, JSON.stringify(oldData));
-    this.parentElement?.removeChild(this);
-    this.afterDismiss(newData);
-  }
-  onScroll(_evt) {
-    const show = this.scroll_container.scrollTop > this.maxScrollTop - 30;
-    this.backing_view.style.opacity = show ? "1" : "0";
-  }
-  onTouchEnd(_evt) {
-    if (this.scroll_container.scrollTop < this.maxScrollTop) {
-      if (this.scroll_container.scrollTop < this.minScrollTop) {
-        this.hide();
-      } else {
-        this.scroll_container.scrollTo({ top: this.maxScrollTop, behavior: "smooth" });
-      }
-    }
-  }
-  show() {
-    this.main_filter.input.onchange = (_evt) => {
-      const enabled = _evt.target["checked"];
-      if (enabled) {
-        this.dimming_view.style.opacity = "0";
-        this.dimming_view.style.pointerEvents = "none";
-      } else {
-        this.dimming_view.style.pointerEvents = "auto";
-        this.dimming_view.style.opacity = "0.7";
-      }
-      this.setTitleOfMainFilter();
-    };
-    setTimeout(() => {
-      this.scroll_container.addEventListener("scroll", this.onScroll.bind(this));
-      this.scroll_container.addEventListener("touchend", this.onTouchEnd.bind(this));
-    }, 450);
-    this.loadFilters();
-    this.scroll_container.scrollTo({ top: this.maxScrollTop, behavior: "smooth" });
-    setTimeout(() => {
-      this.dimming_view.style.backgroundColor = "var(--background-color)";
-      this.dimming_view.style.zIndex = "100000000";
-      document.body.style.overflow = "hidden";
-      this.gray_view.style.opacity = "1";
-      this.main_container.style.transform = "translate(0px, 0px)";
-      this.backing_view.style.height = `${this.main_container.clientHeight - 30}px`;
-    }, 10);
-    setTimeout(() => {
-      this.scroll_container.style.overflowY = "hidden";
-      setTimeout(() => {
-        this.scroll_container.style.overflowY = "scroll";
-      }, 25);
-    }, 350);
-  }
-  loadFilters() {
-    const data = this.data;
-    this.main_filter.input.checked = data.filters_enabled;
-    this.main_filter.input.onchange({ target: this.main_filter.input });
-    if (this.allowedFilterTypes?.route_types) {
-      for (const filter of data.route_types) {
-        let row2 = this.filters_container.appendChild(new FilterRowElement$1());
-        row2.iconType = filter.iconType;
-        row2.titleString = filter.title;
-        row2.input.checked = filter.checked;
-        row2.setDimming(null);
-      }
-      const div = document.createElement("div");
-      this.filters_container.appendChild(div);
-      div.classList.add("divider");
-    }
-    if (this.allowedFilterTypes?.route_colors) {
-      for (const filter of data.route_colors) {
-        let row2 = this.filters_container.appendChild(new ColorFilterRowElement$1());
-        row2.iconType = filter.iconType;
-        row2.titleString = filter.title;
-        row2.input.checked = filter.checked;
-        row2.setDimming(null);
-      }
-      const div = document.createElement("div");
-      this.filters_container.appendChild(div);
-      div.classList.add("divider");
-    }
-    let row = this.filters_container.appendChild(new SliderFilterRowElement$1());
-    row.iconType = "star";
-    row.icon_img.style.backgroundColor = "#F8CA23FF";
-    row.titleString = "Route stars";
-    row.starCount = data.minimum_star_count;
-  }
-  hide() {
-    document.body.style.overflow = "auto";
-    this.gray_view.style.opacity = "0";
-    this.backing_view.style.opacity = "0";
-    this.main_container.style.transform = `translate(0px, ${this.main_container.clientHeight}px)`;
-    setTimeout(() => {
-      this.die();
-    }, 500);
-  }
-  toJson() {
-    const res = {
-      filters_enabled: this.main_filter.input.checked,
-      route_types: [],
-      route_colors: [],
-      minimum_star_count: 0
-    };
-    for (const filter of this.filters) {
-      filter.setValueInJson(res);
-    }
-    return res;
-  }
-  toJsonForApi() {
-    if (this.main_filter.input.checked === false) {
-      return void 0;
-    }
-    const res = {
-      route_types: {},
-      route_colors: {},
-      minimum_star_count: 0
-    };
-    for (const filter of this.filters) {
-      filter.setValueInJsonForApi(res);
-    }
-    if (Object.keys(res.route_types).length === 0) {
-      delete res["route_types"];
-    }
-    if (Object.keys(res.route_colors).length === 0) {
-      delete res["route_colors"];
-    }
-    return res;
-  }
-};
-__decorateClass$4([
-  target
-], FiltersControllerElement.prototype, "gray_view", 2);
-__decorateClass$4([
-  target
-], FiltersControllerElement.prototype, "main_container", 2);
-__decorateClass$4([
-  target
-], FiltersControllerElement.prototype, "scroll_container", 2);
-__decorateClass$4([
-  target
-], FiltersControllerElement.prototype, "filters_container", 2);
-__decorateClass$4([
-  target
-], FiltersControllerElement.prototype, "dimming_view", 2);
-__decorateClass$4([
-  target
-], FiltersControllerElement.prototype, "backing_view", 2);
-__decorateClass$4([
-  target
-], FiltersControllerElement.prototype, "spacer", 2);
-__decorateClass$4([
-  target
-], FiltersControllerElement.prototype, "main_filter", 2);
-FiltersControllerElement = __decorateClass$4([
-  controller
-], FiltersControllerElement);
 
 const flagIcons_min = '';
 
