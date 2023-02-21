@@ -8113,8 +8113,7 @@ let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
         const c = data.meta?.total_matches;
         this.filter_query_description.innerHTML = data.meta.parsed_query.queryDescription + ` (${c}&nbsp;match${c === 1 ? "" : "es"})`;
         if (this.areFiltersEnabled) {
-          globalThis["routesViewer"] = this;
-          this.filter_query_description.innerHTML += ` <a href='#' onclick='routesViewer.showFilters()'>filters&nbsp;enabled</a>`;
+          this.filter_query_description.innerHTML += ` <a href='#' data-action='click:${this.elementName}#showFilters'>filters&nbsp;enabled</a>`;
         }
       } else {
         this.filter_query_description.innerHTML = "";
