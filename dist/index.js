@@ -3033,10 +3033,17 @@ let BaseRoutesViewer = class extends BaseCon$1 {
     localStorage.setItem(this.sortDirectionKey, this.sortDirectionFromButton);
   }
   get allowedFilterTypes() {
-    return void 0;
+    return {
+      route_types: true,
+      route_colors: true,
+      minimum_star_count: true
+    };
   }
   showFilters() {
     const el = document.createElement("filters-controller");
+    el.afterDismiss = () => {
+      this.filter_icon.classList.add("glow");
+    };
     el.allowedFilterTypes = this.allowedFilterTypes;
     document.body.appendChild(el);
     setTimeout(() => {
@@ -12296,6 +12303,8 @@ let FiltersControllerElement = class extends BaseCon$1 {
   get minScrollTop() {
     return this.main_container.clientHeight * 0.66;
   }
+  afterDismiss = () => {
+  };
   baseData = {
     filters_enabled: false,
     route_types: [
@@ -12327,10 +12336,6 @@ let FiltersControllerElement = class extends BaseCon$1 {
   };
   storageKey = "route-filters";
   get data() {
-    let data = localStorage.getItem(this.storageKey);
-    if (data) {
-      return JSON.parse(data);
-    }
     return this.baseData;
   }
   get filters() {
@@ -12356,6 +12361,7 @@ let FiltersControllerElement = class extends BaseCon$1 {
     const data = this.toJson();
     localStorage.setItem(this.storageKey, JSON.stringify(data));
     this.parentElement?.removeChild(this);
+    this.afterDismiss();
   }
   onScroll(_evt) {
     const show = this.scroll_container.scrollTop > this.maxScrollTop - 30;
@@ -12401,7 +12407,7 @@ let FiltersControllerElement = class extends BaseCon$1 {
     const data = this.data;
     this.main_filter.input.checked = data.filters_enabled;
     this.main_filter.input.onchange({ target: this.main_filter.input });
-    if (this.allowedFilterTypes.route_types) {
+    if (this.allowedFilterTypes?.route_types) {
       for (const filter of data.route_types) {
         let row2 = this.filters_container.appendChild(new FilterRowElement$1());
         row2.iconType = filter.iconType;
@@ -12413,7 +12419,7 @@ let FiltersControllerElement = class extends BaseCon$1 {
       this.filters_container.appendChild(div);
       div.classList.add("divider");
     }
-    if (this.allowedFilterTypes.route_colors) {
+    if (this.allowedFilterTypes?.route_colors) {
       for (const filter of data.route_colors) {
         let row2 = this.filters_container.appendChild(new ColorFilterRowElement$1());
         row2.iconType = filter.iconType;
