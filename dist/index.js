@@ -5760,7 +5760,7 @@ let PagedRoutesViewer = class extends BaseRoutesViewer$1 {
         this.filter_query_description.innerHTML = data.meta.parsed_query.queryDescription + ` (${c}&nbsp;match${c === 1 ? "" : "es"})`;
         if (this.areFiltersEnabled) {
           globalThis["routesViewer"] = this;
-          this.filter_query_description.innerHTML += ` <a href='#' onclick='routesViewer.showFilters()'>(filters&nbsp;enabled)</a>`;
+          this.filter_query_description.innerHTML += ` <a href='#' onclick='setTimeout(()=>{routesViewer.showFilters()},10)'>filters&nbsp;enabled</a>`;
         }
       } else {
         this.filter_query_description.innerHTML = "";
@@ -8114,7 +8114,7 @@ let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
         this.filter_query_description.innerHTML = data.meta.parsed_query.queryDescription + ` (${c}&nbsp;match${c === 1 ? "" : "es"})`;
         if (this.areFiltersEnabled) {
           globalThis["routesViewer"] = this;
-          this.filter_query_description.innerHTML += ` <a href='#' onclick='routesViewer.showFilters()'>(filters&nbsp;enabled)</a>`;
+          this.filter_query_description.innerHTML += ` <a href='#' onclick='routesViewer.showFilters()'>filters&nbsp;enabled</a>`;
         }
       } else {
         this.filter_query_description.innerHTML = "";
