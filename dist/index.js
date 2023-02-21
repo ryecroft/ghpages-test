@@ -3524,11 +3524,14 @@ let BaseRoutesViewer = class extends BaseCon$1 {
       direction: this.sortDirectionFromButton,
       return_type: "full"
     };
-    const filters = Filters.fromDisk();
-    if (filters.filters_enabled) {
+    if (this.areFiltersEnabled) {
+      const filters = Filters.fromDisk();
       result.search_filters = filters.toApiFormat();
     }
     return result;
+  }
+  get areFiltersEnabled() {
+    return Filters.fromDisk().filters_enabled;
   }
   get sortDirectionFromButton() {
     const c = this.sort_arrow;
@@ -3559,8 +3562,12 @@ let BaseRoutesViewer = class extends BaseCon$1 {
     fc.afterDismiss = (fc2) => {
       const data = fc2.toJson();
       this.setFilterGlow(data.filters_enabled);
+      const currentFiltersString = JSON.stringify(this.filtersData);
       this.filtersData = fc2.toJson();
-      this.onInputUpdated();
+      const newFiltersString = JSON.stringify(this.filtersData);
+      if (currentFiltersString !== newFiltersString) {
+        this.onInputUpdated();
+      }
     };
     fc.allowedFilterTypes = this.allowedFilterTypes;
     return fc;
@@ -5751,6 +5758,10 @@ let PagedRoutesViewer = class extends BaseRoutesViewer$1 {
       if (data.meta?.parsed_query) {
         const c = data.meta?.total_matches;
         this.filter_query_description.innerHTML = data.meta.parsed_query.queryDescription + ` (${c}&nbsp;match${c === 1 ? "" : "es"})`;
+        if (this.areFiltersEnabled) {
+          globalThis["routesViewer"] = this;
+          this.filter_query_description.innerHTML += ` <a href='#' onclick='routesViewer.showFilters()'>(filters&nbsp;enabled)</a>`;
+        }
       } else {
         this.filter_query_description.innerHTML = "";
       }
@@ -8101,6 +8112,10 @@ let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
       if (data.meta?.parsed_query) {
         const c = data.meta?.total_matches;
         this.filter_query_description.innerHTML = data.meta.parsed_query.queryDescription + ` (${c}&nbsp;match${c === 1 ? "" : "es"})`;
+        if (this.areFiltersEnabled) {
+          globalThis["routesViewer"] = this;
+          this.filter_query_description.innerHTML += ` <a href='#' onclick='routesViewer.showFilters()'>(filters&nbsp;enabled)</a>`;
+        }
       } else {
         this.filter_query_description.innerHTML = "";
       }
