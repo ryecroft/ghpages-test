@@ -3042,7 +3042,7 @@ let BaseRoutesViewer = class extends BaseCon$1 {
   showFilters() {
     const el = document.createElement("filters-controller");
     el.afterDismiss = () => {
-      this.filter_icon.classList.add("glow");
+      this.filter_icon.parentElement.classList.add("glow");
     };
     el.allowedFilterTypes = this.allowedFilterTypes;
     document.body.appendChild(el);
@@ -12394,6 +12394,8 @@ let FiltersControllerElement = class extends BaseCon$1 {
     }, 450);
     this.loadFilters();
     this.scroll_container.scrollTo({ top: this.maxScrollTop, behavior: "smooth" });
+    this.scroll_container.style.overflowY = "hidden";
+    this.scroll_container.style.overflowY = "scroll";
     setTimeout(() => {
       this.dimming_view.style.backgroundColor = "var(--background-color)";
       this.dimming_view.style.zIndex = "100000000";
