@@ -3046,17 +3046,6 @@ let FiltersControllerElement = class extends BaseCon$1 {
   }
   show() {
     this.main_container.style.transition = "transform 0.3s cubic-bezier(0.33, 1, 0.68, 1)";
-    this.main_filter.input.onchange = (_evt) => {
-      const enabled = _evt.target["checked"];
-      if (enabled) {
-        this.dimming_view.style.opacity = "0";
-        this.dimming_view.style.pointerEvents = "none";
-      } else {
-        this.dimming_view.style.pointerEvents = "auto";
-        this.dimming_view.style.opacity = "0.7";
-      }
-      this.setTitleOfMainFilter();
-    };
     this.loadFilters();
     this.dimming_view.style.backgroundColor = "var(--background-color)";
     document.body.style.overflow = "hidden";
@@ -3067,8 +3056,6 @@ let FiltersControllerElement = class extends BaseCon$1 {
   loadFilters() {
     const data = this.data;
     const defaultFilters = new Filters();
-    this.main_filter.input.checked = data.filters_enabled;
-    this.main_filter.input.onchange({ target: this.main_filter.input });
     this.dimming_view.style.opacity = this.main_filter.input.checked ? "0" : "0.7";
     if (this.allowedFilterTypes?.route_types) {
       Object.keys(data.route_types).forEach((key) => {
@@ -3094,6 +3081,21 @@ let FiltersControllerElement = class extends BaseCon$1 {
       this.filters_container.appendChild(div);
       div.classList.add("divider");
     }
+    this.main_filter.input.onchange = (_evt) => {
+      const enabled = _evt.target["checked"];
+      if (enabled) {
+        this.dimming_view.style.opacity = "0";
+        this.dimming_view.style.pointerEvents = "none";
+      } else {
+        this.dimming_view.style.pointerEvents = "auto";
+        this.dimming_view.style.opacity = "0.7";
+      }
+      this.setTitleOfMainFilter();
+    };
+    setTimeout(() => {
+      this.main_filter.input.checked = data.filters_enabled;
+      this.main_filter.input.onchange({ target: this.main_filter.input });
+    }, 10);
     let row = this.filters_container.appendChild(new SliderFilterRowElement$1());
     row.iconType = "star";
     row.icon_img.style.backgroundColor = "#F8CA23FF";
