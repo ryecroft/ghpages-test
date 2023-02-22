@@ -3080,19 +3080,19 @@ let FiltersControllerElement = class extends BaseCon$1 {
       this.filters_container.appendChild(div);
       div.classList.add("divider");
     }
-    this.main_filter.input.onchange = (_evt) => {
-      const enabled = _evt.target["checked"];
-      if (enabled) {
-        this.dimming_view.style.opacity = "0";
-        this.dimming_view.style.pointerEvents = "none";
-      } else {
-        this.dimming_view.style.pointerEvents = "auto";
-        this.dimming_view.style.opacity = "0.7";
-      }
-      this.setTitleOfMainFilter();
-    };
     setTimeout(() => {
       this.main_filter.input.checked = data.filters_enabled;
+      this.main_filter.input.onchange = (_evt) => {
+        const enabled = _evt.target["checked"];
+        if (enabled) {
+          this.dimming_view.style.opacity = "0";
+          this.dimming_view.style.pointerEvents = "none";
+        } else {
+          this.dimming_view.style.pointerEvents = "auto";
+          this.dimming_view.style.opacity = "0.7";
+        }
+        this.setTitleOfMainFilter();
+      };
       this.main_filter.input.onchange({ target: this.main_filter.input });
     }, 10);
     let row = this.filters_container.appendChild(new SliderFilterRowElement$1());
