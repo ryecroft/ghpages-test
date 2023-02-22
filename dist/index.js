@@ -2886,7 +2886,7 @@ const template$2 = (element) => {
     </div>
     <div class='d-flex flex-row align-items-center'>
       <div data-target='${elementName}.range_counter' class='mr-3 range-counter'>0</div>
-      <div class="range-slider" style='--min:0; --max:3; --step:1; --value:0; --text-value:"0";'>
+      <div data-target='${elementName}.range_div' class="range-slider" style='--min:0; --max:3; --step:1; --value:0; --text-value:"0";'>
         <input data-target='${elementName}.range' type="range" min="0" max="3" step="1" value="0" oninput="this.parentNode.style.setProperty('--value',this.value); this.parentNode.style.setProperty('--text-value', JSON.stringify(this.value))">
         <output></output>
         <div class='range-slider__progress'></div>
@@ -2909,9 +2909,11 @@ var __decorateClass$q = (decorators, target2, key, kind) => {
 let SliderFilterRowElement = class extends FilterRowElement$1 {
   range;
   range_counter;
+  range_div;
   set starCount(newVal) {
     this.range.value = newVal.toString();
     this.range_counter.innerText = newVal.toString();
+    this.range_div.style.setProperty("--value", newVal.toString());
   }
   get template() {
     return template$2;
@@ -2935,6 +2937,9 @@ __decorateClass$q([
 __decorateClass$q([
   target
 ], SliderFilterRowElement.prototype, "range_counter", 2);
+__decorateClass$q([
+  target
+], SliderFilterRowElement.prototype, "range_div", 2);
 __decorateClass$q([
   attr
 ], SliderFilterRowElement.prototype, "starCount", 1);
@@ -11986,6 +11991,12 @@ let LogbookViewerElement = class extends OfflineInfiniteScrollRoutesViewer$1 {
     super.buildResults(_data);
     const meta = _data?.data?.meta;
     this.routes_viewer_title.innerHTML = `<span style="font-size: 0.8em">Logbook for <a href="/user/profile.php?id=${meta?.user_id}">${escape(meta?.user_name || "")}</a></span>`;
+    const isPersonalRequest = Cookies.default().userIdUkc === meta?.user_id;
+    if (isPersonalRequest) {
+      this.input.placeholder = "Filter your logbook...";
+    } else {
+      this.input.placeholder = `Filter ${escape(meta?.user_name_short || "")}'s logbook...`;
+    }
   }
   appendRoute(target, route, _tagName) {
     const el = appendRoute({ target, route, tagName: "logbook-result" });
