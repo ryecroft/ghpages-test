@@ -3065,6 +3065,7 @@ let FiltersControllerElement = class extends BaseCon$1 {
     this.gray_view.style.opacity = "1";
     this.main_container.style.transform = "translate3d(0, 0, 0)";
     this.backing_view.style.height = `${this.main_container.clientHeight - 30}px`;
+    this.dimming_view.style.transition = "opacity 0.3s ease-in-out";
   }
   loadFilters() {
     const data = this.data;
@@ -5769,7 +5770,7 @@ let PagedRoutesViewer = class extends BaseRoutesViewer$1 {
         const c = data.meta?.total_matches;
         this.filter_query_description.innerHTML = data.meta.parsed_query.queryDescription + ` (${c}&nbsp;match${c === 1 ? "" : "es"})`;
         if (this.areFiltersEnabled) {
-          this.filter_query_description.innerHTML += ` <a href='#' data-action='click:${this.elementName}#showFilters'>filters&nbsp;enabled</a>`;
+          this.filter_query_description.innerHTML += ` <a href='javascript:void(0)' data-action='click:${this.elementName}#showFilters'>filters&nbsp;enabled</a>`;
         }
       } else {
         this.filter_query_description.innerHTML = "";
@@ -8118,7 +8119,7 @@ let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
     if (data.objects?.length === 0) {
       const el = appendNoResults(this);
       setTimeout(() => {
-        el.item_name.innerHTML = `No matching results <a href='#' data-action='click:${this.elementName}#showFilters'>(filters&nbsp;enabled)</a>`;
+        el.item_name.innerHTML = `No matching results <a href='javascript:void(0)' data-action='click:${this.elementName}#showFilters'>(filters&nbsp;enabled)</a>`;
       }, 10);
       this.fixed_section_header.hidden = true;
     }
@@ -8127,7 +8128,7 @@ let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
         const c = data.meta?.total_matches;
         this.filter_query_description.innerHTML = data.meta.parsed_query.queryDescription + ` (${c}&nbsp;match${c === 1 ? "" : "es"})`;
         if (this.areFiltersEnabled) {
-          this.filter_query_description.innerHTML += ` <a href='#' data-action='click:${this.elementName}#showFilters'>filters&nbsp;enabled</a>`;
+          this.filter_query_description.innerHTML += ` <a href='javascript:void(0)' data-action='click:${this.elementName}#showFilters'>filters&nbsp;enabled</a>`;
         }
       } else {
         this.filter_query_description.innerHTML = "";
