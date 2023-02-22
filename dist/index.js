@@ -5759,7 +5759,6 @@ let PagedRoutesViewer = class extends BaseRoutesViewer$1 {
         const c = data.meta?.total_matches;
         this.filter_query_description.innerHTML = data.meta.parsed_query.queryDescription + ` (${c}&nbsp;match${c === 1 ? "" : "es"})`;
         if (this.areFiltersEnabled) {
-          globalThis["routesViewer"] = this;
           this.filter_query_description.innerHTML += ` <a href='#' data-action='click:${this.elementName}#showFilters'>filters&nbsp;enabled</a>`;
         }
       } else {
@@ -8105,8 +8104,11 @@ let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
     console.debug(data, { depth: null });
     this.queue = [];
     this.clearResultsDropdown();
+    this.fixed_section_header.hidden = false;
     if (data.objects?.length === 0) {
-      appendNoResults(this);
+      const str = this.areFiltersEnabled ? " (filters&nbsp;enabled)" : " ='[";
+      appendNoResults(this, `No matching results${str}`);
+      this.fixed_section_header.hidden = true;
     }
     if (this.filter_query_description) {
       if (data.meta?.parsed_query) {
