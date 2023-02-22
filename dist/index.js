@@ -3047,7 +3047,6 @@ let FiltersControllerElement = class extends BaseCon$1 {
   show() {
     this.main_container.style.transition = "transform 0.3s cubic-bezier(0.33, 1, 0.68, 1)";
     this.loadFilters();
-    this.dimming_view.style.backgroundColor = "var(--background-color)";
     document.body.style.overflow = "hidden";
     this.gray_view.style.opacity = "1";
     this.main_container.style.transform = "translate3d(0, 0, 0)";
