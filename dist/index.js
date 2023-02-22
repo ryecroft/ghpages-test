@@ -3060,12 +3060,10 @@ let FiltersControllerElement = class extends BaseCon$1 {
     this.loadFilters();
     console.log(this.dimming_view.style.opacity);
     this.dimming_view.style.backgroundColor = "var(--background-color)";
-    this.dimming_view.style.zIndex = "100000000";
     document.body.style.overflow = "hidden";
     this.gray_view.style.opacity = "1";
     this.main_container.style.transform = "translate3d(0, 0, 0)";
     this.backing_view.style.height = `${this.main_container.clientHeight - 30}px`;
-    this.dimming_view.style.transition = "opacity 0.3s ease-in-out";
   }
   loadFilters() {
     const data = this.data;
