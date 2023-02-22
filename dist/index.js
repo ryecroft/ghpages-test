@@ -3595,7 +3595,7 @@ let BaseRoutesViewer = class extends BaseCon$1 {
       setTimeout(() => {
         this.filtersData = fc.toJson();
       }, 300);
-    }, 200);
+    }, 30);
   }
   toggleArrowInSortButton() {
     this.sort_arrow.style.rotate = this.sortDirectionFromButton === "desc" ? "180deg" : "0deg";
