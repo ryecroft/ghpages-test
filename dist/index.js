@@ -2998,32 +2998,31 @@ let FiltersControllerElement = class extends BaseCon$1 {
     this.parentElement?.removeChild(this);
     this.afterDismiss(this);
   }
+  currentYTransform = 0;
   onTouchMove(evt) {
     if (!this.shouldHandleTouches)
       return;
-    const touches = evt.changedTouches;
-    for (let i = 0; i < 1; i++) {
-      if (this.touchStartY === void 0) {
-        this.touchStartY = touches[i].pageY;
-      }
-      const proposedNewBottom = this.touchStartY - touches[i].pageY;
-      const actualNewBottom = proposedNewBottom > 0 ? proposedNewBottom / Math.pow(3.5, 1) : proposedNewBottom;
-      this.main_container.style.transform = `translate3d(0px, ${-actualNewBottom}px, 0px)`;
-      this.backing_view.style.opacity = actualNewBottom > 0 ? "1" : "0";
+    const touch = evt.changedTouches[0];
+    if (this.touchStartY === void 0) {
+      this.touchStartY = touch.pageY;
     }
+    const proposedNewBottom = this.touchStartY - touch.pageY;
+    const actualNewBottom = proposedNewBottom > 0 ? proposedNewBottom / Math.pow(3.5, 1) : proposedNewBottom;
+    this.currentYTransform = -actualNewBottom;
+    this.main_container.style.transform = `translate3d(0px, ${-actualNewBottom}px, 0px)`;
+    this.backing_view.style.opacity = actualNewBottom > 0 ? "1" : "0";
     evt.preventDefault();
   }
   onTouchEnd(_evt) {
     this.touchStartY = void 0;
     this.main_container.style.transition = "transform 0.3s cubic-bezier(0.33, 1, 0.68, 1)";
-    const current = parseInt(this.main_container.style.bottom);
-    if (current < -200) {
+    if (this.currentYTransform > 250) {
       this.hide();
     } else {
       this.main_container.style.transform = `translate3d(0, 0, 0)`;
     }
     setTimeout(() => {
-      this.main_container.style.transition = "bottom 0.3s cubic-bezier(0.33, 1, 0.68, 1)";
+      this.main_container.style.transition = null;
     }, 600);
   }
   touchStartY = void 0;
@@ -3037,7 +3036,7 @@ let FiltersControllerElement = class extends BaseCon$1 {
       return;
     }
     this.shouldHandleTouches = true;
-    this.main_container.style.transition = "bottom 0.3s cubic-bezier(0.33, 1, 0.68, 1)";
+    this.main_container.style.transition = null;
   }
   get scrollViewIsAtBottom() {
     return this.filters_container.scrollHeight - this.filters_container.clientHeight - this.filters_container.scrollTop < 2;
@@ -3046,6 +3045,7 @@ let FiltersControllerElement = class extends BaseCon$1 {
     return this.filters_container.scrollTop < 2;
   }
   show() {
+    this.main_container.style.transition = "transform 0.3s cubic-bezier(0.33, 1, 0.68, 1)";
     this.main_filter.input.onchange = (_evt) => {
       const enabled = _evt.target["checked"];
       if (enabled) {
@@ -3058,7 +3058,6 @@ let FiltersControllerElement = class extends BaseCon$1 {
       this.setTitleOfMainFilter();
     };
     this.loadFilters();
-    console.log(this.dimming_view.style.opacity);
     this.dimming_view.style.backgroundColor = "var(--background-color)";
     document.body.style.overflow = "hidden";
     this.gray_view.style.opacity = "1";
