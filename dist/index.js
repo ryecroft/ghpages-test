@@ -3034,7 +3034,7 @@ let FiltersControllerElement = class extends BaseCon$1 {
       this.dimming_view.style.zIndex = "100000000";
       document.body.style.overflow = "hidden";
       this.gray_view.style.opacity = "1";
-      this.main_container.style.bottom = "0";
+      this.main_container.style.transform = "translate3d(0, 0, 0)";
       this.backing_view.style.height = `${this.main_container.clientHeight - 30}px`;
     }, 10);
   }
@@ -3077,7 +3077,7 @@ let FiltersControllerElement = class extends BaseCon$1 {
     document.body.style.overflow = "auto";
     this.gray_view.style.opacity = "0";
     this.backing_view.style.opacity = "0";
-    this.main_container.style.bottom = "-100%";
+    this.main_container.style.transform = "translate3d(0px, 100%, 0px)";
     setTimeout(() => {
       this.die();
     }, 500);
