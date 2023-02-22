@@ -3566,18 +3566,18 @@ let BaseRoutesViewer = class extends BaseCon$1 {
   filtersData;
   createFiltersController() {
     const fc = document.createElement("filters-controller");
+    fc.allowedFilterTypes = this.allowedFilterTypes;
+    fc.data = Filters.fromDisk();
     fc.afterDismiss = (fc2) => {
       const data = fc2.toJson();
       this.setFilterGlow(data.filters_enabled);
       const currentFiltersString = JSON.stringify(this.filtersData);
       this.filtersData = fc2.toJson();
       const newFiltersString = JSON.stringify(this.filtersData);
-      if (currentFiltersString !== newFiltersString) {
+      if (currentFiltersString != newFiltersString) {
         this.onInputUpdated();
       }
     };
-    fc.data = Filters.fromDisk();
-    fc.allowedFilterTypes = this.allowedFilterTypes;
     return fc;
   }
   setFilterGlow(enabled) {
@@ -3592,7 +3592,10 @@ let BaseRoutesViewer = class extends BaseCon$1 {
     document.body.appendChild(fc);
     setTimeout(() => {
       fc.show();
-      this.filtersData = fc.toJson();
+      setTimeout(() => {
+        this.filtersData = fc.toJson();
+        console.log(fc.toJson());
+      }, 300);
     });
   }
   toggleArrowInSortButton() {
