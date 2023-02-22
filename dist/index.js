@@ -2576,6 +2576,7 @@ function appendNoResults(target, message) {
   el.itemName = message || `No matching results ='[`;
   target.routes_viewer_container.appendChild(el);
   el.resultType = "no-result";
+  return el;
 }
 
 function onKeyPressedEvent(e) {
@@ -2956,18 +2957,10 @@ var __decorateClass$p = (decorators, target2, key, kind) => {
 let FiltersControllerElement = class extends BaseCon$1 {
   gray_view;
   main_container;
-  scroll_container;
   filters_container;
   dimming_view;
   backing_view;
-  spacer;
   main_filter;
-  get maxScrollTop() {
-    return this.scroll_container.scrollHeight - this.scroll_container.clientHeight;
-  }
-  get minScrollTop() {
-    return this.main_container.clientHeight * 0.66;
-  }
   afterDismiss = (_) => {
   };
   allowedFilterTypes = {
@@ -2976,9 +2969,7 @@ let FiltersControllerElement = class extends BaseCon$1 {
     minimum_star_count: true
   };
   storageKey = "route-filters";
-  get data() {
-    return Filters.fromDisk();
-  }
+  data;
   get filters() {
     return Array.from(this.filters_container.querySelectorAll("filter-row, color-filter-row, slider-filter-row"));
   }
@@ -2987,6 +2978,12 @@ let FiltersControllerElement = class extends BaseCon$1 {
   }
   connectedCallback() {
     super.connectedCallback();
+    this.main_container.ontouchmove = this.onTouchMove.bind(this);
+    this.main_container.ontouchstart = this.handleStart.bind(this);
+    this.main_container.ontouchend = this.onTouchEnd.bind(this);
+    this.gray_view.ontouchmove = this.onTouchMove.bind(this);
+    this.gray_view.ontouchstart = this.handleStart.bind(this);
+    this.gray_view.ontouchend = this.onTouchEnd.bind(this);
   }
   setTitleOfMainFilter() {
     if (this.main_filter.input.checked) {
@@ -3001,18 +2998,52 @@ let FiltersControllerElement = class extends BaseCon$1 {
     this.parentElement?.removeChild(this);
     this.afterDismiss(this);
   }
-  onScroll(_evt) {
-    const show = this.scroll_container.scrollTop > this.maxScrollTop - 30;
-    this.backing_view.style.opacity = show ? "1" : "0";
+  onTouchMove(evt) {
+    if (!this.shouldHandleTouches)
+      return;
+    const touches = evt.changedTouches;
+    for (let i = 0; i < 1; i++) {
+      if (this.touchStartY === void 0) {
+        this.touchStartY = touches[i].pageY;
+      }
+      const proposedNewBottom = this.touchStartY - touches[i].pageY;
+      const actualNewBottom = proposedNewBottom > 0 ? proposedNewBottom / Math.pow(3.5, 1) : proposedNewBottom;
+      this.main_container.style.transform = `translate3d(0px, ${-actualNewBottom}px, 0px)`;
+      this.backing_view.style.opacity = actualNewBottom > 0 ? "1" : "0";
+    }
+    evt.preventDefault();
   }
   onTouchEnd(_evt) {
-    if (this.scroll_container.scrollTop < this.maxScrollTop) {
-      if (this.scroll_container.scrollTop < this.minScrollTop) {
-        this.hide();
-      } else {
-        this.scroll_container.scrollTo({ top: this.maxScrollTop, behavior: "smooth" });
-      }
+    this.touchStartY = void 0;
+    this.main_container.style.transition = "transform 0.3s cubic-bezier(0.33, 1, 0.68, 1)";
+    const current = parseInt(this.main_container.style.bottom);
+    if (current < -200) {
+      this.hide();
+    } else {
+      this.main_container.style.transform = `translate3d(0, 0, 0)`;
     }
+    setTimeout(() => {
+      this.main_container.style.transition = "bottom 0.3s cubic-bezier(0.33, 1, 0.68, 1)";
+    }, 600);
+  }
+  touchStartY = void 0;
+  shouldHandleTouches = false;
+  handleStart(evt) {
+    const myLocation = evt.changedTouches[0];
+    const target2 = document.elementFromPoint(myLocation.clientX, myLocation.clientY);
+    const shouldContinue = this.gray_view === target2 || this.main_filter.contains(target2) || this.dimming_view === target2 || this.main_container === target2 || target2.classList.contains("divider");
+    if (!shouldContinue) {
+      this.shouldHandleTouches = false;
+      return;
+    }
+    this.shouldHandleTouches = true;
+    this.main_container.style.transition = "bottom 0.3s cubic-bezier(0.33, 1, 0.68, 1)";
+  }
+  get scrollViewIsAtBottom() {
+    return this.filters_container.scrollHeight - this.filters_container.clientHeight - this.filters_container.scrollTop < 2;
+  }
+  get scrollViewIsAtTop() {
+    return this.filters_container.scrollTop < 2;
   }
   show() {
     this.main_filter.input.onchange = (_evt) => {
@@ -3026,23 +3057,21 @@ let FiltersControllerElement = class extends BaseCon$1 {
       }
       this.setTitleOfMainFilter();
     };
-    setTimeout(() => {
-    }, 450);
     this.loadFilters();
-    setTimeout(() => {
-      this.dimming_view.style.backgroundColor = "var(--background-color)";
-      this.dimming_view.style.zIndex = "100000000";
-      document.body.style.overflow = "hidden";
-      this.gray_view.style.opacity = "1";
-      this.main_container.style.transform = "translate3d(0, 0, 0)";
-      this.backing_view.style.height = `${this.main_container.clientHeight - 30}px`;
-    }, 10);
+    console.log(this.dimming_view.style.opacity);
+    this.dimming_view.style.backgroundColor = "var(--background-color)";
+    this.dimming_view.style.zIndex = "100000000";
+    document.body.style.overflow = "hidden";
+    this.gray_view.style.opacity = "1";
+    this.main_container.style.transform = "translate3d(0, 0, 0)";
+    this.backing_view.style.height = `${this.main_container.clientHeight - 30}px`;
   }
   loadFilters() {
     const data = this.data;
     const defaultFilters = new Filters();
     this.main_filter.input.checked = data.filters_enabled;
     this.main_filter.input.onchange({ target: this.main_filter.input });
+    this.dimming_view.style.opacity = this.main_filter.input.checked ? "0" : "0.7";
     if (this.allowedFilterTypes?.route_types) {
       Object.keys(data.route_types).forEach((key) => {
         let row2 = this.filters_container.appendChild(new FilterRowElement$1());
@@ -3099,9 +3128,6 @@ __decorateClass$p([
 ], FiltersControllerElement.prototype, "main_container", 2);
 __decorateClass$p([
   target
-], FiltersControllerElement.prototype, "scroll_container", 2);
-__decorateClass$p([
-  target
 ], FiltersControllerElement.prototype, "filters_container", 2);
 __decorateClass$p([
   target
@@ -3109,9 +3135,6 @@ __decorateClass$p([
 __decorateClass$p([
   target
 ], FiltersControllerElement.prototype, "backing_view", 2);
-__decorateClass$p([
-  target
-], FiltersControllerElement.prototype, "spacer", 2);
 __decorateClass$p([
   target
 ], FiltersControllerElement.prototype, "main_filter", 2);
@@ -3554,6 +3577,7 @@ let BaseRoutesViewer = class extends BaseCon$1 {
         this.onInputUpdated();
       }
     };
+    fc.data = Filters.fromDisk();
     fc.allowedFilterTypes = this.allowedFilterTypes;
     return fc;
   }
@@ -3569,6 +3593,7 @@ let BaseRoutesViewer = class extends BaseCon$1 {
     document.body.appendChild(fc);
     setTimeout(() => {
       fc.show();
+      this.filtersData = fc.toJson();
     });
   }
   toggleArrowInSortButton() {
@@ -8091,8 +8116,10 @@ let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
     this.clearResultsDropdown();
     this.fixed_section_header.hidden = false;
     if (data.objects?.length === 0) {
-      const str = this.areFiltersEnabled ? " (filters&nbsp;enabled)" : " ='[";
-      appendNoResults(this, `No matching results${str}`);
+      const el = appendNoResults(this);
+      setTimeout(() => {
+        el.item_name.innerHTML = `No matching results <a href='#' data-action='click:${this.elementName}#showFilters'>(filters&nbsp;enabled)</a>`;
+      }, 10);
       this.fixed_section_header.hidden = true;
     }
     if (this.filter_query_description) {
