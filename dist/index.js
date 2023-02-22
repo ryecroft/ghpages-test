@@ -2700,16 +2700,13 @@ class UkcSid {
 const template$5 = (element) => {
   const elementName = element.elementName;
   return html$1`
-  <div class='rfd-search'>
+  <div class='rfd-search w-100 h-100'>
       <div data-target='${elementName}.gray_view' data-action='click:${elementName}#hide' id='gray-view'></div>
-      <div data-target='${elementName}.scroll_container' id='filters-controller-scrollable-area'>
-          <div data-target='${elementName}.spacer' style='height:100vh'></div>
-          <div data-target='${elementName}.main_container' class='filters-controller-main-container pr-3 pl-3 pt-1'>
-              <filter-row icon-type='filter' title-string='Filters disabled' data-target='${elementName}.main_filter'></filter-row>
-              <div class='divider'></div>
-              <div data-target='${elementName}.filters_container' id='filters-controller-filters-container'>
-                  <div data-target='${elementName}.dimming_view' class='filters-dimming-view'></div>
-              </div>
+      <div data-target='${elementName}.main_container' class='filters-controller-main-container pr-3 pl-3 pt-1'>
+          <filter-row icon-type='filter' title-string='Filters disabled' data-target='${elementName}.main_filter'></filter-row>
+          <div class='divider'></div>
+          <div data-target='${elementName}.filters_container' id='filters-controller-filters-container'>
+              <div data-target='${elementName}.dimming_view' class='filters-dimming-view'></div>
           </div>
       </div>
       <div data-target='${elementName}.backing_view' class='backing-view'></div>
@@ -2990,9 +2987,6 @@ let FiltersControllerElement = class extends BaseCon$1 {
   }
   connectedCallback() {
     super.connectedCallback();
-    this.scroll_container.scrollTop = this.maxScrollTop;
-    this.main_container.style.transform = "translate(0px, 500vh)";
-    this.scroll_container.scrollTop = this.maxScrollTop;
   }
   setTitleOfMainFilter() {
     if (this.main_filter.input.checked) {
@@ -3033,25 +3027,16 @@ let FiltersControllerElement = class extends BaseCon$1 {
       this.setTitleOfMainFilter();
     };
     setTimeout(() => {
-      this.scroll_container.addEventListener("scroll", this.onScroll.bind(this));
-      this.scroll_container.addEventListener("touchend", this.onTouchEnd.bind(this));
     }, 450);
     this.loadFilters();
-    this.scroll_container.scrollTo({ top: this.maxScrollTop, behavior: "smooth" });
     setTimeout(() => {
       this.dimming_view.style.backgroundColor = "var(--background-color)";
       this.dimming_view.style.zIndex = "100000000";
       document.body.style.overflow = "hidden";
       this.gray_view.style.opacity = "1";
-      this.main_container.style.transform = "translate(0px, 0px)";
+      this.main_container.style.bottom = "0";
       this.backing_view.style.height = `${this.main_container.clientHeight - 30}px`;
     }, 10);
-    setTimeout(() => {
-      this.scroll_container.style.overflowY = "hidden";
-      setTimeout(() => {
-        this.scroll_container.style.overflowY = "scroll";
-      }, 25);
-    }, 350);
   }
   loadFilters() {
     const data = this.data;
@@ -3092,7 +3077,7 @@ let FiltersControllerElement = class extends BaseCon$1 {
     document.body.style.overflow = "auto";
     this.gray_view.style.opacity = "0";
     this.backing_view.style.opacity = "0";
-    this.main_container.style.transform = `translate(0px, ${this.main_container.clientHeight}px)`;
+    this.main_container.style.bottom = "-100%";
     setTimeout(() => {
       this.die();
     }, 500);
