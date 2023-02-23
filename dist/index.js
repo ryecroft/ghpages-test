@@ -3024,7 +3024,7 @@ let FiltersControllerElement = class extends BaseCon$1 {
     if (this.currentYTransform > 250) {
       this.hide();
     } else {
-      this.main_container.style.transform = `translate3d(0, 0, 0)`;
+      this.main_container.style.transform = "var(--transform-show)";
     }
     setTimeout(() => {
       this.main_container.style.transition = null;
@@ -3052,9 +3052,9 @@ let FiltersControllerElement = class extends BaseCon$1 {
   show() {
     this.main_container.style.transition = "transform 0.3s cubic-bezier(0.33, 1, 0.68, 1)";
     this.loadFilters();
-    document.body.style.overflow = "hidden";
+    document.body.style.overflow = "var(--body-overflow-style)";
     this.gray_view.style.opacity = "1";
-    this.main_container.style.transform = "translate3d(0, 0, 0)";
+    this.main_container.style.transform = "var(--transform-show)";
     this.backing_view.style.height = `${this.main_container.clientHeight - 30}px`;
   }
   loadFilters() {
@@ -3110,7 +3110,7 @@ let FiltersControllerElement = class extends BaseCon$1 {
     document.body.style.overflow = "auto";
     this.gray_view.style.opacity = "0";
     this.backing_view.style.opacity = "0";
-    this.main_container.style.transform = "translate3d(0px, 100%, 0px)";
+    this.main_container.style.transform = "var(--transform-hide)";
     setTimeout(() => {
       this.die();
     }, 500);
