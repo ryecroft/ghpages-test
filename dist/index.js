@@ -3285,8 +3285,10 @@ var UkcLocalStorage;
   UkcLocalStorage2.sharedLogbook = new UkcLocalStorage2.LogbookDetails();
 })(UkcLocalStorage || (UkcLocalStorage = {}));
 const deets = new UkcLocalStorage.LogbookDetails();
-deets.lookup = await deets.getLookup();
-globalThis.logbook = deets;
+void deets.getLookup().then((res) => {
+  deets.lookup = res;
+  globalThis.logbook = deets;
+});
 
 var __defProp$p = Object.defineProperty;
 var __getOwnPropDesc$p = Object.getOwnPropertyDescriptor;
