@@ -12123,13 +12123,14 @@ let LogbookViewerElement = class extends OfflineInfiniteScrollRoutesViewer$1 {
     this.sort_button.style.display = "block";
     this.sort_order_picker.style.display = "block";
     this.input.placeholder = "Filter your logbook...";
-    document.addEventListener("DOMContentLoaded", () => {
-      this.searchbar.submitSearchHandler = (resultsUrl) => {
-        window.location.href = resultsUrl;
-      };
-      this.query = this.urlFilter || "";
-      this.searchbar.input.value = "";
-    });
+  }
+  onDomContentLoaded() {
+    super.onDomContentLoaded();
+    this.searchbar.submitSearchHandler = (resultsUrl) => {
+      window.location.href = resultsUrl;
+    };
+    this.query = this.urlFilter || "";
+    this.searchbar.input.value = "";
   }
   get allowEmptyQuery() {
     return true;
