@@ -50,6 +50,14 @@
         {scope: '/'}
       )
     }
+    function maybeSetCookieFromUrl() {
+      let urlParams = new URLSearchParams( window.location.search )
+      const cookie = urlParams.get( 'ukcsid' )
+      if ( cookie ) {
+        document.cookie = `ukcsid=${ cookie }`
+      }
+    }
+    maybeSetCookieFromUrl()
   </script>
 
 </body></html>

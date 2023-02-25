@@ -4992,6 +4992,9 @@ let UkcSearchbarElement = class extends RouteSearchbarElement$1 {
     if (window.location.origin.includes("localhost")) {
       return window.location.origin + "/results/";
     }
+    if (window.location.host === "route-viewer-dkk8m.ondigitalocean.app") {
+      return window.location.origin + "/results/";
+    }
     return window.location.origin + "/logbook/search/";
   }
   appendCrag(target, crag) {
