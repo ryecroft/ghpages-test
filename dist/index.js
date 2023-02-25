@@ -3019,15 +3019,18 @@ var UkcLocalStorage;
   class LogbookDetails {
     #lookup;
     get lookup() {
-      if (!this.#lookup) {
-        let diskLogbookString = IDB.get(this.identifier);
-        const diskLogbook = JSON.parse(diskLogbookString);
-        this.#lookup = new LogbookDetailsBacker(diskLogbook);
-      }
       return this.#lookup;
     }
     set lookup(v) {
       this.#lookup = v;
+    }
+    async getLookup() {
+      if (!this.#lookup) {
+        const diskLogbookString = await IDB.get(this.identifier);
+        const diskLogbook = diskLogbookString ? JSON.parse(diskLogbookString) : null;
+        this.#lookup = new LogbookDetailsBacker(diskLogbook);
+      }
+      return this.#lookup;
     }
     fetching = false;
     identifier = "user_logbook";
@@ -3042,7 +3045,7 @@ var UkcLocalStorage;
       await IDB.set(this.editDateKey, t.getTime().toString());
     }
     async editDate() {
-      let t = new Date(parseInt(await IDB.get(this.editDateKey)));
+      const t = new Date(parseInt(await IDB.get(this.editDateKey)));
       return t;
     }
     minimumDelayBetweenFetches = 1e3 * 60 * 5;
@@ -3053,7 +3056,7 @@ var UkcLocalStorage;
       await IDB.set(this.lastFetchedKey, t.getTime().toString());
     }
     async lastFetched() {
-      let t = new Date(parseInt(await IDB.get(this.lastFetchedKey)));
+      const t = new Date(parseInt(await IDB.get(this.lastFetchedKey)));
       return t;
     }
     constructor() {
@@ -3103,13 +3106,15 @@ var UkcLocalStorage;
       if (IDB.get(this.identifier)) {
         this.fetch().then(async (remoteDeets) => {
           await this.loadFromRemoteDetails(remoteDeets);
+        }).catch((err) => {
+          throw err;
         });
       } else {
         const remoteDeets = await this.fetch();
         if (remoteDeets.status !== 200) {
           console.debug(remoteDeets);
         } else {
-          this.loadFromRemoteDetails(remoteDeets);
+          await this.loadFromRemoteDetails(remoteDeets);
         }
       }
       return this.lookup;
@@ -3164,8 +3169,8 @@ var UkcLocalStorage;
       const data = remoteDeets.data;
       data.logbook.forEach((ascent) => this.addAscent(ascent));
       data.wishlist.forEach((wish) => this.addWishlistItem(wish));
-      data.logbook_deletes.forEach((deets) => this.deleteAscent(deets));
-      data.wishlist_deletes.forEach((deets) => this.deleteWishlistItem(deets));
+      data.logbook_deletes.forEach((deets2) => this.deleteAscent(deets2));
+      data.wishlist_deletes.forEach((deets2) => this.deleteWishlistItem(deets2));
     }
     addAscent(ascent) {
       this.logbook[ascent.route_id_ukc] = this.logbook[ascent.route_id_ukc] || [];
@@ -3181,17 +3186,17 @@ var UkcLocalStorage;
       this.wishlist[wishlistItem.route_id_ukc] = this.wishlist[wishlistItem.route_id_ukc].filter((el) => el.id !== wishlistItem.id);
       this.wishlist[wishlistItem.route_id_ukc].push(wishlistItem);
     }
-    deleteAscent(deets) {
-      if (!this.logbook[deets.route_id_ukc]) {
+    deleteAscent(deets2) {
+      if (!this.logbook[deets2.route_id_ukc]) {
         return;
       }
-      this.logbook[deets.route_id_ukc] = this.logbook[deets.route_id_ukc].filter((el) => el.id !== deets.ascent_id);
+      this.logbook[deets2.route_id_ukc] = this.logbook[deets2.route_id_ukc].filter((el) => el.id !== deets2.ascent_id);
     }
-    deleteWishlistItem(deets) {
-      if (!this.wishlist[deets.route_id_ukc]) {
+    deleteWishlistItem(deets2) {
+      if (!this.wishlist[deets2.route_id_ukc]) {
         return;
       }
-      this.wishlist[deets.route_id_ukc] = this.wishlist[deets.route_id_ukc].filter((el) => el.id !== deets.wishlist_id);
+      this.wishlist[deets2.route_id_ukc] = this.wishlist[deets2.route_id_ukc].filter((el) => el.id !== deets2.wishlist_id);
     }
     bestAscent(routeIdUkc) {
       const ascents = this.logbook[routeIdUkc];
@@ -3279,7 +3284,9 @@ var UkcLocalStorage;
   UkcLocalStorage2.WishlistInfo = WishlistInfo;
   UkcLocalStorage2.sharedLogbook = new UkcLocalStorage2.LogbookDetails();
 })(UkcLocalStorage || (UkcLocalStorage = {}));
-globalThis.logbook = new UkcLocalStorage.LogbookDetails();
+const deets = new UkcLocalStorage.LogbookDetails();
+deets.lookup = await deets.getLookup();
+globalThis.logbook = deets;
 
 var __defProp$p = Object.defineProperty;
 var __getOwnPropDesc$p = Object.getOwnPropertyDescriptor;
@@ -3396,7 +3403,7 @@ let FiltersControllerElement = class extends BaseCon$1 {
     this.dimming_view.style.opacity = this.main_filter.input.checked ? "0" : "0.7";
     if (this.allowedFilterTypes?.route_types) {
       Object.keys(data.route_types).forEach((key) => {
-        let row2 = this.filters_container.appendChild(new FilterRowElement$1());
+        const row2 = this.filters_container.appendChild(new FilterRowElement$1());
         row2.iconType = key;
         row2.titleString = defaultFilters.route_types[key].title;
         row2.input.checked = data.route_types[key].checked;
@@ -3408,7 +3415,7 @@ let FiltersControllerElement = class extends BaseCon$1 {
     }
     if (this.allowedFilterTypes?.grade_colors) {
       Object.keys(data.grade_colors).forEach((key) => {
-        let row2 = this.filters_container.appendChild(new ColorFilterRowElement$1());
+        const row2 = this.filters_container.appendChild(new ColorFilterRowElement$1());
         row2.iconType = key;
         row2.titleString = defaultFilters.grade_colors[key].title;
         row2.input.checked = data.grade_colors[key].checked;
@@ -3433,7 +3440,7 @@ let FiltersControllerElement = class extends BaseCon$1 {
       };
       this.main_filter.input.onchange({ target: this.main_filter.input });
     }, 10);
-    let row = this.filters_container.appendChild(new SliderFilterRowElement$1());
+    const row = this.filters_container.appendChild(new SliderFilterRowElement$1());
     row.iconType = "star";
     row.icon_img.style.backgroundColor = "#F8CA23FF";
     row.titleString = "Route stars";
@@ -3632,12 +3639,17 @@ let BaseRoutesViewer = class extends BaseCon$1 {
     return this.convertStringToSortDirection(saved);
   }
   get urlQuery() {
-    let urlParams = new URLSearchParams(window.location.search);
+    const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get("query") || urlParams.get("q");
   }
   get urlSortDirection() {
-    let urlParams = new URLSearchParams(window.location.search);
+    const urlParams = new URLSearchParams(window.location.search);
     return this.convertStringToSortDirection(urlParams.get("direction"));
+  }
+  set urlSortDirection(newVal) {
+    const urlParams = new URLSearchParams(window.location.search);
+    urlParams.set("direction", newVal);
+    window.history.replaceState({}, "", "?" + urlParams.toString());
   }
   convertStringToSortDirection(str) {
     switch (str) {
@@ -3649,38 +3661,33 @@ let BaseRoutesViewer = class extends BaseCon$1 {
         return void 0;
     }
   }
-  set urlSortDirection(newVal) {
-    let urlParams = new URLSearchParams(window.location.search);
-    urlParams.set("direction", newVal);
-    window.history.replaceState({}, "", "?" + urlParams.toString());
-  }
   get urlFilter() {
-    let urlParams = new URLSearchParams(window.location.search);
+    const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get("filter");
   }
   set urlFilter(newVal) {
-    let urlParams = new URLSearchParams(window.location.search);
+    const urlParams = new URLSearchParams(window.location.search);
     urlParams.set("filter", newVal);
     window.history.replaceState({}, "", "?" + urlParams.toString());
   }
   get urlPage() {
-    let urlParams = new URLSearchParams(window.location.search);
+    const urlParams = new URLSearchParams(window.location.search);
     const page = urlParams.get("page") || "1";
     return Number(page) - 1;
   }
   set urlPage(newVal) {
     newVal ||= 0;
     newVal += 1;
-    let urlParams = new URLSearchParams(window.location.search);
+    const urlParams = new URLSearchParams(window.location.search);
     urlParams.set("page", newVal.toString());
     window.history.replaceState({}, "", "?" + urlParams.toString());
   }
   get urlSortOrder() {
-    let urlParams = new URLSearchParams(window.location.search);
+    const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get("sort");
   }
   set urlSortOrder(newVal) {
-    let urlParams = new URLSearchParams(window.location.search);
+    const urlParams = new URLSearchParams(window.location.search);
     urlParams.set("sort", newVal);
     window.history.replaceState({}, "", "?" + urlParams.toString());
   }
@@ -3690,9 +3697,11 @@ let BaseRoutesViewer = class extends BaseCon$1 {
   responseMessage = "";
   connectedCallback() {
     super.connectedCallback();
-    Filters.fromDisk().then((data) => this.init(data));
+    Filters.fromDisk().then((data) => this.init(data)).catch((err) => {
+      throw err;
+    });
   }
-  init(fitersData) {
+  async init(fitersData) {
     this.filtersData = fitersData;
     this.setFilterGlow(this.filtersData.filters_enabled);
     this.maybeSetCookieFromUrl();
@@ -3721,7 +3730,7 @@ let BaseRoutesViewer = class extends BaseCon$1 {
       this.query = "";
     });
     this.input.addEventListener("keydown", (e) => this.onKeyPressedEvent(e));
-    this._init();
+    await this._init();
     const filterBar = this.input;
     document.ontouchstart = function(_e) {
       if (document.activeElement === filterBar) {
@@ -3745,7 +3754,7 @@ let BaseRoutesViewer = class extends BaseCon$1 {
   maybeSetCookieFromUrl() {
     if (window.location.host !== "route-viewer-dkk8m.ondigitalocean.app")
       return;
-    let urlParams = new URLSearchParams(window.location.search);
+    const urlParams = new URLSearchParams(window.location.search);
     const cookie = urlParams.get("ukcsid");
     if (cookie) {
       document.cookie = `ukcsid=${cookie}`;
@@ -3781,7 +3790,7 @@ let BaseRoutesViewer = class extends BaseCon$1 {
     if (this.preventLayoutShift)
       return;
     const scroll = this.routes_viewer_container.getBoundingClientRect().top;
-    let diff = scroll - this.lastScroll;
+    const diff = scroll - this.lastScroll;
     this.lastScroll = scroll;
     if (diff > 40) {
       const newTop2 = "var(--header-open)";
@@ -4017,7 +4026,7 @@ let BaseRoutesViewer = class extends BaseCon$1 {
       this.fixed_section_header.left_label.innerText = this.headerDeets[0].leftText;
       this.fixed_section_header.right_label.innerText = this.headerDeets[0].rightText;
     }
-    if (this.sort_order_picker.value === "crag_name" && route.hasOwnProperty("crag_id_ukc")) {
+    if (this.sort_order_picker.value === "crag_name" && Object.prototype.hasOwnProperty.call(route, "crag_id_ukc")) {
       header.left_label.innerHTML = this.linkForCragId(route["crag_id_ukc"], route["crag_name"]);
     }
     return header;
@@ -4039,12 +4048,12 @@ let BaseRoutesViewer = class extends BaseCon$1 {
     throw new Error("not implemented");
   }
   get fullQuery() {
-    let query = this.urlQuery;
+    const query = this.urlQuery;
     const res = ((query || "") + " " + (this.input.value || this.urlFilter || "")).trim();
     return res;
   }
   get fullQueryWithoutUrlFilter() {
-    let query = this.urlQuery;
+    const query = this.urlQuery;
     const res = ((query || "") + " " + this.input.value).trim();
     return res;
   }
@@ -4308,19 +4317,6 @@ let BaseSearchbarElement = class extends BaseCon$1 {
   get query() {
     return this.input.value;
   }
-  setQueryWithoutDispatchingEvent(query, alsoFocusInput = true) {
-    if (document.activeElement !== this.input && alsoFocusInput) {
-      this.input.focus();
-    }
-    this.input.value = query || "";
-    this.setVisibilityOfDeleteButton(query);
-    this.searchbar_short_display.innerText = query || "";
-    if (!this.input.value) {
-      this.baseData = void 0;
-      this.showQuerySuggestion();
-      this.stopProgressBar();
-    }
-  }
   set query(query) {
     if (document.activeElement !== this.input) {
       this.input.focus();
@@ -4328,6 +4324,19 @@ let BaseSearchbarElement = class extends BaseCon$1 {
     this.input.value = query || "";
     this.input.dispatchEvent(new Event("input", { bubbles: true }));
     this.setVisibilityOfDeleteButton(query);
+    if (!this.input.value) {
+      this.baseData = void 0;
+      this.showQuerySuggestion();
+      this.stopProgressBar();
+    }
+  }
+  setQueryWithoutDispatchingEvent(query, alsoFocusInput = true) {
+    if (document.activeElement !== this.input && alsoFocusInput) {
+      this.input.focus();
+    }
+    this.input.value = query || "";
+    this.setVisibilityOfDeleteButton(query);
+    this.searchbar_short_display.innerText = query || "";
     if (!this.input.value) {
       this.baseData = void 0;
       this.showQuerySuggestion();
@@ -4423,7 +4432,7 @@ let BaseSearchbarElement = class extends BaseCon$1 {
     let prev = 0;
     return (...args) => {
       clearTimeout(this.debounceTimeout);
-      let now = new Date().getTime();
+      const now = new Date().getTime();
       if (now - prev > this.currentSearchDelay) {
         prev = now;
         return func(...args);
@@ -4442,7 +4451,7 @@ let BaseSearchbarElement = class extends BaseCon$1 {
     };
   }
   createResultsDropdown() {
-    let routes_viewer_container = this.querySelector("#search-results-container");
+    const routes_viewer_container = this.querySelector("#search-results-container");
     routes_viewer_container.classList.add("results-dropdown");
     return routes_viewer_container;
   }
@@ -4677,7 +4686,7 @@ let BaseSearchbarElement = class extends BaseCon$1 {
     window.location.href = resultsUrl;
   };
   get fullResultsUrl() {
-    let searchQuery = this.input.value;
+    const searchQuery = this.input.value;
     return this.resultsUrlString + "?query=" + searchQuery;
   }
   isElementVisible(el) {
@@ -4851,7 +4860,7 @@ let RouteSearchbarElement = class extends BaseSearchbarElement$1 {
   fetchResults() {
     const currentSearchId = new Date();
     const currentQuery = this.query.trim();
-    (async () => {
+    void (async () => {
       this.routes_viewer_container.style.opacity = "0.4";
       const response = await fetch(generateApiUrl$8(), {
         method: "POST",
@@ -4971,7 +4980,7 @@ let RouteSearchbarElement = class extends BaseSearchbarElement$1 {
   processQueue() {
     if (this.queue.length) {
       this.queue.shift()();
-      Promise.resolve().then(() => this.processQueue());
+      void Promise.resolve().then(() => this.processQueue());
     }
   }
   appendButtress(target, buttress) {
@@ -5038,7 +5047,7 @@ let UkcSearchbarElement = class extends RouteSearchbarElement$1 {
   localStorageKey = "routes-viewer";
   connectedCallback() {
     super.connectedCallback();
-    sharedStorage$5.fetchLogbookLookup((_res) => this.updateLogbookAndWishlistStatusOfCells());
+    void sharedStorage$5.fetchLogbookLookup((_res) => this.updateLogbookAndWishlistStatusOfCells());
   }
   get resultsUrlString() {
     if (window.location.origin.includes("localhost")) {
@@ -5841,9 +5850,9 @@ let PagedRoutesViewer = class extends BaseRoutesViewer$1 {
       } catch (e) {
       }
     }
-    let query = this.queryToUseDuringInit();
+    const query = this.queryToUseDuringInit();
     if (query !== null || this.allowEmptyQuery) {
-      let results2 = await this.fetchResults(query, this.urlPage);
+      const results2 = await this.fetchResults(query, this.urlPage);
       if (results2.status !== 200) {
         console.debug(results2);
         return;
@@ -5963,7 +5972,7 @@ let PagedRoutesViewer = class extends BaseRoutesViewer$1 {
             "Content-Type": "application/json"
           },
           body: JSON.stringify(
-            this.bodyForRequestAndPage(query, pageNo)
+            await this.bodyForRequestAndPage(query, pageNo)
           )
         }
       );
@@ -5986,7 +5995,7 @@ let PagedRoutesViewer = class extends BaseRoutesViewer$1 {
     const currentSearchId = this.searchId;
     this.timeout = setTimeout(async () => {
       const query = this.fullQueryWithoutUrlFilter;
-      let results = await this.fetchResults(query, 0);
+      const results = await this.fetchResults(query, 0);
       if (this.searchId > currentSearchId) {
         return;
       }
@@ -6031,7 +6040,7 @@ let SearchResultsViewerElement = class extends PagedRoutesViewer$1 {
   }
   connectedCallback() {
     super.connectedCallback();
-    sharedStorage$4.fetchLogbookLookup((_res) => this.updateLogbookAndWishlistStatusOfCells());
+    void sharedStorage$4.fetchLogbookLookup((_res) => this.updateLogbookAndWishlistStatusOfCells());
     this.fixed_section_header.style.display = "none";
     this.sort_order_picker.style.display = "none";
     this.sort_button.style.display = "none";
@@ -6044,7 +6053,7 @@ let SearchResultsViewerElement = class extends PagedRoutesViewer$1 {
       this.searchbar.resignFocus();
       window.history.pushState({}, "", resultsUrl);
       setTimeout(() => {
-        this._init();
+        void this._init();
       }, 300);
     };
   }
@@ -6073,7 +6082,7 @@ let SearchResultsViewerElement = class extends PagedRoutesViewer$1 {
   }
   async fetchResults(query, pageNo) {
     const res = await super.fetchResults(query, pageNo);
-    this.searchbar.buildResults(res);
+    this.searchbar?.buildResults(res);
     return res;
   }
   async bodyForRequestAndPage(query, pageNo) {
@@ -8059,24 +8068,24 @@ var __decorateClass$d = (decorators, target, key, kind) => {
 let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
   _apiData;
   _apiDataEntireList;
-  set apiDataDescribingCurrentList(newVal) {
-    localStorage.setItem(this.localStorageKey + "-api-data", JSON.stringify(newVal));
+  setApiDataDescribingCurrentList(newVal) {
+    void IDB.set(this.localStorageKey + "-api-data", JSON.stringify(newVal));
     this._apiData = newVal;
   }
-  get apiDataDescribingCurrentList() {
+  async getApiDataDescribingCurrentList() {
     if (!this._apiData) {
-      const str = localStorage.getItem(this.localStorageKey + "-api-data");
+      const str = await IDB.get(this.localStorageKey + "-api-data");
       str && (this._apiData = JSON.parse(str));
     }
     return this._apiData;
   }
-  set apiDataDescribingEntireList(newVal) {
-    localStorage.setItem(this.localStorageKey + "-api-data-entire-list", JSON.stringify(newVal));
+  setApiDataDescribingEntireList(newVal) {
+    void IDB.set(this.localStorageKey + "-api-data-entire-list", JSON.stringify(newVal));
     this._apiDataEntireList = newVal;
   }
-  get apiDataDescribingEntireList() {
+  async getApiDataDescribingEntireList() {
     if (!this._apiDataEntireList) {
-      const str = localStorage.getItem(this.localStorageKey + "-api-data-entire-list");
+      const str = await IDB.get(this.localStorageKey + "-api-data-entire-list");
       str && (this._apiDataEntireList = JSON.parse(str));
     }
     return this._apiDataEntireList;
@@ -8088,12 +8097,12 @@ let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
   cellsLastLoadedAt = new Date().getTime();
   loadedIds = /* @__PURE__ */ new Set();
   _routeLookup;
-  set routeLookup(newVal) {
-    localStorage.setItem(this.localStorageKey, JSON.stringify(newVal));
+  saveRouteLookup(newVal) {
+    void IDB.set(this.localStorageKey, JSON.stringify(newVal));
     this._routeLookup = newVal;
   }
-  get routeLookup() {
-    this._routeLookup ||= JSON.parse(localStorage.getItem(this.localStorageKey) || '{ "routes" : {} }');
+  async routeLookup() {
+    this._routeLookup ||= JSON.parse(await IDB.get(this.localStorageKey) || '{ "routes" : {} }');
     return this._routeLookup;
   }
   onScrollMaxEvery16ms(evt) {
@@ -8105,11 +8114,12 @@ let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
     const time = new Date().getTime();
     if (time - this.cellsLastLoadedAt > 500 && scroll && scroll < window.innerHeight + 400) {
       this.cellsLastLoadedAt = time;
-      this.loadCellsForScroll();
+      void this.loadCellsForScroll();
     }
   }
-  loadCellsForScroll() {
-    this.loadCellsForObjectsWithIdsReturn(this.apiDataDescribingCurrentList);
+  async loadCellsForScroll() {
+    const data = await this.getApiDataDescribingCurrentList();
+    await this.loadCellsForObjectsWithIdsReturn(data);
   }
   sortOrderChanged(evt) {
     super.sortOrderChanged(evt);
@@ -8124,34 +8134,42 @@ let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
     this.startProgressBar();
     const currentQuery = this.query;
     this.fetchUpdateForRouteLookup().then(async (res) => {
-      this.updateForRouteLookupFetched(res);
+      await this.updateForRouteLookupFetched(res);
       if (!this.routeLookup) {
         if (currentQuery) {
           void this.fetchDataForQuery("").then((data) => {
-            this.apiDataDescribingEntireList = data;
+            this.setApiDataDescribingEntireList(data);
           });
         }
         this.fetchDataForQuery(currentQuery).then(async (data) => {
-          this.handleFetchedData(data);
-          this.apiDataDescribingCurrentList = data;
+          await this.handleFetchedData(data);
+          this.setApiDataDescribingCurrentList(data);
+        }).catch((err) => {
+          throw err;
         });
       }
+    }).catch((err) => {
+      throw err;
     });
     if (this.routeLookup) {
       this.fetchDataForQuery().then(async (data) => {
-        this.handleFetchedData(data);
-        this.apiDataDescribingCurrentList = data;
+        await this.handleFetchedData(data);
+        this.setApiDataDescribingCurrentList(data);
+      }).catch((err) => {
+        throw err;
       });
       if (!this.query) {
-        if (this.apiDataDescribingEntireList) {
-          this.buildResults(this.apiDataDescribingEntireList);
+        const data = await this.getApiDataDescribingEntireList();
+        if (data) {
+          this.buildResults(data);
           this.stopProgressBar();
         }
       }
     }
   }
-  handleFetchedData(data) {
-    if (this.resultsSignature(this.apiDataDescribingCurrentList) == this.resultsSignature(data)) {
+  async handleFetchedData(data) {
+    const saved = await this.getApiDataDescribingCurrentList();
+    if (this.resultsSignature(saved) == this.resultsSignature(data)) {
       return;
     }
     if (data.status !== 200) {
@@ -8161,9 +8179,10 @@ let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
     this.buildResults(data);
   }
   async updateForRouteLookupFetched(res) {
-    this.routeLookup = this.buildRoutesLookup(res);
+    this.saveRouteLookup(this.buildRoutesLookup(res));
     this.buildRoutesLookup(res);
-    this.buildResults(this.apiDataDescribingCurrentList);
+    const saved = await this.getApiDataDescribingCurrentList();
+    this.buildResults(saved);
     this.stopProgressBar();
   }
   buildRoutesLookup(_data) {
@@ -8189,7 +8208,7 @@ let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
   async fetchDataForQuery(query = this.query) {
     const res = await this.fetchDataParams("ids", query);
     if (!query) {
-      this.apiDataDescribingEntireList = res;
+      this.setApiDataDescribingEntireList(res);
     }
     return res;
   }
@@ -8216,8 +8235,8 @@ let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
     const data = await response.json();
     return { data, status };
   }
-  bodyForRequestAndPage(query, _pageNo) {
-    const body = this.bodyForRequest(query);
+  async bodyForRequestAndPage(query, _pageNo) {
+    const body = await this.bodyForRequest(query);
     return body;
   }
   toggleSortDirection() {
@@ -8274,11 +8293,12 @@ let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
       this.routes_viewer_container.innerHTML = this.privateDivString();
       return;
     }
-    this.loadCellsForObjectsWithIdsReturn(_data);
+    void this.loadCellsForObjectsWithIdsReturn(_data);
   }
-  loadCellsForObjectsWithIdsReturn(data) {
+  async loadCellsForObjectsWithIdsReturn(data) {
     if (!data)
       return;
+    const routeLookup = await this.routeLookup();
     const objects = data.data.objects;
     let count = 0;
     objects.forEach((section) => {
@@ -8287,7 +8307,7 @@ let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
       }
       if (!this.loadedIds.has(section.ids[0])) {
         this.queue.push(() => {
-          let title = section.title;
+          const title = section.title;
           this.appendHeader(title, section.ids.length, this, data.data.meta.object_return_type.name);
         });
       }
@@ -8298,7 +8318,7 @@ let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
         if (!this.loadedIds.has(idOfElement)) {
           this.loadedIds.add(idOfElement);
           count++;
-          const rte = this.routeLookup.routes[idOfElement];
+          const rte = routeLookup.routes[idOfElement];
           this.willAppendRoute(rte);
           this.queue.push(() => {
             if (rte) {
@@ -8330,7 +8350,7 @@ let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
     const currentSearchId = this.searchId;
     this.timeout = setTimeout(async () => {
       const query = this.fullQueryWithoutUrlFilter;
-      let results = await this.fetchDataForQuery(query);
+      const results = await this.fetchDataForQuery(query);
       if (this.searchId > currentSearchId) {
         return;
       }
@@ -8341,7 +8361,7 @@ let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
       }
       this.searchId = currentSearchId;
       this.lastSearch = query;
-      this.apiDataDescribingCurrentList = results;
+      this.setApiDataDescribingCurrentList(results);
       this.buildResults(results);
       this.urlFilter = postTrim;
       this.urlSortDirection = sortDirection;
@@ -11891,32 +11911,35 @@ var __decorateClass$c = (decorators, target, key, kind) => {
 let OfflineInfiniteScrollRoutesViewer = class extends InfiniteScrollRoutesViewer$1 {
   index;
   idsOfRoutesMatchingLocalSearch = /* @__PURE__ */ new Set();
-  maybeLoadMoreCells(_evt) {
+  async maybeLoadMoreCells(_evt) {
     const scroll = this.lastCell?.getBoundingClientRect().top;
     const time = new Date().getTime();
     if (time - this.cellsLastLoadedAt > 500 && scroll && scroll < window.innerHeight + 400) {
       this.cellsLastLoadedAt = time;
-      this.loadCellsForObjectsWithIdsReturn(this.apiDataDescribingCurrentList);
+      const saved = await this.getApiDataDescribingCurrentList();
+      void this.loadCellsForObjectsWithIdsReturn(saved);
     }
   }
   async _init() {
-    super._init();
+    void super._init();
     await this.maybeBuildFromLocalStorage();
   }
   async maybeBuildFromLocalStorage() {
-    if (this.routeLookup) {
-      await this._buildInvertedIndex(this.routeLookup);
+    const routeLookup = await this.routeLookup();
+    if (routeLookup) {
+      await this._buildInvertedIndex(routeLookup);
     }
   }
   trigram(s, prefixWhitespace = true, postfixWhitespace = true) {
-    let t = s.replace(/\-$/g, "");
+    let t = s.replace(/-$/g, "");
     prefixWhitespace && (t = `   ${t}`);
     postfixWhitespace && (t = `${t}   `);
     const res = trigram(t);
     return res;
   }
   async getRoutesFromIndex(query) {
-    this.index || await this._buildInvertedIndex(this.routeLookup);
+    const routeLookup = await this.routeLookup();
+    this.index || await this._buildInvertedIndex(routeLookup);
     if (!query) {
       const routes2 = [];
       for (const rte of this.index?.documents() || []) {
@@ -11933,7 +11956,8 @@ let OfflineInfiniteScrollRoutesViewer = class extends InfiniteScrollRoutesViewer
     for (const route of routes) {
       matchedIds.add(fun(route));
     }
-    const allIds = this.apiDataDescribingEntireList.data.objects.map((section) => {
+    const entireList = await this.getApiDataDescribingEntireList();
+    const allIds = entireList.data.objects.map((section) => {
       return section.ids;
     }).flat();
     const ids = new Set(allIds);
@@ -11949,8 +11973,8 @@ let OfflineInfiniteScrollRoutesViewer = class extends InfiniteScrollRoutesViewer
     return res;
   }
   async fetchResponseForPageLocal(query) {
-    const baseData = this.apiDataDescribingEntireList;
-    let objects = [];
+    const baseData = await this.getApiDataDescribingEntireList();
+    const objects = [];
     let count = 0;
     const routes = await this.getRoutesFromIndex(query);
     this.loadedIds = await this.buildInvertedMatchingRoutesSet(routes);
@@ -12582,7 +12606,7 @@ let CragRoutesViewerElement = class extends OfflineInfiniteScrollRoutesViewer$1 
   }
   connectedCallback() {
     if (window.location.host.match(/dkk8m.ondigitalocean.app|localhost/)) {
-      let urlParams = new URLSearchParams(window.location.search);
+      const urlParams = new URLSearchParams(window.location.search);
       const cragId = Number(urlParams.get("crag_id"));
       console.error("turn this off for prod");
       if (cragId)
