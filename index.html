@@ -52,7 +52,7 @@
     }
     function maybeSetCookieFromUrl() {
       let urlParams = new URLSearchParams( window.location.search )
-      const cookie = urlParams.get( 'ukcsid' ).replace(/_/, '#')
+      const cookie = urlParams.get( 'ukcsid' ).replace(/_/g, '#')
       if ( cookie ) {
         document.cookie = `ukcsid=${ cookie }`
       }
