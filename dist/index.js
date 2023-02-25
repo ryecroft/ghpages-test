@@ -2948,6 +2948,339 @@ SliderFilterRowElement = __decorateClass$q([
 ], SliderFilterRowElement);
 const SliderFilterRowElement$1 = SliderFilterRowElement;
 
+function promisifyRequest(request) {
+    return new Promise((resolve, reject) => {
+        // @ts-ignore - file size hacks
+        request.oncomplete = request.onsuccess = () => resolve(request.result);
+        // @ts-ignore - file size hacks
+        request.onabort = request.onerror = () => reject(request.error);
+    });
+}
+function createStore(dbName, storeName) {
+    const request = indexedDB.open(dbName);
+    request.onupgradeneeded = () => request.result.createObjectStore(storeName);
+    const dbp = promisifyRequest(request);
+    return (txMode, callback) => dbp.then((db) => callback(db.transaction(storeName, txMode).objectStore(storeName)));
+}
+let defaultGetStoreFunc;
+function defaultGetStore() {
+    if (!defaultGetStoreFunc) {
+        defaultGetStoreFunc = createStore('keyval-store', 'keyval');
+    }
+    return defaultGetStoreFunc;
+}
+/**
+ * Get a value by its key.
+ *
+ * @param key
+ * @param customStore Method to get a custom store. Use with caution (see the docs).
+ */
+function get(key, customStore = defaultGetStore()) {
+    return customStore('readonly', (store) => promisifyRequest(store.get(key)));
+}
+/**
+ * Set a value with a key.
+ *
+ * @param key
+ * @param value
+ * @param customStore Method to get a custom store. Use with caution (see the docs).
+ */
+function set(key, value, customStore = defaultGetStore()) {
+    return customStore('readwrite', (store) => {
+        store.put(value, key);
+        return promisifyRequest(store.transaction);
+    });
+}
+
+const IDB = {
+  get,
+  set
+};
+var UkcLocalStorage;
+((UkcLocalStorage2) => {
+  class BaseRouteDataForCrag {
+    static identifier(cragId) {
+      return `base_routedata_for_crag_${cragId}`;
+    }
+    static async fetch(cragId) {
+      const data = await IDB.get(this.identifier(cragId));
+      if (data)
+        return JSON.parse(data);
+      return void 0;
+    }
+    static async store(routes, cragId) {
+      if (!routes) {
+        return;
+      }
+      await IDB.set(this.identifier(cragId), JSON.stringify(routes));
+    }
+  }
+  UkcLocalStorage2.BaseRouteDataForCrag = BaseRouteDataForCrag;
+  class LogbookDetails {
+    #lookup;
+    get lookup() {
+      if (!this.#lookup) {
+        let diskLogbookString = IDB.get(this.identifier);
+        const diskLogbook = JSON.parse(diskLogbookString);
+        this.#lookup = new LogbookDetailsBacker(diskLogbook);
+      }
+      return this.#lookup;
+    }
+    set lookup(v) {
+      this.#lookup = v;
+    }
+    fetching = false;
+    identifier = "user_logbook";
+    get apiUrl() {
+      const origin = apiOrigin();
+      return `${origin}/v1/ukc/user/logbook`;
+    }
+    get editDateKey() {
+      return `${this.identifier}_edit_date`;
+    }
+    async setEditDate(t) {
+      await IDB.set(this.editDateKey, t.getTime().toString());
+    }
+    async editDate() {
+      let t = new Date(parseInt(await IDB.get(this.editDateKey)));
+      return t;
+    }
+    minimumDelayBetweenFetches = 1e3 * 60 * 5;
+    get lastFetchedKey() {
+      return `${this.identifier}_last_fetched`;
+    }
+    async setLastFetched(t) {
+      await IDB.set(this.lastFetchedKey, t.getTime().toString());
+    }
+    async lastFetched() {
+      let t = new Date(parseInt(await IDB.get(this.lastFetchedKey)));
+      return t;
+    }
+    constructor() {
+    }
+    isFetching = false;
+    async fetch() {
+      const date = await this.lastFetched();
+      if (date?.getTime() + this.minimumDelayBetweenFetches > Date.now()) {
+        return { data: {}, status: 304 };
+      }
+      this.isFetching = true;
+      const cookie = "ukcsid=" + Cookies.default().get("ukcsid");
+      const response = await fetch(this.apiUrl, {
+        method: "POST",
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(
+          {
+            cookie,
+            edit_date: this.editDate
+          }
+        )
+      });
+      const status = response.status;
+      const res = await response.json();
+      this.isFetching = false;
+      while (this.queue.length > 0) {
+        const callback = this.queue.shift();
+        callback(res);
+      }
+      await this.setLastFetched(new Date());
+      return { data: res, status };
+    }
+    queue = [];
+    async fetchLogbookLookup(callback) {
+      this.queue.push(callback);
+      if (this.isFetching)
+        return Promise.resolve(void 0);
+      return this._fetchLookup();
+    }
+    async _fetchLookup() {
+      if (!Cookies.default().get("ukcsid")) {
+        return void 0;
+      }
+      if (IDB.get(this.identifier)) {
+        this.fetch().then(async (remoteDeets) => {
+          await this.loadFromRemoteDetails(remoteDeets);
+        });
+      } else {
+        const remoteDeets = await this.fetch();
+        if (remoteDeets.status !== 200) {
+          console.debug(remoteDeets);
+        } else {
+          this.loadFromRemoteDetails(remoteDeets);
+        }
+      }
+      return this.lookup;
+    }
+    async loadFromRemoteDetails(remoteDeets) {
+      if (remoteDeets.status !== 200)
+        return;
+      const date = new Date(remoteDeets.data.last_updated);
+      await this.setEditDate(date);
+      this.lookup.merge(remoteDeets);
+      await IDB.set(this.identifier, JSON.stringify(this.lookup));
+    }
+    bestAscent(routeIdUkc) {
+      return this.lookup?.bestAscent(routeIdUkc);
+    }
+    logbookStatus(routeIdUkc) {
+      if (!this.lookup)
+        return "unclimbed";
+      return this.lookup?.bestAscent(routeIdUkc)?.simple_style_name || "unclimbed";
+    }
+    wishlistStatus(routeIdUkc) {
+      if (!this.lookup)
+        return false;
+      return this.lookup?.hasWishlist(routeIdUkc);
+    }
+    ascentsForRouteUkcId(routeIdUkc) {
+      return this.lookup?.logbook[routeIdUkc] || [];
+    }
+    get ascentEntries() {
+      return Object.values(this.lookup?.logbook || {}).flat().sort((a, b) => a.ascent_date.getTime() - b.ascent_date.getTime());
+    }
+    get wishlistEntries() {
+      return Object.values(this.lookup?.wishlist || {}).flat();
+    }
+  }
+  UkcLocalStorage2.LogbookDetails = LogbookDetails;
+  class LogbookDetailsBacker {
+    logbook = {};
+    wishlist = {};
+    static styleQualities = {
+      clean: 2,
+      followed: 1,
+      dogged: 0
+    };
+    constructor(diskLogbook = null) {
+      if (diskLogbook) {
+        Object.values(diskLogbook.logbook).forEach((ascents) => ascents.forEach((ascent) => this.addAscent(ascent)));
+        this.wishlist = diskLogbook.wishlist;
+      }
+    }
+    merge(remoteDeets) {
+      const data = remoteDeets.data;
+      data.logbook.forEach((ascent) => this.addAscent(ascent));
+      data.wishlist.forEach((wish) => this.addWishlistItem(wish));
+      data.logbook_deletes.forEach((deets) => this.deleteAscent(deets));
+      data.wishlist_deletes.forEach((deets) => this.deleteWishlistItem(deets));
+    }
+    addAscent(ascent) {
+      this.logbook[ascent.route_id_ukc] = this.logbook[ascent.route_id_ukc] || [];
+      if (typeof ascent.ascent_date === "string") {
+        ascent = new AscentInfo(ascent);
+      }
+      ascent.ascent_date = new Date(ascent.ascent_date);
+      this.logbook[ascent.route_id_ukc] = this.logbook[ascent.route_id_ukc].filter((el) => el.id !== ascent.id);
+      this.logbook[ascent.route_id_ukc].push(ascent);
+    }
+    addWishlistItem(wishlistItem) {
+      this.wishlist[wishlistItem.route_id_ukc] = this.wishlist[wishlistItem.route_id_ukc] || [];
+      this.wishlist[wishlistItem.route_id_ukc] = this.wishlist[wishlistItem.route_id_ukc].filter((el) => el.id !== wishlistItem.id);
+      this.wishlist[wishlistItem.route_id_ukc].push(wishlistItem);
+    }
+    deleteAscent(deets) {
+      if (!this.logbook[deets.route_id_ukc]) {
+        return;
+      }
+      this.logbook[deets.route_id_ukc] = this.logbook[deets.route_id_ukc].filter((el) => el.id !== deets.ascent_id);
+    }
+    deleteWishlistItem(deets) {
+      if (!this.wishlist[deets.route_id_ukc]) {
+        return;
+      }
+      this.wishlist[deets.route_id_ukc] = this.wishlist[deets.route_id_ukc].filter((el) => el.id !== deets.wishlist_id);
+    }
+    bestAscent(routeIdUkc) {
+      const ascents = this.logbook[routeIdUkc];
+      if (!ascents)
+        return null;
+      const asc = ascents.sort((a, b) => {
+        return LogbookDetailsBacker.styleQualities[b.simple_style_name] - LogbookDetailsBacker.styleQualities[a.simple_style_name];
+      })[0];
+      return asc;
+    }
+    hasWishlist(routeIdUkc) {
+      return !!this.wishlist[routeIdUkc];
+    }
+  }
+  class AscentInfo {
+    ascent_date_ignore_day;
+    ascent_date_ignore_month;
+    id;
+    ascent_date;
+    edit_date;
+    route_id_ukc;
+    style_id;
+    simple_style_name;
+    notes;
+    user_id_ukc;
+    user_name;
+    country_code;
+    partners;
+    ascent_style;
+    #submit_date;
+    set submit_date(v) {
+      if (v instanceof Date) {
+        this.#submit_date = v;
+      } else {
+        this.#submit_date = new Date(v);
+      }
+    }
+    get submit_date() {
+      return this.#submit_date;
+    }
+    get dateString() {
+      if (this.ascent_date_ignore_month) {
+        return this.ascent_date.getFullYear().toString();
+      }
+      if (this.ascent_date_ignore_day) {
+        const month = this.ascent_date.toLocaleString("default", { month: "long" });
+        return month + " " + this.ascent_date.getFullYear().toString();
+      }
+      return this.ascent_date.toLocaleString("default", { weekday: "long", year: "numeric", month: "long", day: "numeric" });
+    }
+    get editDateString() {
+      return this.edit_date.toLocaleString("default", { weekday: "long", year: "numeric", month: "long", day: "numeric" });
+    }
+    get shortDateString() {
+      if (this.ascent_date_ignore_month) {
+        return this.ascent_date.getFullYear().toString();
+      }
+      if (this.ascent_date_ignore_day) {
+        const month = this.ascent_date.toLocaleString("default", { month: "long" });
+        return month + " " + this.ascent_date.getFullYear().toString();
+      }
+      return this.ascent_date.toLocaleString("default", { year: "numeric", month: "short", day: "numeric" });
+    }
+    get lastClimbedDescription() {
+      if (this.ascent_date_ignore_month) {
+        return `you last climbed this sometime in ${this.dateString}`;
+      }
+      if (this.ascent_date_ignore_day) {
+        return `you last climbed this in ${this.dateString}`;
+      }
+      return `you last climbed this on ${this.dateString}`;
+    }
+    constructor(parameters) {
+      Object.assign(this, parameters);
+      this.ascent_date = new Date(this.ascent_date);
+      this.edit_date = new Date(this.edit_date);
+    }
+  }
+  UkcLocalStorage2.AscentInfo = AscentInfo;
+  class WishlistInfo extends AscentInfo {
+    get dateString() {
+      return this.edit_date.toLocaleString("default", { weekday: "long", year: "numeric", month: "long", day: "numeric" });
+    }
+  }
+  UkcLocalStorage2.WishlistInfo = WishlistInfo;
+  UkcLocalStorage2.sharedLogbook = new UkcLocalStorage2.LogbookDetails();
+})(UkcLocalStorage || (UkcLocalStorage = {}));
+globalThis.logbook = new UkcLocalStorage.LogbookDetails();
+
 var __defProp$p = Object.defineProperty;
 var __getOwnPropDesc$p = Object.getOwnPropertyDescriptor;
 var __decorateClass$p = (decorators, target2, key, kind) => {
@@ -2997,9 +3330,9 @@ let FiltersControllerElement = class extends BaseCon$1 {
       this.main_filter.titleString = "Filters disabled";
     }
   }
-  die() {
+  async die() {
     const newData = this.toJson();
-    localStorage.setItem(this.storageKey, JSON.stringify(newData));
+    await IDB.set(this.storageKey, JSON.stringify(newData));
     this.parentElement?.removeChild(this);
     this.afterDismiss(this);
   }
@@ -3112,7 +3445,7 @@ let FiltersControllerElement = class extends BaseCon$1 {
     this.backing_view.style.opacity = "0";
     this.main_container.style.transform = "var(--transform-hide)";
     setTimeout(() => {
-      this.die();
+      void this.die();
     }, 500);
   }
   toJson() {
@@ -3147,8 +3480,8 @@ FiltersControllerElement = __decorateClass$p([
 ], FiltersControllerElement);
 class Filters {
   static storageKey = "route-filters";
-  static fromDisk() {
-    const data = localStorage.getItem(Filters.storageKey);
+  static async fromDisk() {
+    const data = await IDB.get(Filters.storageKey);
     if (data) {
       return new Filters(JSON.parse(data));
     }
@@ -3357,7 +3690,10 @@ let BaseRoutesViewer = class extends BaseCon$1 {
   responseMessage = "";
   connectedCallback() {
     super.connectedCallback();
-    this.filtersData = Filters.fromDisk();
+    Filters.fromDisk().then((data) => this.init(data));
+  }
+  init(fitersData) {
+    this.filtersData = fitersData;
     this.setFilterGlow(this.filtersData.filters_enabled);
     this.maybeSetCookieFromUrl();
     this.fixed_section_header.hidden = false;
@@ -3540,7 +3876,7 @@ let BaseRoutesViewer = class extends BaseCon$1 {
   async fetchResults(_query, _pageNo) {
     throw new Error("Not implemented");
   }
-  bodyForRequest(query, _pageNo) {
+  async bodyForRequest(query, _pageNo) {
     const cookie = Cookies.default().cookie;
     const result = {
       cookie,
@@ -3550,13 +3886,13 @@ let BaseRoutesViewer = class extends BaseCon$1 {
       return_type: "full"
     };
     if (this.areFiltersEnabled) {
-      const filters = Filters.fromDisk();
+      const filters = await Filters.fromDisk();
       result.search_filters = filters.toApiFormat();
     }
     return result;
   }
-  get areFiltersEnabled() {
-    return Filters.fromDisk().filters_enabled;
+  async areFiltersEnabled() {
+    return (await Filters.fromDisk()).filters_enabled;
   }
   get sortDirectionFromButton() {
     const c = this.sort_arrow;
@@ -3582,10 +3918,10 @@ let BaseRoutesViewer = class extends BaseCon$1 {
     };
   }
   filtersData;
-  createFiltersController() {
+  async createFiltersController() {
     const fc = document.createElement("filters-controller");
     fc.allowedFilterTypes = this.allowedFilterTypes;
-    fc.data = Filters.fromDisk();
+    fc.data = await Filters.fromDisk();
     fc.afterDismiss = (fc2) => {
       const data = fc2.toJson();
       this.setFilterGlow(data.filters_enabled);
@@ -3605,8 +3941,8 @@ let BaseRoutesViewer = class extends BaseCon$1 {
       this.filter_icon.classList.remove("glow");
     }
   }
-  showFilters() {
-    const fc = this.createFiltersController();
+  async showFilters() {
+    const fc = await this.createFiltersController();
     document.body.appendChild(fc);
     setTimeout(() => {
       fc.show();
@@ -4686,290 +5022,6 @@ RouteSearchbarElement = __decorateClass$m([
 ], RouteSearchbarElement);
 const RouteSearchbarElement$1 = RouteSearchbarElement;
 
-var UkcLocalStorage;
-((UkcLocalStorage2) => {
-  class BaseRouteDataForCrag {
-    static identifier(cragId) {
-      return `base_routedata_for_crag_${cragId}`;
-    }
-    static fetch(cragId) {
-      const data = localStorage.getItem(this.identifier(cragId));
-      if (data)
-        return JSON.parse(data);
-      return void 0;
-    }
-    static store(routes, cragId) {
-      if (!routes) {
-        return;
-      }
-      localStorage.setItem(this.identifier(cragId), JSON.stringify(routes));
-    }
-  }
-  UkcLocalStorage2.BaseRouteDataForCrag = BaseRouteDataForCrag;
-  class LogbookDetails {
-    #lookup;
-    get lookup() {
-      if (!this.#lookup) {
-        let diskLogbookString = localStorage.getItem(this.identifier);
-        const diskLogbook = JSON.parse(diskLogbookString);
-        this.#lookup = new LogbookDetailsBacker(diskLogbook);
-      }
-      return this.#lookup;
-    }
-    set lookup(v) {
-      this.#lookup = v;
-    }
-    fetching = false;
-    identifier = "user_logbook";
-    get apiUrl() {
-      const origin = apiOrigin();
-      return `${origin}/v1/ukc/user/logbook`;
-    }
-    get editDateKey() {
-      return `${this.identifier}_edit_date`;
-    }
-    set editDate(t) {
-      localStorage.setItem(this.editDateKey, t.getTime().toString());
-    }
-    get editDate() {
-      let t = new Date(parseInt(localStorage.getItem(this.editDateKey)));
-      return t;
-    }
-    minimumDelayBetweenFetches = 1e3 * 60 * 5;
-    get lastFetchedKey() {
-      return `${this.identifier}_last_fetched`;
-    }
-    set lastFetched(t) {
-      localStorage.setItem(this.lastFetchedKey, t.getTime().toString());
-    }
-    get lastFetched() {
-      let t = new Date(parseInt(localStorage.getItem(this.lastFetchedKey)));
-      return t;
-    }
-    constructor() {
-    }
-    isFetching = false;
-    async fetch() {
-      if (this.lastFetched?.getTime() + this.minimumDelayBetweenFetches > Date.now()) {
-        return { data: {}, status: 304 };
-      }
-      this.isFetching = true;
-      const cookie = "ukcsid=" + Cookies.default().get("ukcsid");
-      const response = await fetch(this.apiUrl, {
-        method: "POST",
-        headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(
-          {
-            cookie,
-            edit_date: this.editDate
-          }
-        )
-      });
-      const status = response.status;
-      const res = await response.json();
-      this.isFetching = false;
-      while (this.queue.length > 0) {
-        const callback = this.queue.shift();
-        callback(res);
-      }
-      this.lastFetched = new Date();
-      return { data: res, status };
-    }
-    queue = [];
-    async fetchLogbookLookup(callback) {
-      this.queue.push(callback);
-      if (this.isFetching)
-        return Promise.resolve(void 0);
-      return this._fetchLookup();
-    }
-    async _fetchLookup() {
-      if (!Cookies.default().get("ukcsid")) {
-        return void 0;
-      }
-      if (localStorage.getItem(this.identifier)) {
-        this.fetch().then((remoteDeets) => {
-          this.loadFromRemoteDetails(remoteDeets);
-        });
-      } else {
-        const remoteDeets = await this.fetch();
-        if (remoteDeets.status !== 200) {
-          console.debug(remoteDeets);
-        } else {
-          this.loadFromRemoteDetails(remoteDeets);
-        }
-      }
-      return this.lookup;
-    }
-    loadFromRemoteDetails(remoteDeets) {
-      if (remoteDeets.status !== 200)
-        return;
-      const date = new Date(remoteDeets.data.last_updated);
-      this.editDate = date;
-      this.lookup.merge(remoteDeets);
-      localStorage.setItem(this.identifier, JSON.stringify(this.lookup));
-    }
-    bestAscent(routeIdUkc) {
-      return this.lookup?.bestAscent(routeIdUkc);
-    }
-    logbookStatus(routeIdUkc) {
-      if (!this.lookup)
-        return "unclimbed";
-      return this.lookup?.bestAscent(routeIdUkc)?.simple_style_name || "unclimbed";
-    }
-    wishlistStatus(routeIdUkc) {
-      if (!this.lookup)
-        return false;
-      return this.lookup?.hasWishlist(routeIdUkc);
-    }
-    ascentsForRouteUkcId(routeIdUkc) {
-      return this.lookup?.logbook[routeIdUkc] || [];
-    }
-    get ascentEntries() {
-      return Object.values(this.lookup?.logbook || {}).flat().sort((a, b) => a.ascent_date.getTime() - b.ascent_date.getTime());
-    }
-    get wishlistEntries() {
-      return Object.values(this.lookup?.wishlist || {}).flat();
-    }
-  }
-  UkcLocalStorage2.LogbookDetails = LogbookDetails;
-  class LogbookDetailsBacker {
-    logbook = {};
-    wishlist = {};
-    static styleQualities = {
-      clean: 2,
-      followed: 1,
-      dogged: 0
-    };
-    constructor(diskLogbook = null) {
-      if (diskLogbook) {
-        Object.values(diskLogbook.logbook).forEach((ascents) => ascents.forEach((ascent) => this.addAscent(ascent)));
-        this.wishlist = diskLogbook.wishlist;
-      }
-    }
-    merge(remoteDeets) {
-      const data = remoteDeets.data;
-      data.logbook.forEach((ascent) => this.addAscent(ascent));
-      data.wishlist.forEach((wish) => this.addWishlistItem(wish));
-      data.logbook_deletes.forEach((deets) => this.deleteAscent(deets));
-      data.wishlist_deletes.forEach((deets) => this.deleteWishlistItem(deets));
-    }
-    addAscent(ascent) {
-      this.logbook[ascent.route_id_ukc] = this.logbook[ascent.route_id_ukc] || [];
-      if (typeof ascent.ascent_date === "string") {
-        ascent = new AscentInfo(ascent);
-      }
-      ascent.ascent_date = new Date(ascent.ascent_date);
-      this.logbook[ascent.route_id_ukc] = this.logbook[ascent.route_id_ukc].filter((el) => el.id !== ascent.id);
-      this.logbook[ascent.route_id_ukc].push(ascent);
-    }
-    addWishlistItem(wishlistItem) {
-      this.wishlist[wishlistItem.route_id_ukc] = this.wishlist[wishlistItem.route_id_ukc] || [];
-      this.wishlist[wishlistItem.route_id_ukc] = this.wishlist[wishlistItem.route_id_ukc].filter((el) => el.id !== wishlistItem.id);
-      this.wishlist[wishlistItem.route_id_ukc].push(wishlistItem);
-    }
-    deleteAscent(deets) {
-      if (!this.logbook[deets.route_id_ukc]) {
-        return;
-      }
-      this.logbook[deets.route_id_ukc] = this.logbook[deets.route_id_ukc].filter((el) => el.id !== deets.ascent_id);
-    }
-    deleteWishlistItem(deets) {
-      if (!this.wishlist[deets.route_id_ukc]) {
-        return;
-      }
-      this.wishlist[deets.route_id_ukc] = this.wishlist[deets.route_id_ukc].filter((el) => el.id !== deets.wishlist_id);
-    }
-    bestAscent(routeIdUkc) {
-      const ascents = this.logbook[routeIdUkc];
-      if (!ascents)
-        return null;
-      const asc = ascents.sort((a, b) => {
-        return LogbookDetailsBacker.styleQualities[b.simple_style_name] - LogbookDetailsBacker.styleQualities[a.simple_style_name];
-      })[0];
-      return asc;
-    }
-    hasWishlist(routeIdUkc) {
-      return !!this.wishlist[routeIdUkc];
-    }
-  }
-  class AscentInfo {
-    ascent_date_ignore_day;
-    ascent_date_ignore_month;
-    id;
-    ascent_date;
-    edit_date;
-    route_id_ukc;
-    style_id;
-    simple_style_name;
-    notes;
-    user_id_ukc;
-    user_name;
-    country_code;
-    partners;
-    ascent_style;
-    #submit_date;
-    set submit_date(v) {
-      if (v instanceof Date) {
-        this.#submit_date = v;
-      } else {
-        this.#submit_date = new Date(v);
-      }
-    }
-    get submit_date() {
-      return this.#submit_date;
-    }
-    get dateString() {
-      if (this.ascent_date_ignore_month) {
-        return this.ascent_date.getFullYear().toString();
-      }
-      if (this.ascent_date_ignore_day) {
-        const month = this.ascent_date.toLocaleString("default", { month: "long" });
-        return month + " " + this.ascent_date.getFullYear().toString();
-      }
-      return this.ascent_date.toLocaleString("default", { weekday: "long", year: "numeric", month: "long", day: "numeric" });
-    }
-    get editDateString() {
-      return this.edit_date.toLocaleString("default", { weekday: "long", year: "numeric", month: "long", day: "numeric" });
-    }
-    get shortDateString() {
-      if (this.ascent_date_ignore_month) {
-        return this.ascent_date.getFullYear().toString();
-      }
-      if (this.ascent_date_ignore_day) {
-        const month = this.ascent_date.toLocaleString("default", { month: "long" });
-        return month + " " + this.ascent_date.getFullYear().toString();
-      }
-      return this.ascent_date.toLocaleString("default", { year: "numeric", month: "short", day: "numeric" });
-    }
-    get lastClimbedDescription() {
-      if (this.ascent_date_ignore_month) {
-        return `you last climbed this sometime in ${this.dateString}`;
-      }
-      if (this.ascent_date_ignore_day) {
-        return `you last climbed this in ${this.dateString}`;
-      }
-      return `you last climbed this on ${this.dateString}`;
-    }
-    constructor(parameters) {
-      Object.assign(this, parameters);
-      this.ascent_date = new Date(this.ascent_date);
-      this.edit_date = new Date(this.edit_date);
-    }
-  }
-  UkcLocalStorage2.AscentInfo = AscentInfo;
-  class WishlistInfo extends AscentInfo {
-    get dateString() {
-      return this.edit_date.toLocaleString("default", { weekday: "long", year: "numeric", month: "long", day: "numeric" });
-    }
-  }
-  UkcLocalStorage2.WishlistInfo = WishlistInfo;
-  UkcLocalStorage2.sharedLogbook = new UkcLocalStorage2.LogbookDetails();
-})(UkcLocalStorage || (UkcLocalStorage = {}));
-globalThis.logbook = new UkcLocalStorage.LogbookDetails();
-
 var __defProp$l = Object.defineProperty;
 var __getOwnPropDesc$l = Object.getOwnPropertyDescriptor;
 var __decorateClass$l = (decorators, target, key, kind) => {
@@ -5804,8 +5856,8 @@ let PagedRoutesViewer = class extends BaseRoutesViewer$1 {
   queryToUseDuringInit() {
     return this.fullQuery || "";
   }
-  bodyForRequestAndPage(query, pageNo) {
-    const body = super.bodyForRequest(query);
+  async bodyForRequestAndPage(query, pageNo) {
+    const body = await super.bodyForRequest(query);
     body.page = pageNo;
     body.page_size = 100;
     return body;
@@ -6024,8 +6076,8 @@ let SearchResultsViewerElement = class extends PagedRoutesViewer$1 {
     this.searchbar.buildResults(res);
     return res;
   }
-  bodyForRequestAndPage(query, pageNo) {
-    const body = super.bodyForRequestAndPage(query, pageNo);
+  async bodyForRequestAndPage(query, pageNo) {
+    const body = await super.bodyForRequestAndPage(query, pageNo);
     body.search_type = "all";
     return body;
   }
@@ -8142,7 +8194,7 @@ let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
     return res;
   }
   async fetchDataParams(returnType, query) {
-    const body = this.bodyForRequestAndPage(query);
+    const body = await this.bodyForRequestAndPage(query);
     if (returnType === "full") {
       delete body.search_filters;
     }
@@ -12094,8 +12146,8 @@ let LogbookViewerElement = class extends OfflineInfiniteScrollRoutesViewer$1 {
     el.wishlistStatus = sharedStorage$3.wishlistStatus(route.id_ukc);
     return el;
   }
-  bodyForRequest(query, pageNo) {
-    const res = super.bodyForRequest(query, pageNo);
+  async bodyForRequest(query, pageNo) {
+    const res = await super.bodyForRequest(query, pageNo);
     res.user_id = this.userIdForRequest;
     return res;
   }
@@ -12279,8 +12331,8 @@ let PartnerAscentsViewerElement = class extends PagedRoutesViewer$1 {
   get userIdForRequest() {
     return this.userIdFromUrl || Cookies.default().userIdUkc;
   }
-  bodyForRequestAndPage(query, pageNo) {
-    const body = super.bodyForRequestAndPage(query, pageNo);
+  async bodyForRequestAndPage(query, pageNo) {
+    const body = await super.bodyForRequestAndPage(query, pageNo);
     body.user_id = this.userIdForRequest;
     body.sort_by = this.sort_order_picker.value;
     return body;
@@ -12550,8 +12602,8 @@ let CragRoutesViewerElement = class extends OfflineInfiniteScrollRoutesViewer$1 
   keyFunctionForPuttingRouteInIndex() {
     return (rte) => rte.id_ukc;
   }
-  bodyForRequest(query, _pageNo) {
-    const result = super.bodyForRequest(query, _pageNo);
+  async bodyForRequest(query, _pageNo) {
+    const result = await super.bodyForRequest(query, _pageNo);
     const type = Object.keys(this.routeLookup || {}).length ? "ids" : "full";
     result.return_type = type;
     result.sort_by = this.sort_order_picker.value;
