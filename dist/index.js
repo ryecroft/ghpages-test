@@ -3104,7 +3104,7 @@ var UkcLocalStorage;
       if (!Cookies.default().get("ukcsid")) {
         return void 0;
       }
-      if (IDB.get(this.identifier)) {
+      if (await IDB.get(this.identifier)) {
         this.fetch().then(async (remoteDeets) => {
           await this.loadFromRemoteDetails(remoteDeets);
         }).catch((err) => {
