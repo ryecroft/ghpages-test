@@ -3582,7 +3582,7 @@ let BaseRoutesViewer = class extends BaseCon$1 {
   get isOnline() {
     return window.navigator.onLine;
   }
-  lastSearch;
+  lastSearchQuery;
   get searchDelay() {
     if (!this.isOnline)
       return 50;
@@ -3876,7 +3876,7 @@ let BaseRoutesViewer = class extends BaseCon$1 {
     this.searchbar.delete_text_button.classList.remove("hidden");
   }
   sortOrderChanged(_evt) {
-    this.lastSearch = void 0;
+    this.lastSearchQuery = void 0;
     this.onInputUpdated();
     const val = this.sort_order_picker.value;
     this.urlSortOrder = val;
@@ -3923,7 +3923,7 @@ let BaseRoutesViewer = class extends BaseCon$1 {
   }
   toggleSortDirection() {
     this.toggleArrowInSortButton();
-    this.lastSearch = void 0;
+    this.lastSearchQuery = void 0;
     this.onInputUpdated();
     localStorage.setItem(this.sortDirectionKey, this.sortDirectionFromButton);
   }
@@ -3946,6 +3946,7 @@ let BaseRoutesViewer = class extends BaseCon$1 {
       this.filtersData = fc2.toJson();
       const newFiltersString = JSON.stringify(this.filtersData);
       if (currentFiltersString != newFiltersString) {
+        this.lastSearchQuery = void 0;
         this.onInputUpdated();
       }
     };
@@ -5892,7 +5893,7 @@ let PagedRoutesViewer = class extends BaseRoutesViewer$1 {
   toggleSortDirection() {
     this.toggleArrowInSortButton();
     this.baseData = void 0;
-    this.lastSearch = void 0;
+    this.lastSearchQuery = void 0;
     this.onInputUpdated();
     localStorage.setItem(this.sortDirectionKey, this.sortDirectionFromButton);
   }
@@ -6008,10 +6009,10 @@ let PagedRoutesViewer = class extends BaseRoutesViewer$1 {
     const postTrim = newValue.trim();
     this.setVisibilityOfDeleteButton(newValue);
     clearTimeout(this.timeout);
-    if (postTrim === this.lastSearch) {
+    if (postTrim === this.lastSearchQuery) {
       return;
     }
-    this.lastSearch = postTrim;
+    this.lastSearchQuery = postTrim;
     const sortDirection = this.sortDirectionFromButton;
     this.startProgressBar();
     this.searchId++;
@@ -6028,7 +6029,7 @@ let PagedRoutesViewer = class extends BaseRoutesViewer$1 {
         console.debug(results);
         return;
       }
-      this.lastSearch = query;
+      this.lastSearchQuery = query;
       this.buildResults(results);
       this.urlFilter = postTrim;
       this.urlSortDirection = sortDirection;
@@ -8281,7 +8282,7 @@ let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
   }
   toggleSortDirection() {
     this.toggleArrowInSortButton();
-    this.lastSearch = void 0;
+    this.lastSearchQuery = void 0;
     this.onInputUpdated();
     localStorage.setItem(this.sortDirectionKey, this.sortDirectionFromButton);
   }
@@ -8385,10 +8386,10 @@ let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
     const postTrim = newValue.trim();
     this.setVisibilityOfDeleteButton(newValue);
     clearTimeout(this.timeout);
-    if (postTrim === this.lastSearch) {
+    if (postTrim === this.lastSearchQuery) {
       return;
     }
-    this.lastSearch = postTrim;
+    this.lastSearchQuery = postTrim;
     const sortDirection = this.sortDirectionFromButton;
     this.startProgressBar();
     this.searchId++;
@@ -8405,7 +8406,7 @@ let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
         return;
       }
       this.searchId = currentSearchId;
-      this.lastSearch = query;
+      this.lastSearchQuery = query;
       this.setApiDataDescribingCurrentList(results);
       this.buildResults(results);
       this.urlFilter = postTrim;
