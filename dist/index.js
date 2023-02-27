@@ -2189,6 +2189,7 @@ const escape = (s) => {
 const noBreaks = (s) => {
   return s?.replace(/\s/g, "&nbsp");
 };
+const delayForQuery = (query, pow = 1.6, seed = 1e4) => seed / Math.pow(pow, query.replace(/\s+/g, "").length);
 
 var __defProp$v = Object.defineProperty;
 var __getOwnPropDesc$v = Object.getOwnPropertyDescriptor;
@@ -3585,7 +3586,12 @@ let BaseRoutesViewer = class extends BaseCon$1 {
   get searchDelay() {
     if (!this.isOnline)
       return 50;
-    return isMobile() ? 500 : 300;
+    if (this.query.trim() === "")
+      return 0;
+    let calculated = delayForQuery(this.query);
+    calculated = Math.min(calculated, 1e3);
+    calculated = Math.max(calculated, isMobile() ? 200 : 100);
+    return calculated;
   }
   lastHeaderString = "";
   routes_viewer_container;
@@ -3896,7 +3902,7 @@ let BaseRoutesViewer = class extends BaseCon$1 {
       direction: this.sortDirectionFromButton,
       return_type: "full"
     };
-    if (this.areFiltersEnabled) {
+    if (await this.areFiltersEnabled()) {
       const filters = await Filters.fromDisk();
       result.search_filters = filters.toApiFormat();
     }
@@ -3969,8 +3975,8 @@ let BaseRoutesViewer = class extends BaseCon$1 {
     if (slotName === "routes-viewer-sort-order-options") {
       return html$1`
       <option value="score"      >Order by search score</option>
-      <option value="crag_name" >Order by crag name</option>
-      <option value="grade"     >Order by route grade</option>
+      <option value="crag_name"  >Order by crag name</option>
+      <option value="grade"      >Order by route grade</option>
       <!--<option value="voted_grade">Order by voted grade</option>-->
       `;
     }
@@ -4376,7 +4382,7 @@ let BaseSearchbarElement = class extends BaseCon$1 {
     this.search_container.style.zIndex = "0";
     this.style.zIndex = "0";
     this.searchbar_query_suggestion.innerHTML = `Here's some hint about the search bar`;
-    this.minSearchDelay = 650;
+    this.minSearchDelay = 100;
     this.maxSearchDelay = 1e3;
     this.input.addEventListener("input", this.debounceFunction(this._onSearchbarUpdated));
     this.input.addEventListener("focus", () => this.onSearchbarFocus());
@@ -4447,9 +4453,11 @@ let BaseSearchbarElement = class extends BaseCon$1 {
   debounceFunction(func) {
     return (...args) => {
       clearTimeout(this.debounceTimeout);
+      console.log("this.currentSearchDelay", this.currentSearchDelay);
       this.debounceTimeout = setTimeout(async () => {
+        console.log(new Date().getMilliseconds());
         func(...args);
-      }, this.minSearchDelay);
+      }, this.currentSearchDelay);
     };
   }
   createResultsDropdown() {
@@ -4469,7 +4477,7 @@ let BaseSearchbarElement = class extends BaseCon$1 {
     }
     this.searchbar_short_display.innerText = this.input.value || this.placeholderString;
     this.setVisibilityOfDeleteButton(this.input.value);
-    let delay = Math.max(4e3 / this.input.value.length, this.minSearchDelay);
+    let delay = delayForQuery(this.input.value);
     delay = Math.min(delay, this.maxSearchDelay);
     this.currentSearchDelay = delay;
     this.onSearchbarUpdated();
@@ -4893,18 +4901,26 @@ let RouteSearchbarElement = class extends BaseSearchbarElement$1 {
   onSearchbarUpdated() {
     this.hideHelp();
     this.startProgressBar();
-    if (this.query.trim().length === 0) {
+    const trimmed = this.query.trim().replace(/ +/g, " ");
+    if (trimmed.length === 0) {
+      this.stopProgressBar();
       this.showQuerySuggestion();
       this.hideResultsDropdown();
       this.clearResultsDropdown();
       return;
     }
-    if (this.query.trim().length < 3) {
+    if (trimmed.length < 3) {
       this.searchbar_query_suggestion.innerHTML = "Keep typing...";
+      this.stopProgressBar();
       this.hideResultsDropdown();
       this.clearResultsDropdown();
       return;
     }
+    if (trimmed === this.lastSearch) {
+      this.stopProgressBar();
+      return;
+    }
+    this.lastSearch = trimmed;
     this.fetchResults();
   }
   showResultsDropdown() {
@@ -5915,9 +5931,10 @@ let PagedRoutesViewer = class extends BaseRoutesViewer$1 {
       if (data.meta?.parsed_query) {
         const c = data.meta?.total_matches;
         this.filter_query_description.innerHTML = data.meta.parsed_query.queryDescription + ` (${c}&nbsp;match${c === 1 ? "" : "es"})`;
-        if (this.areFiltersEnabled) {
-          this.filter_query_description.innerHTML += ` <a href='javascript:void(0)' data-action='click:${this.elementName}#showFilters'>filters&nbsp;enabled</a>`;
-        }
+        void this.areFiltersEnabled().then((enabled) => {
+          if (enabled)
+            this.filter_query_description.innerHTML += ` <a href='javascript:void(0)' data-action='click:${this.elementName}#showFilters'>filters&nbsp;enabled</a>`;
+        });
       } else {
         this.filter_query_description.innerHTML = "";
       }
@@ -5991,6 +6008,10 @@ let PagedRoutesViewer = class extends BaseRoutesViewer$1 {
     const postTrim = newValue.trim();
     this.setVisibilityOfDeleteButton(newValue);
     clearTimeout(this.timeout);
+    if (postTrim === this.lastSearch) {
+      return;
+    }
+    this.lastSearch = postTrim;
     const sortDirection = this.sortDirectionFromButton;
     this.startProgressBar();
     this.searchId++;
@@ -6044,8 +6065,6 @@ let SearchResultsViewerElement = class extends PagedRoutesViewer$1 {
     super.connectedCallback();
     void sharedStorage$4.fetchLogbookLookup((_res) => this.updateLogbookAndWishlistStatusOfCells());
     this.fixed_section_header.style.display = "none";
-    this.sort_order_picker.style.display = "none";
-    this.sort_button.style.display = "none";
   }
   onDomContentLoaded() {
     super.onDomContentLoaded();
@@ -6091,6 +6110,25 @@ let SearchResultsViewerElement = class extends PagedRoutesViewer$1 {
     const body = await super.bodyForRequestAndPage(query, pageNo);
     body.search_type = "all";
     return body;
+  }
+  htmlForSlot(slotName) {
+    if (slotName === "routes-viewer-sort-order-options") {
+      return html$1`
+      <option value="name"       >Order by route name</option>
+      <option value="quality"    >Order by route quality</option>
+      <option value="difficulty" >Order by difficulty</option>
+      <option value="score"      >Order by search score</option>
+      <option value="crag_name"  >Order by crag name</option>
+      <option value="grade"      >Order by route grade</option>
+      <option value="ascent_date">Order by ascent date</option>
+      <!--<option value="voted_grade">Order by voted grade</option>-->
+      `;
+    }
+    const sup = super.htmlForSlot(slotName);
+    if (sup) {
+      return sup;
+    }
+    return "";
   }
 };
 SearchResultsViewerElement = __decorateClass$e([
@@ -8284,9 +8322,10 @@ let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
       if (data.meta?.parsed_query) {
         const c = data.meta?.total_matches;
         this.filter_query_description.innerHTML = data.meta.parsed_query.queryDescription + ` (${c}&nbsp;match${c === 1 ? "" : "es"})`;
-        if (this.areFiltersEnabled) {
-          this.filter_query_description.innerHTML += ` <a href='javascript:void(0)' data-action='click:${this.elementName}#showFilters'>filters&nbsp;enabled</a>`;
-        }
+        void this.areFiltersEnabled().then((enabled) => {
+          if (enabled)
+            this.filter_query_description.innerHTML += ` <a href='javascript:void(0)' data-action='click:${this.elementName}#showFilters'>filters&nbsp;enabled</a>`;
+        });
       } else {
         this.filter_query_description.innerHTML = "";
       }
@@ -8346,6 +8385,10 @@ let InfiniteScrollRoutesViewer = class extends BaseRoutesViewer$1 {
     const postTrim = newValue.trim();
     this.setVisibilityOfDeleteButton(newValue);
     clearTimeout(this.timeout);
+    if (postTrim === this.lastSearch) {
+      return;
+    }
+    this.lastSearch = postTrim;
     const sortDirection = this.sortDirectionFromButton;
     this.startProgressBar();
     this.searchId++;
